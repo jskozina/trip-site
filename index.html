@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0F17">
+<title>Japan &amp; Vietnam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B0F17;
+  --ink-2:#131A26;
+  --ink-3:#1B2432;
+  --snow:#EDF1F6;
+  --muted:#8A97AB;
+  --faint:#5A6779;
+  --line:#232C3B;
+
+  --cold:#86AEDA;
+  --cool:#6E93B4;
+  --temperate:#7C9B8E;
+  --warm:#C98A46;
+  --hot:#BF4A30;
+
+  --gutter:22px;
+  --spine:26px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--ink);
+  color:var(--snow);
+  font-family:'Archivo',system-ui,-apple-system,sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:64px;
+}
+.wrap{max-width:600px;margin:0 auto;padding:0 var(--gutter)}
+
+/* ---------- masthead ---------- */
+.masthead{padding:48px 0 30px;position:relative}
+.eyebrow{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--faint);font-weight:600;margin:0 0 14px;
+}
+.masthead h1{
+  font-family:'Fraunces',Georgia,serif;
+  font-variation-settings:'SOFT' 40,'WONK' 1,'opsz' 100;
+  font-weight:400;font-size:clamp(40px,13vw,60px);
+  line-height:.95;letter-spacing:-.02em;margin:0;
+}
+.masthead .sub{
+  font-family:'Fraunces',Georgia,serif;font-style:italic;
+  font-variation-settings:'SOFT' 60,'WONK' 1;
+  color:var(--muted);font-size:19px;margin:12px 0 0;line-height:1.3;
+}
+
+/* ---------- countdown ---------- */
+.status-bar{
+  margin:28px 0 0;padding:16px 18px;
+  border:1px solid var(--line);border-radius:3px;
+  background:linear-gradient(180deg,rgba(134,174,218,.06),transparent);
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+}
+.status-bar .n{
+  font-family:'Fraunces',Georgia,serif;font-weight:600;
+  font-size:34px;line-height:1;font-variant-numeric:tabular-nums;
+}
+.status-bar .lbl{font-size:13px;color:var(--muted);letter-spacing:.02em}
+.status-bar.live{border-color:var(--cold)}
+
+/* ---------- summary ---------- */
+.summary{
+  display:flex;gap:26px;margin:18px 0 8px;flex-wrap:wrap;
+  font-size:12px;color:var(--faint);
+  letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+}
+.summary b{
+  display:block;font-family:'Fraunces',Georgia,serif;font-weight:500;
+  font-size:22px;color:var(--snow);letter-spacing:normal;
+  text-transform:none;font-variant-numeric:tabular-nums;
+}
+
+/* ---------- timeline ---------- */
+.timeline{margin:34px 0 0;position:relative}
+
+.node{position:relative;padding-left:calc(var(--spine) + 16px)}
+.node::before{ /* the thermal spine */
+  content:'';position:absolute;left:var(--spine);top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--from,#86AEDA),var(--to,#86AEDA));
+  opacity:.55;
+}
+.node:first-child::before{top:14px}
+.node:last-child::before{bottom:auto;height:16px}
+
+/* transit */
+.transit{padding-top:16px;padding-bottom:16px}
+.transit::after{
+  content:'';position:absolute;left:calc(var(--spine) - 3px);top:24px;
+  width:8px;height:8px;border-radius:50%;
+  background:var(--ink);border:2px solid var(--from,#86AEDA);opacity:.8;
+}
+.transit .mode{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--faint);font-weight:600;
+}
+.transit .t{color:var(--muted);font-size:14.5px;margin:3px 0 0}
+.transit .d{color:var(--faint);font-size:13.5px;margin:4px 0 0;line-height:1.5}
+
+/* leg */
+.leg{padding-top:10px;padding-bottom:10px}
+.leg-head{
+  width:100%;text-align:left;background:none;border:0;color:inherit;
+  padding:14px 0;cursor:pointer;font:inherit;display:block;
+  border-top:1px solid var(--line);
+}
+.leg::after{
+  content:'';position:absolute;left:calc(var(--spine) - 5px);top:26px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--from,#86AEDA);
+  box-shadow:0 0 0 4px var(--ink);
+}
+.leg.now::after{box-shadow:0 0 0 4px var(--ink),0 0 0 7px var(--from)}
+.dates{
+  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);font-weight:600;margin-bottom:5px;
+  font-variant-numeric:tabular-nums;
+}
+.leg h2{
+  font-family:'Fraunces',Georgia,serif;
+  font-variation-settings:'SOFT' 40,'WONK' 1,'opsz' 60;
+  font-weight:400;font-size:32px;line-height:1.05;margin:0;
+  letter-spacing:-.015em;
+}
+.nights{color:var(--muted);font-size:14px;margin-top:5px}
+.chev{
+  float:right;margin-top:-38px;color:var(--faint);font-size:20px;
+  transition:transform .22s ease;line-height:1;
+}
+.leg[open] .chev,.leg.open .chev{transform:rotate(90deg)}
+
+.leg-body{display:none;padding-bottom:22px}
+.leg.open .leg-body{display:block}
+.leg-body>p{color:var(--muted);font-size:15px;margin:2px 0 20px;line-height:1.6}
+
+.localtime{
+  font-size:12px;color:var(--faint);letter-spacing:.05em;
+  margin:0 0 16px;font-variant-numeric:tabular-nums;
+}
+
+/* children */
+.grp-label{
+  font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--faint);font-weight:600;margin:18px 0 10px;
+}
+.card{
+  border-left:2px solid var(--line);padding:2px 0 2px 14px;margin:0 0 16px;
+}
+.card h3{font-size:16px;font-weight:600;margin:0;letter-spacing:-.005em}
+.card .meta{font-size:13px;color:var(--muted);margin:2px 0 0}
+.card p{font-size:14px;color:var(--faint);margin:7px 0 0;line-height:1.55}
+.card .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:9px}
+a.lnk{
+  color:var(--snow);font-size:12px;text-decoration:none;
+  border-bottom:1px solid var(--line);padding-bottom:2px;
+}
+a.lnk:hover{border-color:var(--snow)}
+.pill{
+  font-size:10px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;
+  padding:3px 8px;border-radius:2px;border:1px solid var(--line);color:var(--muted);
+}
+.pill.shortlist{border-color:#5E7A99;color:#9DBBD8}
+.pill.held{border-color:#8A7433;color:#D9C179}
+.pill.booked{border-color:#3F7A5E;color:#8FD3B2;background:rgba(63,122,94,.12)}
+.price{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* footer */
+footer{
+  margin:52px 0 0;padding-top:22px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);line-height:1.6;
+}
+.err{
+  border:1px solid var(--line);border-left:2px solid var(--warm);
+  padding:16px 18px;margin:30px 0;color:var(--muted);font-size:14.5px;
+}
+.err code{
+  font-family:ui-monospace,monospace;font-size:13px;
+  background:var(--ink-2);padding:2px 5px;border-radius:2px;color:var(--snow);
+}
+:focus-visible{outline:2px solid var(--cold);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <p class="eyebrow" id="eyebrow">Itinerary</p>
+    <h1 id="title">Loading</h1>
+    <p class="sub" id="subtitle"></p>
+    <div class="status-bar" id="statusBar" hidden>
+      <span class="n" id="statusNum"></span>
+      <span class="lbl" id="statusLbl"></span>
+    </div>
+    <div class="summary" id="summary"></div>
+  </header>
+  <main class="timeline" id="timeline"></main>
+  <footer id="footer"></footer>
+</div>
+
+<script>
+const CLIMATE = {
+  cold:'#86AEDA', cool:'#6E93B4', temperate:'#7C9B8E', warm:'#C98A46', hot:'#BF4A30'
+};
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const CACHE_KEY = 'trip-cache-v1';
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const d = s => { const [y,m,dd] = String(s).split('-').map(Number); return new Date(y, m-1, dd); };
+const nights = (a,b) => (a&&b) ? Math.round((d(b)-d(a))/86400000) : 0;
+
+function dateRange(a,b){
+  if(!a) return '';
+  const A = d(a);
+  if(!b || a===b) return `${A.getDate()} ${MONTHS[A.getMonth()]}`;
+  const B = d(b);
+  return A.getMonth()===B.getMonth()
+    ? `${A.getDate()}\u2013${B.getDate()} ${MONTHS[B.getMonth()]}`
+    : `${A.getDate()} ${MONTHS[A.getMonth()]} \u2013 ${B.getDate()} ${MONTHS[B.getMonth()]}`;
+}
+
+function localTime(tz){
+  try{
+    return new Intl.DateTimeFormat('en-AU',{hour:'2-digit',minute:'2-digit',timeZone:tz,hour12:false}).format(new Date());
+  }catch(e){ return null; }
+}
+
+function mapLink(o){
+  if(o.lat && o.lng) return `https://www.google.com/maps/search/?api=1&query=${o.lat},${o.lng}`;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(o.title)}`;
+}
+
+function pill(status){
+  if(!status) return '';
+  return `<span class="pill ${esc(status)}">${esc(status)}</span>`;
+}
+
+function childCard(o, kind){
+  const meta = [o.subtitle, o.category, dateRange(o.start,o.end)].filter(Boolean).join(' \u00b7 ');
+  const n = nights(o.start,o.end);
+  const cost = (o.priceAud && n) ? `<span class="price">$${o.priceAud}/night \u00b7 $${o.priceAud*n} total</span>`
+             : (o.priceAud ? `<span class="price">$${o.priceAud}/night</span>` : '');
+  return `<div class="card">
+    <h3>${esc(o.title)}</h3>
+    ${meta ? `<p class="meta">${esc(meta)}</p>` : ''}
+    ${o.body ? `<p>${esc(o.body)}</p>` : ''}
+    <div class="row">
+      ${pill(o.status)}
+      ${cost}
+      <a class="lnk" href="${mapLink(o)}" target="_blank" rel="noopener">Map</a>
+      ${o.url ? `<a class="lnk" href="${esc(o.url)}" target="_blank" rel="noopener">Site</a>` : ''}
+    </div>
+  </div>`;
+}
+
+function render(data){
+  const t = data.trip || {};
+  document.title = t.title || 'Itinerary';
+  $('title').textContent = t.title || '';
+  $('subtitle').textContent = t.subtitle || '';
+  $('eyebrow').textContent = t.depart
+    ? `${d(t.depart).getDate()} ${MONTHS[d(t.depart).getMonth()]} ${d(t.depart).getFullYear()} \u2192 ${d(t.return).getDate()} ${MONTHS[d(t.return).getMonth()]} ${d(t.return).getFullYear()}`
+    : 'Itinerary';
+
+  const legs = (data.legs || []);
+  const stays = legs.flatMap(l => l.stays || []);
+  const cities = legs.filter(l => l.type !== 'transit');
+  const totalNights = cities.reduce((s,l) => s + nights(l.start,l.end), 0);
+  const accom = stays.reduce((s,x) => s + ((x.priceAud||0) * (nights(x.start,x.end)||0)), 0);
+
+  $('summary').innerHTML = `
+    <div>Cities<b>${cities.length}</b></div>
+    <div>Nights<b>${totalNights}</b></div>
+    ${accom ? `<div>Beds so far<b>$${accom.toLocaleString()}</b></div>` : ''}`;
+
+  // now-mode
+  const today = new Date(); today.setHours(0,0,0,0);
+  const dep = t.depart ? d(t.depart) : null;
+  const current = cities.find(l => today >= d(l.start) && today < d(l.end));
+  const bar = $('statusBar');
+  if(current){
+    bar.hidden = false; bar.classList.add('live');
+    const left = Math.max(0, Math.round((d(current.end)-today)/86400000));
+    $('statusNum').textContent = current.title;
+    $('statusLbl').textContent = `now \u00b7 ${left} night${left===1?'':'s'} to go`;
+  } else if(dep && today < dep){
+    bar.hidden = false;
+    const days = Math.round((dep-today)/86400000);
+    $('statusNum').textContent = days;
+    $('statusLbl').textContent = `day${days===1?'':'s'} until ${cities[0] ? cities[0].title : 'departure'}`;
+  }
+
+  // spine colours: each node blends toward the next city's colour
+  const colourAt = i => {
+    for(let j=i;j<legs.length;j++) if(legs[j].climate) return CLIMATE[legs[j].climate] || CLIMATE.cold;
+    for(let j=i;j>=0;j--) if(legs[j].climate) return CLIMATE[legs[j].climate] || CLIMATE.cold;
+    return CLIMATE.cold;
+  };
+
+  $('timeline').innerHTML = legs.map((l,i) => {
+    const from = colourAt(i), to = colourAt(Math.min(i+1, legs.length-1));
+    const style = `--from:${from};--to:${to}`;
+
+    if(l.type === 'transit'){
+      return `<section class="node transit" style="${style}">
+        <p class="mode">${esc(l.mode||'Transit')}${l.duration ? ' \u00b7 '+esc(l.duration) : ''}</p>
+        <p class="t">${esc(l.title)}</p>
+        ${l.body ? `<p class="d">${esc(l.body)}</p>` : ''}
+      </section>`;
+    }
+
+    const n = nights(l.start,l.end);
+    const isNow = current && current.id === l.id;
+    const lt = l.tz ? localTime(l.tz) : null;
+    const stays = (l.stays||[]).map(s => childCard(s,'stay')).join('');
+    const spots = (l.spots||[]).map(s => childCard(s,'spot')).join('');
+
+    return `<section class="node leg ${isNow?'now open':''}" style="${style}" data-id="${esc(l.id)}">
+      <button class="leg-head" aria-expanded="${isNow?'true':'false'}">
+        <span class="chev">\u203A</span>
+        <span class="dates">${dateRange(l.start,l.end)}</span>
+        <h2>${esc(l.title)}</h2>
+        <div class="nights">${n} night${n===1?'':'s'}</div>
+      </button>
+      <div class="leg-body">
+        ${lt ? `<p class="localtime">Local time ${lt}</p>` : ''}
+        ${l.body ? `<p>${esc(l.body)}</p>` : ''}
+        ${stays ? `<p class="grp-label">Sleeping</p>${stays}` : ''}
+        ${spots ? `<p class="grp-label">Eat, see, do</p>${spots}` : ''}
+        <div class="row"><a class="lnk" href="${mapLink(l)}" target="_blank" rel="noopener">Open in Maps</a></div>
+      </div>
+    </section>`;
+  }).join('');
+
+  $('timeline').addEventListener('click', e => {
+    const btn = e.target.closest('.leg-head');
+    if(!btn) return;
+    const leg = btn.closest('.leg');
+    const open = leg.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  $('footer').innerHTML = `${cities.length} cities \u00b7 ${totalNights} nights \u00b7 ${t.travellers||2} travelling.
+    Prices are estimates, not quotes. Edit <code>trip.json</code> and push to update.`;
+
+  if(isNowScrollNeeded(current)) {
+    const el = document.querySelector('.leg.now');
+    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+function isNowScrollNeeded(current){ return !!current; }
+
+async function boot(){
+  let data = null;
+  try{
+    const res = await fetch('trip.json?_=' + Date.now());
+    if(!res.ok) throw new Error(res.status);
+    data = await res.json();
+    try{ localStorage.setItem(CACHE_KEY, JSON.stringify(data)); }catch(e){}
+  }catch(err){
+    try{
+      const cached = localStorage.getItem(CACHE_KEY);
+      if(cached) data = JSON.parse(cached);
+    }catch(e){}
+  }
+
+  if(!data){
+    $('title').textContent = 'No data yet';
+    $('subtitle').textContent = '';
+    $('timeline').innerHTML = `<div class="err">
+      Couldn't load <code>trip.json</code>. If you opened this file directly from Finder,
+      the browser blocks the request. Serve the folder instead:
+      <br><br><code>python3 -m http.server 8000</code><br><br>
+      then open <code>localhost:8000</code>. On Netlify it just works.
+    </div>`;
+    return;
+  }
+  render(data);
+}
+boot();
+</script>
+</body>
+</html>

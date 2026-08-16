@@ -1,0 +1,277 @@
+{
+  "trip": {
+    "title": "Japan & Vietnam",
+    "subtitle": "Snow to the South China Sea",
+    "depart": "2026-12-19",
+    "return": "2027-01-08",
+    "travellers": 2,
+    "homeTz": "Australia/Brisbane"
+  },
+  "legs": [
+    {
+      "id": "bne-kix",
+      "type": "transit",
+      "title": "Brisbane to Osaka",
+      "mode": "Flight",
+      "duration": "approx 9h30 direct",
+      "start": "2026-12-19",
+      "end": "2026-12-20",
+      "body": "Arrive Kansai. Haruka Express to Kyoto Station, 1h15, runs every 30 minutes. Reserve seats.",
+      "status": "idea"
+    },
+    {
+      "id": "kyoto",
+      "type": "leg",
+      "title": "Kyoto",
+      "climate": "cold",
+      "start": "2026-12-20",
+      "end": "2026-12-26",
+      "lat": 35.0116,
+      "lng": 135.7681,
+      "tz": "Asia/Tokyo",
+      "body": "Higashiyama on foot, Arashiyama early to beat the coaches, Fushimi Inari at dawn or dusk. Nishiki Market and one kaiseki dinner as the food anchors. Kyoto snows a handful of days a year, so late December is luck rather than plan.",
+      "stays": [],
+      "spots": [
+        {
+          "id": "fushimi-inari",
+          "title": "Fushimi Inari Taisha",
+          "category": "See",
+          "lat": 34.9671,
+          "lng": 135.7727,
+          "body": "Empty before 8am and after dark. Full circuit is about two hours.",
+          "status": "idea"
+        },
+        {
+          "id": "nishiki",
+          "title": "Nishiki Market",
+          "category": "Eat",
+          "lat": 35.005,
+          "lng": 135.7649,
+          "body": "Closes early on some days over New Year. Check before going.",
+          "status": "idea"
+        }
+      ]
+    },
+    {
+      "id": "kyoto-nozawa",
+      "type": "transit",
+      "title": "Kyoto to Nozawa Onsen",
+      "mode": "Train",
+      "duration": "approx 4h30 door to door",
+      "start": "2026-12-26",
+      "end": "2026-12-26",
+      "body": "Kyoto to Tokyo 2h15 on the Tokaido Shinkansen. Change at Tokyo Station for Iiyama, 1h40 on the Hokuriku Shinkansen. Iiyama to Nozawa by Liner bus, 25 minutes.",
+      "status": "idea"
+    },
+    {
+      "id": "nozawa",
+      "type": "leg",
+      "title": "Nozawa Onsen",
+      "climate": "cold",
+      "start": "2026-12-26",
+      "end": "2026-12-30",
+      "lat": 36.9219,
+      "lng": 138.4436,
+      "tz": "Asia/Tokyo",
+      "body": "A working onsen village rather than a resort. Thirteen free public bathhouses scattered through the streets, steam coming up through the snowbanks. Four to five metres of snow through winter and no lift pass required. Consider splitting two nights here with two at Madarao.",
+      "stays": [
+        {
+          "id": "yama-lodge",
+          "title": "Yama Lodge Madarao",
+          "subtitle": "12-room lodge, two private onsen",
+          "start": "2026-12-26",
+          "end": "2026-12-28",
+          "lat": 36.8778,
+          "lng": 138.3283,
+          "priceAud": 300,
+          "url": "https://www.yamamadarao.com/",
+          "body": "Madarao Kogen, 30 minutes from Iiyama. Fire pit lounge, proper drying room, breakfast included, shuttle that drops you at restaurants and collects you. No on-site restaurant, so book dinners early over Christmas week.",
+          "status": "shortlist"
+        },
+        {
+          "id": "tsuchi-to-ito",
+          "title": "Ryokan Tsuchi to Ito",
+          "subtitle": "150-year kominka, one group per day",
+          "lat": 36.4667,
+          "lng": 138.0333,
+          "url": "https://www.tsuchitoito.com/en",
+          "body": "Not actually in Nozawa. It's in Omi village, 45 minutes from Matsumoto or Nagano and 1h45 from Nozawa. Goemon-buro, farm-to-table from their own organic plot. Would need its own two nights slotted between Kyoto and Nozawa.",
+          "status": "idea"
+        }
+      ],
+      "spots": []
+    },
+    {
+      "id": "nozawa-tokyo",
+      "type": "transit",
+      "title": "Nozawa Onsen to Tokyo",
+      "mode": "Train",
+      "duration": "approx 2h15",
+      "start": "2026-12-30",
+      "end": "2026-12-30",
+      "body": "Bus to Iiyama 25 minutes, then Hokuriku Shinkansen to Tokyo 1h40.",
+      "status": "idea"
+    },
+    {
+      "id": "tokyo",
+      "type": "leg",
+      "title": "Tokyo",
+      "climate": "cool",
+      "start": "2026-12-30",
+      "end": "2027-01-02",
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "tz": "Asia/Tokyo",
+      "body": "New Year here. Japan has no NYE fireworks, so the night is joya no kane, temple bells rung 108 times, then hatsumode the following morning. Three nights is short, so pick two or three neighbourhoods rather than a checklist.",
+      "stays": [],
+      "spots": [
+        {
+          "id": "zojoji",
+          "title": "Zojoji Temple",
+          "category": "New Year's Eve",
+          "lat": 35.6574,
+          "lng": 139.7486,
+          "body": "Balloon release at midnight with Tokyo Tower lit behind it. The closest thing Tokyo has to a spectacle. Arrive well before.",
+          "status": "idea"
+        },
+        {
+          "id": "kappabashi",
+          "title": "Kappabashi Street",
+          "category": "Shop",
+          "lat": 35.7134,
+          "lng": 139.7885,
+          "body": "Knives and kitchenware. Many shops close 1 to 3 January for shogatsu, so go on the 30th or 31st.",
+          "status": "idea"
+        }
+      ]
+    },
+    {
+      "id": "tokyo-hanoi",
+      "type": "transit",
+      "title": "Tokyo to Hanoi",
+      "mode": "Flight",
+      "duration": "6h direct",
+      "start": "2027-01-02",
+      "end": "2027-01-02",
+      "body": "Haneda or Narita to Noi Bai. Vietnam Airlines, VietJet, ANA and JAL all fly it. Take a morning departure. Vietnam is two hours behind Japan. Noi Bai to the centre is 45 minutes by car.",
+      "status": "idea"
+    },
+    {
+      "id": "hanoi",
+      "type": "leg",
+      "title": "Hanoi",
+      "climate": "temperate",
+      "start": "2027-01-02",
+      "end": "2027-01-05",
+      "lat": 21.0278,
+      "lng": 105.8342,
+      "tz": "Asia/Ho_Chi_Minh",
+      "body": "Cool and damp in January, 15 to 20 degrees, with the fine persistent drizzle locals call mua phun. Not beach weather, but it's the right weather for bun cha and hot pot and egg coffee in a cold city. Ninh Binh is a two hour drive if you want karst landscape without a boat.",
+      "stays": [
+        {
+          "id": "capella-hanoi",
+          "title": "Capella Hanoi",
+          "subtitle": "Bensley, 1920s opera house theme",
+          "start": "2027-01-02",
+          "end": "2027-01-05",
+          "lat": 21.0245,
+          "lng": 105.857,
+          "priceAud": 500,
+          "url": "https://capellahotels.com/en/capella-hanoi",
+          "body": "Built as the backstage of an opera house. Every corridor is a set piece. Sun Group property, Bill Bensley design.",
+          "status": "idea"
+        }
+      ],
+      "spots": []
+    },
+    {
+      "id": "hanoi-hoian",
+      "type": "transit",
+      "title": "Hanoi to Hoi An",
+      "mode": "Flight + car",
+      "duration": "1h20 plus 45 min",
+      "start": "2027-01-05",
+      "end": "2027-01-05",
+      "body": "Hanoi to Da Nang by air, then car south to Hoi An.",
+      "status": "idea"
+    },
+    {
+      "id": "hoian",
+      "type": "leg",
+      "title": "Hoi An",
+      "climate": "warm",
+      "start": "2027-01-05",
+      "end": "2027-01-07",
+      "lat": 15.8801,
+      "lng": 108.338,
+      "tz": "Asia/Ho_Chi_Minh",
+      "body": "The tail of the central wet season. 20 to 25 degrees, often grey, sea too rough to swim. The Old Town and the lanterns are unaffected. Hue is 2h30 by train over the Hai Van Pass if you want to add it, at the cost of a night here.",
+      "stays": [
+        {
+          "id": "nam-hai",
+          "title": "Four Seasons Nam Hai",
+          "subtitle": "Beachfront villas with private pools",
+          "start": "2027-01-05",
+          "end": "2027-01-07",
+          "lat": 15.9333,
+          "lng": 108.3,
+          "priceAud": 900,
+          "url": "https://www.fourseasons.com/hoian/",
+          "body": "Low and spare, the tonal opposite of Capella. Fifteen minutes to the Old Town. At its best in sunshine you may not get in early January.",
+          "status": "idea"
+        }
+      ],
+      "spots": []
+    },
+    {
+      "id": "danang-sgn",
+      "type": "transit",
+      "title": "Da Nang to Saigon",
+      "mode": "Flight",
+      "duration": "1h25",
+      "start": "2027-01-07",
+      "end": "2027-01-07",
+      "body": "Tan Son Nhat to District 1 is 30 minutes.",
+      "status": "idea"
+    },
+    {
+      "id": "saigon",
+      "type": "leg",
+      "title": "Ho Chi Minh City",
+      "climate": "hot",
+      "start": "2027-01-07",
+      "end": "2027-01-08",
+      "lat": 10.8231,
+      "lng": 106.6297,
+      "tz": "Asia/Ho_Chi_Minh",
+      "body": "Peak dry season, 25 to 32 and clear. This night exists because the VietJet Brisbane nonstop only leaves from Saigon. Rooftop drink and one good dinner.",
+      "stays": [
+        {
+          "id": "park-hyatt-sgn",
+          "title": "Park Hyatt Saigon",
+          "subtitle": "Facing the Opera House",
+          "start": "2027-01-07",
+          "end": "2027-01-08",
+          "lat": 10.7769,
+          "lng": 106.7031,
+          "priceAud": 400,
+          "url": "https://www.hyatt.com/park-hyatt/en-US/sgnph-park-hyatt-saigon",
+          "body": "Best hotel in the city. Colonial white facade on Lam Son Square.",
+          "status": "idea"
+        }
+      ],
+      "spots": []
+    },
+    {
+      "id": "sgn-bne",
+      "type": "transit",
+      "title": "Saigon to Brisbane",
+      "mode": "Flight",
+      "duration": "8h30 direct",
+      "start": "2027-01-08",
+      "end": "2027-01-08",
+      "body": "VietJet, departs around 10:50 and lands Brisbane around 21:55 the same day. Five flights a week and 8 January 2027 is a Friday, which is a scheduled day. Confirm when booking.",
+      "status": "idea"
+    }
+  ]
+}

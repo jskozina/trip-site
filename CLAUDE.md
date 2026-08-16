@@ -1,0 +1,67 @@
+# Trip site
+
+A static itinerary site. `trip.json` is the data, `index.html` renders it, Netlify deploys on push to `main`.
+
+## Files
+
+- `trip.json` — the only source of truth. Never duplicate data into the HTML.
+- `index.html` — self-contained frontend. No build step, no dependencies except Google Fonts.
+- `inbox.md` — raw captured URLs waiting to be processed.
+- `README.md` — setup notes for the human.
+
+## Schema
+
+```
+trip: { title, subtitle, depart, return, travellers, homeTz }
+legs: [ leg | transit ]
+```
+
+**leg** (a place you sleep)
+`id, type:"leg", title, climate, start, end, lat, lng, tz, body, stays[], spots[]`
+
+**transit** (a movement between legs)
+`id, type:"transit", title, mode, duration, start, end, body, status`
+
+**stay** (inside a leg)
+`id, title, subtitle, start, end, lat, lng, priceAud, url, body, status`
+
+**spot** (inside a leg — eat, see, do)
+`id, title, category, lat, lng, url, body, status`
+
+### Field rules
+
+- `climate` is one of `cold | cool | temperate | warm | hot`. It drives the colour of the timeline spine, which shifts from frost blue in Japan to lacquer red in Saigon. Set it honestly for the season.
+- `status` is one of `idea | shortlist | held | booked`. Default new items to `idea`.
+- `priceAud` is per night, a whole number, no currency symbol. The site multiplies by nights.
+- `id` is a short kebab-case slug, unique across the whole file.
+- Dates are `YYYY-MM-DD`. Legs render in array order, so keep the array chronological.
+- `lat`/`lng` are optional. Without them, the Map link falls back to a text search of the title.
+- `category` on a spot is a short label like `Eat`, `See`, `Shop`, `Drink`.
+
+## Processing the inbox
+
+When asked to "process the inbox":
+
+1. Read `inbox.md`. Each non-empty line is a URL, optionally followed by a note after a `|`.
+2. For each URL, fetch it and extract: name, coordinates if present, a one-line description.
+   - **Google Maps** short links: follow the redirect and read the expanded URL. Coordinates sit in the `!3d{lat}!4d{lng}` pattern. This is the most reliable source.
+   - **Airbnb / Booking.com**: they block scrapers aggressively. Expect the title and little else. Take what you can get and leave the rest blank rather than guessing.
+   - If a fetch fails entirely, leave the line in `inbox.md` and say so. Never invent details.
+3. Work out which leg it belongs to by comparing its coordinates to each leg's `lat`/`lng` and taking the nearest. If there are no coordinates, ask.
+4. Decide `stay` vs `spot` from the source: accommodation sites are stays, everything else is a spot.
+5. Write it into the right array in `trip.json` with `status: "idea"`.
+6. Remove processed lines from `inbox.md`.
+7. Commit with a message naming what was added.
+
+## Writing style for `body` fields
+
+Match the existing entries. Plain, specific, useful. Say what's actually true about a place including the downsides — grey weather, closures, a long walk uphill in the snow. No marketing language, no "nestled", no "vibrant". Australian English. Avoid em dashes; use commas or full stops.
+
+Keep `body` to one or two sentences on a spot, two or three on a stay or leg.
+
+## Things not to do
+
+- Don't add a build step, a framework, or a package.json. The whole point is that it's two files.
+- Don't put secrets in the repo. It's a public Netlify site.
+- Don't reformat `trip.json` wholesale in a way that makes the diff unreadable. Two-space indent, keys in the order above.
+- Don't change `index.html` when the task is a data change.
