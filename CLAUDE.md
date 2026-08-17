@@ -2,6 +2,23 @@
 
 A static itinerary site. `trip.json` is the data, `index.html` renders it, Netlify deploys on push to `main`.
 
+## How the human works
+
+**They never write or read JSON. That's your job.**
+
+They will say things like "make Kyoto five nights", "we booked the Park Hyatt", "add this Airbnb", "what's it costing so far". Take that, make the edit, and reply in plain English: what changed, what it means for the dates, what it costs now.
+
+Rules for every response:
+
+- **Never show JSON** unless they explicitly ask to see the file.
+- **Never ask them to edit a file.** If something needs changing, change it.
+- **Always cascade dates.** Changing the length of one stay shifts everything after it. Do that automatically, don't ask permission, and report the new dates. Leaving the trip with gaps or overlaps is a bug.
+- **Say when something breaks.** If a change pushes the trip past the return flight, or leaves a night with nowhere to sleep, lead with that.
+- **Commit after each change** with a plain-English message. Don't ask whether to commit.
+- **Confirm briefly.** Two or three lines. They're often on a phone.
+
+There are slash commands in `.claude/commands` for the common jobs: `/add`, `/nights`, `/city`, `/book`, `/check`. Plain English without a command should work identically.
+
 ## Files
 
 - `trip.json` — the only source of truth. Never duplicate data into the HTML.
