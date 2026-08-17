@@ -3,9 +3,12 @@
     "title": "Japan & Vietnam",
     "subtitle": "Snow to the South China Sea",
     "depart": "2026-12-19",
-    "return": "2027-01-08",
+    "return": "2027-01-09",
     "travellers": 2,
-    "homeTz": "Australia/Brisbane"
+    "homeTz": "Australia/Brisbane",
+    "budget": {
+      "flights": 6884
+    }
   },
   "legs": [
     {
@@ -13,10 +16,10 @@
       "type": "transit",
       "title": "Brisbane to Osaka",
       "mode": "Flight",
-      "duration": "approx 9h30 direct",
+      "duration": "12h20, one stop",
       "start": "2026-12-19",
       "end": "2026-12-20",
-      "body": "",
+      "body": "EVA Air, not direct. Depart Brisbane 22:35 Saturday, overnight to Taipei (8h30), 1h25 to change planes, then Taipei to Kansai (2h25), landing 09:55 Sunday morning.",
       "status": "idea"
     },
     {
@@ -88,10 +91,10 @@
       "type": "transit",
       "title": "Tokyo to Hanoi",
       "mode": "Flight",
-      "duration": "6h direct",
+      "duration": "6h15 direct",
       "start": "2027-01-02",
       "end": "2027-01-02",
-      "body": "",
+      "body": "Vietnam Airlines, Haneda not Narita. Departs 16:35, lands Hanoi 20:50, leaving a full last morning in Tokyo before the airport run.",
       "status": "idea"
     },
     {
@@ -113,10 +116,10 @@
       "type": "transit",
       "title": "Hanoi to Hoi An",
       "mode": "Flight + car",
-      "duration": "1h20 plus 45 min",
+      "duration": "1h20 flight plus 45 min drive",
       "start": "2027-01-05",
       "end": "2027-01-05",
-      "body": "",
+      "body": "VietJet departs Hanoi 22:25, lands Da Nang 23:45, then the drive puts check-in around half past midnight. Worth checking for an earlier flight that day, a late-night arrival eats into the first night in Hoi An.",
       "status": "idea"
     },
     {
@@ -138,10 +141,10 @@
       "type": "transit",
       "title": "Da Nang to Saigon",
       "mode": "Flight",
-      "duration": "1h25",
+      "duration": "1h25 direct",
       "start": "2027-01-07",
       "end": "2027-01-07",
-      "body": "",
+      "body": "VietJet, departs 08:45, lands Saigon 10:10. A normal morning flight, leaves the rest of the day free in the city.",
       "status": "idea"
     },
     {
@@ -150,7 +153,7 @@
       "title": "Ho Chi Minh City",
       "climate": "hot",
       "start": "2027-01-07",
-      "end": "2027-01-08",
+      "end": "2027-01-09",
       "lat": 10.8231,
       "lng": 106.6297,
       "tz": "Asia/Ho_Chi_Minh",
@@ -164,9 +167,9 @@
       "title": "Saigon to Brisbane",
       "mode": "Flight",
       "duration": "8h30 direct",
-      "start": "2027-01-08",
-      "end": "2027-01-08",
-      "body": "",
+      "start": "2027-01-09",
+      "end": "2027-01-09",
+      "body": "VietJet, departs 10:40, lands Brisbane 22:10. Doesn't appear to fly Fridays, this itinerary is built around the Saturday departure.",
       "status": "idea"
     }
   ]
