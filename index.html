@@ -163,10 +163,13 @@ svg{display:block;flex:none}
 .legs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:40px}
 
 .transit-row{
-  grid-column:1/-1;display:flex;gap:14px;align-items:center;flex-wrap:wrap;
-  padding:14px 18px;background:var(--surface);border:1px solid var(--line);
-  border-left:4px solid var(--line-2);border-radius:var(--radius);
-  animation:rise .5s ease both;
+  display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+  padding:14px 18px;background:var(--surface);
+  border-left:4px solid var(--line-2);
+}
+.transit-row.standalone{
+  grid-column:1/-1;border:1px solid var(--line);border-left-width:4px;
+  border-radius:var(--radius);animation:rise .5s ease both;
 }
 .t-icon{width:38px;height:38px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center}
 .transit-row .body{min-width:0;flex:1 1 220px}
@@ -175,13 +178,30 @@ svg{display:block;flex:none}
 .transit-row .sub{font-size:12.5px;color:var(--muted);margin:5px 0 0}
 .transit-row .d{color:var(--muted);font-size:13.5px;margin:6px 0 0;line-height:1.5}
 .board{flex:none;margin-left:auto;text-align:right}
-.board .time{
-  font-family:var(--mono);font-size:23px;font-weight:600;color:var(--text);
-  letter-spacing:-.01em;font-variant-numeric:tabular-nums;
-  display:flex;align-items:center;gap:8px;justify-content:flex-end;
+.board .route{
+  font-family:var(--mono);font-size:19px;font-weight:600;color:var(--text);
+  letter-spacing:.02em;font-variant-numeric:tabular-nums;
+  display:flex;align-items:center;gap:7px;justify-content:flex-end;
 }
-.board .time .arrow{color:var(--faint);font-size:16px}
+.board .route .arrow{color:var(--faint);font-size:14px}
+.board .time{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums}
 .board .dur{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+
+/* connecting-flight / linked-transit group */
+.transit-group{
+  grid-column:1/-1;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);overflow:hidden;animation:rise .5s ease both;
+}
+.transit-group .group-label{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+  font-weight:700;margin:0;padding:13px 18px 0;
+}
+.transit-group .transit-row+.transit-row{border-top:1px dashed var(--line)}
+.connector{
+  display:flex;align-items:center;gap:8px;padding:7px 18px 7px 56px;
+  font-family:var(--mono);font-size:10.5px;color:var(--faint);
+  letter-spacing:.05em;text-transform:uppercase;background:var(--bg);
+}
 
 .leg-card{
   background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
@@ -417,6 +437,49 @@ function pill(status){
   return `<span class="pill" style="color:${s.c};background:${s.bg};border-color:${s.bd}">${svgIcon(s.icon,11)}${esc(s.label)}</span>`;
 }
 
+function timeGapMinutes(t1, t2){
+  const [h1,m1] = t1.split(':').map(Number);
+  const [h2,m2] = t2.split(':').map(Number);
+  let diff = (h2*60+m2) - (h1*60+m1);
+  if(diff < 0) diff += 1440;
+  return diff;
+}
+
+function fmtDur(mins){
+  const h = Math.floor(mins/60), m = mins%60;
+  return h ? `${h}h${m ? String(m).padStart(2,'0')+'m' : ''}` : `${m}m`;
+}
+
+function connectorHtml(a, b){
+  if(a.arriveTime && b.departTime){
+    const mins = timeGapMinutes(a.arriveTime, b.departTime);
+    return `<div class="connector">${fmtDur(mins)} layover${a.to ? ' · '+esc(a.to) : ''}</div>`;
+  }
+  return `<div class="connector">Then by ${esc((b.mode||'transfer').toLowerCase())}</div>`;
+}
+
+function transitInner(l, extraClass, idAttr, styleAttr){
+  const s = statusInfo(l.status);
+  const hasTimes = l.departTime && l.arriveTime;
+  const hasRoute = l.from && l.to;
+  return `<div class="transit-row ${extraClass||''}" ${idAttr?`id="${idAttr}"`:''} style="border-left-color:${s.c};${styleAttr||''}">
+    <div class="t-icon" style="background:${s.bg};color:${s.c}">${svgIcon(iconForMode(l.mode),20)}</div>
+    <div class="body">
+      <div class="top">
+        <p class="t">${esc(l.title)}</p>
+        ${pill(l.status)}
+      </div>
+      <p class="sub">${esc(l.mode||'Transit')}${l.priceAud ? ' · '+money(l.priceAud) : ''}</p>
+      ${l.body ? `<p class="d">${esc(l.body)}</p>` : ''}
+    </div>
+    <div class="board">
+      ${hasRoute ? `<div class="route">${esc(l.from)}<span class="arrow">→</span>${esc(l.to)}</div>` : ''}
+      ${hasTimes ? `<div class="time">${esc(l.departTime)}–${esc(l.arriveTime)}</div>` : ''}
+      ${l.duration ? `<div class="dur">${esc(l.duration)}</div>` : ''}
+    </div>
+  </div>`;
+}
+
 function thumb(o, kind){
   if(o.image) return `<div class="thumb"><img src="${esc(resizeImg(o.image,120,120))}" alt="" loading="lazy"></div>`;
   const s = statusInfo(o.status);
@@ -634,26 +697,28 @@ function render(data){
   $('budgetWrap').hidden = false;
   $('budgetRows').innerHTML = renderBudget(t, legs);
 
-  $('timeline').innerHTML = legs.map((l,i) => {
+  const parts = [];
+  for(let i=0;i<legs.length;i++){
+    const l = legs[i];
     const delay = Math.min(i*50, 400);
+
     if(l.type === 'transit'){
-      const s = statusInfo(l.status);
-      const hasTimes = l.departTime && l.arriveTime;
-      return `<section class="transit-row" id="leg-${esc(l.id)}" style="border-left-color:${s.c};animation-delay:${delay}ms">
-        <div class="t-icon" style="background:${s.bg};color:${s.c}">${svgIcon(iconForMode(l.mode),20)}</div>
-        <div class="body">
-          <div class="top">
-            <p class="t">${esc(l.title)}</p>
-            ${pill(l.status)}
-          </div>
-          <p class="sub">${esc(l.mode||'Transit')}${l.priceAud ? ' · '+money(l.priceAud) : ''}</p>
-          ${l.body ? `<p class="d">${esc(l.body)}</p>` : ''}
-        </div>
-        <div class="board">
-          ${hasTimes ? `<div class="time">${esc(l.departTime)}<span class="arrow">→</span>${esc(l.arriveTime)}</div>` : ''}
-          ${l.duration ? `<div class="dur">${esc(l.duration)}</div>` : ''}
-        </div>
-      </section>`;
+      if(l.group && legs[i+1] && legs[i+1].type === 'transit' && legs[i+1].group === l.group){
+        const members = [l];
+        let j = i+1;
+        while(j<legs.length && legs[j].type==='transit' && legs[j].group===l.group){ members.push(legs[j]); j++; }
+        const segs = members.map((m,idx) =>
+          transitInner(m) + (idx < members.length-1 ? connectorHtml(m, members[idx+1]) : '')
+        ).join('');
+        parts.push(`<section class="transit-group" id="leg-${esc(l.id)}" style="animation-delay:${delay}ms">
+          <p class="group-label">${esc(l.group)}</p>
+          ${segs}
+        </section>`);
+        i = j-1;
+        continue;
+      }
+      parts.push(transitInner(l, 'standalone', `leg-${esc(l.id)}`, `animation-delay:${delay}ms`));
+      continue;
     }
 
     const n = nights(l.start,l.end);
@@ -666,7 +731,7 @@ function render(data){
       ? `<img src="${esc(resizeImg(l.image,1600,900))}" alt="" loading="lazy">`
       : `<div class="mono">${esc(initial(l.title))}</div>`;
 
-    return `<section class="leg-card ${isNow?'now':''}" id="leg-${esc(l.id)}" data-id="${esc(l.id)}" style="animation-delay:${delay}ms">
+    parts.push(`<section class="leg-card ${isNow?'now':''}" id="leg-${esc(l.id)}" data-id="${esc(l.id)}" style="animation-delay:${delay}ms">
       <div class="leg-media">
         ${media}
         ${isNow ? `<span class="now-badge">Now</span>` : ''}
@@ -684,8 +749,9 @@ function render(data){
         ${spotsHtml ? `<p class="grp-label">Eat, see, do</p>${spotsHtml}` : ''}
         <div class="row"><a class="lnk" href="${mapLink(l)}" target="_blank" rel="noopener">Open in Maps</a></div>
       </div>
-    </section>`;
-  }).join('');
+    </section>`);
+  }
+  $('timeline').innerHTML = parts.join('');
 
   $('footer').innerHTML = `${cities.length} cities · ${totalNights} nights · ${t.travellers||2} travelling.
     Prices are estimates, not quotes. Edit <code>trip.json</code> and push to update.`;
