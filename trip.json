@@ -6,7 +6,8 @@
     "travellers": 2,
     "homeTz": "Australia/Brisbane",
     "budget": {
-      "flights": 6900
+      "flights": 6900,
+      "accom": 5200
     }
   },
   "legs": [
