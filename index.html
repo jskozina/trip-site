@@ -113,45 +113,26 @@ svg{display:block;flex:none}
   background:var(--bg);background-size:cover;background-position:center;
 }
 .cal-cell.blank{background:transparent}
-.cal-cell.day{cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;outline-offset:2px}
-.cal-cell.day:hover,.cal-cell.day:focus-visible{transform:scale(1.08);box-shadow:0 3px 10px rgba(30,33,38,.22);z-index:1}
-.cal-cell.day.active{box-shadow:0 0 0 2px var(--text)}
 .cal-cell .num{
   position:absolute;top:4px;left:4px;font-family:var(--mono);font-size:10.5px;font-weight:600;
   color:#fff;background:rgba(30,33,38,.55);padding:2px 5px;border-radius:5px;line-height:1;
   font-variant-numeric:tabular-nums;
 }
 .cal-cell.transit .num{color:var(--text);background:rgba(255,255,255,.7)}
-.cal-cell .heading{
-  position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;
-  padding:4px 5px;background:linear-gradient(180deg,rgba(30,33,38,.72),rgba(30,33,38,0) 85%);
-}
-.cal-cell .heading .city{
-  color:#fff;font-size:clamp(6.5px,1.3vw,9px);font-weight:700;letter-spacing:.03em;text-transform:uppercase;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:72%;line-height:1.4;
-}
-.cal-cell .heading .num{position:static;background:none;padding:0;font-size:clamp(9px,1.6vw,12px)}
-.cal-cell .mo{
-  position:absolute;bottom:4px;left:4px;font-size:7.5px;letter-spacing:.05em;text-transform:uppercase;
-  color:#fff;background:rgba(30,33,38,.55);padding:2px 5px;border-radius:5px;line-height:1;
-}
-.cal-cell.transit .mo{color:var(--faint);background:none;padding:0}
 .cal-cell .modeicon{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);
 }
+.cal-cell .daypill{
+  position:absolute;left:3px;right:3px;bottom:3px;display:flex;align-items:center;gap:3px;
+  background:rgba(30,33,38,.65);color:#fff;
+  font-family:var(--mono);font-size:clamp(6px,1.3vw,8.5px);font-weight:600;
+  padding:2px 5px;border-radius:20px;line-height:1.5;
+  white-space:nowrap;overflow:hidden;
+}
+.cal-cell.transit .daypill{background:rgba(255,255,255,.85);color:var(--text)}
+.cal-cell .daypill svg{flex:none}
+.cal-cell .daypill span{overflow:hidden;text-overflow:ellipsis}
 .cal-cell.today{box-shadow:0 0 0 2px var(--text)}
-.cal-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px}
-.cal-legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
-.cal-legend-item .sw{width:13px;height:13px;border-radius:4px;background-size:cover;background-position:center;flex:none;background-color:var(--line)}
-
-.cal-detail{margin-top:14px;padding:14px 16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);min-height:22px}
-.cal-detail .empty{color:var(--faint);font-size:13px;margin:0}
-.cal-detail .day{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
-.cal-detail .title{font-family:'Fraunces',Georgia,serif;font-size:19px;font-weight:500;color:var(--text);margin-top:2px}
-.cal-detail .meta{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:6px}
-.cal-detail .route{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:6px;margin-top:4px}
-.cal-detail .route .arrow{color:var(--faint);font-size:13px}
-.cal-detail .pillrow{margin-top:8px}
 
 /* ---------- map ---------- */
 .mapSection{margin-top:36px}
@@ -340,8 +321,6 @@ footer{
   <section class="calendar" id="calendarWrap" hidden>
     <p class="section-label">At a glance</p>
     <div class="cal-grid" id="calendar"></div>
-    <div class="cal-legend" id="calLegend"></div>
-    <div class="cal-detail" id="calDetail"></div>
   </section>
   <section class="mapSection" id="mapWrap" hidden>
     <p class="section-label">Route</p>
@@ -556,47 +535,22 @@ function buildDayMap(legs){
   return map;
 }
 
-const DAY_LOOKUP = new Map();
-let todayKey = null;
-
-function dayDetailHtml(dt, item){
-  const dayLbl = new Intl.DateTimeFormat('en-AU',{weekday:'long', day:'numeric', month:'long'}).format(dt);
-  if(!item) return `<p class="empty">${esc(dayLbl)} — nothing scheduled yet.</p>`;
-
+function dayPillHtml(item, dt){
+  if(!item) return '';
   if(item.type === 'transit'){
-    const hasRoute = item.from && item.to;
-    const hasTimes = item.departTime && item.arriveTime;
-    return `<span class="day">${esc(dayLbl)}</span>
-      <div class="title">${esc(item.title)}</div>
-      <div class="meta">${svgIcon(iconForMode(item.mode),13)}${esc(item.mode||'Transit')}${item.flightNo ? ' · '+esc(item.flightNo) : ''}${item.duration ? ' · '+esc(item.duration) : ''}</div>
-      ${hasRoute ? `<div class="route">${esc(item.from)}<span class="arrow">→</span>${esc(item.to)}${hasTimes ? ` · ${esc(item.departTime)}–${esc(item.arriveTime)}` : ''}</div>` : ''}
-      <div class="pillrow">${pill(item.status)}</div>`;
+    if(!item.departTime) return '';
+    return `<span class="daypill">${svgIcon(iconForMode(item.mode),9)}<span>${esc(item.departTime)}</span></span>`;
   }
-
-  const n = Math.round((dt - d(item.start))/86400000) + 1;
-  const total = nights(item.start, item.end);
-  return `<span class="day">${esc(dayLbl)}</span>
-    <div class="title">${esc(item.title)}</div>
-    <div class="meta">Night ${n} of ${total}</div>`;
-}
-
-function showDayDetail(key){
-  const entry = DAY_LOOKUP.get(key);
-  const target = $('calDetail');
-  if(!target) return;
-  target.innerHTML = entry ? dayDetailHtml(entry.dt, entry.item) : '<p class="empty">Hover or tap a day above for details.</p>';
-  document.querySelectorAll('.cal-cell.active').forEach(el => el.classList.remove('active'));
-  const cell = document.querySelector(`.cal-cell[data-key="${key}"]`);
-  if(cell) cell.classList.add('active');
+  const stay = (item.stays||[]).find(s => s.start && s.end && dt >= d(s.start) && dt < d(s.end));
+  return `<span class="daypill"><span>${esc(item.title)}</span>${stay ? svgIcon('bed',9)+`<span>${esc(stay.title)}</span>` : ''}</span>`;
 }
 
 function renderCalendar(trip, legs){
-  DAY_LOOKUP.clear();
-  if(!trip.depart || !trip.return) return { grid:'', legend:'' };
+  if(!trip.depart || !trip.return) return '';
   const map = buildDayMap(legs);
   const start = d(trip.depart), end = d(trip.return);
   const today = new Date(); today.setHours(0,0,0,0);
-  todayKey = dkey(today);
+  const todayKey = dkey(today);
   const days = [];
   const cur = new Date(start);
   while(cur.getTime() <= end.getTime()){
@@ -611,7 +565,6 @@ function renderCalendar(trip, legs){
   days.forEach(dt => {
     const item = map.get(dkey(dt));
     const key = dkey(dt);
-    DAY_LOOKUP.set(key, { dt, item });
     const isTransit = item && item.type === 'transit';
     const isToday = key === todayKey;
     const showMonth = dt.getMonth() !== lastMonth;
@@ -627,22 +580,17 @@ function renderCalendar(trip, legs){
     }
     const bg = dayImage ? `style="background-image:url('${resizeImg(dayImage,140,140)}')"` : '';
     const icon = isTransit ? `<span class="modeicon">${svgIcon(iconForMode(item.mode),18)}</span>` : '';
-    const heading = (item && !isTransit) ? `<div class="heading"><span class="city">${esc(item.title)}</span><span class="num">${dt.getDate()}</span></div>` : `<span class="num">${dt.getDate()}</span>`;
-    cells.push(`<div class="cal-cell day ${isTransit?'transit':''} ${isToday?'today':''}" data-key="${key}" tabindex="0" ${bg} title="${esc(item ? item.title : '')}">
+    const numLbl = showMonth ? `${MONTHS[dt.getMonth()]} ${dt.getDate()}` : dt.getDate();
+    cells.push(`<div class="cal-cell ${isTransit?'transit':''} ${isToday?'today':''}" title="${esc(item ? item.title : '')}" ${bg}>
       ${icon}
-      ${heading}
-      ${showMonth ? `<span class="mo">${MONTHS[dt.getMonth()]}</span>` : ''}
+      <span class="num">${numLbl}</span>
+      ${dayPillHtml(item, dt)}
     </div>`);
   });
 
-  const grid = `
+  return `
     <div class="cal-dow">M</div><div class="cal-dow">T</div><div class="cal-dow">W</div><div class="cal-dow">T</div><div class="cal-dow">F</div><div class="cal-dow">S</div><div class="cal-dow">S</div>
     ${cells.join('')}`;
-
-  const cities = legs.filter(l => l.type !== 'transit');
-  const legend = cities.map(c => `<span class="cal-legend-item"><span class="sw" style="${c.image ? `background-image:url('${resizeImg(c.image,40,40)}')` : ''}"></span>${esc(c.title)}</span>`).join('');
-
-  return { grid, legend };
 }
 
 function renderMap(legs){
@@ -760,12 +708,10 @@ function render(data){
   }
 
   // calendar grid
-  const cal = renderCalendar(t, legs);
-  if(cal.grid){
+  const calGrid = renderCalendar(t, legs);
+  if(calGrid){
     $('calendarWrap').hidden = false;
-    $('calendar').innerHTML = cal.grid;
-    $('calLegend').innerHTML = cal.legend;
-    showDayDetail(DAY_LOOKUP.has(todayKey) ? todayKey : [...DAY_LOOKUP.keys()][0]);
+    $('calendar').innerHTML = calGrid;
   }
 
   // route map
@@ -866,22 +812,6 @@ async function boot(){
   }
   render(data);
 }
-
-$('calendar').addEventListener('mouseover', e => {
-  const cell = e.target.closest('.cal-cell.day');
-  if(cell) showDayDetail(cell.dataset.key);
-});
-$('calendar').addEventListener('click', e => {
-  const cell = e.target.closest('.cal-cell.day');
-  if(cell) showDayDetail(cell.dataset.key);
-});
-$('calendar').addEventListener('keydown', e => {
-  if(e.key !== 'Enter' && e.key !== ' ') return;
-  const cell = e.target.closest('.cal-cell.day');
-  if(!cell) return;
-  e.preventDefault();
-  showDayDetail(cell.dataset.key);
-});
 
 boot();
 </script>
