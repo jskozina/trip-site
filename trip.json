@@ -31,6 +31,7 @@
       "lat": 35.0116,
       "lng": 135.7681,
       "tz": "Asia/Tokyo",
+      "image": "https://images.unsplash.com/photo-1777385867384-e7b8280b2650?q=80&w=1600&auto=format&fit=crop",
       "body": "",
       "stays": [],
       "spots": []
@@ -56,6 +57,7 @@
       "lat": 36.9219,
       "lng": 138.4436,
       "tz": "Asia/Tokyo",
+      "image": "https://images.unsplash.com/photo-1541001317411-af58d4bc440a?q=80&w=1600&auto=format&fit=crop",
       "body": "",
       "stays": [],
       "spots": []
@@ -81,6 +83,7 @@
       "lat": 35.6762,
       "lng": 139.6503,
       "tz": "Asia/Tokyo",
+      "image": "https://images.unsplash.com/photo-1759970752518-b0ffa38c130b?q=80&w=1600&auto=format&fit=crop",
       "body": "",
       "stays": [],
       "spots": []
@@ -106,6 +109,7 @@
       "lat": 21.0278,
       "lng": 105.8342,
       "tz": "Asia/Ho_Chi_Minh",
+      "image": "https://images.unsplash.com/photo-1543355890-20bc0a26fda1?q=80&w=1600&auto=format&fit=crop",
       "body": "",
       "stays": [],
       "spots": []
@@ -131,6 +135,7 @@
       "lat": 15.8801,
       "lng": 108.338,
       "tz": "Asia/Ho_Chi_Minh",
+      "image": "https://images.unsplash.com/photo-1741274236412-b6760ff6c01b?q=80&w=1600&auto=format&fit=crop",
       "body": "",
       "stays": [],
       "spots": []
@@ -156,6 +161,7 @@
       "lat": 10.8231,
       "lng": 106.6297,
       "tz": "Asia/Ho_Chi_Minh",
+      "image": "https://images.unsplash.com/photo-1593449227036-9de17c6316e2?q=80&w=1600&auto=format&fit=crop",
       "body": "",
       "stays": [],
       "spots": []
