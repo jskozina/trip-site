@@ -18,12 +18,13 @@
       "duration": "8h30",
       "from": "BNE",
       "to": "TPE",
+      "flightNo": "EVA Air 316",
       "departTime": "22:35",
       "arriveTime": "05:05",
       "start": "2026-12-19",
       "end": "2026-12-20",
       "group": "Connecting via Taipei",
-      "body": "EVA Air 316, Boeing 787-10 Dreamliner. The long overnight leg, departs Saturday night.",
+      "body": "The long overnight leg, departs Saturday night.",
       "status": "idea"
     },
     {
@@ -34,12 +35,13 @@
       "duration": "2h25",
       "from": "TPE",
       "to": "KIX",
+      "flightNo": "EVA Air 178",
       "departTime": "06:30",
       "arriveTime": "09:55",
       "start": "2026-12-20",
       "end": "2026-12-20",
       "group": "Connecting via Taipei",
-      "body": "EVA Air 178, Boeing 787-10 Dreamliner. Same aircraft type on both legs.",
+      "body": "",
       "status": "idea"
     },
     {
@@ -53,6 +55,11 @@
       "lng": 135.7681,
       "tz": "Asia/Tokyo",
       "image": "https://images.unsplash.com/photo-1777385867384-e7b8280b2650?q=80&w=1600&auto=format&fit=crop",
+      "images": [
+        "https://images.unsplash.com/photo-1777385867384-e7b8280b2650?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1764418365982-742441557a6c?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1698618988744-737573cb6a7a?q=80&w=1600&auto=format&fit=crop"
+      ],
       "body": "",
       "stays": [],
       "spots": []
@@ -79,6 +86,11 @@
       "lng": 138.4436,
       "tz": "Asia/Tokyo",
       "image": "https://images.unsplash.com/photo-1541001317411-af58d4bc440a?q=80&w=1600&auto=format&fit=crop",
+      "images": [
+        "https://images.unsplash.com/photo-1541001317411-af58d4bc440a?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1726148552362-c9e0025d25e2?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1576829021150-ebc8b46b9fb9?q=80&w=1600&auto=format&fit=crop"
+      ],
       "body": "",
       "stays": [],
       "spots": []
@@ -105,6 +117,11 @@
       "lng": 139.6503,
       "tz": "Asia/Tokyo",
       "image": "https://images.unsplash.com/photo-1759970752518-b0ffa38c130b?q=80&w=1600&auto=format&fit=crop",
+      "images": [
+        "https://images.unsplash.com/photo-1759970752518-b0ffa38c130b?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1764418658548-bcc513884a7b?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1780631347040-0c5df6053c2f?q=80&w=1600&auto=format&fit=crop"
+      ],
       "body": "",
       "stays": [],
       "spots": []
@@ -117,11 +134,12 @@
       "duration": "6h15 direct",
       "from": "HND",
       "to": "HAN",
+      "flightNo": "Vietnam Airlines 385",
       "departTime": "16:35",
       "arriveTime": "20:50",
       "start": "2027-01-02",
       "end": "2027-01-02",
-      "body": "Vietnam Airlines, Haneda not Narita. Departs 16:35, lands Hanoi 20:50, leaving a full last morning in Tokyo before the airport run.",
+      "body": "Haneda, not Narita. Leaves a full last morning in Tokyo before the airport run.",
       "status": "idea"
     },
     {
@@ -135,6 +153,11 @@
       "lng": 105.8342,
       "tz": "Asia/Ho_Chi_Minh",
       "image": "https://images.unsplash.com/photo-1543355890-20bc0a26fda1?q=80&w=1600&auto=format&fit=crop",
+      "images": [
+        "https://images.unsplash.com/photo-1543355890-20bc0a26fda1?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1613131145282-9476375618e1?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1631972637651-e4bb609b9185?q=80&w=1600&auto=format&fit=crop"
+      ],
       "body": "",
       "stays": [],
       "spots": []
@@ -147,12 +170,13 @@
       "duration": "1h20",
       "from": "HAN",
       "to": "DAD",
+      "flightNo": "VietJet 515",
       "departTime": "22:25",
       "arriveTime": "23:45",
       "start": "2027-01-05",
       "end": "2027-01-05",
       "group": "Flight then transfer to Hoi An",
-      "body": "VietJet 515, Airbus A321. Late departure, worth checking for an earlier option if the fare gap is small.",
+      "body": "Late departure, worth checking for an earlier option if the fare gap is small.",
       "status": "idea"
     },
     {
@@ -178,6 +202,11 @@
       "lng": 108.338,
       "tz": "Asia/Ho_Chi_Minh",
       "image": "https://images.unsplash.com/photo-1741274236412-b6760ff6c01b?q=80&w=1600&auto=format&fit=crop",
+      "images": [
+        "https://images.unsplash.com/photo-1741274236412-b6760ff6c01b?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1682135604357-f64f7311e5c2?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1664650440553-ab53804814b3?q=80&w=1600&auto=format&fit=crop"
+      ],
       "body": "",
       "stays": [],
       "spots": []
@@ -190,11 +219,12 @@
       "duration": "1h25 direct",
       "from": "DAD",
       "to": "SGN",
+      "flightNo": "VietJet 627",
       "departTime": "08:45",
       "arriveTime": "10:10",
       "start": "2027-01-07",
       "end": "2027-01-07",
-      "body": "VietJet, departs 08:45, lands Saigon 10:10. A normal morning flight, leaves the rest of the day free in the city.",
+      "body": "A normal morning flight, leaves the rest of the day free in the city.",
       "status": "idea"
     },
     {
@@ -208,6 +238,11 @@
       "lng": 106.6297,
       "tz": "Asia/Ho_Chi_Minh",
       "image": "https://images.unsplash.com/photo-1593449227036-9de17c6316e2?q=80&w=1600&auto=format&fit=crop",
+      "images": [
+        "https://images.unsplash.com/photo-1593449227036-9de17c6316e2?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1586004631071-8be9d3e5aa5c?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1713868198560-8c7ffba0f20f?q=80&w=1600&auto=format&fit=crop"
+      ],
       "body": "",
       "stays": [],
       "spots": []
@@ -220,11 +255,12 @@
       "duration": "8h30 direct",
       "from": "SGN",
       "to": "BNE",
+      "flightNo": "VietJet 83",
       "departTime": "10:40",
       "arriveTime": "22:10",
       "start": "2027-01-09",
       "end": "2027-01-09",
-      "body": "VietJet, departs 10:40, lands Brisbane 22:10. Doesn't appear to fly Fridays, this itinerary is built around the Saturday departure.",
+      "body": "Doesn't appear to fly Fridays, this itinerary is built around the Saturday departure.",
       "status": "idea"
     }
   ]

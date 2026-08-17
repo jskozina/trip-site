@@ -122,6 +122,15 @@ svg{display:block;flex:none}
   font-variant-numeric:tabular-nums;
 }
 .cal-cell.transit .num{color:var(--text);background:rgba(255,255,255,.7)}
+.cal-cell .heading{
+  position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;
+  padding:4px 5px;background:linear-gradient(180deg,rgba(30,33,38,.72),rgba(30,33,38,0) 85%);
+}
+.cal-cell .heading .city{
+  color:#fff;font-size:clamp(6.5px,1.3vw,9px);font-weight:700;letter-spacing:.03em;text-transform:uppercase;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:72%;line-height:1.4;
+}
+.cal-cell .heading .num{position:static;background:none;padding:0;font-size:clamp(9px,1.6vw,12px)}
 .cal-cell .mo{
   position:absolute;bottom:4px;left:4px;font-size:7.5px;letter-spacing:.05em;text-transform:uppercase;
   color:#fff;background:rgba(30,33,38,.55);padding:2px 5px;border-radius:5px;line-height:1;
@@ -489,7 +498,7 @@ function transitInner(l, extraClass, idAttr, styleAttr){
         <p class="t">${esc(l.title)}</p>
         ${pill(l.status)}
       </div>
-      <p class="sub">${esc(l.mode||'Transit')}${l.priceAud ? ' · '+money(l.priceAud) : ''}</p>
+      <p class="sub">${esc(l.mode||'Transit')}${l.flightNo ? ' · '+esc(l.flightNo) : ''}${l.priceAud ? ' · '+money(l.priceAud) : ''}</p>
       ${l.body ? `<p class="d">${esc(l.body)}</p>` : ''}
     </div>
     <div class="board">
@@ -559,7 +568,7 @@ function dayDetailHtml(dt, item){
     const hasTimes = item.departTime && item.arriveTime;
     return `<span class="day">${esc(dayLbl)}</span>
       <div class="title">${esc(item.title)}</div>
-      <div class="meta">${svgIcon(iconForMode(item.mode),13)}${esc(item.mode||'Transit')}${item.duration ? ' · '+esc(item.duration) : ''}</div>
+      <div class="meta">${svgIcon(iconForMode(item.mode),13)}${esc(item.mode||'Transit')}${item.flightNo ? ' · '+esc(item.flightNo) : ''}${item.duration ? ' · '+esc(item.duration) : ''}</div>
       ${hasRoute ? `<div class="route">${esc(item.from)}<span class="arrow">→</span>${esc(item.to)}${hasTimes ? ` · ${esc(item.departTime)}–${esc(item.arriveTime)}` : ''}</div>` : ''}
       <div class="pillrow">${pill(item.status)}</div>`;
   }
@@ -607,11 +616,21 @@ function renderCalendar(trip, legs){
     const isToday = key === todayKey;
     const showMonth = dt.getMonth() !== lastMonth;
     lastMonth = dt.getMonth();
-    const bg = (item && !isTransit && item.image) ? `style="background-image:url('${resizeImg(item.image,140,140)}')"` : '';
+
+    let dayImage = null;
+    if(item && !isTransit){
+      const pool = item.images && item.images.length ? item.images : (item.image ? [item.image] : null);
+      if(pool){
+        const dayIdx = Math.round((dt - d(item.start))/86400000);
+        dayImage = pool[dayIdx % pool.length];
+      }
+    }
+    const bg = dayImage ? `style="background-image:url('${resizeImg(dayImage,140,140)}')"` : '';
     const icon = isTransit ? `<span class="modeicon">${svgIcon(iconForMode(item.mode),18)}</span>` : '';
+    const heading = (item && !isTransit) ? `<div class="heading"><span class="city">${esc(item.title)}</span><span class="num">${dt.getDate()}</span></div>` : `<span class="num">${dt.getDate()}</span>`;
     cells.push(`<div class="cal-cell day ${isTransit?'transit':''} ${isToday?'today':''}" data-key="${key}" tabindex="0" ${bg} title="${esc(item ? item.title : '')}">
       ${icon}
-      <span class="num">${dt.getDate()}</span>
+      ${heading}
       ${showMonth ? `<span class="mo">${MONTHS[dt.getMonth()]}</span>` : ''}
     </div>`);
   });

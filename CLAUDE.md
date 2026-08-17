@@ -34,10 +34,10 @@ legs: [ leg | transit ]
 ```
 
 **leg** (a place you sleep)
-`id, type:"leg", title, climate, start, end, lat, lng, tz, image, body, stays[], spots[]`
+`id, type:"leg", title, climate, start, end, lat, lng, tz, image, images[], body, stays[], spots[]`
 
 **transit** (a movement between legs)
-`id, type:"transit", title, mode, duration, from, to, departTime, arriveTime, start, end, priceAud, body, status, group`
+`id, type:"transit", title, mode, duration, flightNo, from, to, departTime, arriveTime, start, end, priceAud, body, status, group`
 
 **stay** (inside a leg)
 `id, title, subtitle, start, end, lat, lng, priceAud, url, image, body, status`
@@ -52,12 +52,14 @@ legs: [ leg | transit ]
 - `priceAud` on a **stay** is per night, a whole number, no currency symbol — the site multiplies by nights. On a **transit** or **spot** it's a flat one-off cost (a flight fare, a ticket, a meal) — no multiplying.
 - `departTime`/`arriveTime` on a **transit** are optional 24-hour `HH:MM` local times. When both are set, the transit row shows a big departures-board-style readout. Only set these from a real timetable or booking, never guess a time.
 - `from`/`to` on a **transit** are optional IATA airport codes (`BNE`, `TPE`) shown alongside the time readout. Flights only — leave off for trains, cars, ferries.
+- `flightNo` on a **transit** is optional (e.g. `"EVA Air 316"`, `"VietJet 83"`). Only set it when you actually have it — a real booking or a search result, never invented. Skip it for anything that isn't a flight, and don't add other flight trivia (aircraft type, seat config) — it's noise the human didn't ask for.
 - `group` on a **transit** is optional. Give two or more *consecutive* transit entries the same `group` string and the site renders them as one visually linked card (a connecting flight, or a flight followed by a road transfer) instead of separate ones, with a layover/transfer connector between them. The string itself is shown as the card's label, so write it as a short human caption, e.g. `"Connecting via Taipei"`. Use this — rather than cramming a multi-leg journey into one transit's `body` — whenever a single booking or journey actually involves more than one distinct movement (a stopover, a flight-then-car transfer). Each segment keeps its own `id`, times, and `status`.
 - `id` is a short kebab-case slug, unique across the whole file.
 - Dates are `YYYY-MM-DD`. Legs render in array order, so keep the array chronological.
 - `lat`/`lng` are optional on a leg, stay, or spot — without them, the Map link falls back to a text search of the title. On a **leg** they also place its marker on the route map, so set them for anything that should appear there.
 - `category` on a spot is a short label like `Eat`, `See`, `Shop`, `Drink`. A spot categorised `Eat` counts toward the Food budget line; anything else counts toward Activities.
 - `image` is optional on a leg, stay, or spot — a direct URL to a photo. Without one, the site shows a colour block instead, so it's safe to leave blank. The site crops it consistently on its own, so any aspect ratio works — an Unsplash link is a good default.
+- `images` is optional on a **leg** only — an array of photo URLs. The calendar cycles through them one per day of that city's stay (day 1 gets `images[0]`, day 2 gets `images[1]`, wrapping around), so the "at a glance" view shows real variety instead of one photo repeated every night. Falls back to the single `image` if `images` isn't set. Keep `image` as `images[0]` so the hero and the first calendar day match.
 - `trip.budget` is optional: `{ flights, accom, food, activities }`, each a whole-trip AUD target. Omit a category, or the whole object, if no target's been set yet — the budget section still shows what's actually been committed so far, it just won't have a target line to compare against. Set these when the human gives you a number, e.g. "budget $6000 for flights".
 
 ## Processing the inbox
