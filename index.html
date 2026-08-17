@@ -92,13 +92,11 @@ img{max-width:100%;display:block}
   font-size:11px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--faint);font-weight:600;margin:0 0 14px;
 }
-.cal-months{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
-.cal-month-label{font-size:12.5px;color:var(--muted);font-weight:600;margin:0 0 8px}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;max-width:480px}
 .cal-dow{font-size:9.5px;text-transform:uppercase;color:var(--faint);text-align:center;padding-bottom:3px;font-weight:600;letter-spacing:.04em}
 .cal-cell{
   aspect-ratio:1;border:1px solid var(--line);border-radius:6px;
-  display:flex;align-items:center;justify-content:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
   font-size:11.5px;color:var(--muted);background:var(--surface);position:relative;
 }
 .cal-cell.blank{border-color:transparent;background:transparent}
@@ -106,10 +104,30 @@ img{max-width:100%;display:block}
   background:repeating-linear-gradient(135deg,var(--surface),var(--surface) 4px,var(--line) 4px,var(--line) 6px);
 }
 .cal-cell .num{font-variant-numeric:tabular-nums;font-weight:600}
+.cal-cell .mo{font-size:7.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint);margin-bottom:1px}
 .cal-cell.today{border-color:var(--text);border-width:2px}
 .cal-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px}
 .cal-legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
 .cal-legend-item i{width:9px;height:9px;border-radius:50%;display:inline-block;flex:none}
+
+/* ---------- budget ---------- */
+.budget{margin-top:36px;max-width:640px}
+.budget-row{margin-bottom:16px}
+.budget-row .hd{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
+.budget-row .cat{font-size:14px;font-weight:600;color:var(--text)}
+.budget-row .figs{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.budget-row .figs .over{color:var(--hot);font-weight:600}
+.budget-bar{height:7px;border-radius:20px;background:var(--line);overflow:hidden}
+.budget-bar .fill{height:100%;border-radius:20px;background:var(--temperate)}
+.budget-bar .fill.warn{background:var(--warm)}
+.budget-bar .fill.over{background:var(--hot)}
+.budget-total{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:14px;
+}
+.budget-total .cat{font-weight:600;color:var(--text)}
+.budget-total .figs{color:var(--muted);font-variant-numeric:tabular-nums}
 
 /* ---------- leg grid ---------- */
 .legs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:40px}
@@ -234,8 +252,12 @@ footer{
   </header>
   <section class="calendar" id="calendarWrap" hidden>
     <p class="section-label">At a glance</p>
-    <div class="cal-months" id="calendar"></div>
+    <div class="cal-grid" id="calendar"></div>
     <div class="cal-legend" id="calLegend"></div>
+  </section>
+  <section class="budget" id="budgetWrap" hidden>
+    <p class="section-label">Budget</p>
+    <div id="budgetRows"></div>
   </section>
   <main class="legs" id="timeline"></main>
   <footer id="footer"></footer>
@@ -327,7 +349,7 @@ function buildDayMap(legs){
 }
 
 function renderCalendar(trip, legs){
-  if(!trip.depart || !trip.return) return { months:'', legend:'' };
+  if(!trip.depart || !trip.return) return { grid:'', legend:'' };
   const map = buildDayMap(legs);
   const start = d(trip.depart), end = d(trip.return);
   const today = new Date(); today.setHours(0,0,0,0);
@@ -338,44 +360,74 @@ function renderCalendar(trip, legs){
     cur.setDate(cur.getDate()+1);
   }
 
-  const months = [];
-  let block = null;
+  const lead = (days[0].getDay()+6)%7;
+  const cells = [];
+  for(let i=0;i<lead;i++) cells.push('<div class="cal-cell blank"></div>');
+  let lastMonth = null;
   days.forEach(dt => {
-    const key = dt.getFullYear()+'-'+dt.getMonth();
-    if(!block || block.key !== key){
-      block = { key, label:`${MONTHS[dt.getMonth()]} ${dt.getFullYear()}`, days:[] };
-      months.push(block);
-    }
-    block.days.push(dt);
+    const item = map.get(dkey(dt));
+    const isTransit = item && item.type === 'transit';
+    const colour = (item && !isTransit) ? (CLIMATE[item.climate] || CLIMATE.cold) : null;
+    const isToday = dkey(dt) === dkey(today);
+    const style = colour ? `style="background:${colour}1F;border-color:${colour}66"` : '';
+    const showMonth = dt.getMonth() !== lastMonth;
+    lastMonth = dt.getMonth();
+    cells.push(`<div class="cal-cell ${isTransit?'transit':''} ${isToday?'today':''}" ${style} title="${esc(item ? item.title : '')}">
+      ${showMonth ? `<span class="mo">${MONTHS[dt.getMonth()]}</span>` : ''}
+      <span class="num">${dt.getDate()}</span>
+    </div>`);
   });
 
-  const monthsHtml = months.map(m => {
-    const lead = (m.days[0].getDay()+6)%7;
-    const cells = [];
-    for(let i=0;i<lead;i++) cells.push('<div class="cal-cell blank"></div>');
-    m.days.forEach(dt => {
-      const item = map.get(dkey(dt));
-      const isTransit = item && item.type === 'transit';
-      const colour = (item && !isTransit) ? (CLIMATE[item.climate] || CLIMATE.cold) : null;
-      const isToday = dkey(dt) === dkey(today);
-      const style = colour ? `style="background:${colour}1F;border-color:${colour}66"` : '';
-      cells.push(`<div class="cal-cell ${isTransit?'transit':''} ${isToday?'today':''}" ${style} title="${esc(item ? item.title : '')}">
-        <span class="num">${dt.getDate()}</span>
-      </div>`);
-    });
-    return `<div class="cal-month">
-      <p class="cal-month-label">${m.label}</p>
-      <div class="cal-grid">
-        <div class="cal-dow">M</div><div class="cal-dow">T</div><div class="cal-dow">W</div><div class="cal-dow">T</div><div class="cal-dow">F</div><div class="cal-dow">S</div><div class="cal-dow">S</div>
-        ${cells.join('')}
-      </div>
-    </div>`;
-  }).join('');
+  const grid = `
+    <div class="cal-dow">M</div><div class="cal-dow">T</div><div class="cal-dow">W</div><div class="cal-dow">T</div><div class="cal-dow">F</div><div class="cal-dow">S</div><div class="cal-dow">S</div>
+    ${cells.join('')}`;
 
   const cities = legs.filter(l => l.type !== 'transit');
   const legend = cities.map(c => `<span class="cal-legend-item"><i style="background:${CLIMATE[c.climate]||CLIMATE.cold}"></i>${esc(c.title)}</span>`).join('');
 
-  return { months: monthsHtml, legend };
+  return { grid, legend };
+}
+
+function money(n){ return '$' + Math.round(n).toLocaleString(); }
+
+function budgetRowHtml(label, actual, target){
+  const hasTarget = typeof target === 'number' && target > 0;
+  const pct = hasTarget ? Math.min(150, (actual/target)*100) : 0;
+  const fillClass = pct > 100 ? 'over' : (pct > 90 ? 'warn' : '');
+  const figs = hasTarget
+    ? `${money(actual)} <span class="${actual>target?'over':''}">of ${money(target)}</span>`
+    : `${money(actual)} spent · no budget set`;
+  return `<div class="budget-row">
+    <div class="hd"><span class="cat">${esc(label)}</span><span class="figs">${figs}</span></div>
+    <div class="budget-bar"><div class="fill ${fillClass}" style="width:${hasTarget ? Math.min(100,pct) : 0}%"></div></div>
+  </div>`;
+}
+
+function renderBudget(trip, legs){
+  const b = trip.budget || {};
+  const stays = legs.flatMap(l => l.stays || []);
+  const spots = legs.flatMap(l => l.spots || []);
+  const transits = legs.filter(l => l.type === 'transit');
+
+  const flights = transits.reduce((s,x) => s + (x.priceAud||0), 0);
+  const accom = stays.reduce((s,x) => s + ((x.priceAud||0) * (nights(x.start,x.end)||0)), 0);
+  const food = spots.filter(s => (s.category||'').toLowerCase()==='eat').reduce((s,x) => s + (x.priceAud||0), 0);
+  const activities = spots.filter(s => (s.category||'').toLowerCase()!=='eat').reduce((s,x) => s + (x.priceAud||0), 0);
+
+  const totalActual = flights + accom + food + activities;
+  const totalTarget = ['flights','accom','food','activities'].reduce((s,k) => s + (b[k]||0), 0);
+
+  const rows = budgetRowHtml('Flights', flights, b.flights)
+    + budgetRowHtml('Accommodation', accom, b.accom)
+    + budgetRowHtml('Food', food, b.food)
+    + budgetRowHtml('Activities', activities, b.activities);
+
+  const total = `<div class="budget-total">
+    <span class="cat">Total</span>
+    <span class="figs">${totalTarget ? `${money(totalActual)} of ${money(totalTarget)}` : `${money(totalActual)} spent`}</span>
+  </div>`;
+
+  return rows + total;
 }
 
 function render(data){
@@ -388,15 +440,12 @@ function render(data){
     : 'Itinerary';
 
   const legs = (data.legs || []);
-  const stays = legs.flatMap(l => l.stays || []);
   const cities = legs.filter(l => l.type !== 'transit');
   const totalNights = cities.reduce((s,l) => s + nights(l.start,l.end), 0);
-  const accom = stays.reduce((s,x) => s + ((x.priceAud||0) * (nights(x.start,x.end)||0)), 0);
 
   $('summary').innerHTML = `
     <div>Cities<b>${cities.length}</b></div>
-    <div>Nights<b>${totalNights}</b></div>
-    ${accom ? `<div>Beds so far<b>$${accom.toLocaleString()}</b></div>` : ''}`;
+    <div>Nights<b>${totalNights}</b></div>`;
 
   // now-mode
   const today = new Date(); today.setHours(0,0,0,0);
@@ -417,11 +466,15 @@ function render(data){
 
   // calendar grid
   const cal = renderCalendar(t, legs);
-  if(cal.months){
+  if(cal.grid){
     $('calendarWrap').hidden = false;
-    $('calendar').innerHTML = cal.months;
+    $('calendar').innerHTML = cal.grid;
     $('calLegend').innerHTML = cal.legend;
   }
+
+  // budget
+  $('budgetWrap').hidden = false;
+  $('budgetRows').innerHTML = renderBudget(t, legs);
 
   // each node's colour blends toward the next city's colour
   const colourAt = i => {

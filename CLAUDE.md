@@ -29,7 +29,7 @@ There are slash commands in `.claude/commands` for the common jobs: `/add`, `/ni
 ## Schema
 
 ```
-trip: { title, subtitle, depart, return, travellers, homeTz }
+trip: { title, subtitle, depart, return, travellers, homeTz, budget }
 legs: [ leg | transit ]
 ```
 
@@ -37,24 +37,25 @@ legs: [ leg | transit ]
 `id, type:"leg", title, climate, start, end, lat, lng, tz, image, body, stays[], spots[]`
 
 **transit** (a movement between legs)
-`id, type:"transit", title, mode, duration, start, end, body, status`
+`id, type:"transit", title, mode, duration, start, end, priceAud, body, status`
 
 **stay** (inside a leg)
 `id, title, subtitle, start, end, lat, lng, priceAud, url, image, body, status`
 
 **spot** (inside a leg — eat, see, do)
-`id, title, category, lat, lng, url, image, body, status`
+`id, title, category, lat, lng, url, priceAud, image, body, status`
 
 ### Field rules
 
 - `climate` is one of `cold | cool | temperate | warm | hot`. It drives the accent colour on that leg's card, which shifts from frost blue in Japan to lacquer red in Saigon. Set it honestly for the season.
 - `status` is one of `idea | shortlist | held | booked`. Default new items to `idea`.
-- `priceAud` is per night, a whole number, no currency symbol. The site multiplies by nights.
+- `priceAud` on a **stay** is per night, a whole number, no currency symbol — the site multiplies by nights. On a **transit** or **spot** it's a flat one-off cost (a flight fare, a ticket, a meal) — no multiplying.
 - `id` is a short kebab-case slug, unique across the whole file.
 - Dates are `YYYY-MM-DD`. Legs render in array order, so keep the array chronological.
 - `lat`/`lng` are optional. Without them, the Map link falls back to a text search of the title.
-- `category` on a spot is a short label like `Eat`, `See`, `Shop`, `Drink`.
+- `category` on a spot is a short label like `Eat`, `See`, `Shop`, `Drink`. A spot categorised `Eat` counts toward the Food budget line; anything else counts toward Activities.
 - `image` is optional on a leg, stay, or spot — a direct URL to a photo. Without one, the site shows a colour block instead, so it's safe to leave blank.
+- `trip.budget` is optional: `{ flights, accom, food, activities }`, each a whole-trip AUD target. Omit a category, or the whole object, if no target's been set yet — the budget section still shows what's actually been committed so far, it just won't have a target line to compare against. Set these when the human gives you a number, e.g. "budget $6000 for flights".
 
 ## Processing the inbox
 
