@@ -3,180 +3,204 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0B0F17">
+<meta name="theme-color" content="#F6F3EC">
 <title>Japan &amp; Vietnam</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#0B0F17;
-  --ink-2:#131A26;
-  --ink-3:#1B2432;
-  --snow:#EDF1F6;
-  --muted:#8A97AB;
-  --faint:#5A6779;
-  --line:#232C3B;
+  --bg:#F6F3EC;
+  --surface:#FFFFFF;
+  --text:#1E2126;
+  --muted:#5B6472;
+  --faint:#8B93A1;
+  --line:#E4DFD3;
+  --line-2:#D8D1C0;
 
-  --cold:#86AEDA;
-  --cool:#6E93B4;
-  --temperate:#7C9B8E;
-  --warm:#C98A46;
-  --hot:#BF4A30;
+  --cold:#3D6EA6;
+  --cool:#4A7089;
+  --temperate:#4C7A63;
+  --warm:#B0691F;
+  --hot:#A33723;
 
+  --radius:12px;
   --gutter:22px;
-  --spine:26px;
 }
 
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{
-  background:var(--ink);
-  color:var(--snow);
+  background:var(--bg);
+  color:var(--text);
   font-family:'Archivo',system-ui,-apple-system,sans-serif;
   font-size:16px;
   line-height:1.55;
   -webkit-font-smoothing:antialiased;
   padding-bottom:64px;
 }
-.wrap{max-width:600px;margin:0 auto;padding:0 var(--gutter)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 var(--gutter)}
+img{max-width:100%;display:block}
 
 /* ---------- masthead ---------- */
-.masthead{padding:48px 0 30px;position:relative}
+.masthead{padding:44px 0 28px}
 .eyebrow{
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--faint);font-weight:600;margin:0 0 14px;
 }
 .masthead h1{
   font-family:'Fraunces',Georgia,serif;
-  font-variation-settings:'SOFT' 40,'WONK' 1,'opsz' 100;
-  font-weight:400;font-size:clamp(40px,13vw,60px);
-  line-height:.95;letter-spacing:-.02em;margin:0;
+  font-variation-settings:'SOFT' 30,'WONK' 1,'opsz' 100;
+  font-weight:500;font-size:clamp(38px,7vw,58px);
+  line-height:.98;letter-spacing:-.02em;margin:0;color:var(--text);
 }
 .masthead .sub{
   font-family:'Fraunces',Georgia,serif;font-style:italic;
-  font-variation-settings:'SOFT' 60,'WONK' 1;
+  font-variation-settings:'SOFT' 50,'WONK' 1;
   color:var(--muted);font-size:19px;margin:12px 0 0;line-height:1.3;
 }
 
 /* ---------- countdown ---------- */
 .status-bar{
-  margin:28px 0 0;padding:16px 18px;
-  border:1px solid var(--line);border-radius:3px;
-  background:linear-gradient(180deg,rgba(134,174,218,.06),transparent);
+  margin:26px 0 0;padding:16px 18px;
+  border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--surface);
   display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
 }
 .status-bar .n{
   font-family:'Fraunces',Georgia,serif;font-weight:600;
-  font-size:34px;line-height:1;font-variant-numeric:tabular-nums;
+  font-size:32px;line-height:1;font-variant-numeric:tabular-nums;color:var(--text);
 }
 .status-bar .lbl{font-size:13px;color:var(--muted);letter-spacing:.02em}
-.status-bar.live{border-color:var(--cold)}
+.status-bar.live{border-color:var(--cold);box-shadow:0 0 0 1px var(--cold) inset}
 
 /* ---------- summary ---------- */
 .summary{
-  display:flex;gap:26px;margin:18px 0 8px;flex-wrap:wrap;
+  display:flex;gap:28px;margin:20px 0 6px;flex-wrap:wrap;
   font-size:12px;color:var(--faint);
   letter-spacing:.1em;text-transform:uppercase;font-weight:600;
 }
 .summary b{
   display:block;font-family:'Fraunces',Georgia,serif;font-weight:500;
-  font-size:22px;color:var(--snow);letter-spacing:normal;
+  font-size:22px;color:var(--text);letter-spacing:normal;
   text-transform:none;font-variant-numeric:tabular-nums;
 }
 
-/* ---------- timeline ---------- */
-.timeline{margin:34px 0 0;position:relative}
-
-.node{position:relative;padding-left:calc(var(--spine) + 16px)}
-.node::before{ /* the thermal spine */
-  content:'';position:absolute;left:var(--spine);top:0;bottom:0;width:2px;
-  background:linear-gradient(180deg,var(--from,#86AEDA),var(--to,#86AEDA));
-  opacity:.55;
-}
-.node:first-child::before{top:14px}
-.node:last-child::before{bottom:auto;height:16px}
-
-/* transit */
-.transit{padding-top:16px;padding-bottom:16px}
-.transit::after{
-  content:'';position:absolute;left:calc(var(--spine) - 3px);top:24px;
-  width:8px;height:8px;border-radius:50%;
-  background:var(--ink);border:2px solid var(--from,#86AEDA);opacity:.8;
-}
-.transit .mode{
+/* ---------- calendar grid ---------- */
+.calendar{margin-top:36px}
+.section-label{
   font-size:11px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--faint);font-weight:600;
+  color:var(--faint);font-weight:600;margin:0 0 14px;
 }
-.transit .t{color:var(--muted);font-size:14.5px;margin:3px 0 0}
-.transit .d{color:var(--faint);font-size:13.5px;margin:4px 0 0;line-height:1.5}
+.cal-months{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+.cal-month-label{font-size:12.5px;color:var(--muted);font-weight:600;margin:0 0 8px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-dow{font-size:9.5px;text-transform:uppercase;color:var(--faint);text-align:center;padding-bottom:3px;font-weight:600;letter-spacing:.04em}
+.cal-cell{
+  aspect-ratio:1;border:1px solid var(--line);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11.5px;color:var(--muted);background:var(--surface);position:relative;
+}
+.cal-cell.blank{border-color:transparent;background:transparent}
+.cal-cell.transit{
+  background:repeating-linear-gradient(135deg,var(--surface),var(--surface) 4px,var(--line) 4px,var(--line) 6px);
+}
+.cal-cell .num{font-variant-numeric:tabular-nums;font-weight:600}
+.cal-cell.today{border-color:var(--text);border-width:2px}
+.cal-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px}
+.cal-legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.cal-legend-item i{width:9px;height:9px;border-radius:50%;display:inline-block;flex:none}
 
-/* leg */
-.leg{padding-top:10px;padding-bottom:10px}
-.leg-head{
-  width:100%;text-align:left;background:none;border:0;color:inherit;
-  padding:14px 0;cursor:pointer;font:inherit;display:block;
-  border-top:1px solid var(--line);
+/* ---------- leg grid ---------- */
+.legs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:40px}
+
+.transit-row{
+  grid-column:1/-1;display:flex;gap:14px;align-items:flex-start;
+  padding:14px 18px;background:var(--surface);border:1px solid var(--line);
+  border-left:4px solid var(--from,var(--cold));border-radius:var(--radius);
 }
-.leg::after{
-  content:'';position:absolute;left:calc(var(--spine) - 5px);top:26px;
-  width:12px;height:12px;border-radius:50%;
-  background:var(--from,#86AEDA);
-  box-shadow:0 0 0 4px var(--ink);
+.transit-row .mode{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);font-weight:600;white-space:nowrap;flex:none;padding-top:1px;
 }
-.leg.now::after{box-shadow:0 0 0 4px var(--ink),0 0 0 7px var(--from)}
+.transit-row .body{min-width:0}
+.transit-row .t{color:var(--text);font-size:14.5px;font-weight:600;margin:0}
+.transit-row .d{color:var(--muted);font-size:13.5px;margin:4px 0 0;line-height:1.5}
+
+.leg-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;
+}
+.leg-card.now{border-color:var(--from);box-shadow:0 0 0 1px var(--from)}
+
+.leg-media{
+  aspect-ratio:16/9;position:relative;
+  background:linear-gradient(155deg,var(--from,var(--cold)),var(--bg));
+}
+.leg-media img{width:100%;height:100%;object-fit:cover}
+.leg-media .mono{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',Georgia,serif;font-size:52px;color:rgba(255,255,255,.6);
+}
+.leg-media .now-badge{
+  position:absolute;top:12px;left:12px;background:var(--surface);color:var(--text);
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  padding:5px 9px;border-radius:20px;
+}
+
+.leg-content{padding:18px 20px 20px}
 .dates{
   font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--faint);font-weight:600;margin-bottom:5px;
   font-variant-numeric:tabular-nums;
 }
-.leg h2{
+.leg-card h2{
   font-family:'Fraunces',Georgia,serif;
-  font-variation-settings:'SOFT' 40,'WONK' 1,'opsz' 60;
-  font-weight:400;font-size:32px;line-height:1.05;margin:0;
-  letter-spacing:-.015em;
+  font-variation-settings:'SOFT' 30,'WONK' 1,'opsz' 40;
+  font-weight:500;font-size:27px;line-height:1.08;margin:0;
+  letter-spacing:-.01em;color:var(--text);
 }
-.nights{color:var(--muted);font-size:14px;margin-top:5px}
-.chev{
-  float:right;margin-top:-38px;color:var(--faint);font-size:20px;
-  transition:transform .22s ease;line-height:1;
-}
-.leg[open] .chev,.leg.open .chev{transform:rotate(90deg)}
-
-.leg-body{display:none;padding-bottom:22px}
-.leg.open .leg-body{display:block}
-.leg-body>p{color:var(--muted);font-size:15px;margin:2px 0 20px;line-height:1.6}
-
+.nights{color:var(--muted);font-size:13.5px;margin-top:4px}
 .localtime{
-  font-size:12px;color:var(--faint);letter-spacing:.05em;
-  margin:0 0 16px;font-variant-numeric:tabular-nums;
+  font-size:12px;color:var(--faint);letter-spacing:.03em;
+  margin:12px 0 0;font-variant-numeric:tabular-nums;
 }
+.leg-content>p.body-text{color:var(--muted);font-size:14.5px;margin:12px 0 0;line-height:1.6}
 
-/* children */
 .grp-label{
-  font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--faint);font-weight:600;margin:18px 0 10px;
+  font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--faint);font-weight:600;margin:20px 0 8px;
 }
-.card{
-  border-left:2px solid var(--line);padding:2px 0 2px 14px;margin:0 0 16px;
+.item{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.item:first-of-type{border-top:none}
+.item .thumb{
+  width:52px;height:52px;border-radius:8px;flex:0 0 52px;overflow:hidden;
+  background:linear-gradient(155deg,var(--from,var(--cold)),var(--bg));
+  display:flex;align-items:center;justify-content:center;
 }
-.card h3{font-size:16px;font-weight:600;margin:0;letter-spacing:-.005em}
-.card .meta{font-size:13px;color:var(--muted);margin:2px 0 0}
-.card p{font-size:14px;color:var(--faint);margin:7px 0 0;line-height:1.55}
-.card .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:9px}
+.item .thumb img{width:100%;height:100%;object-fit:cover}
+.item .thumb span{font-family:'Fraunces',Georgia,serif;font-size:18px;color:rgba(255,255,255,.7)}
+.item .info{flex:1;min-width:0}
+.item h3{font-size:15px;font-weight:600;margin:0;letter-spacing:-.005em;color:var(--text)}
+.item .meta{font-size:12.5px;color:var(--muted);margin:2px 0 0}
+.item p{font-size:13.5px;color:var(--muted);margin:6px 0 0;line-height:1.55}
+.item .row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:8px}
+
 a.lnk{
-  color:var(--snow);font-size:12px;text-decoration:none;
-  border-bottom:1px solid var(--line);padding-bottom:2px;
+  color:var(--text);font-size:12px;text-decoration:none;
+  border-bottom:1px solid var(--line-2);padding-bottom:2px;
 }
-a.lnk:hover{border-color:var(--snow)}
+a.lnk:hover{border-color:var(--text)}
 .pill{
-  font-size:10px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;
-  padding:3px 8px;border-radius:2px;border:1px solid var(--line);color:var(--muted);
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
+  padding:3px 8px;border-radius:20px;border:1px solid var(--line-2);color:var(--muted);
 }
-.pill.shortlist{border-color:#5E7A99;color:#9DBBD8}
-.pill.held{border-color:#8A7433;color:#D9C179}
-.pill.booked{border-color:#3F7A5E;color:#8FD3B2;background:rgba(63,122,94,.12)}
+.pill.shortlist{border-color:#B7D2EA;color:#2E5E8C;background:#EDF4FA}
+.pill.held{border-color:#EAD8A0;color:#8A6A12;background:#FBF4E1}
+.pill.booked{border-color:#B0DDC4;color:#1F6B47;background:#E9F7EF}
 .price{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+.leg-content>.row{margin-top:16px}
 
 /* footer */
 footer{
@@ -184,12 +208,13 @@ footer{
   font-size:12.5px;color:var(--faint);line-height:1.6;
 }
 .err{
-  border:1px solid var(--line);border-left:2px solid var(--warm);
+  border:1px solid var(--line);border-left:3px solid var(--warm);
   padding:16px 18px;margin:30px 0;color:var(--muted);font-size:14.5px;
+  background:var(--surface);border-radius:var(--radius);
 }
 .err code{
   font-family:ui-monospace,monospace;font-size:13px;
-  background:var(--ink-2);padding:2px 5px;border-radius:2px;color:var(--snow);
+  background:var(--bg);padding:2px 5px;border-radius:2px;color:var(--text);
 }
 :focus-visible{outline:2px solid var(--cold);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -207,13 +232,18 @@ footer{
     </div>
     <div class="summary" id="summary"></div>
   </header>
-  <main class="timeline" id="timeline"></main>
+  <section class="calendar" id="calendarWrap" hidden>
+    <p class="section-label">At a glance</p>
+    <div class="cal-months" id="calendar"></div>
+    <div class="cal-legend" id="calLegend"></div>
+  </section>
+  <main class="legs" id="timeline"></main>
   <footer id="footer"></footer>
 </div>
 
 <script>
 const CLIMATE = {
-  cold:'#86AEDA', cool:'#6E93B4', temperate:'#7C9B8E', warm:'#C98A46', hot:'#BF4A30'
+  cold:'#3D6EA6', cool:'#4A7089', temperate:'#4C7A63', warm:'#B0691F', hot:'#A33723'
 };
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const CACHE_KEY = 'trip-cache-v1';
@@ -221,7 +251,9 @@ const CACHE_KEY = 'trip-cache-v1';
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const d = s => { const [y,m,dd] = String(s).split('-').map(Number); return new Date(y, m-1, dd); };
+const dkey = dt => `${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,'0')}-${String(dt.getDate()).padStart(2,'0')}`;
 const nights = (a,b) => (a&&b) ? Math.round((d(b)-d(a))/86400000) : 0;
+const initial = s => (s || '?').trim().charAt(0).toUpperCase();
 
 function dateRange(a,b){
   if(!a) return '';
@@ -229,8 +261,8 @@ function dateRange(a,b){
   if(!b || a===b) return `${A.getDate()} ${MONTHS[A.getMonth()]}`;
   const B = d(b);
   return A.getMonth()===B.getMonth()
-    ? `${A.getDate()}\u2013${B.getDate()} ${MONTHS[B.getMonth()]}`
-    : `${A.getDate()} ${MONTHS[A.getMonth()]} \u2013 ${B.getDate()} ${MONTHS[B.getMonth()]}`;
+    ? `${A.getDate()}–${B.getDate()} ${MONTHS[B.getMonth()]}`
+    : `${A.getDate()} ${MONTHS[A.getMonth()]} – ${B.getDate()} ${MONTHS[B.getMonth()]}`;
 }
 
 function localTime(tz){
@@ -249,22 +281,101 @@ function pill(status){
   return `<span class="pill ${esc(status)}">${esc(status)}</span>`;
 }
 
-function childCard(o, kind){
-  const meta = [o.subtitle, o.category, dateRange(o.start,o.end)].filter(Boolean).join(' \u00b7 ');
+function thumb(o, colour){
+  if(o.image) return `<div class="thumb"><img src="${esc(o.image)}" alt="" loading="lazy"></div>`;
+  return `<div class="thumb" style="--from:${colour}"><span>${esc(initial(o.title))}</span></div>`;
+}
+
+function itemRow(o, colour){
+  const meta = [o.subtitle, o.category, dateRange(o.start,o.end)].filter(Boolean).join(' · ');
   const n = nights(o.start,o.end);
-  const cost = (o.priceAud && n) ? `<span class="price">$${o.priceAud}/night \u00b7 $${o.priceAud*n} total</span>`
+  const cost = (o.priceAud && n) ? `<span class="price">$${o.priceAud}/night · $${o.priceAud*n} total</span>`
              : (o.priceAud ? `<span class="price">$${o.priceAud}/night</span>` : '');
-  return `<div class="card">
-    <h3>${esc(o.title)}</h3>
-    ${meta ? `<p class="meta">${esc(meta)}</p>` : ''}
-    ${o.body ? `<p>${esc(o.body)}</p>` : ''}
-    <div class="row">
-      ${pill(o.status)}
-      ${cost}
-      <a class="lnk" href="${mapLink(o)}" target="_blank" rel="noopener">Map</a>
-      ${o.url ? `<a class="lnk" href="${esc(o.url)}" target="_blank" rel="noopener">Site</a>` : ''}
+  return `<div class="item">
+    ${thumb(o, colour)}
+    <div class="info">
+      <h3>${esc(o.title)}</h3>
+      ${meta ? `<p class="meta">${esc(meta)}</p>` : ''}
+      ${o.body ? `<p>${esc(o.body)}</p>` : ''}
+      <div class="row">
+        ${pill(o.status)}
+        ${cost}
+        <a class="lnk" href="${mapLink(o)}" target="_blank" rel="noopener">Map</a>
+        ${o.url ? `<a class="lnk" href="${esc(o.url)}" target="_blank" rel="noopener">Site</a>` : ''}
+      </div>
     </div>
   </div>`;
+}
+
+function buildDayMap(legs){
+  const map = new Map();
+  legs.forEach(item => {
+    if(!item.start) return;
+    const start = d(item.start);
+    const end = item.end ? d(item.end) : start;
+    if(end.getTime() <= start.getTime()){
+      map.set(dkey(start), item);
+    } else {
+      const cur = new Date(start);
+      while(cur.getTime() < end.getTime()){
+        map.set(dkey(cur), item);
+        cur.setDate(cur.getDate()+1);
+      }
+    }
+  });
+  return map;
+}
+
+function renderCalendar(trip, legs){
+  if(!trip.depart || !trip.return) return { months:'', legend:'' };
+  const map = buildDayMap(legs);
+  const start = d(trip.depart), end = d(trip.return);
+  const today = new Date(); today.setHours(0,0,0,0);
+  const days = [];
+  const cur = new Date(start);
+  while(cur.getTime() <= end.getTime()){
+    days.push(new Date(cur));
+    cur.setDate(cur.getDate()+1);
+  }
+
+  const months = [];
+  let block = null;
+  days.forEach(dt => {
+    const key = dt.getFullYear()+'-'+dt.getMonth();
+    if(!block || block.key !== key){
+      block = { key, label:`${MONTHS[dt.getMonth()]} ${dt.getFullYear()}`, days:[] };
+      months.push(block);
+    }
+    block.days.push(dt);
+  });
+
+  const monthsHtml = months.map(m => {
+    const lead = (m.days[0].getDay()+6)%7;
+    const cells = [];
+    for(let i=0;i<lead;i++) cells.push('<div class="cal-cell blank"></div>');
+    m.days.forEach(dt => {
+      const item = map.get(dkey(dt));
+      const isTransit = item && item.type === 'transit';
+      const colour = (item && !isTransit) ? (CLIMATE[item.climate] || CLIMATE.cold) : null;
+      const isToday = dkey(dt) === dkey(today);
+      const style = colour ? `style="background:${colour}1F;border-color:${colour}66"` : '';
+      cells.push(`<div class="cal-cell ${isTransit?'transit':''} ${isToday?'today':''}" ${style} title="${esc(item ? item.title : '')}">
+        <span class="num">${dt.getDate()}</span>
+      </div>`);
+    });
+    return `<div class="cal-month">
+      <p class="cal-month-label">${m.label}</p>
+      <div class="cal-grid">
+        <div class="cal-dow">M</div><div class="cal-dow">T</div><div class="cal-dow">W</div><div class="cal-dow">T</div><div class="cal-dow">F</div><div class="cal-dow">S</div><div class="cal-dow">S</div>
+        ${cells.join('')}
+      </div>
+    </div>`;
+  }).join('');
+
+  const cities = legs.filter(l => l.type !== 'transit');
+  const legend = cities.map(c => `<span class="cal-legend-item"><i style="background:${CLIMATE[c.climate]||CLIMATE.cold}"></i>${esc(c.title)}</span>`).join('');
+
+  return { months: monthsHtml, legend };
 }
 
 function render(data){
@@ -273,7 +384,7 @@ function render(data){
   $('title').textContent = t.title || '';
   $('subtitle').textContent = t.subtitle || '';
   $('eyebrow').textContent = t.depart
-    ? `${d(t.depart).getDate()} ${MONTHS[d(t.depart).getMonth()]} ${d(t.depart).getFullYear()} \u2192 ${d(t.return).getDate()} ${MONTHS[d(t.return).getMonth()]} ${d(t.return).getFullYear()}`
+    ? `${d(t.depart).getDate()} ${MONTHS[d(t.depart).getMonth()]} ${d(t.depart).getFullYear()} → ${d(t.return).getDate()} ${MONTHS[d(t.return).getMonth()]} ${d(t.return).getFullYear()}`
     : 'Itinerary';
 
   const legs = (data.legs || []);
@@ -296,7 +407,7 @@ function render(data){
     bar.hidden = false; bar.classList.add('live');
     const left = Math.max(0, Math.round((d(current.end)-today)/86400000));
     $('statusNum').textContent = current.title;
-    $('statusLbl').textContent = `now \u00b7 ${left} night${left===1?'':'s'} to go`;
+    $('statusLbl').textContent = `now · ${left} night${left===1?'':'s'} to go`;
   } else if(dep && today < dep){
     bar.hidden = false;
     const days = Math.round((dep-today)/86400000);
@@ -304,7 +415,15 @@ function render(data){
     $('statusLbl').textContent = `day${days===1?'':'s'} until ${cities[0] ? cities[0].title : 'departure'}`;
   }
 
-  // spine colours: each node blends toward the next city's colour
+  // calendar grid
+  const cal = renderCalendar(t, legs);
+  if(cal.months){
+    $('calendarWrap').hidden = false;
+    $('calendar').innerHTML = cal.months;
+    $('calLegend').innerHTML = cal.legend;
+  }
+
+  // each node's colour blends toward the next city's colour
   const colourAt = i => {
     for(let j=i;j<legs.length;j++) if(legs[j].climate) return CLIMATE[legs[j].climate] || CLIMATE.cold;
     for(let j=i;j>=0;j--) if(legs[j].climate) return CLIMATE[legs[j].climate] || CLIMATE.cold;
@@ -312,58 +431,54 @@ function render(data){
   };
 
   $('timeline').innerHTML = legs.map((l,i) => {
-    const from = colourAt(i), to = colourAt(Math.min(i+1, legs.length-1));
-    const style = `--from:${from};--to:${to}`;
+    const from = colourAt(i);
+    const style = `--from:${from}`;
 
     if(l.type === 'transit'){
-      return `<section class="node transit" style="${style}">
-        <p class="mode">${esc(l.mode||'Transit')}${l.duration ? ' \u00b7 '+esc(l.duration) : ''}</p>
-        <p class="t">${esc(l.title)}</p>
-        ${l.body ? `<p class="d">${esc(l.body)}</p>` : ''}
+      return `<section class="transit-row" style="${style}">
+        <p class="mode">${esc(l.mode||'Transit')}${l.duration ? ' · '+esc(l.duration) : ''}</p>
+        <div class="body">
+          <p class="t">${esc(l.title)}</p>
+          ${l.body ? `<p class="d">${esc(l.body)}</p>` : ''}
+        </div>
       </section>`;
     }
 
     const n = nights(l.start,l.end);
     const isNow = current && current.id === l.id;
     const lt = l.tz ? localTime(l.tz) : null;
-    const stays = (l.stays||[]).map(s => childCard(s,'stay')).join('');
-    const spots = (l.spots||[]).map(s => childCard(s,'spot')).join('');
+    const staysHtml = (l.stays||[]).map(s => itemRow(s, from)).join('');
+    const spotsHtml = (l.spots||[]).map(s => itemRow(s, from)).join('');
+    const media = l.image
+      ? `<img src="${esc(l.image)}" alt="" loading="lazy">`
+      : `<div class="mono">${esc(initial(l.title))}</div>`;
 
-    return `<section class="node leg ${isNow?'now open':''}" style="${style}" data-id="${esc(l.id)}">
-      <button class="leg-head" aria-expanded="${isNow?'true':'false'}">
-        <span class="chev">\u203A</span>
+    return `<section class="leg-card ${isNow?'now':''}" style="${style}" data-id="${esc(l.id)}">
+      <div class="leg-media">
+        ${media}
+        ${isNow ? `<span class="now-badge">Now</span>` : ''}
+      </div>
+      <div class="leg-content">
         <span class="dates">${dateRange(l.start,l.end)}</span>
         <h2>${esc(l.title)}</h2>
         <div class="nights">${n} night${n===1?'':'s'}</div>
-      </button>
-      <div class="leg-body">
         ${lt ? `<p class="localtime">Local time ${lt}</p>` : ''}
-        ${l.body ? `<p>${esc(l.body)}</p>` : ''}
-        ${stays ? `<p class="grp-label">Sleeping</p>${stays}` : ''}
-        ${spots ? `<p class="grp-label">Eat, see, do</p>${spots}` : ''}
+        ${l.body ? `<p class="body-text">${esc(l.body)}</p>` : ''}
+        ${staysHtml ? `<p class="grp-label">Sleeping</p>${staysHtml}` : ''}
+        ${spotsHtml ? `<p class="grp-label">Eat, see, do</p>${spotsHtml}` : ''}
         <div class="row"><a class="lnk" href="${mapLink(l)}" target="_blank" rel="noopener">Open in Maps</a></div>
       </div>
     </section>`;
   }).join('');
 
-  $('timeline').addEventListener('click', e => {
-    const btn = e.target.closest('.leg-head');
-    if(!btn) return;
-    const leg = btn.closest('.leg');
-    const open = leg.classList.toggle('open');
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-
-  $('footer').innerHTML = `${cities.length} cities \u00b7 ${totalNights} nights \u00b7 ${t.travellers||2} travelling.
+  $('footer').innerHTML = `${cities.length} cities · ${totalNights} nights · ${t.travellers||2} travelling.
     Prices are estimates, not quotes. Edit <code>trip.json</code> and push to update.`;
 
-  if(isNowScrollNeeded(current)) {
-    const el = document.querySelector('.leg.now');
+  if(current){
+    const el = document.querySelector('.leg-card.now');
     if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
   }
 }
-
-function isNowScrollNeeded(current){ return !!current; }
 
 async function boot(){
   let data = null;
