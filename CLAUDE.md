@@ -22,7 +22,7 @@ There are slash commands in `.claude/commands` for the common jobs: `/add`, `/ni
 ## Files
 
 - `trip.json` — the only source of truth. Never duplicate data into the HTML.
-- `index.html` — self-contained frontend. No build step, no dependencies except Google Fonts.
+- `index.html` — self-contained frontend. No build step. Dependencies are Google Fonts and Leaflet (the route map), both loaded from a CDN — no package.json, no bundler.
 - `inbox.md` — raw captured URLs waiting to be processed.
 - `README.md` — setup notes for the human.
 
@@ -37,7 +37,7 @@ legs: [ leg | transit ]
 `id, type:"leg", title, climate, start, end, lat, lng, tz, image, body, stays[], spots[]`
 
 **transit** (a movement between legs)
-`id, type:"transit", title, mode, duration, start, end, priceAud, body, status`
+`id, type:"transit", title, mode, duration, departTime, arriveTime, start, end, priceAud, body, status`
 
 **stay** (inside a leg)
 `id, title, subtitle, start, end, lat, lng, priceAud, url, image, body, status`
@@ -47,14 +47,15 @@ legs: [ leg | transit ]
 
 ### Field rules
 
-- `climate` is one of `cold | cool | temperate | warm | hot`. It sets a small icon and label on the leg card and calendar (snowflake, sun, flame, etc.) — informational only, not a colour code. Set it honestly for the season.
+- `climate` is one of `cold | cool | temperate | warm | hot`. It's not shown on the site at all any more (an earlier icon treatment for it didn't land well) — keep it in the data anyway, honestly set for the season, in case it's useful later.
 - `status` is one of `idea | shortlist | held | booked`. This is the main colour-coded signal on the site — each has its own colour, icon, and label (grey/idea, blue/shortlist, amber/held, green/booked) — so keep it accurate, it's what the human actually reads at a glance. Default new items to `idea`.
 - `priceAud` on a **stay** is per night, a whole number, no currency symbol — the site multiplies by nights. On a **transit** or **spot** it's a flat one-off cost (a flight fare, a ticket, a meal) — no multiplying.
+- `departTime`/`arriveTime` on a **transit** are optional 24-hour `HH:MM` local times. When both are set, the transit row shows a big departures-board-style readout. Only set these from a real timetable or booking, never guess a time.
 - `id` is a short kebab-case slug, unique across the whole file.
 - Dates are `YYYY-MM-DD`. Legs render in array order, so keep the array chronological.
-- `lat`/`lng` are optional. Without them, the Map link falls back to a text search of the title.
+- `lat`/`lng` are optional on a leg, stay, or spot — without them, the Map link falls back to a text search of the title. On a **leg** they also place its marker on the route map, so set them for anything that should appear there.
 - `category` on a spot is a short label like `Eat`, `See`, `Shop`, `Drink`. A spot categorised `Eat` counts toward the Food budget line; anything else counts toward Activities.
-- `image` is optional on a leg, stay, or spot — a direct URL to a photo. Without one, the site shows a colour block instead, so it's safe to leave blank.
+- `image` is optional on a leg, stay, or spot — a direct URL to a photo. Without one, the site shows a colour block instead, so it's safe to leave blank. The site crops it consistently on its own, so any aspect ratio works — an Unsplash link is a good default.
 - `trip.budget` is optional: `{ flights, accom, food, activities }`, each a whole-trip AUD target. Omit a category, or the whole object, if no target's been set yet — the budget section still shows what's actually been committed so far, it just won't have a target line to compare against. Set these when the human gives you a number, e.g. "budget $6000 for flights".
 
 ## Processing the inbox

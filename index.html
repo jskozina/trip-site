@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <style>
 :root{
   --bg:#F6F3EC;
@@ -30,6 +31,7 @@
 
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{
   background:var(--bg);
   color:var(--text);
@@ -43,8 +45,22 @@ body{
 img{max-width:100%;display:block}
 svg{display:block;flex:none}
 
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
 /* ---------- masthead ---------- */
 .masthead{padding:44px 0 28px}
+.photostrip{display:flex;gap:10px;overflow-x:auto;margin:0 0 22px;padding-bottom:2px}
+.photostrip a{
+  flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:6px;
+  text-decoration:none;width:72px;animation:rise .5s ease both;
+}
+.photostrip .ph{width:72px;height:72px;border-radius:14px;overflow:hidden;background:var(--line);border:1px solid var(--line-2)}
+.photostrip .ph img{width:100%;height:100%;object-fit:cover}
+.photostrip .lbl{
+  font-size:9.5px;letter-spacing:.04em;color:var(--muted);text-align:center;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:72px;
+}
 .masthead h1{
   font-family:'Fraunces',Georgia,serif;
   font-variation-settings:'SOFT' 30,'WONK' 1,'opsz' 100;
@@ -61,14 +77,16 @@ svg{display:block;flex:none}
   margin:26px 0 0;padding:16px 18px;
   border:1px solid var(--line);border-radius:var(--radius);
   background:var(--surface);
-  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;position:relative;
 }
 .status-bar .n{
   font-family:'Fraunces',Georgia,serif;font-weight:600;
   font-size:32px;line-height:1;font-variant-numeric:tabular-nums;color:var(--text);
 }
-.status-bar .lbl{font-size:13px;color:var(--muted);letter-spacing:.02em}
+.status-bar .lbl{font-size:13px;color:var(--muted);letter-spacing:.02em;display:flex;align-items:center;gap:7px}
+.status-bar .lbl::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--line-2)}
 .status-bar.live{border-color:var(--text);box-shadow:0 0 0 1px var(--text) inset}
+.status-bar.live .lbl::before{background:var(--good);animation:pulse 1.8s ease-in-out infinite}
 
 /* ---------- summary ---------- */
 .summary{
@@ -88,23 +106,39 @@ svg{display:block;flex:none}
   font-size:11px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--faint);font-weight:600;margin:0 0 14px;
 }
-.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;max-width:480px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;width:100%}
 .cal-dow{font-size:9.5px;text-transform:uppercase;color:var(--faint);text-align:center;padding-bottom:3px;font-weight:600;letter-spacing:.04em}
 .cal-cell{
   aspect-ratio:1;border:1px solid var(--line);border-radius:6px;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  font-family:var(--mono);font-size:11.5px;color:var(--muted);background:var(--surface);position:relative;
+  font-family:var(--mono);font-size:13px;color:var(--muted);background:var(--surface);position:relative;
 }
 .cal-cell.blank{border-color:transparent;background:transparent}
 .cal-cell.transit{
   background:repeating-linear-gradient(135deg,var(--surface),var(--surface) 4px,var(--line) 4px,var(--line) 6px);
 }
-.cal-cell .num{font-variant-numeric:tabular-nums;font-weight:600}
-.cal-cell .mo{font-size:7.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint);margin-bottom:1px}
-.cal-cell .clim{position:absolute;top:3px;right:3px;color:var(--faint);line-height:0}
+.cal-cell .num{font-variant-numeric:tabular-nums;font-weight:600;font-size:clamp(12px,1.6vw,16px)}
+.cal-cell .mo{font-size:8px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint);margin-bottom:1px}
+.cal-cell .swm{position:absolute;top:4px;right:4px;width:9px;height:9px;border-radius:2px;background-size:cover;background-position:center}
 .cal-cell.today{border-color:var(--text);border-width:2px}
 .cal-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px}
 .cal-legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.cal-legend-item .sw{width:13px;height:13px;border-radius:4px;background-size:cover;background-position:center;flex:none;background-color:var(--line)}
+
+/* ---------- map ---------- */
+.mapSection{margin-top:36px}
+.map{height:420px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.map-pin{
+  width:26px;height:26px;border-radius:50%;background:var(--text);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  border:2px solid #fff;box-shadow:0 1px 5px rgba(30,33,38,.35);
+}
+.leaflet-popup-content-wrapper{border-radius:10px}
+.leaflet-popup-content{margin:12px 14px;font-family:'Archivo',sans-serif}
+.map-popup img{width:100%;border-radius:8px;margin-bottom:8px;aspect-ratio:16/10;object-fit:cover}
+.map-popup strong{font-family:'Fraunces',Georgia,serif;font-size:16px;font-weight:500}
+.map-popup span{display:block;font-size:12px;color:var(--muted);margin-top:2px;font-family:var(--mono)}
 
 /* ---------- budget ---------- */
 .budget{margin-top:36px;max-width:640px}
@@ -129,20 +163,30 @@ svg{display:block;flex:none}
 .legs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:40px}
 
 .transit-row{
-  grid-column:1/-1;display:flex;gap:14px;align-items:flex-start;
+  grid-column:1/-1;display:flex;gap:14px;align-items:center;flex-wrap:wrap;
   padding:14px 18px;background:var(--surface);border:1px solid var(--line);
   border-left:4px solid var(--line-2);border-radius:var(--radius);
+  animation:rise .5s ease both;
 }
 .t-icon{width:38px;height:38px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center}
-.transit-row .body{min-width:0;flex:1}
+.transit-row .body{min-width:0;flex:1 1 220px}
 .transit-row .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .transit-row .t{color:var(--text);font-size:14.5px;font-weight:600;margin:0}
-.transit-row .meta{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin:6px 0 0;letter-spacing:.01em;font-variant-numeric:tabular-nums}
+.transit-row .sub{font-size:12.5px;color:var(--muted);margin:5px 0 0}
 .transit-row .d{color:var(--muted);font-size:13.5px;margin:6px 0 0;line-height:1.5}
+.board{flex:none;margin-left:auto;text-align:right}
+.board .time{
+  font-family:var(--mono);font-size:23px;font-weight:600;color:var(--text);
+  letter-spacing:-.01em;font-variant-numeric:tabular-nums;
+  display:flex;align-items:center;gap:8px;justify-content:flex-end;
+}
+.board .time .arrow{color:var(--faint);font-size:16px}
+.board .dur{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
 
 .leg-card{
   background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
   overflow:hidden;display:flex;flex-direction:column;
+  animation:rise .5s ease both;
 }
 .leg-card.now{border-color:var(--text);box-shadow:0 0 0 1px var(--text)}
 
@@ -158,27 +202,21 @@ svg{display:block;flex:none}
 .leg-media .now-badge{
   position:absolute;top:12px;left:12px;background:var(--text);color:var(--surface);
   font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
-  padding:5px 9px;border-radius:20px;
+  padding:5px 9px;border-radius:20px;display:flex;align-items:center;gap:6px;
 }
-.leg-media .clim-chip{
-  position:absolute;bottom:10px;left:10px;display:flex;align-items:center;gap:5px;
-  background:var(--surface);color:var(--muted);font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
-  padding:5px 9px;border-radius:20px;
-}
+.leg-media .now-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 1.8s ease-in-out infinite}
 
 .leg-content{padding:18px 20px 20px}
-.dates{
-  font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--faint);font-weight:600;margin-bottom:5px;
-  font-variant-numeric:tabular-nums;
-}
 .leg-card h2{
   font-family:'Fraunces',Georgia,serif;
   font-variation-settings:'SOFT' 30,'WONK' 1,'opsz' 40;
   font-weight:500;font-size:27px;line-height:1.08;margin:0;
   letter-spacing:-.01em;color:var(--text);
 }
-.nights{font-family:var(--mono);color:var(--muted);font-size:13px;margin-top:4px}
+.leg-stats{display:flex;gap:26px;margin-top:14px}
+.leg-stats .stat{display:flex;flex-direction:column}
+.leg-stats .v{font-family:var(--mono);font-size:19px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;line-height:1.15}
+.leg-stats .k{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:3px}
 .localtime{
   font-family:var(--mono);font-size:12px;color:var(--faint);letter-spacing:.02em;
   margin:12px 0 0;font-variant-numeric:tabular-nums;
@@ -233,12 +271,16 @@ footer{
   background:var(--bg);padding:2px 5px;border-radius:2px;color:var(--text);
 }
 :focus-visible{outline:2px solid var(--text);outline-offset:3px}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="masthead">
+    <div class="photostrip" id="photoStrip"></div>
     <h1 id="title">Loading</h1>
     <p class="datestrip" id="dateStrip"></p>
     <div class="status-bar" id="statusBar" hidden>
@@ -252,6 +294,10 @@ footer{
     <div class="cal-grid" id="calendar"></div>
     <div class="cal-legend" id="calLegend"></div>
   </section>
+  <section class="mapSection" id="mapWrap" hidden>
+    <p class="section-label">Route</p>
+    <div class="map" id="map"></div>
+  </section>
   <section class="budget" id="budgetWrap" hidden>
     <p class="section-label">Budget</p>
     <div id="budgetRows"></div>
@@ -260,10 +306,10 @@ footer{
   <footer id="footer"></footer>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const CACHE_KEY = 'trip-cache-v1';
-const CLIMATE_LABEL = { cold:'Cold', cool:'Cool', temperate:'Mild', warm:'Warm', hot:'Hot' };
 
 const ICONS = {
   plane: '<path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9 22 2Z"/>',
@@ -281,11 +327,6 @@ const ICONS = {
   shortlist: '<path d="M6 3h12v18l-6-4-6 4V3Z"/>',
   held: '<circle cx="12" cy="12" r="9"/><path d="M12 7.5v5l3.5 2"/>',
   booked: '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9"/>',
-  snow: '<path d="M12 2v20"/><path d="M5 5l14 14"/><path d="M19 5 5 19"/><path d="M2 12h20"/>',
-  cloud: '<path d="M17 18H7a4 4 0 1 1 .6-8A5.5 5.5 0 0 1 18 9.6 4 4 0 0 1 17 18Z"/>',
-  leaf: '<path d="M5 19c7 0 13-5 14-16C8 4 5 10 5 19Z"/><path d="M5 19c2-6 5-9 10-12"/>',
-  sun: '<circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v3M12 18.5v3M4 12H1M23 12h-3M5.6 5.6l2 2M16.4 16.4l2 2M18.4 5.6l-2 2M7.6 16.4l-2 2"/>',
-  flame: '<path d="M12 2c1.2 4.4-4 5.6-4 10a4 4 0 0 0 8 0c0-1.8-.8-2.8-.8-2.8s1.8 1 1.8 3.8a5 5 0 0 1-10 0C7 8 12 6.5 12 2Z"/>',
   pin: '<path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/>'
 };
 
@@ -303,6 +344,21 @@ const dkey = dt => `${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,'0'
 const nights = (a,b) => (a&&b) ? Math.round((d(b)-d(a))/86400000) : 0;
 const initial = s => (s || '?').trim().charAt(0).toUpperCase();
 const money = n => '$' + Math.round(n).toLocaleString();
+const reduceMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function resizeImg(url, w, h){
+  if(!url) return url;
+  try{
+    const u = new URL(url);
+    u.searchParams.set('w', w);
+    if(h) u.searchParams.set('h', h);
+    u.searchParams.set('fit', 'crop');
+    u.searchParams.set('crop', 'entropy');
+    u.searchParams.set('q', '75');
+    u.searchParams.set('auto', 'format');
+    return u.toString();
+  }catch(e){ return url; }
+}
 
 function svgIcon(key, size){
   size = size || 16;
@@ -325,9 +381,6 @@ function iconForCategory(category){
   if(c==='shop') return 'shop';
   if(c==='drink') return 'drink';
   return 'see';
-}
-function iconForClimate(climate){
-  return { cold:'snow', cool:'cloud', temperate:'leaf', warm:'sun', hot:'flame' }[climate] || 'sun';
 }
 function statusInfo(status){ return STATUS[status] || STATUS.idea; }
 
@@ -365,7 +418,7 @@ function pill(status){
 }
 
 function thumb(o, kind){
-  if(o.image) return `<div class="thumb"><img src="${esc(o.image)}" alt="" loading="lazy"></div>`;
+  if(o.image) return `<div class="thumb"><img src="${esc(resizeImg(o.image,120,120))}" alt="" loading="lazy"></div>`;
   const s = statusInfo(o.status);
   const iconKey = kind === 'stay' ? 'bed' : iconForCategory(o.category);
   return `<div class="thumb" style="background:${s.bg};color:${s.c}">${svgIcon(iconKey,22)}</div>`;
@@ -434,10 +487,11 @@ function renderCalendar(trip, legs){
     const isToday = dkey(dt) === dkey(today);
     const showMonth = dt.getMonth() !== lastMonth;
     lastMonth = dt.getMonth();
+    const swatch = (isLegStart && item.image) ? `<span class="swm" style="background-image:url('${resizeImg(item.image,40,40)}')"></span>` : '';
     cells.push(`<div class="cal-cell ${isTransit?'transit':''} ${isToday?'today':''}" title="${esc(item ? item.title : '')}">
       ${showMonth ? `<span class="mo">${MONTHS[dt.getMonth()]}</span>` : ''}
       <span class="num">${dt.getDate()}</span>
-      ${isLegStart ? `<span class="clim">${svgIcon(iconForClimate(item.climate),9)}</span>` : ''}
+      ${swatch}
     </div>`);
   });
 
@@ -446,9 +500,34 @@ function renderCalendar(trip, legs){
     ${cells.join('')}`;
 
   const cities = legs.filter(l => l.type !== 'transit');
-  const legend = cities.map(c => `<span class="cal-legend-item">${svgIcon(iconForClimate(c.climate),13)}${esc(c.title)}</span>`).join('');
+  const legend = cities.map(c => `<span class="cal-legend-item"><span class="sw" style="${c.image ? `background-image:url('${resizeImg(c.image,40,40)}')` : ''}"></span>${esc(c.title)}</span>`).join('');
 
   return { grid, legend };
+}
+
+function renderMap(legs){
+  const cities = legs.filter(l => l.type !== 'transit' && l.lat && l.lng);
+  const wrap = $('mapWrap');
+  if(!cities.length || typeof L === 'undefined'){ wrap.hidden = true; return; }
+  wrap.hidden = false;
+
+  const map = L.map('map', { scrollWheelZoom:false });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',
+    maxZoom: 18
+  }).addTo(map);
+
+  const latlngs = cities.map(c => [c.lat, c.lng]);
+  L.polyline(latlngs, { color:'#1E2126', weight:2, opacity:.45, dashArray:'1 8', lineCap:'round' }).addTo(map);
+
+  cities.forEach((c,i) => {
+    const icon = L.divIcon({ className:'', html:`<div class="map-pin">${i+1}</div>`, iconSize:[26,26], iconAnchor:[13,13] });
+    const img = c.image ? `<img src="${esc(resizeImg(c.image,320,180))}" alt="">` : '';
+    L.marker([c.lat,c.lng], { icon }).addTo(map)
+      .bindPopup(`<div class="map-popup">${img}<strong>${esc(c.title)}</strong><span>${esc(dateRange(c.start,c.end))}</span></div>`);
+  });
+
+  map.fitBounds(latlngs, { padding:[28,28] });
 }
 
 function budgetRowHtml(icon, label, actual, target){
@@ -491,6 +570,18 @@ function renderBudget(trip, legs){
   return rows + total;
 }
 
+function animateCount(el, target){
+  if(reduceMotion()){ el.textContent = target; return; }
+  const start = performance.now();
+  const dur = 500;
+  function step(now){
+    const p = Math.min(1, (now-start)/dur);
+    el.textContent = Math.round(p*target);
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
 function render(data){
   const t = data.trip || {};
   document.title = t.title || 'Itinerary';
@@ -500,6 +591,12 @@ function render(data){
   const legs = (data.legs || []);
   const cities = legs.filter(l => l.type !== 'transit');
   const totalNights = cities.reduce((s,l) => s + nights(l.start,l.end), 0);
+
+  $('photoStrip').innerHTML = cities.map((c,i) => `
+    <a href="#leg-${esc(c.id)}" style="animation-delay:${Math.min(i*50,300)}ms">
+      <span class="ph">${c.image ? `<img src="${esc(resizeImg(c.image,160,160))}" alt="" loading="lazy">` : ''}</span>
+      <span class="lbl">${esc(c.title)}</span>
+    </a>`).join('');
 
   $('summary').innerHTML = `
     <div>Cities<b>${cities.length}</b></div>
@@ -518,8 +615,8 @@ function render(data){
   } else if(dep && today < dep){
     bar.hidden = false;
     const days = Math.round((dep-today)/86400000);
-    $('statusNum').textContent = days;
     $('statusLbl').textContent = `day${days===1?'':'s'} until ${cities[0] ? cities[0].title : 'departure'}`;
+    animateCount($('statusNum'), days);
   }
 
   // calendar grid
@@ -530,22 +627,31 @@ function render(data){
     $('calLegend').innerHTML = cal.legend;
   }
 
+  // route map
+  renderMap(legs);
+
   // budget
   $('budgetWrap').hidden = false;
   $('budgetRows').innerHTML = renderBudget(t, legs);
 
-  $('timeline').innerHTML = legs.map(l => {
+  $('timeline').innerHTML = legs.map((l,i) => {
+    const delay = Math.min(i*50, 400);
     if(l.type === 'transit'){
       const s = statusInfo(l.status);
-      return `<section class="transit-row" style="border-left-color:${s.c}">
+      const hasTimes = l.departTime && l.arriveTime;
+      return `<section class="transit-row" id="leg-${esc(l.id)}" style="border-left-color:${s.c};animation-delay:${delay}ms">
         <div class="t-icon" style="background:${s.bg};color:${s.c}">${svgIcon(iconForMode(l.mode),20)}</div>
         <div class="body">
           <div class="top">
             <p class="t">${esc(l.title)}</p>
             ${pill(l.status)}
           </div>
-          <p class="meta">${esc(l.mode||'Transit')}${l.duration ? ' · '+esc(l.duration) : ''}${l.priceAud ? ' · '+money(l.priceAud) : ''}</p>
+          <p class="sub">${esc(l.mode||'Transit')}${l.priceAud ? ' · '+money(l.priceAud) : ''}</p>
           ${l.body ? `<p class="d">${esc(l.body)}</p>` : ''}
+        </div>
+        <div class="board">
+          ${hasTimes ? `<div class="time">${esc(l.departTime)}<span class="arrow">→</span>${esc(l.arriveTime)}</div>` : ''}
+          ${l.duration ? `<div class="dur">${esc(l.duration)}</div>` : ''}
         </div>
       </section>`;
     }
@@ -557,19 +663,20 @@ function render(data){
     const spotsHtml = (l.spots||[]).map(s => itemRow(s,'spot')).join('');
     const legAccom = (l.stays||[]).reduce((s,x) => s + ((x.priceAud||0) * (nights(x.start,x.end)||0)), 0);
     const media = l.image
-      ? `<img src="${esc(l.image)}" alt="" loading="lazy">`
+      ? `<img src="${esc(resizeImg(l.image,1600,900))}" alt="" loading="lazy">`
       : `<div class="mono">${esc(initial(l.title))}</div>`;
 
-    return `<section class="leg-card ${isNow?'now':''}" data-id="${esc(l.id)}">
+    return `<section class="leg-card ${isNow?'now':''}" id="leg-${esc(l.id)}" data-id="${esc(l.id)}" style="animation-delay:${delay}ms">
       <div class="leg-media">
         ${media}
         ${isNow ? `<span class="now-badge">Now</span>` : ''}
-        ${l.climate ? `<span class="clim-chip">${svgIcon(iconForClimate(l.climate),12)}${esc(CLIMATE_LABEL[l.climate]||l.climate)}</span>` : ''}
       </div>
       <div class="leg-content">
-        <span class="dates">${dateRange(l.start,l.end)}</span>
         <h2>${esc(l.title)}</h2>
-        <div class="nights">${n} night${n===1?'':'s'}</div>
+        <div class="leg-stats">
+          <div class="stat"><span class="v">${dateRange(l.start,l.end)}</span><span class="k">Dates</span></div>
+          <div class="stat"><span class="v">${n}</span><span class="k">Night${n===1?'':'s'}</span></div>
+        </div>
         ${lt ? `<p class="localtime">Local time ${lt}</p>` : ''}
         ${legAccom ? `<p class="spend">${svgIcon('bed',13)}${money(legAccom)} accommodation</p>` : ''}
         ${l.body ? `<p class="body-text">${esc(l.body)}</p>` : ''}
@@ -585,7 +692,7 @@ function render(data){
 
   if(current){
     const el = document.querySelector('.leg-card.now');
-    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    if(el) el.scrollIntoView({behavior: reduceMotion() ? 'auto' : 'smooth', block:'start'});
   }
 }
 
