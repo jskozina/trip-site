@@ -29,7 +29,7 @@ There are slash commands in `.claude/commands` for the common jobs: `/add`, `/ni
 ## Schema
 
 ```
-trip: { title, subtitle, depart, return, travellers, homeTz, budget }
+trip: { title, depart, return, travellers, homeTz, budget }
 legs: [ leg | transit ]
 ```
 
@@ -47,8 +47,8 @@ legs: [ leg | transit ]
 
 ### Field rules
 
-- `climate` is one of `cold | cool | temperate | warm | hot`. It drives the accent colour on that leg's card, which shifts from frost blue in Japan to lacquer red in Saigon. Set it honestly for the season.
-- `status` is one of `idea | shortlist | held | booked`. Default new items to `idea`.
+- `climate` is one of `cold | cool | temperate | warm | hot`. It sets a small icon and label on the leg card and calendar (snowflake, sun, flame, etc.) — informational only, not a colour code. Set it honestly for the season.
+- `status` is one of `idea | shortlist | held | booked`. This is the main colour-coded signal on the site — each has its own colour, icon, and label (grey/idea, blue/shortlist, amber/held, green/booked) — so keep it accurate, it's what the human actually reads at a glance. Default new items to `idea`.
 - `priceAud` on a **stay** is per night, a whole number, no currency symbol — the site multiplies by nights. On a **transit** or **spot** it's a flat one-off cost (a flight fare, a ticket, a meal) — no multiplying.
 - `id` is a short kebab-case slug, unique across the whole file.
 - Dates are `YYYY-MM-DD`. Legs render in array order, so keep the array chronological.
