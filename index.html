@@ -169,7 +169,7 @@ svg{display:block;flex:none}
 .budget-total .figs{font-family:var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
 
 /* ---------- leg grid ---------- */
-.legs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:40px}
+.legs{display:flex;flex-direction:column;gap:22px;margin-top:40px}
 
 .transit-row{
   display:flex;gap:14px;align-items:center;flex-wrap:wrap;
@@ -177,7 +177,7 @@ svg{display:block;flex:none}
   border-left:4px solid var(--line-2);
 }
 .transit-row.standalone{
-  grid-column:1/-1;border:1px solid var(--line);border-left-width:4px;
+  border:1px solid var(--line);border-left-width:4px;
   border-radius:var(--radius);animation:rise .5s ease both;
 }
 .t-icon{width:38px;height:38px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center}
@@ -198,7 +198,7 @@ svg{display:block;flex:none}
 
 /* connecting-flight / linked-transit group */
 .transit-group{
-  grid-column:1/-1;background:var(--surface);border:1px solid var(--line);
+  background:var(--surface);border:1px solid var(--line);
   border-radius:var(--radius);overflow:hidden;animation:rise .5s ease both;
 }
 .transit-group .group-label{
@@ -220,7 +220,7 @@ svg{display:block;flex:none}
 .leg-card.now{border-color:var(--text);box-shadow:0 0 0 1px var(--text)}
 
 .leg-media{
-  aspect-ratio:16/9;position:relative;
+  height:clamp(140px,22vw,260px);position:relative;
   background:linear-gradient(155deg,#EDEAE1,#F8F6F0);
 }
 .leg-media img{width:100%;height:100%;object-fit:cover}
@@ -235,14 +235,15 @@ svg{display:block;flex:none}
 }
 .leg-media .now-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 1.8s ease-in-out infinite}
 
-.leg-content{padding:18px 20px 20px}
+.leg-content{padding:20px 24px 24px}
+.leg-summary{max-width:640px}
 .leg-card h2{
   font-family:'Fraunces',Georgia,serif;
   font-variation-settings:'SOFT' 30,'WONK' 1,'opsz' 40;
-  font-weight:500;font-size:27px;line-height:1.08;margin:0;
+  font-weight:500;font-size:clamp(26px,3.4vw,36px);line-height:1.05;margin:0;
   letter-spacing:-.01em;color:var(--text);
 }
-.leg-stats{display:flex;gap:26px;margin-top:14px}
+.leg-stats{display:flex;gap:30px;margin-top:14px}
 .leg-stats .stat{display:flex;flex-direction:column}
 .leg-stats .v{font-family:var(--mono);font-size:19px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;line-height:1.15}
 .leg-stats .k{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:3px}
@@ -251,26 +252,22 @@ svg{display:block;flex:none}
   margin:12px 0 0;font-variant-numeric:tabular-nums;
 }
 .spend{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:13px;color:var(--text);margin-top:10px;font-variant-numeric:tabular-nums}
-.leg-content>p.body-text{color:var(--muted);font-size:14.5px;margin:12px 0 0;line-height:1.6}
+.leg-summary>p.body-text{color:var(--muted);font-size:14.5px;margin:12px 0 0;line-height:1.6}
 
 .grp-label{
   font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--faint);font-weight:600;margin:20px 0 8px;
+  color:var(--faint);font-weight:600;margin:22px 0 10px;
 }
-.item{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
-.item:first-of-type{border-top:none}
-.item .thumb{
-  width:52px;height:52px;border-radius:10px;flex:0 0 52px;overflow:hidden;
-  background:var(--line);color:var(--muted);
-  display:flex;align-items:center;justify-content:center;
-}
-.item .thumb img{width:100%;height:100%;object-fit:cover}
-.item .info{flex:1;min-width:0}
-.item h3{font-size:15px;font-weight:600;margin:0;letter-spacing:-.005em;color:var(--text)}
-.item .meta{font-size:12.5px;color:var(--muted);margin:2px 0 0}
-.item p{font-size:13.5px;color:var(--muted);margin:6px 0 0;line-height:1.55}
-.item .row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:8px}
-
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.item-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.ic-media{aspect-ratio:16/10;background:var(--line)}
+.ic-media img{width:100%;height:100%;object-fit:cover;display:block}
+.ic-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.ic-body{padding:12px 14px 14px}
+.item-card h3{font-size:14.5px;font-weight:600;margin:0;letter-spacing:-.005em;color:var(--text)}
+.item-card .meta{font-size:12px;color:var(--muted);margin:3px 0 0}
+.item-card p{font-size:13px;color:var(--muted);margin:6px 0 0;line-height:1.5}
+.item-card .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:9px}
 a.lnk{
   color:var(--text);font-size:12px;text-decoration:none;
   border-bottom:1px solid var(--line-2);padding-bottom:2px;
@@ -488,21 +485,19 @@ function transitInner(l, extraClass, idAttr, styleAttr){
   </div>`;
 }
 
-function thumb(o, kind){
-  if(o.image) return `<div class="thumb"><img src="${esc(resizeImg(o.image,120,120))}" alt="" loading="lazy"></div>`;
-  const s = statusInfo(o.status);
-  const iconKey = kind === 'stay' ? 'bed' : iconForCategory(o.category);
-  return `<div class="thumb" style="background:${s.bg};color:${s.c}">${svgIcon(iconKey,22)}</div>`;
-}
-
-function itemRow(o, kind){
+function itemCard(o, kind){
   const meta = [o.subtitle, o.category, dateRange(o.start,o.end)].filter(Boolean).join(' · ');
   const n = nights(o.start,o.end);
   const cost = (o.priceAud && n) ? `<span class="price">${money(o.priceAud)}/night · ${money(o.priceAud*n)} total</span>`
              : (o.priceAud ? `<span class="price">${money(o.priceAud)}</span>` : '');
-  return `<div class="item">
-    ${thumb(o, kind)}
-    <div class="info">
+  const s = statusInfo(o.status);
+  const iconKey = kind === 'stay' ? 'bed' : iconForCategory(o.category);
+  const media = o.image
+    ? `<img src="${esc(resizeImg(o.image,460,290))}" alt="" loading="lazy">`
+    : `<div class="ic-fallback" style="background:${s.bg};color:${s.c}">${svgIcon(iconKey,24)}</div>`;
+  return `<div class="item-card">
+    <div class="ic-media">${media}</div>
+    <div class="ic-body">
       <h3>${esc(o.title)}</h3>
       ${meta ? `<p class="meta">${esc(meta)}</p>` : ''}
       ${o.body ? `<p>${esc(o.body)}</p>` : ''}
@@ -748,8 +743,8 @@ function render(data){
     const n = nights(l.start,l.end);
     const isNow = current && current.id === l.id;
     const lt = l.tz ? localTime(l.tz) : null;
-    const staysHtml = (l.stays||[]).map(s => itemRow(s,'stay')).join('');
-    const spotsHtml = (l.spots||[]).map(s => itemRow(s,'spot')).join('');
+    const staysHtml = (l.stays||[]).map(s => itemCard(s,'stay')).join('');
+    const spotsHtml = (l.spots||[]).map(s => itemCard(s,'spot')).join('');
     const legAccom = (l.stays||[]).reduce((s,x) => s + ((x.priceAud||0) * (nights(x.start,x.end)||0)), 0);
     const media = l.image
       ? `<img src="${esc(resizeImg(l.image,1600,900))}" alt="" loading="lazy">`
@@ -761,16 +756,18 @@ function render(data){
         ${isNow ? `<span class="now-badge">Now</span>` : ''}
       </div>
       <div class="leg-content">
-        <h2>${esc(l.title)}</h2>
-        <div class="leg-stats">
-          <div class="stat"><span class="v">${dateRange(l.start,l.end)}</span><span class="k">Dates</span></div>
-          <div class="stat"><span class="v">${n}</span><span class="k">Night${n===1?'':'s'}</span></div>
+        <div class="leg-summary">
+          <h2>${esc(l.title)}</h2>
+          <div class="leg-stats">
+            <div class="stat"><span class="v">${dateRange(l.start,l.end)}</span><span class="k">Dates</span></div>
+            <div class="stat"><span class="v">${n}</span><span class="k">Night${n===1?'':'s'}</span></div>
+          </div>
+          ${lt ? `<p class="localtime">Local time ${lt}</p>` : ''}
+          ${legAccom ? `<p class="spend">${svgIcon('bed',13)}${money(legAccom)} accommodation</p>` : ''}
+          ${l.body ? `<p class="body-text">${esc(l.body)}</p>` : ''}
         </div>
-        ${lt ? `<p class="localtime">Local time ${lt}</p>` : ''}
-        ${legAccom ? `<p class="spend">${svgIcon('bed',13)}${money(legAccom)} accommodation</p>` : ''}
-        ${l.body ? `<p class="body-text">${esc(l.body)}</p>` : ''}
-        ${staysHtml ? `<p class="grp-label">Sleeping</p>${staysHtml}` : ''}
-        ${spotsHtml ? `<p class="grp-label">Eat, see, do</p>${spotsHtml}` : ''}
+        ${staysHtml ? `<p class="grp-label">Sleeping</p><div class="card-grid">${staysHtml}</div>` : ''}
+        ${spotsHtml ? `<p class="grp-label">Eat, see, do</p><div class="card-grid">${spotsHtml}</div>` : ''}
         <div class="row"><a class="lnk" href="${mapLink(l)}" target="_blank" rel="noopener">Open in Maps</a></div>
       </div>
     </section>`);

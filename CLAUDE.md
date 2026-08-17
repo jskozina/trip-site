@@ -84,6 +84,10 @@ Match the existing entries. Plain, specific, useful. Say what's actually true ab
 
 Keep `body` to one or two sentences on a spot, two or three on a stay or leg.
 
+**Default to no body at all.** Only write one if there's something exceptionally useful in it — a genuine gotcha, a real distinguishing fact, something that changes a decision. Review scores, review counts, generic amenity lists ("has a restaurant", "free WiFi"), and anything you'd only know from reading the listing's own marketing copy are noise, not information — leave them out even if they were sitting right there in the source. An empty `body` is the correct, common case, not a gap to fill.
+
+**Never estimate or guess `priceAud`.** The human supplies actual prices themselves. If a source doesn't show one, leave the field off — don't infer one from "similar places" or a budget figure.
+
 ## Things not to do
 
 - Don't add a build step, a framework, or a package.json. The whole point is that it's two files.
