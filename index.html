@@ -140,12 +140,16 @@ svg{display:block;flex:none}
   position:absolute;z-index:20;min-width:190px;max-width:250px;
   background:var(--text);color:var(--bg);border-radius:10px;padding:12px 14px;
   box-shadow:0 10px 28px rgba(30,33,38,.32);font-size:13px;
-  opacity:0;visibility:hidden;transform:translateY(4px);pointer-events:none;
+  opacity:0;visibility:hidden;transform:translateY(4px);
   transition:opacity .12s ease,transform .12s ease;
 }
-.cal-tooltip.show{opacity:1;visibility:visible;transform:translateY(0)}
+.cal-tooltip.show{opacity:1;visibility:visible}
 .cal-tooltip .day{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;opacity:.6}
-.cal-tooltip .title{font-family:'Fraunces',Georgia,serif;font-size:17px;font-weight:500;margin-top:2px;line-height:1.15}
+.cal-tooltip .title{
+  display:block;font-family:'Fraunces',Georgia,serif;font-size:17px;font-weight:500;
+  margin-top:2px;line-height:1.15;color:inherit;text-decoration:none;
+}
+.cal-tooltip .title:hover{text-decoration:underline}
 .cal-tooltip .meta{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;opacity:.85;margin-top:7px}
 .cal-tooltip .route{font-family:var(--mono);font-size:15px;font-weight:600;margin-top:5px;display:flex;align-items:center;gap:6px}
 .cal-tooltip .route .arrow{opacity:.6;font-size:12px}
@@ -155,7 +159,8 @@ svg{display:block;flex:none}
 }
 .cal-tooltip .stay img{width:36px;height:36px;border-radius:6px;object-fit:cover;flex:none}
 .cal-tooltip .stay-fallback{width:36px;height:36px;border-radius:6px;flex:none;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center}
-.cal-tooltip .stay-name{font-size:12.5px;font-weight:600;line-height:1.25}
+.cal-tooltip .stay-name{display:block;font-size:12.5px;font-weight:600;line-height:1.25;color:inherit;text-decoration:none}
+.cal-tooltip .stay-name:hover{text-decoration:underline}
 .cal-tooltip .pill{margin-top:9px}
 
 /* ---------- map ---------- */
@@ -184,6 +189,16 @@ svg{display:block;flex:none}
 .budget-bar .fill{height:100%;border-radius:20px;background:var(--good)}
 .budget-bar .fill.warn{background:var(--warn)}
 .budget-bar .fill.over{background:var(--bad)}
+.budget-items{margin-top:9px}
+.budget-item{
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  padding:6px 0;border-top:1px dashed var(--line);font-size:12.5px;
+}
+.budget-item:first-child{border-top:none}
+.budget-item a{color:var(--muted);text-decoration:none}
+.budget-item a:hover{color:var(--text);text-decoration:underline}
+.budget-item .cost{font-family:var(--mono);color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.budget-item .cost.unset{color:var(--faint)}
 .budget-total{
   display:flex;justify-content:space-between;align-items:baseline;
   margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
@@ -528,7 +543,7 @@ function itemCard(o, kind){
   const bucket = kind === 'stay' ? 'stay' : iconForCategory(o.category);
   const src = o.image || CATEGORY_IMG[bucket];
   const media = `<img src="${esc(resizeImg(src,460,290))}" alt="" loading="lazy">`;
-  return `<div class="item-card">
+  return `<div class="item-card" id="item-${esc(o.id)}">
     <div class="ic-media">${media}</div>
     <div class="ic-body">
       <h3>${esc(o.title)}</h3>
@@ -564,6 +579,20 @@ function buildDayMap(legs){
 }
 
 const DAY_LOOKUP = new Map();
+let ANCHOR_MAP = {};
+
+function computeAnchorMap(legs){
+  const map = {};
+  legs.forEach((l,i) => {
+    if(l.type !== 'transit') return;
+    if(l.group && i>0 && legs[i-1].type==='transit' && legs[i-1].group===l.group){
+      map[l.id] = map[legs[i-1].id];
+    } else {
+      map[l.id] = l.id;
+    }
+  });
+  return map;
+}
 
 function stayForNight(leg, dt){
   return (leg.stays||[]).find(s => s.start && s.end && dt >= d(s.start) && dt < d(s.end));
@@ -587,10 +616,11 @@ function calTooltipHtml(item, dt){
   if(!item) return `<span class="day">${esc(dayLbl)}</span><div class="title">Nothing scheduled</div>`;
 
   if(item.type === 'transit'){
+    const anchor = ANCHOR_MAP[item.id] || item.id;
     const hasRoute = item.from && item.to;
     const hasTimes = item.departTime && item.arriveTime;
     return `<span class="day">${esc(dayLbl)}</span>
-      <div class="title">${esc(item.title)}</div>
+      <a class="title" href="#leg-${esc(anchor)}">${esc(item.title)}</a>
       <div class="meta">${svgIcon(iconForMode(item.mode),13)}${esc(item.mode||'Transit')}${item.flightNo ? ' · '+esc(item.flightNo) : ''}${item.duration ? ' · '+esc(item.duration) : ''}</div>
       ${hasRoute ? `<div class="route">${esc(item.from)}<span class="arrow">→</span>${esc(item.to)}${hasTimes ? ` · ${esc(item.departTime)}–${esc(item.arriveTime)}` : ''}</div>` : ''}
       ${pill(item.status)}`;
@@ -601,11 +631,11 @@ function calTooltipHtml(item, dt){
   const stay = stayForNight(item, dt);
   const stayHtml = stay ? `<div class="stay">
       ${stay.image ? `<img src="${esc(resizeImg(stay.image,80,80))}" alt="">` : `<div class="stay-fallback">${svgIcon('bed',16)}</div>`}
-      <div><div class="stay-name">${esc(stay.title)}</div>${pill(stay.status)}</div>
+      <div><a class="stay-name" href="#item-${esc(stay.id)}">${esc(stay.title)}</a>${pill(stay.status)}</div>
     </div>` : '';
 
   return `<span class="day">${esc(dayLbl)}</span>
-    <div class="title">${esc(item.title)}</div>
+    <a class="title" href="#leg-${esc(item.id)}">${esc(item.title)}</a>
     <div class="meta">Night ${n} of ${total}</div>
     ${stayHtml}`;
 }
@@ -713,7 +743,15 @@ function renderMap(legs){
   map.fitBounds(latlngs, { padding:[28,28] });
 }
 
-function budgetRowHtml(icon, label, actual, target){
+function budgetItemHtml(title, priceAud, anchor){
+  const hasCost = typeof priceAud === 'number';
+  return `<div class="budget-item">
+    <a href="#leg-${esc(anchor)}">${esc(title)}</a>
+    <span class="cost ${hasCost?'':'unset'}">${hasCost ? money(priceAud) : 'not priced'}</span>
+  </div>`;
+}
+
+function budgetGroupHtml(icon, label, actual, target, items){
   const hasTarget = typeof target === 'number' && target > 0;
   const pct = hasTarget ? Math.min(150, (actual/target)*100) : 0;
   const fillClass = pct > 100 ? 'over' : (pct > 90 ? 'warn' : '');
@@ -723,6 +761,7 @@ function budgetRowHtml(icon, label, actual, target){
   return `<div class="budget-row">
     <div class="hd"><span class="cat">${svgIcon(icon,15)}${esc(label)}</span><span class="figs">${figs}</span></div>
     <div class="budget-bar"><div class="fill ${fillClass}" style="width:${hasTarget ? Math.min(100,pct) : 0}%"></div></div>
+    ${items ? `<div class="budget-items">${items}</div>` : ''}
   </div>`;
 }
 
@@ -730,9 +769,9 @@ function renderBudget(trip, legs){
   const b = trip.budget || {};
   const stays = legs.flatMap(l => l.stays || []);
   const spots = legs.flatMap(l => l.spots || []);
-  const transits = legs.filter(l => l.type === 'transit');
+  const flightLegs = legs.filter(l => l.type === 'transit' && (l.mode||'').toLowerCase()==='flight');
 
-  const flights = transits.reduce((s,x) => s + (x.priceAud||0), 0);
+  const flights = flightLegs.reduce((s,x) => s + (x.priceAud||0), 0);
   const accom = stays.reduce((s,x) => s + ((x.priceAud||0) * (nights(x.start,x.end)||0)), 0);
   const food = spots.filter(s => (s.category||'').toLowerCase()==='eat').reduce((s,x) => s + (x.priceAud||0), 0);
   const activities = spots.filter(s => (s.category||'').toLowerCase()!=='eat').reduce((s,x) => s + (x.priceAud||0), 0);
@@ -740,10 +779,12 @@ function renderBudget(trip, legs){
   const totalActual = flights + accom + food + activities;
   const totalTarget = ['flights','accom','food','activities'].reduce((s,k) => s + (b[k]||0), 0);
 
-  const rows = budgetRowHtml('plane', 'Flights', flights, b.flights)
-    + budgetRowHtml('bed', 'Accommodation', accom, b.accom)
-    + budgetRowHtml('eat', 'Food', food, b.food)
-    + budgetRowHtml('see', 'Activities', activities, b.activities);
+  const flightItems = flightLegs.map(f => budgetItemHtml(f.title, f.priceAud, ANCHOR_MAP[f.id]||f.id)).join('');
+
+  const rows = budgetGroupHtml('plane', 'Flights', flights, b.flights, flightItems)
+    + budgetGroupHtml('bed', 'Accommodation', accom, b.accom)
+    + budgetGroupHtml('eat', 'Food', food, b.food)
+    + budgetGroupHtml('see', 'Activities', activities, b.activities);
 
   const total = `<div class="budget-total">
     <span class="cat">Total</span>
@@ -774,6 +815,7 @@ function render(data){
   const legs = (data.legs || []);
   const cities = legs.filter(l => l.type !== 'transit');
   const totalNights = cities.reduce((s,l) => s + nights(l.start,l.end), 0);
+  ANCHOR_MAP = computeAnchorMap(legs);
 
   $('photoStrip').innerHTML = cities.map((c,i) => `
     <a href="#leg-${esc(c.id)}" style="animation-delay:${Math.min(i*50,300)}ms">
@@ -916,8 +958,14 @@ $('calendar').addEventListener('mouseover', e => {
 });
 $('calendar').addEventListener('mouseout', e => {
   const cell = e.target.closest('.cal-cell.day');
-  const to = e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest('.cal-cell.day');
-  if(cell && !to) hideCalTooltip();
+  const toEl = e.relatedTarget && e.relatedTarget.closest;
+  const staysWithin = toEl && (e.relatedTarget.closest('.cal-cell.day') || e.relatedTarget.closest('.cal-tooltip'));
+  if(cell && !staysWithin) hideCalTooltip();
+});
+$('calTooltip').addEventListener('mouseleave', e => {
+  const toEl = e.relatedTarget && e.relatedTarget.closest;
+  const staysWithin = toEl && e.relatedTarget.closest('.cal-cell.day');
+  if(!staysWithin) hideCalTooltip();
 });
 $('calendar').addEventListener('click', e => {
   const cell = e.target.closest('.cal-cell.day');

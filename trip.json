@@ -92,18 +92,7 @@
         "https://images.unsplash.com/photo-1698618988744-737573cb6a7a?q=80&w=1600&auto=format&fit=crop"
       ],
       "body": "",
-      "stays": [
-        {
-          "id": "resol-trinity-kyoto",
-          "title": "Hotel Resol Trinity Kyoto",
-          "subtitle": "Nakagyo-ku, 850m from Sanjo Station",
-          "start": "2026-12-22",
-          "end": "2026-12-27",
-          "url": "https://www.booking.com/hotel/jp/hoterurisorutoriniteijing-du-yu-chi-fu-wu-ting.html",
-          "body": "Has a public bath in the building.",
-          "status": "idea"
-        }
-      ],
+      "stays": [],
       "spots": [
         {
           "id": "kobe-day-trip",
