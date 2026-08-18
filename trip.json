@@ -46,12 +46,42 @@
       "status": "idea"
     },
     {
+      "id": "osaka",
+      "type": "leg",
+      "title": "Osaka",
+      "climate": "cold",
+      "start": "2026-12-20",
+      "end": "2026-12-22",
+      "lat": 34.6937,
+      "lng": 135.5023,
+      "tz": "Asia/Tokyo",
+      "image": "https://images.unsplash.com/photo-1759746334715-fae30ec56600?q=80&w=1600&auto=format&fit=crop",
+      "images": [
+        "https://images.unsplash.com/photo-1759746334715-fae30ec56600?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1782641246639-de594a187a03?q=80&w=1600&auto=format&fit=crop"
+      ],
+      "body": "",
+      "stays": [],
+      "spots": []
+    },
+    {
+      "id": "osaka-kyoto",
+      "type": "transit",
+      "title": "Osaka to Kyoto",
+      "mode": "Train",
+      "duration": "28 min direct",
+      "start": "2026-12-22",
+      "end": "2026-12-22",
+      "body": "JR Special Rapid Service, direct between Osaka and Kyoto stations.",
+      "status": "idea"
+    },
+    {
       "id": "kyoto",
       "type": "leg",
       "title": "Kyoto",
       "climate": "cold",
-      "start": "2026-12-20",
-      "end": "2026-12-26",
+      "start": "2026-12-22",
+      "end": "2026-12-27",
       "lat": 35.0116,
       "lng": 135.7681,
       "tz": "Asia/Tokyo",
@@ -67,14 +97,33 @@
           "id": "resol-trinity-kyoto",
           "title": "Hotel Resol Trinity Kyoto",
           "subtitle": "Nakagyo-ku, 850m from Sanjo Station",
-          "start": "2026-12-20",
-          "end": "2026-12-26",
+          "start": "2026-12-22",
+          "end": "2026-12-27",
           "url": "https://www.booking.com/hotel/jp/hoterurisorutoriniteijing-du-yu-chi-fu-wu-ting.html",
           "body": "Has a public bath in the building.",
           "status": "idea"
         }
       ],
-      "spots": []
+      "spots": [
+        {
+          "id": "kobe-day-trip",
+          "title": "Kobe",
+          "category": "Day trip",
+          "lat": 34.6901,
+          "lng": 135.1955,
+          "body": "About 70 minutes from Kyoto by train.",
+          "status": "idea"
+        },
+        {
+          "id": "nara-day-trip",
+          "title": "Nara",
+          "category": "Day trip",
+          "lat": 34.6851,
+          "lng": 135.8048,
+          "body": "About 45 minutes from Kyoto by train. Deer roam Nara Park and will nudge for food.",
+          "status": "idea"
+        }
+      ]
     },
     {
       "id": "kyoto-nozawa",
@@ -82,8 +131,8 @@
       "title": "Kyoto to Nozawa Onsen",
       "mode": "Train",
       "duration": "approx 4h30 door to door",
-      "start": "2026-12-26",
-      "end": "2026-12-26",
+      "start": "2026-12-27",
+      "end": "2026-12-27",
       "body": "",
       "status": "idea"
     },
@@ -92,8 +141,8 @@
       "type": "leg",
       "title": "Nozawa Onsen",
       "climate": "cold",
-      "start": "2026-12-26",
-      "end": "2026-12-30",
+      "start": "2026-12-27",
+      "end": "2026-12-28",
       "lat": 36.9219,
       "lng": 138.4436,
       "tz": "Asia/Tokyo",
@@ -104,13 +153,39 @@
         "https://images.unsplash.com/photo-1576829021150-ebc8b46b9fb9?q=80&w=1600&auto=format&fit=crop"
       ],
       "body": "",
+      "stays": [],
+      "spots": []
+    },
+    {
+      "id": "nozawa-madarao",
+      "type": "transit",
+      "title": "Nozawa Onsen to Madarao Kogen",
+      "mode": "Bus",
+      "duration": "approx 1h shuttle",
+      "start": "2026-12-28",
+      "end": "2026-12-28",
+      "body": "Seasonal shuttle bus between the two resorts. A taxi runs faster at about 30 minutes if the shuttle timing doesn't line up.",
+      "status": "idea"
+    },
+    {
+      "id": "madarao",
+      "type": "leg",
+      "title": "Madarao Kogen",
+      "climate": "cold",
+      "start": "2026-12-28",
+      "end": "2026-12-29",
+      "lat": 36.8778,
+      "lng": 138.3283,
+      "tz": "Asia/Tokyo",
+      "image": "https://images.unsplash.com/photo-1717051835045-c9353d8f18cc?q=80&w=1600&auto=format&fit=crop",
+      "body": "",
       "stays": [
         {
           "id": "yama-lodge-madarao",
           "title": "Yama Lodge Madarao",
           "subtitle": "Madarao Kogen, Nagano",
-          "start": "2026-12-26",
-          "end": "2026-12-30",
+          "start": "2026-12-28",
+          "end": "2026-12-29",
           "body": "In Madarao Kogen, a separate ski area from Nozawa itself.",
           "status": "idea"
         }
@@ -118,14 +193,40 @@
       "spots": []
     },
     {
-      "id": "nozawa-tokyo",
+      "id": "madarao-myoko",
       "type": "transit",
-      "title": "Nozawa Onsen to Tokyo",
+      "title": "Madarao Kogen to Myoko Kogen",
+      "mode": "Bus",
+      "duration": "approx 30-45 min shuttle",
+      "start": "2026-12-29",
+      "end": "2026-12-29",
+      "body": "Seasonal shuttle bus, runs a couple of times a day in winter. Worth confirming the timetable before relying on it.",
+      "status": "idea"
+    },
+    {
+      "id": "myoko",
+      "type": "leg",
+      "title": "Myoko Kogen",
+      "climate": "cold",
+      "start": "2026-12-29",
+      "end": "2026-12-30",
+      "lat": 36.8720,
+      "lng": 138.2121,
+      "tz": "Asia/Tokyo",
+      "image": "https://images.unsplash.com/photo-1582726935346-cea4350ec42a?q=80&w=1600&auto=format&fit=crop",
+      "body": "",
+      "stays": [],
+      "spots": []
+    },
+    {
+      "id": "myoko-tokyo",
+      "type": "transit",
+      "title": "Myoko Kogen to Tokyo",
       "mode": "Train",
-      "duration": "approx 2h15",
+      "duration": "approx 3h",
       "start": "2026-12-30",
       "end": "2026-12-30",
-      "body": "",
+      "body": "Local train to Joetsu-Myoko Station, then the Hokuriku Shinkansen direct to Tokyo.",
       "status": "idea"
     },
     {
@@ -146,7 +247,17 @@
       ],
       "body": "",
       "stays": [],
-      "spots": []
+      "spots": [
+        {
+          "id": "fuji-day-trip",
+          "title": "Mount Fuji",
+          "category": "Day trip",
+          "lat": 35.5170,
+          "lng": 138.7677,
+          "body": "About 2 hours from Tokyo to Kawaguchiko by direct bus. Often cloud-covered, mornings give the best chance of a clear view.",
+          "status": "idea"
+        }
+      ]
     },
     {
       "id": "tokyo-hanoi",
