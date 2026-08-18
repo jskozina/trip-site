@@ -106,13 +106,16 @@ svg{display:block;flex:none}
   font-size:11px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--faint);font-weight:600;margin:0 0 14px;
 }
+.cal-wrap{position:relative}
 .cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;width:100%}
 .cal-dow{font-size:9.5px;text-transform:uppercase;color:var(--faint);text-align:center;padding-bottom:3px;font-weight:600;letter-spacing:.04em}
 .cal-cell{
-  aspect-ratio:1;border-radius:7px;position:relative;overflow:hidden;
+  aspect-ratio:1;border-radius:7px;position:relative;overflow:hidden;cursor:pointer;
   background:var(--bg);background-size:cover;background-position:center;
+  transition:transform .12s ease;
 }
-.cal-cell.blank{background:transparent}
+.cal-cell.blank{background:transparent;cursor:default}
+.cal-cell.day:hover,.cal-cell.day:focus-visible{transform:scale(1.06);z-index:2}
 .cal-cell .num{
   position:absolute;top:4px;left:4px;font-family:var(--mono);font-size:10.5px;font-weight:600;
   color:#fff;background:rgba(30,33,38,.55);padding:2px 5px;border-radius:5px;line-height:1;
@@ -122,17 +125,38 @@ svg{display:block;flex:none}
 .cal-cell .modeicon{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);
 }
-.cal-cell .daypill{
-  position:absolute;left:3px;right:3px;bottom:3px;display:flex;align-items:center;gap:3px;
-  background:rgba(30,33,38,.65);color:#fff;
-  font-family:var(--mono);font-size:clamp(6px,1.3vw,8.5px);font-weight:600;
-  padding:2px 5px;border-radius:20px;line-height:1.5;
-  white-space:nowrap;overflow:hidden;
+.cal-cell .label{
+  position:absolute;left:0;right:0;bottom:0;padding:12px 6px 5px;
+  background:linear-gradient(0deg,rgba(30,33,38,.75),rgba(30,33,38,0));
+  color:#fff;font-size:9px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;
+  display:flex;align-items:center;gap:4px;
 }
-.cal-cell.transit .daypill{background:rgba(255,255,255,.85);color:var(--text)}
-.cal-cell .daypill svg{flex:none}
-.cal-cell .daypill span{overflow:hidden;text-overflow:ellipsis}
+.cal-cell .label .dot{width:5px;height:5px;border-radius:50%;flex:none}
+.cal-cell .label span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cal-cell.transit .label{color:var(--faint);background:none;font-family:var(--mono);text-transform:none;padding:0 4px 4px;justify-content:center}
 .cal-cell.today{box-shadow:0 0 0 2px var(--text)}
+
+.cal-tooltip{
+  position:absolute;z-index:20;min-width:190px;max-width:250px;
+  background:var(--text);color:var(--bg);border-radius:10px;padding:12px 14px;
+  box-shadow:0 10px 28px rgba(30,33,38,.32);font-size:13px;
+  opacity:0;visibility:hidden;transform:translateY(4px);pointer-events:none;
+  transition:opacity .12s ease,transform .12s ease;
+}
+.cal-tooltip.show{opacity:1;visibility:visible;transform:translateY(0)}
+.cal-tooltip .day{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;opacity:.6}
+.cal-tooltip .title{font-family:'Fraunces',Georgia,serif;font-size:17px;font-weight:500;margin-top:2px;line-height:1.15}
+.cal-tooltip .meta{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;opacity:.85;margin-top:7px}
+.cal-tooltip .route{font-family:var(--mono);font-size:15px;font-weight:600;margin-top:5px;display:flex;align-items:center;gap:6px}
+.cal-tooltip .route .arrow{opacity:.6;font-size:12px}
+.cal-tooltip .stay{
+  display:flex;align-items:center;gap:9px;margin-top:9px;padding-top:9px;
+  border-top:1px solid rgba(255,255,255,.18);
+}
+.cal-tooltip .stay img{width:36px;height:36px;border-radius:6px;object-fit:cover;flex:none}
+.cal-tooltip .stay-fallback{width:36px;height:36px;border-radius:6px;flex:none;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center}
+.cal-tooltip .stay-name{font-size:12.5px;font-weight:600;line-height:1.25}
+.cal-tooltip .pill{margin-top:9px}
 
 /* ---------- map ---------- */
 .mapSection{margin-top:36px}
@@ -262,7 +286,6 @@ svg{display:block;flex:none}
 .item-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
 .ic-media{aspect-ratio:16/10;background:var(--line)}
 .ic-media img{width:100%;height:100%;object-fit:cover;display:block}
-.ic-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
 .ic-body{padding:12px 14px 14px}
 .item-card h3{font-size:14.5px;font-weight:600;margin:0;letter-spacing:-.005em;color:var(--text)}
 .item-card .meta{font-size:12px;color:var(--muted);margin:3px 0 0}
@@ -317,7 +340,10 @@ footer{
   </header>
   <section class="calendar" id="calendarWrap" hidden>
     <p class="section-label">At a glance</p>
-    <div class="cal-grid" id="calendar"></div>
+    <div class="cal-wrap">
+      <div class="cal-grid" id="calendar"></div>
+      <div class="cal-tooltip" id="calTooltip"></div>
+    </div>
   </section>
   <section class="mapSection" id="mapWrap" hidden>
     <p class="section-label">Route</p>
@@ -360,6 +386,15 @@ const STATUS = {
   shortlist: { c:'#2E5E8C', bg:'#EDF4FA', bd:'#B7D2EA', label:'Shortlist', icon:'shortlist' },
   held:      { c:'#8A6A12', bg:'#FBF4E1', bd:'#EAD8A0', label:'Held',      icon:'held' },
   booked:    { c:'#1F6B47', bg:'#E9F7EF', bd:'#B0DDC4', label:'Booked',    icon:'booked' },
+};
+
+// Generic stand-in photos used when a stay/spot has no image of its own
+const CATEGORY_IMG = {
+  stay:  'https://images.unsplash.com/photo-1746549855427-57e6da7040db',
+  eat:   'https://images.unsplash.com/photo-1695753568605-d8653d5319e6',
+  see:   'https://images.unsplash.com/photo-1742268350523-70a032f3520d',
+  shop:  'https://images.unsplash.com/photo-1770024598483-b8e109485d7d',
+  drink: 'https://images.unsplash.com/photo-1533539848852-cdbd1b77339d',
 };
 
 const $ = id => document.getElementById(id);
@@ -490,11 +525,9 @@ function itemCard(o, kind){
   const n = nights(o.start,o.end);
   const cost = (o.priceAud && n) ? `<span class="price">${money(o.priceAud)}/night · ${money(o.priceAud*n)} total</span>`
              : (o.priceAud ? `<span class="price">${money(o.priceAud)}</span>` : '');
-  const s = statusInfo(o.status);
-  const iconKey = kind === 'stay' ? 'bed' : iconForCategory(o.category);
-  const media = o.image
-    ? `<img src="${esc(resizeImg(o.image,460,290))}" alt="" loading="lazy">`
-    : `<div class="ic-fallback" style="background:${s.bg};color:${s.c}">${svgIcon(iconKey,24)}</div>`;
+  const bucket = kind === 'stay' ? 'stay' : iconForCategory(o.category);
+  const src = o.image || CATEGORY_IMG[bucket];
+  const media = `<img src="${esc(resizeImg(src,460,290))}" alt="" loading="lazy">`;
   return `<div class="item-card">
     <div class="ic-media">${media}</div>
     <div class="ic-body">
@@ -530,17 +563,81 @@ function buildDayMap(legs){
   return map;
 }
 
-function dayPillHtml(item, dt){
+const DAY_LOOKUP = new Map();
+
+function stayForNight(leg, dt){
+  return (leg.stays||[]).find(s => s.start && s.end && dt >= d(s.start) && dt < d(s.end));
+}
+
+function dayStatusFor(item, dt){
+  if(!item) return null;
+  if(item.type === 'transit') return item.status || 'idea';
+  const stay = stayForNight(item, dt);
+  return stay ? (stay.status || 'idea') : 'idea';
+}
+
+function dayLabelFor(item){
   if(!item) return '';
+  if(item.type === 'transit') return item.departTime || item.mode || '';
+  return item.title;
+}
+
+function calTooltipHtml(item, dt){
+  const dayLbl = new Intl.DateTimeFormat('en-AU',{weekday:'long', day:'numeric', month:'long'}).format(dt);
+  if(!item) return `<span class="day">${esc(dayLbl)}</span><div class="title">Nothing scheduled</div>`;
+
   if(item.type === 'transit'){
-    if(!item.departTime) return '';
-    return `<span class="daypill">${svgIcon(iconForMode(item.mode),9)}<span>${esc(item.departTime)}</span></span>`;
+    const hasRoute = item.from && item.to;
+    const hasTimes = item.departTime && item.arriveTime;
+    return `<span class="day">${esc(dayLbl)}</span>
+      <div class="title">${esc(item.title)}</div>
+      <div class="meta">${svgIcon(iconForMode(item.mode),13)}${esc(item.mode||'Transit')}${item.flightNo ? ' · '+esc(item.flightNo) : ''}${item.duration ? ' · '+esc(item.duration) : ''}</div>
+      ${hasRoute ? `<div class="route">${esc(item.from)}<span class="arrow">→</span>${esc(item.to)}${hasTimes ? ` · ${esc(item.departTime)}–${esc(item.arriveTime)}` : ''}</div>` : ''}
+      ${pill(item.status)}`;
   }
-  const stay = (item.stays||[]).find(s => s.start && s.end && dt >= d(s.start) && dt < d(s.end));
-  return `<span class="daypill"><span>${esc(item.title)}</span>${stay ? svgIcon('bed',9)+`<span>${esc(stay.title)}</span>` : ''}</span>`;
+
+  const n = Math.round((dt - d(item.start))/86400000) + 1;
+  const total = nights(item.start, item.end);
+  const stay = stayForNight(item, dt);
+  const stayHtml = stay ? `<div class="stay">
+      ${stay.image ? `<img src="${esc(resizeImg(stay.image,80,80))}" alt="">` : `<div class="stay-fallback">${svgIcon('bed',16)}</div>`}
+      <div><div class="stay-name">${esc(stay.title)}</div>${pill(stay.status)}</div>
+    </div>` : '';
+
+  return `<span class="day">${esc(dayLbl)}</span>
+    <div class="title">${esc(item.title)}</div>
+    <div class="meta">Night ${n} of ${total}</div>
+    ${stayHtml}`;
+}
+
+function showCalTooltip(cellEl){
+  const entry = DAY_LOOKUP.get(cellEl.dataset.key);
+  const tip = $('calTooltip');
+  if(!entry || !tip) return;
+  tip.innerHTML = calTooltipHtml(entry.item, entry.dt);
+  tip.classList.add('show');
+
+  const wrap = cellEl.closest('.cal-wrap');
+  const wrapRect = wrap.getBoundingClientRect();
+  const cellRect = cellEl.getBoundingClientRect();
+  const top = cellRect.top - wrapRect.top;
+  const left = cellRect.left - wrapRect.left;
+  const tipW = tip.offsetWidth, tipH = tip.offsetHeight;
+  let tipTop = top - tipH - 10;
+  if(tipTop < 0) tipTop = top + cellRect.height + 10;
+  let tipLeft = left + cellRect.width/2 - tipW/2;
+  tipLeft = Math.max(4, Math.min(tipLeft, wrapRect.width - tipW - 4));
+  tip.style.top = tipTop + 'px';
+  tip.style.left = tipLeft + 'px';
+}
+
+function hideCalTooltip(){
+  const tip = $('calTooltip');
+  if(tip) tip.classList.remove('show');
 }
 
 function renderCalendar(trip, legs){
+  DAY_LOOKUP.clear();
   if(!trip.depart || !trip.return) return '';
   const map = buildDayMap(legs);
   const start = d(trip.depart), end = d(trip.return);
@@ -560,6 +657,7 @@ function renderCalendar(trip, legs){
   days.forEach(dt => {
     const item = map.get(dkey(dt));
     const key = dkey(dt);
+    DAY_LOOKUP.set(key, { item, dt });
     const isTransit = item && item.type === 'transit';
     const isToday = key === todayKey;
     const showMonth = dt.getMonth() !== lastMonth;
@@ -576,10 +674,12 @@ function renderCalendar(trip, legs){
     const bg = dayImage ? `style="background-image:url('${resizeImg(dayImage,140,140)}')"` : '';
     const icon = isTransit ? `<span class="modeicon">${svgIcon(iconForMode(item.mode),18)}</span>` : '';
     const numLbl = showMonth ? `${MONTHS[dt.getMonth()]} ${dt.getDate()}` : dt.getDate();
-    cells.push(`<div class="cal-cell ${isTransit?'transit':''} ${isToday?'today':''}" title="${esc(item ? item.title : '')}" ${bg}>
+    const label = dayLabelFor(item);
+    const statusColor = item ? statusInfo(dayStatusFor(item, dt)).c : null;
+    cells.push(`<div class="cal-cell day ${isTransit?'transit':''} ${isToday?'today':''}" data-key="${key}" tabindex="0" ${bg}>
       ${icon}
       <span class="num">${numLbl}</span>
-      ${dayPillHtml(item, dt)}
+      ${label ? `<span class="label">${statusColor?`<span class="dot" style="background:${statusColor}"></span>`:''}<span>${esc(label)}</span></span>` : ''}
     </div>`);
   });
 
@@ -809,6 +909,30 @@ async function boot(){
   }
   render(data);
 }
+
+$('calendar').addEventListener('mouseover', e => {
+  const cell = e.target.closest('.cal-cell.day');
+  if(cell) showCalTooltip(cell);
+});
+$('calendar').addEventListener('mouseout', e => {
+  const cell = e.target.closest('.cal-cell.day');
+  const to = e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest('.cal-cell.day');
+  if(cell && !to) hideCalTooltip();
+});
+$('calendar').addEventListener('click', e => {
+  const cell = e.target.closest('.cal-cell.day');
+  if(cell) showCalTooltip(cell);
+});
+$('calendar').addEventListener('keydown', e => {
+  if(e.key !== 'Enter' && e.key !== ' ') return;
+  const cell = e.target.closest('.cal-cell.day');
+  if(!cell) return;
+  e.preventDefault();
+  showCalTooltip(cell);
+});
+document.addEventListener('click', e => {
+  if(!e.target.closest('.cal-wrap')) hideCalTooltip();
+});
 
 boot();
 </script>
