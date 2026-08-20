@@ -416,7 +416,19 @@
         "https://images.unsplash.com/photo-1664650440553-ab53804814b3?q=80&w=1600&auto=format&fit=crop"
       ],
       "body": "",
-      "stays": [],
+      "stays": [
+        {
+          "id": "hoian-grand-sunrise-palace",
+          "title": "Grand Sunrise Palace Hoi An",
+          "start": "2027-01-05",
+          "end": "2027-01-07",
+          "priceAud": 102,
+          "url": "https://www.booking.com/hotel/vn/grand-surise-palace-hoi-an.html",
+          "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/841262575.jpg?k=a126ba4054d3becc1edd44f12d89ed557fc9deb4298e89a4a517f122afeec2b5&o=",
+          "body": "Adults-only, rooftop pool. About 3.2km from the Japanese Covered Bridge in the Old Town, not walkable, so budget for a shuttle or taxi in.",
+          "status": "idea"
+        }
+      ],
       "spots": []
     },
     {
