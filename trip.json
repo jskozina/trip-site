@@ -464,7 +464,19 @@
         "https://images.unsplash.com/photo-1713868198560-8c7ffba0f20f?q=80&w=1600&auto=format&fit=crop"
       ],
       "body": "",
-      "stays": [],
+      "stays": [
+        {
+          "id": "saigon-grand-du-lac",
+          "title": "Grand Hotel du Lac Boutique Saigon",
+          "start": "2027-01-07",
+          "end": "2027-01-09",
+          "priceAud": 208,
+          "url": "https://www.booking.com/hotel/vn/grand-du-lac-boutique-saigon-quan-11.html",
+          "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/709222466.jpg?k=3288e4bf4569adaab15756b38059c396779e1290d6bc92de50c9c6a49a026d57&o=",
+          "body": "District 1, a two-minute walk from Ben Thanh Market.",
+          "status": "idea"
+        }
+      ],
       "spots": []
     },
     {
