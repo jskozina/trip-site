@@ -100,6 +100,7 @@
           "category": "Day trip",
           "lat": 34.6901,
           "lng": 135.1955,
+          "image": "https://images.unsplash.com/photo-1756007847716-77ea57f142ea?q=80&w=1600&auto=format&fit=crop",
           "body": "About 70 minutes from Kyoto by train.",
           "status": "idea"
         },
@@ -109,6 +110,7 @@
           "category": "Day trip",
           "lat": 34.6851,
           "lng": 135.8048,
+          "image": "https://images.unsplash.com/photo-1578639755533-2c52ba911914?q=80&w=1600&auto=format&fit=crop",
           "body": "About 45 minutes from Kyoto by train. Deer roam Nara Park and will nudge for food.",
           "status": "idea"
         }
@@ -145,6 +147,7 @@
           "category": "See",
           "lat": 36.1165,
           "lng": 137.2215,
+          "image": "https://images.unsplash.com/photo-1695061710237-5f7a76ef37b7?q=80&w=1600&auto=format&fit=crop",
           "body": "No public transport, need a taxi to get there.",
           "status": "idea"
         }
@@ -184,7 +187,7 @@
       "lat": 36.5613,
       "lng": 136.6562,
       "tz": "Asia/Tokyo",
-      "image": "https://images.unsplash.com/photo-1716290285309-540022da70d7?q=80&w=1600&auto=format&fit=crop",
+      "image": "https://images.unsplash.com/photo-1720792445193-7e288489b292?q=80&w=1600&auto=format&fit=crop",
       "body": "",
       "stays": [],
       "spots": []
@@ -220,6 +223,7 @@
           "category": "Day trip",
           "lat": 36.7378,
           "lng": 138.4614,
+          "image": "https://images.unsplash.com/photo-1677283848061-e2d6175c2fc6?q=80&w=1600&auto=format&fit=crop",
           "body": "About 40 minutes by bus from Nagano Station, then a 30 minute walk through the forest to reach the monkeys.",
           "status": "idea"
         }
@@ -261,6 +265,7 @@
           "category": "Day trip",
           "lat": 35.5170,
           "lng": 138.7677,
+          "image": "https://images.unsplash.com/photo-1752395480128-8c15c9364a03?q=80&w=1600&auto=format&fit=crop",
           "body": "About 2 hours from Tokyo to Kawaguchiko by direct bus. Often cloud-covered, mornings give the best chance of a clear view.",
           "status": "idea"
         }
