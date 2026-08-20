@@ -292,13 +292,12 @@
       "duration": "1h20",
       "from": "HAN",
       "to": "DAD",
-      "flightNo": "VietJet 515",
-      "departTime": "22:25",
-      "arriveTime": "23:45",
+      "departTime": "13:35",
+      "arriveTime": "14:55",
       "start": "2027-01-05",
       "end": "2027-01-05",
       "group": "Flight then transfer to Hoi An",
-      "body": "Late departure, worth checking for an earlier option if the fare gap is small.",
+      "body": "Moved off the original 22:25 red-eye to this afternoon slot, same fare tier. Flight number not confirmed yet.",
       "status": "idea"
     },
     {
@@ -310,7 +309,7 @@
       "start": "2027-01-05",
       "end": "2027-01-05",
       "group": "Flight then transfer to Hoi An",
-      "body": "Airport transfer by car. Puts check-in around half past midnight given the flight lands 23:45.",
+      "body": "Airport transfer by car. Lands mid-afternoon now, so check-in should be daylight rather than midnight.",
       "status": "idea"
     },
     {
