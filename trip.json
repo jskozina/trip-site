@@ -142,6 +142,16 @@
       "stays": [],
       "spots": [
         {
+          "id": "shirakawago",
+          "title": "Shirakawa-go",
+          "category": "Day trip",
+          "lat": 36.2578,
+          "lng": 136.9066,
+          "image": "https://images.unsplash.com/photo-1646220811667-dbcc0e386291?q=80&w=1600&auto=format&fit=crop",
+          "body": "UNESCO gassho-zukuri village. The Shiroyama viewpoint above it, a short uphill walk, gives the classic view over the thatched roofs.",
+          "status": "idea"
+        },
+        {
           "id": "squirrel-forest-takayama",
           "title": "Squirrel Forest Hida Mountains Yaso Shizen Teien",
           "category": "See",
