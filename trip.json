@@ -138,7 +138,17 @@
       "image": "https://images.unsplash.com/photo-1676917350107-964194678afa?q=80&w=1600&auto=format&fit=crop",
       "body": "",
       "stays": [],
-      "spots": []
+      "spots": [
+        {
+          "id": "squirrel-forest-takayama",
+          "title": "Squirrel Forest Hida Mountains Yaso Shizen Teien",
+          "category": "See",
+          "lat": 36.1165,
+          "lng": 137.2215,
+          "body": "No public transport, need a taxi to get there.",
+          "status": "idea"
+        }
+      ]
     },
     {
       "id": "takayama-shirakawago",
