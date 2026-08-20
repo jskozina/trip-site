@@ -121,10 +121,12 @@
       "type": "transit",
       "title": "Kyoto to Takayama",
       "mode": "Train",
-      "duration": "3h40 direct",
+      "duration": "3h43",
+      "departTime": "08:31",
+      "arriveTime": "12:14",
       "start": "2026-12-27",
       "end": "2026-12-27",
-      "body": "Hida limited express, one train, no changes.",
+      "body": "Hida 25, the only direct working of the day - starts in Osaka, then couples with the Nagoya train at Gifu Station, no need to change seats. Only runs once daily, so this early departure is the one shot at it; missing it means changing at Nagoya instead.",
       "status": "idea"
     },
     {
