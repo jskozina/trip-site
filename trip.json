@@ -61,7 +61,19 @@
         "https://images.unsplash.com/photo-1782641246639-de594a187a03?q=80&w=1600&auto=format&fit=crop"
       ],
       "body": "",
-      "stays": [],
+      "stays": [
+        {
+          "id": "osaka-the-flag-shinsaibashi",
+          "title": "Hotel The Flag Shinsaibashi",
+          "start": "2026-12-20",
+          "end": "2026-12-22",
+          "priceAud": 188,
+          "url": "https://www.booking.com/hotel/jp/the-flag.html",
+          "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/380228683.jpg?k=6f5811202cd611492de97785c563306594c7248ec9bd082bc1b392866434aab5&o=",
+          "body": "Shinsaibashi, 250m walk to the subway station, 600m to Dotonbori.",
+          "status": "idea"
+        }
+      ],
       "spots": []
     },
     {
