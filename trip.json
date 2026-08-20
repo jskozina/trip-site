@@ -141,7 +141,18 @@
       "tz": "Asia/Tokyo",
       "image": "https://images.unsplash.com/photo-1676917350107-964194678afa?q=80&w=1600&auto=format&fit=crop",
       "body": "",
-      "stays": [],
+      "stays": [
+        {
+          "id": "takayama-hinoki-ryokan",
+          "title": "Ryokan-style Hinoki Woodbath near Old Town",
+          "start": "2026-12-27",
+          "end": "2026-12-28",
+          "priceAud": 355,
+          "url": "https://www.airbnb.com.au/rooms/1108267822549793250",
+          "body": "Sleeps 3.",
+          "status": "idea"
+        }
+      ],
       "spots": [
         {
           "id": "shirakawago",
