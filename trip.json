@@ -92,7 +92,19 @@
         "https://images.unsplash.com/photo-1698618988744-737573cb6a7a?q=80&w=1600&auto=format&fit=crop"
       ],
       "body": "",
-      "stays": [],
+      "stays": [
+        {
+          "id": "kyoto-richmond-shijo",
+          "title": "Richmond Hotel Premier Kyoto Shijo",
+          "start": "2026-12-22",
+          "end": "2026-12-27",
+          "priceAud": 180,
+          "url": "https://www.booking.com/hotel/jp/ritutimondohoterupuremiajing-du-si-tiao.html",
+          "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/479922419.jpg?k=0fa81451792c52bcbafa3c8d2933cfda7903bab56b37d30fcd3efc639c38b51f&o=",
+          "body": "Central Shijo, 450m walk to Karasuma subway station.",
+          "status": "idea"
+        }
+      ],
       "spots": [
         {
           "id": "kobe-day-trip",
