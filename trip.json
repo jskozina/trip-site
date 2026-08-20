@@ -205,28 +205,28 @@
       "spots": []
     },
     {
-      "id": "kanazawa-nagano",
+      "id": "kanazawa-shibuonsen",
       "type": "transit",
-      "title": "Kanazawa to Nagano",
+      "title": "Kanazawa to Shibu Onsen",
       "mode": "Train",
-      "duration": "1h05 direct",
+      "duration": "approx 2h15",
       "start": "2026-12-29",
       "end": "2026-12-29",
-      "body": "Hokuriku Shinkansen, direct.",
+      "body": "Hokuriku Shinkansen to Nagano (1h05), then the Nagaden line to Yudanaka (45 min), then a short local bus to Shibu Onsen (5 min).",
       "status": "idea"
     },
     {
-      "id": "nagano",
+      "id": "shibuonsen",
       "type": "leg",
-      "title": "Nagano",
+      "title": "Shibu Onsen",
       "climate": "cold",
       "start": "2026-12-29",
       "end": "2026-12-30",
-      "lat": 36.6485,
-      "lng": 138.1946,
+      "lat": 36.7446,
+      "lng": 138.4127,
       "tz": "Asia/Tokyo",
       "image": "https://images.unsplash.com/photo-1677283825680-140446cff8a5?q=80&w=1600&auto=format&fit=crop",
-      "body": "",
+      "body": "Nine public bathhouses along the streets. Guests staying at a ryokan here get a stamp book to visit all nine in yukata and geta.",
       "stays": [],
       "spots": [
         {
@@ -236,20 +236,20 @@
           "lat": 36.7378,
           "lng": 138.4614,
           "image": "https://images.unsplash.com/photo-1677283848061-e2d6175c2fc6?q=80&w=1600&auto=format&fit=crop",
-          "body": "About 40 minutes by bus from Nagano Station, then a 30 minute walk through the forest to reach the monkeys.",
+          "body": "About 25-30 minutes on foot from Shibu Onsen, then another 25 minutes through the forest to reach the monkeys.",
           "status": "idea"
         }
       ]
     },
     {
-      "id": "nagano-tokyo",
+      "id": "shibuonsen-tokyo",
       "type": "transit",
-      "title": "Nagano to Tokyo",
+      "title": "Shibu Onsen to Tokyo",
       "mode": "Train",
-      "duration": "1h30 direct",
+      "duration": "approx 2h20",
       "start": "2026-12-30",
       "end": "2026-12-30",
-      "body": "Hokuriku Shinkansen, direct.",
+      "body": "Local bus to Yudanaka (5 min), then the Nagaden line to Nagano (45 min), then the Hokuriku Shinkansen direct to Tokyo (1h30).",
       "status": "idea"
     },
     {
