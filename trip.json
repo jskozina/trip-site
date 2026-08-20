@@ -356,7 +356,19 @@
         "https://images.unsplash.com/photo-1631972637651-e4bb609b9185?q=80&w=1600&auto=format&fit=crop"
       ],
       "body": "",
-      "stays": [],
+      "stays": [
+        {
+          "id": "hanoi-la-passion",
+          "title": "La Passion Hanoi Hotel & Spa",
+          "start": "2027-01-02",
+          "end": "2027-01-05",
+          "priceAud": 106,
+          "url": "https://www.booking.com/hotel/vn/la-passion-hanoi-amp-spa.html",
+          "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/303038392.jpg?k=dba27abe099870c2681e01fc50a2bc85c288677461c461624d880c563b022030&o=",
+          "body": "In the Old Quarter, a minute's walk from the water puppet theatre and about 700 metres from Hoan Kiem Lake.",
+          "status": "idea"
+        }
+      ],
       "spots": []
     },
     {
