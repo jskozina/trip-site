@@ -213,7 +213,20 @@
       "tz": "Asia/Tokyo",
       "image": "https://images.unsplash.com/photo-1720792445193-7e288489b292?q=80&w=1600&auto=format&fit=crop",
       "body": "",
-      "stays": [],
+      "stays": [
+        {
+          "id": "kanazawa-karuta-machiya",
+          "title": "Teal Walls & Garden View w/ Engawa | 1910 Machiya",
+          "subtitle": "Private room, 1910 machiya guesthouse",
+          "start": "2026-12-28",
+          "end": "2026-12-29",
+          "priceAud": 153,
+          "url": "https://www.airbnb.com.au/rooms/49156514",
+          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-49156514/original/ebccac13-113d-4d70-96cd-583f27285692.jpeg?im_w=2560",
+          "body": "Private room with shared bathroom, not a whole home. Ten minutes' walk to Kenroku-en Garden, three minutes to the Sai River.",
+          "status": "idea"
+        }
+      ],
       "spots": []
     },
     {
