@@ -15,7 +15,7 @@ Rules for every response:
 - **Always cascade dates.** Changing the length of one stay shifts everything after it. Do that automatically, don't ask permission, and report the new dates. Leaving the trip with gaps or overlaps is a bug.
 - **Say when something breaks.** If a change pushes the trip past the return flight, or leaves a night with nowhere to sleep, lead with that.
 - **Commit after each change** with a plain-English message. Don't ask whether to commit.
-- **Push after committing.** Git credentials are cached locally, so `git push` works without a prompt. Don't ask, don't leave changes sitting local-only — the point is the live site reflects reality within a minute of any edit. If a push ever fails (expired credentials, conflict), say so plainly rather than silently leaving it uncommitted-only.
+- **Hold pushes until asked.** Keep committing after each change as above, but don't run `git push` until the human explicitly says to push (e.g. "ok, push it"). This lets them batch a run of edits and review before it goes live. When they do say push, just push everything queued — no need to ask which commits.
 - **Confirm briefly.** Two or three lines. They're often on a phone.
 
 There are slash commands in `.claude/commands` for the common jobs: `/add`, `/nights`, `/city`, `/book`, `/check`. Plain English without a command should work identically.
