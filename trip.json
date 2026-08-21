@@ -333,7 +333,19 @@
         "https://images.unsplash.com/photo-1780631347040-0c5df6053c2f?q=80&w=1600&auto=format&fit=crop"
       ],
       "body": "",
-      "stays": [],
+      "stays": [
+        {
+          "id": "tokyo-mkg-asakusa",
+          "title": "MKG Hotel Asakusa",
+          "start": "2026-12-30",
+          "end": "2027-01-02",
+          "priceAud": 452,
+          "url": "https://www.booking.com/hotel/jp/mkg-asakusa.html",
+          "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/667273793.jpg?k=e9377372b8569ea92fc762dd00c549f4b9eb6a8fe9e76da2ea1016b4d9c4a61a&o=",
+          "body": "Asakusa, a 2-minute walk to the station and close to Sensoji.",
+          "status": "idea"
+        }
+      ],
       "spots": [
         {
           "id": "fuji-day-trip",
