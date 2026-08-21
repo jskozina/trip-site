@@ -487,6 +487,7 @@
       "arriveTime": "10:10",
       "start": "2027-01-07",
       "end": "2027-01-07",
+      "priceAud": 100,
       "body": "A normal morning flight, leaves the rest of the day free in the city.",
       "status": "idea"
     },
