@@ -7,7 +7,9 @@
     "homeTz": "Australia/Brisbane",
     "budget": {
       "flights": 6800,
-      "accom": 3587
+      "accom": 3587,
+      "food": 1800,
+      "activities": 700
     }
   },
   "legs": [
