@@ -377,6 +377,7 @@
       "arriveTime": "20:50",
       "start": "2027-01-02",
       "end": "2027-01-02",
+      "priceAud": 700,
       "body": "Haneda, not Narita. Leaves a full last morning in Tokyo before the airport run.",
       "status": "idea"
     },
