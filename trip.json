@@ -426,6 +426,7 @@
       "start": "2027-01-05",
       "end": "2027-01-05",
       "group": "Flight then transfer to Hoi An",
+      "priceAud": 100,
       "body": "Moved off the original 22:25 red-eye to this afternoon slot, same fare tier. Flight number not confirmed yet.",
       "status": "idea"
     },
