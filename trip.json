@@ -7,7 +7,7 @@
     "homeTz": "Australia/Brisbane",
     "budget": {
       "flights": 6800,
-      "accom": 3587,
+      "accom": 3399,
       "food": 1800,
       "activities": 700
     }
@@ -26,10 +26,24 @@
       "arriveTime": "05:05",
       "start": "2026-12-19",
       "end": "2026-12-20",
-      "group": "Connecting via Taipei",
-      "priceAud": 1300,
+      "priceAud": 650,
       "body": "The long overnight leg, departs Saturday night.",
       "status": "idea"
+    },
+    {
+      "id": "taipei",
+      "type": "leg",
+      "title": "Taipei",
+      "climate": "cool",
+      "start": "2026-12-20",
+      "end": "2026-12-21",
+      "lat": 25.0478,
+      "lng": 121.5170,
+      "tz": "Asia/Taipei",
+      "image": "https://images.unsplash.com/photo-1559287023-9a2a8bf5119c?q=80&w=1600&auto=format&fit=crop",
+      "body": "A one-night stopover, split out of what was a same-day connection.",
+      "stays": [],
+      "spots": []
     },
     {
       "id": "tpe-kix",
@@ -39,13 +53,10 @@
       "duration": "2h25",
       "from": "TPE",
       "to": "KIX",
-      "flightNo": "EVA Air 178",
-      "departTime": "06:30",
-      "arriveTime": "09:55",
-      "start": "2026-12-20",
-      "end": "2026-12-20",
-      "group": "Connecting via Taipei",
-      "body": "",
+      "start": "2026-12-21",
+      "end": "2026-12-21",
+      "priceAud": 650,
+      "body": "Flight number and time not yet confirmed - the old EVA Air 178 slot was for the same-day connection, this is now a separate booking for the day after.",
       "status": "idea"
     },
     {
@@ -53,7 +64,7 @@
       "type": "leg",
       "title": "Osaka",
       "climate": "cold",
-      "start": "2026-12-20",
+      "start": "2026-12-21",
       "end": "2026-12-22",
       "lat": 34.6937,
       "lng": 135.5023,
@@ -68,7 +79,7 @@
         {
           "id": "osaka-the-flag-shinsaibashi",
           "title": "Hotel The Flag Shinsaibashi",
-          "start": "2026-12-20",
+          "start": "2026-12-21",
           "end": "2026-12-22",
           "priceAud": 188,
           "url": "https://www.booking.com/hotel/jp/the-flag.html",
