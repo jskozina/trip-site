@@ -208,6 +208,9 @@ svg{display:block;flex:none}
 .budget-item a:hover{color:var(--text);text-decoration:underline}
 .budget-item .cost{font-family:var(--mono);color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
 .budget-item .cost.unset{color:var(--faint)}
+.budget-item .cost.booked{color:var(--good);font-weight:600}
+.budget-item .rough-tag{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);margin-left:6px;border:1px solid var(--line);border-radius:8px;padding:1px 5px;vertical-align:1px}
+.budget-row .note{font-size:11.5px;color:var(--faint);margin:8px 0 0}
 .budget-total{
   display:flex;justify-content:space-between;align-items:baseline;
   margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
@@ -767,15 +770,17 @@ function renderMap(legs){
   map.fitBounds(latlngs, { padding:[28,28] });
 }
 
-function budgetItemHtml(title, cost, anchor){
+function budgetItemHtml(title, cost, href, status){
   const hasCost = typeof cost === 'number';
+  const booked = status === 'booked';
+  const costText = hasCost ? (booked ? money(cost) : '~'+money(cost)) : 'not priced';
   return `<div class="budget-item">
-    <a href="#leg-${esc(anchor)}">${esc(title)}</a>
-    <span class="cost ${hasCost?'':'unset'}">${hasCost ? money(cost) : 'not priced'}</span>
+    <a href="#${esc(href)}">${esc(title)}${hasCost && !booked ? '<span class="rough-tag">rough</span>' : ''}</a>
+    <span class="cost ${hasCost ? (booked?'booked':'') : 'unset'}">${costText}</span>
   </div>`;
 }
 
-function budgetGroupHtml(icon, label, actual, target, items){
+function budgetGroupHtml(icon, label, actual, target, items, note){
   const hasTarget = typeof target === 'number' && target > 0;
   const pct = hasTarget ? Math.min(150, (actual/target)*100) : 0;
   const fillClass = pct > 100 ? 'over' : (pct > 90 ? 'warn' : '');
@@ -785,6 +790,7 @@ function budgetGroupHtml(icon, label, actual, target, items){
   return `<div class="budget-row">
     <div class="hd"><span class="cat">${svgIcon(icon,15)}${esc(label)}</span><span class="figs">${figs}</span></div>
     <div class="budget-bar"><div class="fill ${fillClass}" style="width:${hasTarget ? Math.min(100,pct) : 0}%"></div></div>
+    ${note ? `<p class="note">${note}</p>` : ''}
     ${items ? `<div class="budget-items">${items}</div>` : ''}
   </div>`;
 }
@@ -816,11 +822,23 @@ function renderBudget(trip, legs, view){
 
   const flightItems = flightLegs.map(f => {
     const cost = typeof f.priceAud === 'number' ? (perPerson ? f.priceAud : f.priceAud * travellers) : undefined;
-    return budgetItemHtml(f.title, cost, ANCHOR_MAP[f.id]||f.id);
+    return budgetItemHtml(f.title, cost, `leg-${ANCHOR_MAP[f.id]||f.id}`, f.status);
   }).join('');
 
+  const accomItems = stays.map(s => {
+    const shared = (s.priceAud||0) * (nights(s.start,s.end)||0);
+    const cost = typeof s.priceAud === 'number' ? (perPerson ? shared/travellers : shared) : undefined;
+    return budgetItemHtml(s.title, cost, `item-${s.id}`, s.status);
+  }).join('');
+  const accomBooked = stays.filter(s => s.status === 'booked')
+    .reduce((s,x) => s + (x.priceAud||0) * (nights(x.start,x.end)||0), 0);
+  const accomIndicative = accomShared - accomBooked;
+  const accomNote = accomShared > 0
+    ? `${money(perPerson ? accomBooked/travellers : accomBooked)} booked · ${money(perPerson ? accomIndicative/travellers : accomIndicative)} indicative until booked`
+    : '';
+
   const rows = budgetGroupHtml('plane', 'Flights', flights, targetOf('flights'), flightItems)
-    + budgetGroupHtml('bed', 'Accommodation', accom, targetOf('accom'))
+    + budgetGroupHtml('bed', 'Accommodation', accom, targetOf('accom'), accomItems, accomNote)
     + budgetGroupHtml('eat', 'Food', food, targetOf('food'))
     + budgetGroupHtml('see', 'Activities', activities, targetOf('activities'));
 
