@@ -820,10 +820,12 @@ function renderBudget(trip, legs, view){
   const totalActual = flights + accom + food + activities;
   const totalTarget = ['flights','accom','food','activities'].reduce((s,k) => s + targetOf(k), 0);
 
-  const flightItems = flightLegs.map(f => {
-    const cost = typeof f.priceAud === 'number' ? (perPerson ? f.priceAud : f.priceAud * travellers) : undefined;
-    return budgetItemHtml(f.title, cost, `leg-${ANCHOR_MAP[f.id]||f.id}`, f.status);
-  }).join('');
+  const flightItems = flightLegs
+    .filter(f => typeof f.priceAud === 'number' || !f.group || ANCHOR_MAP[f.id] === f.id)
+    .map(f => {
+      const cost = typeof f.priceAud === 'number' ? (perPerson ? f.priceAud : f.priceAud * travellers) : undefined;
+      return budgetItemHtml(f.title, cost, `leg-${ANCHOR_MAP[f.id]||f.id}`, f.status);
+    }).join('');
 
   const accomItems = stays.map(s => {
     const shared = (s.priceAud||0) * (nights(s.start,s.end)||0);
