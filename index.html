@@ -227,6 +227,7 @@ svg{display:block;flex:none}
 .transit-row .sub{font-size:12.5px;color:var(--muted);margin:5px 0 0}
 .transit-row .d{color:var(--muted);font-size:13.5px;margin:6px 0 0;line-height:1.5}
 .board{flex:none;margin-left:auto;text-align:right}
+.board .date{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
 .board .route{
   font-family:var(--mono);font-size:19px;font-weight:600;color:var(--text);
   letter-spacing:.02em;font-variant-numeric:tabular-nums;
@@ -376,6 +377,7 @@ footer{
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const CACHE_KEY = 'trip-cache-v1';
 
 const ICONS = {
@@ -470,6 +472,12 @@ function dateRange(a,b){
     : `${A.getDate()} ${MONTHS[A.getMonth()]} – ${B.getDate()} ${MONTHS[B.getMonth()]}`;
 }
 
+function dayDate(s){
+  if(!s) return '';
+  const D = d(s);
+  return `${DOW[D.getDay()]} ${D.getDate()} ${MONTHS[D.getMonth()]}`;
+}
+
 function dateLong(s){
   if(!s) return '';
   const D = d(s);
@@ -529,6 +537,7 @@ function transitInner(l, extraClass, idAttr, styleAttr){
       ${l.body ? `<p class="d">${esc(l.body)}</p>` : ''}
     </div>
     <div class="board">
+      <div class="date">${esc(dayDate(l.start))}</div>
       ${hasRoute ? `<div class="route">${esc(l.from)}<span class="arrow">→</span>${esc(l.to)}</div>` : ''}
       ${hasTimes ? `<div class="time">${esc(l.departTime)}–${esc(l.arriveTime)}</div>` : ''}
       ${l.duration ? `<div class="dur">${esc(l.duration)}</div>` : ''}
