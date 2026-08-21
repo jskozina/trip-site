@@ -85,6 +85,7 @@
       "duration": "28 min direct",
       "start": "2026-12-22",
       "end": "2026-12-22",
+      "priceAud": 50,
       "body": "JR Special Rapid Service, direct between Osaka and Kyoto stations.",
       "status": "idea"
     },
@@ -151,6 +152,7 @@
       "arriveTime": "12:14",
       "start": "2026-12-27",
       "end": "2026-12-27",
+      "priceAud": 250,
       "body": "Hida 25, the only direct working of the day - starts in Osaka, then couples with the Nagoya train at Gifu Station, no need to change seats. Only runs once daily, so this early departure is the one shot at it; missing it means changing at Nagoya instead.",
       "status": "idea"
     },
@@ -262,6 +264,7 @@
       "duration": "1h05 direct",
       "start": "2026-12-29",
       "end": "2026-12-29",
+      "priceAud": 150,
       "body": "Hokuriku Shinkansen, direct.",
       "status": "idea"
     },
@@ -314,6 +317,7 @@
       "duration": "1h30 direct",
       "start": "2026-12-30",
       "end": "2026-12-30",
+      "priceAud": 150,
       "body": "Hokuriku Shinkansen, direct.",
       "status": "idea"
     },
