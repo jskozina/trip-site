@@ -335,14 +335,14 @@
       "body": "",
       "stays": [
         {
-          "id": "tokyo-mkg-asakusa",
-          "title": "MKG Hotel Asakusa",
+          "id": "tokyo-yoin-asakusa",
+          "title": "Yoin Tokyo in Asakusa",
           "start": "2026-12-30",
           "end": "2027-01-02",
-          "priceAud": 452,
-          "url": "https://www.booking.com/hotel/jp/mkg-asakusa.html",
-          "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/667273793.jpg?k=e9377372b8569ea92fc762dd00c549f4b9eb6a8fe9e76da2ea1016b4d9c4a61a&o=",
-          "body": "Asakusa, a 2-minute walk to the station and close to Sensoji.",
+          "priceAud": 177,
+          "url": "https://www.airbnb.com.au/rooms/1736944784656600674",
+          "image": "https://a0.muscache.com/im/pictures/hosting/Hosting-1736944784656600674/original/42292e89-63bf-42e0-9529-9c488aed5dfc.jpeg",
+          "body": "Self-catered apartment with a kitchen and washing machine, near Sensoji and Kaminarimon.",
           "status": "idea"
         }
       ],
