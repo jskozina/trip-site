@@ -536,6 +536,7 @@
       "arriveTime": "22:10",
       "start": "2027-01-09",
       "end": "2027-01-09",
+      "priceAud": 1200,
       "body": "Doesn't appear to fly Fridays, this itinerary is built around the Saturday departure.",
       "status": "idea"
     }
