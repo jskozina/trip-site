@@ -2,7 +2,7 @@
   "trip": {
     "title": "Japan & Vietnam",
     "depart": "2026-12-05",
-    "return": "2026-12-26",
+    "return": "2026-12-29",
     "travellers": 2,
     "homeTz": "Australia/Brisbane",
     "budget": {
@@ -400,7 +400,7 @@
       "title": "Hanoi",
       "climate": "temperate",
       "start": "2026-12-19",
-      "end": "2026-12-22",
+      "end": "2026-12-20",
       "lat": 21.0278,
       "lng": 105.8342,
       "tz": "Asia/Ho_Chi_Minh",
@@ -416,7 +416,7 @@
           "id": "hanoi-la-passion",
           "title": "La Passion Hanoi Hotel & Spa",
           "start": "2026-12-19",
-          "end": "2026-12-22",
+          "end": "2026-12-20",
           "priceAud": 106,
           "url": "https://www.booking.com/hotel/vn/la-passion-hanoi-amp-spa.html",
           "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/303038392.jpg?k=dba27abe099870c2681e01fc50a2bc85c288677461c461624d880c563b022030&o=",
@@ -425,6 +425,164 @@
         }
       ],
       "spots": []
+    },
+    {
+      "id": "hanoi-halong",
+      "type": "transit",
+      "title": "Hanoi to Ha Long",
+      "mode": "Car",
+      "duration": "approx 2h30",
+      "start": "2026-12-20",
+      "end": "2026-12-20",
+      "body": "Direct transfer to Bai Chay.",
+      "status": "idea"
+    },
+    {
+      "id": "halong",
+      "type": "leg",
+      "title": "Ha Long",
+      "climate": "temperate",
+      "start": "2026-12-20",
+      "end": "2026-12-22",
+      "lat": 20.9515,
+      "lng": 107.0743,
+      "tz": "Asia/Ho_Chi_Minh",
+      "image": "https://images.unsplash.com/photo-1761127138372-cad230082b19?q=80&w=1600&auto=format&fit=crop",
+      "body": "",
+      "stays": [
+        {
+          "id": "halong-vinpearl",
+          "title": "Vinpearl Resort & Spa Ha Long (or equivalent 5-star)",
+          "start": "2026-12-20",
+          "end": "2026-12-22",
+          "url": "https://vinpearl.com/en/vinpearl-resort-spa-ha-long",
+          "image": "https://images.unsplash.com/photo-1763402084622-c7da69907b81?q=80&w=1600&auto=format&fit=crop",
+          "body": "5-star resort on Reu Island, a short boat transfer from Bai Chay. On land, not a cruise boat.",
+          "status": "idea"
+        }
+      ],
+      "spots": [
+        {
+          "id": "sunworld-halong",
+          "title": "Sun World Ha Long Park",
+          "category": "See",
+          "lat": 20.9584,
+          "lng": 107.0392,
+          "image": "https://images.unsplash.com/photo-1773745169479-d43e452a848e?q=80&w=1600&auto=format&fit=crop",
+          "body": "Home to the Queen Cable Car, one of the world's longest over-water cable cars, plus a Sun Wheel and amusement rides.",
+          "status": "idea"
+        },
+        {
+          "id": "halong-day-cruise",
+          "title": "Ha Long Bay Day Cruise",
+          "category": "See",
+          "lat": 20.9101,
+          "lng": 107.1839,
+          "image": "https://images.unsplash.com/photo-1761127138372-cad230082b19?q=80&w=1600&auto=format&fit=crop",
+          "body": "A day cruise through the limestone karsts, back on land by evening rather than an overnight boat.",
+          "status": "idea"
+        }
+      ]
+    },
+    {
+      "id": "halong-hanoi",
+      "type": "transit",
+      "title": "Ha Long to Hanoi",
+      "mode": "Car",
+      "duration": "approx 2h30",
+      "start": "2026-12-22",
+      "end": "2026-12-22",
+      "body": "Return transfer, timed to make the overnight train.",
+      "status": "idea"
+    },
+    {
+      "id": "hanoi-laocai",
+      "type": "transit",
+      "title": "Hanoi to Lao Cai",
+      "mode": "Train",
+      "duration": "8h overnight",
+      "departTime": "22:00",
+      "arriveTime": "06:00",
+      "start": "2026-12-22",
+      "end": "2026-12-23",
+      "group": "Overnight train then transfer to Sapa",
+      "body": "SP3 sleeper service. Sleeping on the train, so this doesn't cost a hotel night.",
+      "status": "idea"
+    },
+    {
+      "id": "laocai-sapa",
+      "type": "transit",
+      "title": "Lao Cai to Sapa",
+      "mode": "Car",
+      "duration": "approx 1h",
+      "start": "2026-12-23",
+      "end": "2026-12-23",
+      "group": "Overnight train then transfer to Sapa",
+      "body": "Short transfer up into the mountains.",
+      "status": "idea"
+    },
+    {
+      "id": "sapa",
+      "type": "leg",
+      "title": "Sapa",
+      "climate": "cold",
+      "start": "2026-12-23",
+      "end": "2026-12-24",
+      "lat": 22.3364,
+      "lng": 103.8438,
+      "tz": "Asia/Ho_Chi_Minh",
+      "image": "https://images.unsplash.com/photo-1773393878458-e793434a80cc?q=80&w=1600&auto=format&fit=crop",
+      "body": "",
+      "stays": [
+        {
+          "id": "sapa-coupole-mgallery",
+          "title": "Hotel de la Coupole - MGallery",
+          "start": "2026-12-23",
+          "end": "2026-12-24",
+          "url": "https://mgallery.accor.com/en/hotels/A5V2.html",
+          "image": "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?q=80&w=1600&auto=format&fit=crop",
+          "body": "Sapa's only international 5-star hotel, with direct access to the Fansipan cable car station.",
+          "status": "idea"
+        }
+      ],
+      "spots": [
+        {
+          "id": "fansipan-cable-car",
+          "title": "Fansipan Legend Cable Car",
+          "category": "See",
+          "lat": 22.3025,
+          "lng": 103.7757,
+          "image": "https://images.unsplash.com/photo-1608945065409-52e4a1b99438?q=80&w=1600&auto=format&fit=crop",
+          "body": "World's longest three-rope cable car, up to the summit of Fansipan, the 'Roof of Indochina' at 3,143m. A small chance of frost or light snow in December.",
+          "status": "idea"
+        }
+      ]
+    },
+    {
+      "id": "sapa-laocai",
+      "type": "transit",
+      "title": "Sapa to Lao Cai",
+      "mode": "Car",
+      "duration": "approx 1h",
+      "start": "2026-12-24",
+      "end": "2026-12-24",
+      "group": "Transfer then overnight train to Hanoi",
+      "body": "",
+      "status": "idea"
+    },
+    {
+      "id": "laocai-hanoi",
+      "type": "transit",
+      "title": "Lao Cai to Hanoi",
+      "mode": "Train",
+      "duration": "7h55 overnight",
+      "departTime": "21:30",
+      "arriveTime": "05:25",
+      "start": "2026-12-24",
+      "end": "2026-12-25",
+      "group": "Transfer then overnight train to Hanoi",
+      "body": "SP4 sleeper service, back into Hanoi in time to fly to Da Nang.",
+      "status": "idea"
     },
     {
       "id": "hanoi-dad",
@@ -436,8 +594,8 @@
       "to": "DAD",
       "departTime": "13:35",
       "arriveTime": "14:55",
-      "start": "2026-12-22",
-      "end": "2026-12-22",
+      "start": "2026-12-25",
+      "end": "2026-12-25",
       "group": "Flight then transfer to Hoi An",
       "priceAud": 100,
       "body": "Moved off the original 22:25 red-eye to this afternoon slot, same fare tier. Flight number not confirmed yet.",
@@ -449,8 +607,8 @@
       "title": "Da Nang to Hoi An",
       "mode": "Car",
       "duration": "45 min",
-      "start": "2026-12-22",
-      "end": "2026-12-22",
+      "start": "2026-12-25",
+      "end": "2026-12-25",
       "group": "Flight then transfer to Hoi An",
       "body": "Airport transfer by car. Lands mid-afternoon now, so check-in should be daylight rather than midnight.",
       "status": "idea"
@@ -460,8 +618,8 @@
       "type": "leg",
       "title": "Hoi An",
       "climate": "warm",
-      "start": "2026-12-22",
-      "end": "2026-12-24",
+      "start": "2026-12-25",
+      "end": "2026-12-27",
       "lat": 15.8801,
       "lng": 108.338,
       "tz": "Asia/Ho_Chi_Minh",
@@ -476,8 +634,8 @@
         {
           "id": "hoian-grand-sunrise-palace",
           "title": "Grand Sunrise Palace Hoi An",
-          "start": "2026-12-22",
-          "end": "2026-12-24",
+          "start": "2026-12-25",
+          "end": "2026-12-27",
           "priceAud": 102,
           "url": "https://www.booking.com/hotel/vn/grand-surise-palace-hoi-an.html",
           "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/841262575.jpg?k=a126ba4054d3becc1edd44f12d89ed557fc9deb4298e89a4a517f122afeec2b5&o=",
@@ -498,8 +656,8 @@
       "flightNo": "VietJet 627",
       "departTime": "08:45",
       "arriveTime": "10:10",
-      "start": "2026-12-24",
-      "end": "2026-12-24",
+      "start": "2026-12-27",
+      "end": "2026-12-27",
       "priceAud": 100,
       "body": "A normal morning flight, leaves the rest of the day free in the city.",
       "status": "idea"
@@ -509,8 +667,8 @@
       "type": "leg",
       "title": "Ho Chi Minh City",
       "climate": "hot",
-      "start": "2026-12-24",
-      "end": "2026-12-26",
+      "start": "2026-12-27",
+      "end": "2026-12-29",
       "lat": 10.8231,
       "lng": 106.6297,
       "tz": "Asia/Ho_Chi_Minh",
@@ -525,8 +683,8 @@
         {
           "id": "saigon-grand-du-lac",
           "title": "Grand Hotel du Lac Boutique Saigon",
-          "start": "2026-12-24",
-          "end": "2026-12-26",
+          "start": "2026-12-27",
+          "end": "2026-12-29",
           "priceAud": 208,
           "url": "https://www.booking.com/hotel/vn/grand-du-lac-boutique-saigon-quan-11.html",
           "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/709222466.jpg?k=3288e4bf4569adaab15756b38059c396779e1290d6bc92de50c9c6a49a026d57&o=",
@@ -544,13 +702,10 @@
       "duration": "8h30 direct",
       "from": "SGN",
       "to": "BNE",
-      "flightNo": "VietJet 83",
-      "departTime": "10:40",
-      "arriveTime": "22:10",
-      "start": "2026-12-26",
-      "end": "2026-12-26",
+      "start": "2026-12-29",
+      "end": "2026-12-29",
       "priceAud": 1200,
-      "body": "Doesn't appear to fly Fridays, this itinerary is built around the Saturday departure.",
+      "body": "Flight not yet confirmed for this date - the previous VietJet 83 booking was specifically a Saturday service and this now falls on a Tuesday, so this needs a fresh search rather than assuming the same flight still runs.",
       "status": "idea"
     }
   ]
