@@ -184,6 +184,30 @@
           "image": "https://plus.unsplash.com/premium_photo-1674837816247-130ad8119752?q=80&w=1600&auto=format&fit=crop",
           "body": "Tiny Amerika-Mura speakeasy - no cocktail list, just bespoke drinks built around what you like. Ranked among Asia's 50 Best Bars.",
           "status": "idea"
+        },
+        {
+          "id": "osaka-grenier",
+          "title": "Grenier",
+          "category": "Eat",
+          "image": "https://images.unsplash.com/photo-1687722157890-9f58d5cd26d4?q=80&w=1600&auto=format&fit=crop",
+          "body": "Patisserie near Umeda Station, known for its mille-feuille and the only shop in Osaka pouring Lyon's CHA YUAN tea.",
+          "status": "idea"
+        },
+        {
+          "id": "osaka-chopstick-making",
+          "title": "Chopstick Making Workshop",
+          "category": "See",
+          "image": "https://images.unsplash.com/photo-1659512087057-7c4ce619307e?q=80&w=1600&auto=format&fit=crop",
+          "body": "Shape and finish your own pair of chopsticks from about 30 types of wood, near Dotonbori.",
+          "status": "idea"
+        },
+        {
+          "id": "osaka-chukasoba-mugen",
+          "title": "Chukasoba Mugen",
+          "category": "Eat",
+          "image": "https://images.unsplash.com/photo-1591325418441-ff678baf78ef?q=80&w=1600&auto=format&fit=crop",
+          "body": "Seven-time Michelin Bib Gourmand ramen, a fixture of Osaka's ramen scene for 15 years.",
+          "status": "idea"
         }
       ]
     },
@@ -381,8 +405,10 @@
           "id": "kyoto-gion-duck-rice",
           "title": "Gion Duck Rice",
           "category": "Eat",
-          "status": "idea",
-          "image": "https://images.unsplash.com/photo-1746274223799-818414e9d94a?q=80&w=1600&auto=format&fit=crop"
+          "url": "https://www.menroku.com/gionduckrice/",
+          "image": "https://images.unsplash.com/photo-1746274223799-818414e9d94a?q=80&w=1600&auto=format&fit=crop",
+          "body": "Hitsumabushi-style Kishu duck rice bowl - customise it with grape sansho, yuzu or black shichimi at the table.",
+          "status": "idea"
         },
         {
           "id": "kyoto-tendon-makino",
@@ -451,8 +477,10 @@
           "id": "nara-sanjo-dori",
           "title": "Sanjo-dori",
           "category": "Shop",
-          "status": "idea",
-          "image": "https://images.unsplash.com/photo-1759200263591-3e5394f4b4ff?q=80&w=1600&auto=format&fit=crop"
+          "url": "https://www.visitnara.jp/venues/A01558/",
+          "image": "https://images.unsplash.com/photo-1759200263591-3e5394f4b4ff?q=80&w=1600&auto=format&fit=crop",
+          "body": "Nara's main shopping street, running from JR Nara Station up toward Sarusawa Pond and Nara Park.",
+          "status": "idea"
         },
         {
           "id": "nara-kofukuji",
