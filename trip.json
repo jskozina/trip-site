@@ -91,7 +91,63 @@
           "status": "idea"
         }
       ],
-      "spots": []
+      "spots": [
+        {
+          "id": "osaka-wad",
+          "title": "Wad Osaka",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "osaka-tap-tap-lab",
+          "title": "Tap Tap Lab",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "osaka-dotonbori",
+          "title": "Dotonbori (GiGO)",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "osaka-shinsaibashi-st",
+          "title": "Shinsaibashi",
+          "category": "Shop",
+          "status": "idea"
+        },
+        {
+          "id": "osaka-namba",
+          "title": "Namba",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "osaka-object",
+          "title": "Object Osaka",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "osaka-shinsekai",
+          "title": "Shinsekai",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "osaka-katsuoji",
+          "title": "Katsuoji Temple",
+          "category": "See",
+          "body": "Known for the thousands of daruma dolls covering the hillside.",
+          "status": "idea"
+        },
+        {
+          "id": "osaka-namba-yasaka",
+          "title": "Namba Yasaka Shrine",
+          "category": "See",
+          "status": "idea"
+        }
+      ]
     },
     {
       "id": "osaka-kyoto",
@@ -154,6 +210,206 @@
           "lng": 135.8048,
           "image": "https://images.unsplash.com/photo-1578639755533-2c52ba911914?q=80&w=1600&auto=format&fit=crop",
           "body": "About 45 minutes from Kyoto by train. Deer roam Nara Park and will nudge for food.",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-rennosuke",
+          "title": "Rennosuke",
+          "category": "Eat",
+          "body": "Michelin-recognised noodles.",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-nishiki-market",
+          "title": "Nishiki Market",
+          "category": "Eat",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-kiyomizudera",
+          "title": "Kiyomizu-dera",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-chaochao-gyoza",
+          "title": "Chao Chao Gyoza",
+          "category": "Eat",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-fushimi-inari",
+          "title": "Fushimi Inari",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-glanta",
+          "title": "Glanta Kyoto",
+          "category": "Drink",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-ninenzaka",
+          "title": "Ninenzaka",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-sannenzaka",
+          "title": "Sannenzaka",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-heian-jingu",
+          "title": "Heian Jingu",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-blue-bottle",
+          "title": "Blue Bottle Coffee",
+          "category": "Drink",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-nanzenji",
+          "title": "Nanzen-ji",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-philosophers-path",
+          "title": "Philosopher's Path",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-flow-nosy-coffee",
+          "title": "Flow by Nosy Coffee",
+          "category": "Drink",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-chidoritei",
+          "title": "Chidoritei",
+          "category": "Eat",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-kagizen",
+          "title": "Kagizen Yoshifusa",
+          "category": "Eat",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-gion",
+          "title": "Gion",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-gion-duck-rice",
+          "title": "Gion Duck Rice",
+          "category": "Eat",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-tendon-makino",
+          "title": "Tendon Makino",
+          "category": "Eat",
+          "status": "idea"
+        },
+        {
+          "id": "kyoto-arashiyama",
+          "title": "Arashiyama",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "nara-todaiji",
+          "title": "Todaiji Temple",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "nara-nakatanidou",
+          "title": "Nakatanidou",
+          "category": "Eat",
+          "body": "Famous for its rapid-fire mochi-pounding performance.",
+          "status": "idea"
+        },
+        {
+          "id": "nara-salon-naramachi",
+          "title": "Salon Naramachi",
+          "category": "Eat",
+          "status": "idea"
+        },
+        {
+          "id": "nara-yoshidaen",
+          "title": "Yoshidaen",
+          "category": "Drink",
+          "status": "idea"
+        },
+        {
+          "id": "nara-wakakusayama",
+          "title": "Wakakusayama Hill",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "nara-maguro-koya",
+          "title": "Maguro Koya",
+          "category": "Eat",
+          "status": "idea"
+        },
+        {
+          "id": "nara-sanjo-dori",
+          "title": "Sanjo-dori",
+          "category": "Shop",
+          "status": "idea"
+        },
+        {
+          "id": "nara-kofukuji",
+          "title": "Kofuku-ji",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "nara-nigatsudo",
+          "title": "Nigatsu-do",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "nara-himuro-shrine",
+          "title": "Himuro Shrine",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "nara-gyukatsu-katsugyu",
+          "title": "Gyukatsu Kyoto Katsugyu",
+          "category": "Eat",
+          "status": "idea"
+        },
+        {
+          "id": "nara-kasuga-taisha",
+          "title": "Kasuga Taisha",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "nara-isuien-garden",
+          "title": "Isuien Garden",
+          "category": "See",
+          "status": "idea"
+        },
+        {
+          "id": "nara-naramachi",
+          "title": "Naramachi",
+          "category": "See",
           "status": "idea"
         }
       ]
@@ -376,6 +632,49 @@
           "lng": 138.7677,
           "image": "https://images.unsplash.com/photo-1752395480128-8c15c9364a03?q=80&w=1600&auto=format&fit=crop",
           "body": "About 2 hours from Tokyo to Kawaguchiko by direct bus. Often cloud-covered, mornings give the best chance of a clear view.",
+          "status": "idea"
+        },
+        {
+          "id": "tokyo-amamdacotan",
+          "title": "Amamdacotan",
+          "category": "Eat",
+          "status": "idea"
+        },
+        {
+          "id": "tokyo-kappabashi",
+          "title": "Kappabashi Street",
+          "category": "Shop",
+          "body": "Kitchenware and restaurant-supply street, walkable from Asakusa.",
+          "status": "idea"
+        },
+        {
+          "id": "tokyo-kotaro",
+          "title": "Kotaro",
+          "category": "Eat",
+          "status": "idea"
+        },
+        {
+          "id": "tokyo-onogi-hiroo",
+          "title": "Onogi, Hiroo",
+          "category": "Eat",
+          "status": "idea"
+        },
+        {
+          "id": "tokyo-tempura-motoyoshi",
+          "title": "Tempura Motoyoshi",
+          "category": "Eat",
+          "status": "idea"
+        },
+        {
+          "id": "tokyo-florilege",
+          "title": "Florilège",
+          "category": "Eat",
+          "status": "idea"
+        },
+        {
+          "id": "tokyo-teamlab",
+          "title": "teamLab",
+          "category": "See",
           "status": "idea"
         }
       ]
