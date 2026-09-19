@@ -1127,8 +1127,8 @@
       "start": "2026-12-25",
       "end": "2026-12-25",
       "priceAud": 99,
-      "body": "A late-morning flight, leaves the rest of the day free in the city. Payment received, airline confirmation still pending.",
-      "status": "held"
+      "body": "A late-morning flight, leaves the rest of the day free in the city. Checked bag capped at 15kg, not 20kg - worth weighing before this one.",
+      "status": "booked"
     },
     {
       "id": "saigon",
