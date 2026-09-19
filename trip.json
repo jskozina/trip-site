@@ -697,17 +697,17 @@
       "body": "",
       "stays": [
         {
-          "id": "shukubo-renkain",
-          "title": "Shukubo Renka-in",
-          "subtitle": "Temple lodging at Zenko-ji",
+          "id": "nagano-mirai-port-505",
+          "title": "MIRAI PORT NAGANO 505",
+          "subtitle": "In front of Zenkoji Omotesando",
           "start": "2026-12-11",
           "end": "2026-12-12",
           "lat": 36.6688,
           "lng": 138.1867,
-          "priceAud": 315,
-          "url": "https://www.airbnb.com.au/rooms/1715062098784952037",
-          "image": "https://a0.muscache.com/im/pictures/hosting/Hosting-1715062098784952037/original/5652088a-023b-4c35-af6b-834030c6be2d.jpeg?im_w=2560",
-          "body": "A private room with its own bathroom but shared common spaces. Includes a pre-dawn guided visit to the Zenkoji morning service and a vegetarian breakfast back at the inn.",
+          "priceAud": 126,
+          "url": "https://www.airbnb.com.au/rooms/1719971688331258289",
+          "image": "https://a0.muscache.com/im/pictures/hosting/Hosting-1719971688331258289/original/fdc26a7e-ab19-4b97-ab1f-aee0838e9d33.jpeg?im_w=1600",
+          "body": "Entire unit right on Zenkoji's approach street, 16 minutes' walk to the temple's main hall, 12 minutes to Nagano Station for the Snow Monkey Park bus.",
           "status": "idea"
         }
       ],
@@ -993,13 +993,15 @@
       "body": "",
       "stays": [
         {
-          "id": "sapa-coupole-mgallery",
-          "title": "Hotel de la Coupole - MGallery",
+          "id": "sapa-center-king",
+          "title": "Sapa Center King: Balcony & Stunning Fansipan View",
+          "subtitle": "Mega View Homestay",
           "start": "2026-12-21",
           "end": "2026-12-22",
-          "url": "https://mgallery.accor.com/en/hotels/A5V2.html",
-          "image": "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?q=80&w=1600&auto=format&fit=crop",
-          "body": "Sapa's only international 5-star hotel, with direct access to the Fansipan cable car station.",
+          "priceAud": 53,
+          "url": "https://www.airbnb.com.au/rooms/24017754",
+          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-24017754/original/85d94e11-85a5-4794-b49e-2bdba170b730.jpeg",
+          "body": "Private room with king bed and balcony, 3 minutes' walk from Sapa centre. Steps down a staircase with no lift, so a bit of a haul with luggage.",
           "status": "idea"
         }
       ],
