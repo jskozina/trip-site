@@ -1121,14 +1121,14 @@
       "duration": "1h35",
       "from": "DAD",
       "to": "SGN",
-      "flightNo": "Vietnam Airlines 6031",
-      "departTime": "07:50",
-      "arriveTime": "09:25",
+      "flightNo": "Vietravel Airlines 253",
+      "departTime": "11:00",
+      "arriveTime": "12:35",
       "start": "2026-12-25",
       "end": "2026-12-25",
-      "priceAud": 61,
-      "body": "Ticketed as Vietnam Airlines, flown by Pacific Airlines, with a free checked bag included - cheaper than the Vietravel flight it replaces. An early one, but leaves the whole day free in the city.",
-      "status": "idea"
+      "priceAud": 99,
+      "body": "A late-morning flight, leaves the rest of the day free in the city. Payment received, airline confirmation still pending.",
+      "status": "held"
     },
     {
       "id": "saigon",
