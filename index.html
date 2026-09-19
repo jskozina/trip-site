@@ -226,6 +226,8 @@ svg{display:block;flex:none}
 .budget-item .cost.unset{color:var(--faint)}
 .budget-item .cost.booked{color:var(--good);font-weight:600}
 .budget-item .rough-tag{font-style:italic;color:var(--faint);margin-left:6px;font-size:11px}
+.budget-item .city{color:var(--faint);margin-right:6px}
+.budget-item .city::after{content:'\2014';margin-left:6px}
 .budget-row .note{font-size:11.5px;color:var(--faint);margin:10px 0 0;font-style:italic}
 .budget-total{
   display:flex;justify-content:space-between;align-items:baseline;
@@ -535,9 +537,10 @@ function localTime(tz){
   }catch(e){ return null; }
 }
 
-function mapLink(o){
+function mapLink(o, city){
   if(o.lat && o.lng) return `https://www.google.com/maps/search/?api=1&query=${o.lat},${o.lng}`;
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(o.title)}`;
+  const query = city ? `${o.title}, ${city}` : o.title;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }
 
 function pill(status){
@@ -589,7 +592,7 @@ function transitInner(l, extraClass, idAttr, styleAttr){
   </div>`;
 }
 
-function itemCard(o, kind){
+function itemCard(o, kind, city){
   const eyebrow = o.category || o.subtitle || (kind === 'stay' ? 'Stay' : '');
   const meta = dateRange(o.start,o.end);
   const n = nights(o.start,o.end);
@@ -608,7 +611,7 @@ function itemCard(o, kind){
       <div class="row">
         ${pill(o.status)}
         ${cost}
-        <a class="lnk" href="${mapLink(o)}" target="_blank" rel="noopener">Map ↗</a>
+        <a class="lnk" href="${mapLink(o, city)}" target="_blank" rel="noopener">Map ↗</a>
         ${o.url ? `<a class="lnk" href="${esc(o.url)}" target="_blank" rel="noopener">Site ↗</a>` : ''}
       </div>
     </div>
@@ -799,12 +802,12 @@ function renderMap(legs){
   map.fitBounds(latlngs, { padding:[28,28] });
 }
 
-function budgetItemHtml(title, cost, href, status){
+function budgetItemHtml(title, cost, href, status, city){
   const hasCost = typeof cost === 'number';
   const booked = status === 'booked';
   const costText = hasCost ? (booked ? money(cost) : '~'+money(cost)) : 'not priced';
   return `<div class="budget-item">
-    <a href="#${esc(href)}">${esc(title)}${hasCost && !booked ? '<span class="rough-tag">rough</span>' : ''}</a>
+    <a href="#${esc(href)}">${city ? `<span class="city">${esc(city)}</span>` : ''}${esc(title)}${hasCost && !booked ? '<span class="rough-tag">rough</span>' : ''}</a>
     <span class="cost ${hasCost ? (booked?'booked':'') : 'unset'}">${costText}</span>
   </div>`;
 }
@@ -830,7 +833,7 @@ function renderBudget(trip, legs, view){
   const b = trip.budget || {};
   const travellers = trip.travellers || 1;
   const perPerson = view === 'person';
-  const stays = legs.flatMap(l => l.stays || []);
+  const stays = legs.flatMap(l => (l.stays || []).map(s => ({...s, city: l.title})));
   const spots = legs.flatMap(l => l.spots || []);
   const flightLegs = legs.filter(l => l.type === 'transit' && (l.mode||'').toLowerCase()==='flight');
 
@@ -859,7 +862,7 @@ function renderBudget(trip, legs, view){
   const accomItems = stays.map(s => {
     const shared = (s.priceAud||0) * (nights(s.start,s.end)||0);
     const cost = typeof s.priceAud === 'number' ? (perPerson ? shared/travellers : shared) : undefined;
-    return budgetItemHtml(s.title, cost, `item-${s.id}`, s.status);
+    return budgetItemHtml(s.title, cost, `item-${s.id}`, s.status, s.city);
   }).join('');
   const accomBooked = stays.filter(s => s.status === 'booked')
     .reduce((s,x) => s + (x.priceAud||0) * (nights(x.start,x.end)||0), 0);
@@ -987,8 +990,8 @@ function render(data){
     const n = nights(l.start,l.end);
     const isNow = current && current.id === l.id;
     const lt = l.tz ? localTime(l.tz) : null;
-    const staysHtml = (l.stays||[]).map(s => itemCard(s,'stay')).join('');
-    const spotsHtml = (l.spots||[]).map(s => itemCard(s,'spot')).join('');
+    const staysHtml = (l.stays||[]).map(s => itemCard(s,'stay',l.title)).join('');
+    const spotsHtml = (l.spots||[]).map(s => itemCard(s,'spot',l.title)).join('');
     const legAccom = (l.stays||[]).reduce((s,x) => s + ((x.priceAud||0) * (nights(x.start,x.end)||0)), 0);
     const media = l.image
       ? `<img src="${esc(resizeImg(l.image,2200,1600))}" alt="" loading="lazy">`
