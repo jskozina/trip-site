@@ -27,8 +27,8 @@
       "start": "2026-12-04",
       "end": "2026-12-04",
       "group": "Connecting via Cairns",
-      "priceAud": 781,
-      "body": "Self-transfer to the Jetstar flight in Cairns - separate tickets, so collect bags and clear check-in and security again. 4 hour buffer.",
+      "priceAud": 171,
+      "body": "Choice fare for a free checked bag - Lite is $32 cheaper but doesn't include one. Self-transfer to the Jetstar flight in Cairns - separate tickets, so collect bags and clear check-in and security again. 4 hour buffer.",
       "status": "idea"
     },
     {
@@ -45,7 +45,8 @@
       "start": "2026-12-04",
       "end": "2026-12-04",
       "group": "Connecting via Cairns",
-      "body": "",
+      "priceAud": 663,
+      "body": "Starter Plus fare for the 20kg checked bag - it's an international sector so the basic fare excludes one entirely.",
       "status": "idea"
     },
     {
@@ -843,13 +844,13 @@
       "duration": "6h30",
       "from": "NRT",
       "to": "HAN",
-      "flightNo": "VietJet Air 935",
-      "departTime": "16:25",
-      "arriveTime": "20:55",
+      "flightNo": "VietJet Air 933",
+      "departTime": "09:30",
+      "arriveTime": "14:00",
       "start": "2026-12-15",
       "end": "2026-12-15",
-      "priceAud": 414,
-      "body": "Narita, not Haneda - about an hour further out from Asakusa, so allow extra time for the airport run.",
+      "priceAud": 550,
+      "body": "Narita, not Haneda - about an hour further out from Asakusa, so allow extra time for the airport run. Deluxe fare for the 20kg checked bag - the only flight VietJet actually has bookable for this date, so no other departure time to choose from.",
       "status": "idea"
     },
     {
@@ -1121,13 +1122,13 @@
       "duration": "1h35",
       "from": "DAD",
       "to": "SGN",
-      "flightNo": "Vietravel Airlines 253",
-      "departTime": "11:00",
-      "arriveTime": "12:35",
+      "flightNo": "Vietnam Airlines 6031",
+      "departTime": "07:50",
+      "arriveTime": "09:25",
       "start": "2026-12-25",
       "end": "2026-12-25",
-      "priceAud": 75,
-      "body": "A late-morning flight, leaves the rest of the day free in the city.",
+      "priceAud": 61,
+      "body": "Ticketed as Vietnam Airlines, flown by Pacific Airlines, with a free checked bag included - cheaper than the Vietravel flight it replaces. An early one, but leaves the whole day free in the city.",
       "status": "idea"
     },
     {
@@ -1167,15 +1168,16 @@
       "type": "transit",
       "title": "Saigon to Bali",
       "mode": "Flight",
+      "flightNo": "VietJet Air 893",
       "from": "SGN",
       "to": "DPS",
       "departTime": "08:00",
       "arriveTime": "13:05",
       "duration": "4h 5m",
-      "priceAud": 161,
+      "priceAud": 207,
       "start": "2026-12-27",
       "end": "2026-12-27",
-      "body": "",
+      "body": "Deluxe fare for the 20kg checked bag - the Eco fare shown around town is cheaper but carry-on only.",
       "status": "idea"
     },
     {
@@ -1218,8 +1220,8 @@
       "arriveTime": "05:20",
       "start": "2026-12-29",
       "end": "2026-12-30",
-      "priceAud": 348,
-      "body": "Overnight flight, arrives the next morning.",
+      "priceAud": 428,
+      "body": "Overnight flight, arrives the next morning. Starter Plus fare for the 20kg checked bag.",
       "status": "idea"
     }
   ]
