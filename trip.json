@@ -1167,9 +1167,13 @@
       "mode": "Flight",
       "from": "SGN",
       "to": "DPS",
+      "departTime": "08:00",
+      "arriveTime": "13:05",
+      "duration": "4h 5m",
+      "priceAud": 161,
       "start": "2026-12-27",
       "end": "2026-12-27",
-      "body": "Flight not yet found - needs a real search for this date.",
+      "body": "",
       "status": "idea"
     },
     {
