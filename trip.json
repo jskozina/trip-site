@@ -7,7 +7,7 @@
     "homeTz": "Australia/Brisbane",
     "budget": {
       "flights": 1674,
-      "accom": 2721,
+      "accom": 2185,
       "food": 1800,
       "activities": 700
     }
@@ -586,14 +586,14 @@
       "body": "",
       "stays": [
         {
-          "id": "takayama-hinoki-ryokan",
-          "title": "Ryokan-style Hinoki Woodbath near Old Town",
+          "id": "takayama-iwatakan",
+          "title": "Hida Takayama Onsen Minshuku Iwata-kan",
           "start": "2026-12-09",
           "end": "2026-12-10",
-          "priceAud": 355,
-          "url": "https://www.airbnb.com.au/rooms/1108267822549793250",
-          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-1108267822549793250/original/c3d7635a-9b93-4983-91b3-c5b2a863bbd7.jpeg?im_w=2560",
-          "body": "Three minutes' walk to the old town, about 15 minutes to Takayama Station.",
+          "priceAud": 95,
+          "url": "https://www.airbnb.com.au/rooms/1436187405453207911",
+          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-1436187405453207911/original/b63f6f0f-59ea-454b-ada0-9f70f7489c44.jpeg?im_w=1600",
+          "body": "Hot spring guesthouse with an open-air and indoor bath, 15 minutes' walk to Miyagawa Asaichi. Shared bathroom.",
           "status": "idea"
         }
       ],
@@ -658,15 +658,14 @@
       "body": "",
       "stays": [
         {
-          "id": "kanazawa-downtown-studio",
-          "title": "Close to Kanazawa Sightseeing Spot and Downtown",
-          "subtitle": "Entire rental unit, studio",
+          "id": "kanazawa-twin-room",
+          "title": "Twin Room 7min by Walk from Kanazawa Sta.",
           "start": "2026-12-10",
           "end": "2026-12-11",
-          "priceAud": 172,
-          "url": "https://www.airbnb.com.au/rooms/38089933",
-          "image": "https://a0.muscache.com/im/pictures/hosting/Hosting-38089933/original/d539370a-8888-4b0d-b6bd-e7fea126995a.jpeg?im_w=2560",
-          "body": "Entire unit near downtown and the Yamato department store, not a shared guesthouse.",
+          "priceAud": 67,
+          "url": "https://www.airbnb.com.au/rooms/32795917",
+          "image": "https://a0.muscache.com/im/pictures/a8dfdb6e-71e3-44bf-9326-5c0f78658e0e.jpg?im_w=1600",
+          "body": "Private room in a bed and breakfast, 7 minutes' walk from Kanazawa Station. Shared bathroom.",
           "status": "idea"
         }
       ],
@@ -756,14 +755,14 @@
       "body": "",
       "stays": [
         {
-          "id": "tokyo-yoin-asakusa",
-          "title": "Yoin Tokyo in Asakusa",
+          "id": "tokyo-triphome-shinokubo",
+          "title": "Triphome Shin-Okubo",
           "start": "2026-12-12",
           "end": "2026-12-15",
-          "priceAud": 177,
-          "url": "https://www.airbnb.com.au/rooms/1736944784656600674",
-          "image": "https://a0.muscache.com/im/pictures/hosting/Hosting-1736944784656600674/original/42292e89-63bf-42e0-9529-9c488aed5dfc.jpeg",
-          "body": "Self-catered apartment with a kitchen and washing machine, near Sensoji and Kaminarimon.",
+          "priceAud": 120,
+          "url": "https://www.airbnb.com.au/rooms/922400333773827209",
+          "image": "https://a0.muscache.com/im/pictures/prohost-api/Hosting-922400333773827209/original/412ca84b-ee01-4954-ac01-ae9fdeed5374.jpeg",
+          "body": "4-minute walk to Shin-Okubo Station, right by Korean Street, direct trains to Shinjuku, Shibuya and Ueno.",
           "status": "idea"
         }
       ],
