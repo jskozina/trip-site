@@ -341,9 +341,16 @@ svg{display:block;flex:none}
 }
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:32px 24px}
 .item-card{display:flex;flex-direction:column}
-.ic-media{aspect-ratio:4/5;background:var(--line);overflow:hidden}
+.ic-media{aspect-ratio:4/5;background:var(--line);overflow:hidden;position:relative}
 .ic-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .5s ease;filter:grayscale(.1)}
 .item-card:hover .ic-media img{transform:scale(1.035);filter:grayscale(0)}
+.ic-gallery{display:flex;width:100%;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.ic-gallery::-webkit-scrollbar{display:none}
+.ic-gallery img{flex:0 0 100%;scroll-snap-align:start;transform:none !important}
+.item-card:hover .ic-gallery img{transform:none !important}
+.ic-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:5px;pointer-events:none}
+.ic-dots span{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5);transition:background .15s ease}
+.ic-dots span.active{background:#fff}
 .ic-body{padding:14px 0 0}
 .ic-eyebrow{
   font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
@@ -599,8 +606,16 @@ function itemCard(o, kind, city){
   const cost = (o.priceAud && n) ? `<span class="price">${money(o.priceAud)}/night · ${money(o.priceAud*n)} total</span>`
              : (o.priceAud ? `<span class="price">${money(o.priceAud)}</span>` : '');
   const bucket = kind === 'stay' ? 'stay' : iconForCategory(o.category);
-  const src = o.image || CATEGORY_IMG[bucket];
-  const media = `<img src="${esc(resizeImg(src,500,625))}" alt="" loading="lazy">`;
+  const gallery = kind === 'stay' && Array.isArray(o.images) && o.images.length > 1 ? o.images : null;
+  let media;
+  if(gallery){
+    const imgs = gallery.map(src => `<img src="${esc(resizeImg(src,500,625))}" alt="" loading="lazy">`).join('');
+    const dots = gallery.map((_,i) => `<span class="${i===0?'active':''}"></span>`).join('');
+    media = `<div class="ic-gallery">${imgs}</div><div class="ic-dots">${dots}</div>`;
+  } else {
+    const src = o.image || CATEGORY_IMG[bucket];
+    media = `<img src="${esc(resizeImg(src,500,625))}" alt="" loading="lazy">`;
+  }
   return `<div class="item-card" id="item-${esc(o.id)}">
     <div class="ic-media">${media}</div>
     <div class="ic-body">
@@ -1096,6 +1111,13 @@ $('calendar').addEventListener('keydown', e => {
 document.addEventListener('click', e => {
   if(!e.target.closest('.cal-wrap')) hideCalTooltip();
 });
+document.addEventListener('scroll', e => {
+  const gallery = e.target.closest && e.target.closest('.ic-gallery');
+  if(!gallery) return;
+  const idx = Math.round(gallery.scrollLeft / gallery.clientWidth);
+  const dots = gallery.parentElement.querySelectorAll('.ic-dots span');
+  dots.forEach((d,i) => d.classList.toggle('active', i===idx));
+}, true);
 
 boot();
 </script>
