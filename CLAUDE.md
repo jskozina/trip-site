@@ -78,6 +78,16 @@ When asked to "process the inbox":
 6. Remove processed lines from `inbox.md`.
 7. Commit with a message naming what was added.
 
+## Filing booking confirmations
+
+The human drops confirmation emails (`.eml`, screenshots, forwarded text) at the project root when something gets booked. When asked to file them, or when new ones just appear:
+
+1. Move each file into `confirmations/` (create it if needed) with a descriptive name, e.g. `2026-12-04-bne-cns-kix-booking-confirmed.eml`. This folder is gitignored — it holds PNRs, ticket numbers, passenger DOB, booking-management links with access tokens, and other things that must never reach the public site.
+2. Extract anything trip-relevant into `trip.json` on the matching leg/stay: `status: "booked"`, the real `priceAud`, exact times/flight numbers, and any genuinely useful body-worthy fact (confirmed baggage allowance, a transfer gotcha) per the usual body-writing rules.
+3. Record the booking reference, PNR(s), ticket number, and any other identifying detail in `confirmations/index.md` (create it if needed) — one entry per booking, plain markdown. This is the only place those details should live.
+4. Never put a PNR, ticket number, booking-management URL, or access token into `trip.json` or `index.html`. Both are public.
+5. Commit the `trip.json` change with a message naming what got confirmed. `confirmations/` itself is never committed (it's gitignored) — don't fight that.
+
 ## Writing style for `body` fields
 
 Match the existing entries. Plain, specific, useful. Say what's actually true about a place including the downsides — grey weather, closures, a long walk uphill in the snow. No marketing language, no "nestled", no "vibrant". Australian English. Avoid em dashes; use commas or full stops.
