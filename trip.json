@@ -74,7 +74,7 @@
           "url": "https://www.airbnb.com.au/rooms/54393130",
           "image": "https://a0.muscache.com/im/pictures/miso/Hosting-54393130/original/bcfb2202-379e-4eea-b659-37e711ae52c9.jpeg?im_w=1600",
           "body": "Nishinari Ward, 30 seconds from the station and close to Namba and Shinsaibashi. Right by the JR tracks, so expect train noise.",
-          "status": "idea"
+          "status": "booked"
         }
       ],
       "spots": [
@@ -228,15 +228,15 @@
       "body": "",
       "stays": [
         {
-          "id": "kyoto-hotel-ninja",
-          "title": "Hotel Ninja Black King Double Room",
+          "id": "kyoto-naomi-apartment",
+          "title": "Naomi's Apartment, Shimogyo Ward",
           "start": "2026-12-05",
           "end": "2026-12-09",
-          "priceAud": 89,
-          "url": "https://www.airbnb.com.au/rooms/1424305472037543716",
-          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-1424305472037543716/original/1bb89b82-b8e7-4131-b557-1c239405a513.jpeg?im_w=1600",
-          "body": "6-minute walk to Kyoto Imperial Palace, Nijo Castle and Seimei Shrine also within walking distance.",
-          "status": "idea"
+          "priceAud": 79,
+          "url": "https://www.airbnb.com.au/rooms/51433076",
+          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-51433076/original/f6eaf774-86f9-4d78-9b3e-577888f0d453.jpeg",
+          "body": "Shimogyo Ward, 10 minutes' walk to Kyoto Station. Entire apartment, in-room washing machine.",
+          "status": "booked"
         }
       ],
       "spots": [
