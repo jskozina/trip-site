@@ -7,7 +7,7 @@
     "homeTz": "Australia/Brisbane",
     "budget": {
       "flights": 1674,
-      "accom": 3219,
+      "accom": 3085,
       "food": 1800,
       "activities": 700
     }
@@ -66,14 +66,14 @@
       "body": "",
       "stays": [
         {
-          "id": "osaka-the-flag-shinsaibashi",
-          "title": "Hotel The Flag Shinsaibashi",
+          "id": "osaka-hotel-pivot",
+          "title": "Hotel Pivot - Single Room",
           "start": "2026-12-04",
           "end": "2026-12-05",
-          "priceAud": 188,
-          "url": "https://www.booking.com/hotel/jp/the-flag.html",
-          "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/380228683.jpg?k=6f5811202cd611492de97785c563306594c7248ec9bd082bc1b392866434aab5&o=",
-          "body": "Shinsaibashi, 250m walk to the subway station, 600m to Dotonbori.",
+          "priceAud": 54,
+          "url": "https://www.airbnb.com.au/rooms/54393130",
+          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-54393130/original/bcfb2202-379e-4eea-b659-37e711ae52c9.jpeg?im_w=1600",
+          "body": "Nishinari Ward, 30 seconds from the station and close to Namba and Shinsaibashi. Right by the JR tracks, so expect train noise.",
           "status": "idea"
         }
       ],
