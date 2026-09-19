@@ -1179,7 +1179,19 @@
       "tz": "Asia/Makassar",
       "image": "https://images.unsplash.com/photo-1552925583-42e7c1e6192f?q=80&w=1600&auto=format&fit=crop",
       "body": "",
-      "stays": [],
+      "stays": [
+        {
+          "id": "bali-surya-homestay",
+          "title": "Surya Homestay - Near to the beach",
+          "start": "2026-12-27",
+          "end": "2026-12-29",
+          "priceAud": 33,
+          "url": "https://www.airbnb.com.au/rooms/1218493359576304104",
+          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-1218493359576304104/original/6ca06f25-fce0-4850-9c30-25457486dd75.jpeg",
+          "body": "Kuta, a two-minute walk from the beach. Bring your own shampoo and toiletries, there's a mart right next door if not.",
+          "status": "idea"
+        }
+      ],
       "spots": []
     },
     {
