@@ -848,9 +848,9 @@
       "arriveTime": "14:00",
       "start": "2026-12-15",
       "end": "2026-12-15",
-      "priceAud": 550,
-      "body": "Narita, not Haneda - about an hour further out from Asakusa, so allow extra time for the airport run. Deluxe fare for the 20kg checked bag - the only flight VietJet actually has bookable for this date, so no other departure time to choose from.",
-      "status": "idea"
+      "priceAud": 511,
+      "body": "Narita, not Haneda - about an hour further out from Asakusa, so allow extra time for the airport run. Booked with a 20kg checked bag included.",
+      "status": "booked"
     },
     {
       "id": "hanoi",
