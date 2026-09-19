@@ -7,7 +7,7 @@
     "homeTz": "Australia/Brisbane",
     "budget": {
       "flights": 2146,
-      "accom": 1440,
+      "accom": 1601,
       "food": 1040,
       "activities": 520
     }
@@ -598,22 +598,22 @@
       "body": "",
       "stays": [
         {
-          "id": "takayama-iwatakan",
-          "title": "Hida Takayama Onsen Minshuku Iwata-kan",
+          "id": "takayama-hanzansha",
+          "title": "Takayama Hanzansha, Private room2",
           "start": "2026-12-09",
           "end": "2026-12-10",
-          "priceAud": 95,
-          "url": "https://www.airbnb.com.au/rooms/1436187405453207911",
-          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-1436187405453207911/original/b63f6f0f-59ea-454b-ada0-9f70f7489c44.jpeg",
+          "priceAud": 79,
+          "url": "https://www.airbnb.com.au/rooms/23443759",
+          "image": "https://a0.muscache.com/im/pictures/hosting/Hosting-23443759/original/a8765f73-5114-4f9a-a7dc-18db8fb267c8.jpeg",
           "images": [
-            "https://a0.muscache.com/im/pictures/miso/Hosting-1436187405453207911/original/b63f6f0f-59ea-454b-ada0-9f70f7489c44.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-1436187405453207911/original/a0ff2cab-9db4-4936-adad-d1d59f0fd0d1.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-1436187405453207911/original/c9fa55ec-3bbe-4315-839b-a22d011e9b1c.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-1436187405453207911/original/8ade1456-498c-448d-bd69-d15ecbaa265c.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-1436187405453207911/original/2d9df965-4ac6-449b-bad4-680b782e75a6.jpeg"
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-23443759/original/a8765f73-5114-4f9a-a7dc-18db8fb267c8.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-23443759/original/f09925ff-d299-40ac-a319-70a6de6f644c.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-23443759/original/83d1ee1a-6266-4fed-a78f-33845fb18150.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-23443759/original/d6f3c436-5fc5-4d8f-be52-063ab1a7e317.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-23443759/original/f0105510-874a-4597-a047-b607779fe457.jpeg"
           ],
-          "body": "Hot spring guesthouse with an open-air and indoor bath, 15 minutes' walk to Miyagawa Asaichi. Shared bathroom.",
-          "status": "idea"
+          "body": "",
+          "status": "booked"
         }
       ],
       "spots": [
@@ -692,7 +692,7 @@
             "https://a0.muscache.com/im/pictures/dc342e19-8590-41da-8238-d5c7f6d4a5b3.jpg"
           ],
           "body": "Private room in a bed and breakfast, 7 minutes' walk from Kanazawa Station. Shared bathroom.",
-          "status": "idea"
+          "status": "booked"
         }
       ],
       "spots": []
@@ -716,32 +716,31 @@
       "climate": "cold",
       "start": "2026-12-11",
       "end": "2026-12-12",
-      "lat": 36.6485,
-      "lng": 138.1946,
+      "lat": 36.734,
+      "lng": 138.4325,
       "tz": "Asia/Tokyo",
       "image": "https://images.unsplash.com/photo-1677283825680-140446cff8a5?q=80&w=1600&auto=format&fit=crop",
       "body": "",
       "stays": [
         {
-          "id": "nagano-mirai-port-505",
-          "title": "MIRAI PORT NAGANO 505",
-          "subtitle": "In front of Zenkoji Omotesando",
+          "id": "nagano-shibu-onsen-kadoya",
+          "title": "Shibu Onsen Kadoya Shinkan",
           "start": "2026-12-11",
           "end": "2026-12-12",
-          "lat": 36.6688,
-          "lng": 138.1867,
-          "priceAud": 126,
-          "url": "https://www.airbnb.com.au/rooms/1719971688331258289",
-          "image": "https://a0.muscache.com/im/pictures/hosting/Hosting-1719971688331258289/original/fdc26a7e-ab19-4b97-ab1f-aee0838e9d33.jpeg",
+          "lat": 36.734,
+          "lng": 138.4325,
+          "priceAud": 89,
+          "url": "https://www.airbnb.com.au/rooms/54347604",
+          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-54347604/original/83eb95a8-d8ee-4b83-b344-02fbad7a798f.jpeg",
           "images": [
-            "https://a0.muscache.com/im/pictures/hosting/Hosting-1719971688331258289/original/fdc26a7e-ab19-4b97-ab1f-aee0838e9d33.jpeg",
-            "https://a0.muscache.com/im/pictures/hosting/Hosting-1719971688331258289/original/8997ccc0-e5d0-4fd8-b4c3-50461076822b.jpeg",
-            "https://a0.muscache.com/im/pictures/hosting/Hosting-1719971688331258289/original/da65c061-684d-4c26-aae4-317feb123e99.jpeg",
-            "https://a0.muscache.com/im/pictures/hosting/Hosting-1719971688331258289/original/3faf1845-e7be-4e5c-9239-f325440fc0ce.jpeg",
-            "https://a0.muscache.com/im/pictures/hosting/Hosting-1719971688331258289/original/2b531584-1664-4971-826c-079d8efd4a6a.jpeg"
+            "https://a0.muscache.com/im/pictures/miso/Hosting-54347604/original/83eb95a8-d8ee-4b83-b344-02fbad7a798f.jpeg",
+            "https://a0.muscache.com/im/pictures/miso/Hosting-54347604/original/7d6f8ef2-56f4-4cb6-8705-15db1ad9a0cd.jpeg",
+            "https://a0.muscache.com/im/pictures/miso/Hosting-54347604/original/506d4bde-a949-4c7a-9fc2-2f71843d378e.jpeg",
+            "https://a0.muscache.com/im/pictures/miso/Hosting-54347604/original/c65d5d1a-d2ad-420e-b205-30fc90f07548.jpeg",
+            "https://a0.muscache.com/im/pictures/miso/Hosting-54347604/original/d1702dac-1fcb-446b-8903-7478640ac722.jpeg"
           ],
-          "body": "Entire unit right on Zenkoji's approach street, 16 minutes' walk to the temple's main hall, 12 minutes to Nagano Station for the Snow Monkey Park bus.",
-          "status": "idea"
+          "body": "A ryokan in Shibu Onsen, the hot spring town about 40 minutes from Nagano city by bus, not in Nagano itself. Quiet hours 9pm to 8am.",
+          "status": "booked"
         }
       ],
       "spots": [
@@ -788,22 +787,22 @@
       "body": "",
       "stays": [
         {
-          "id": "tokyo-triphome-shinokubo",
-          "title": "Triphome Shin-Okubo",
+          "id": "tokyo-okubo-guesthouse",
+          "title": "Okubo Station guesthouse, room 303",
           "start": "2026-12-12",
           "end": "2026-12-15",
-          "priceAud": 120,
-          "url": "https://www.airbnb.com.au/rooms/922400333773827209",
-          "image": "https://a0.muscache.com/im/pictures/prohost-api/Hosting-922400333773827209/original/412ca84b-ee01-4954-ac01-ae9fdeed5374.jpeg",
+          "priceAud": 107,
+          "url": "https://www.airbnb.com.au/rooms/1523076094915123475",
+          "image": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523076094915123475/original/6b67552c-492d-485c-b378-9d3812477a88.jpeg",
           "images": [
-            "https://a0.muscache.com/im/pictures/prohost-api/Hosting-922400333773827209/original/412ca84b-ee01-4954-ac01-ae9fdeed5374.jpeg",
-            "https://a0.muscache.com/im/pictures/prohost-api/Hosting-922711455284771564/original/a8059abf-9ab5-4278-b1ae-ec052f359ef0.jpeg",
-            "https://a0.muscache.com/im/pictures/prohost-api/Hosting-922399038809541586/original/5ddb0306-41b3-447a-ab38-282ac72c2b8b.jpeg",
-            "https://a0.muscache.com/im/pictures/prohost-api/Hosting-922711550989020218/original/f88ed38a-8451-4708-95b7-08daaca15bf6.jpeg",
-            "https://a0.muscache.com/im/pictures/prohost-api/Hosting-922401131292397902/original/95ccd07c-0283-435f-86f9-f28cab338ecd.jpeg"
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1523076094915123475/original/6b67552c-492d-485c-b378-9d3812477a88.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1523076094915123475/original/579ea15b-a421-4445-9947-2f33ddb1a3d5.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1523076094915123475/original/ae8c1bed-c293-4a85-a919-6e61f38dc2b9.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1523076094915123475/original/9ea53a21-0cff-46eb-b354-a34b5f2d9e4b.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1523076094915123475/original/3ef05cd5-5e5c-4b87-8a50-253a9cbe71e2.jpeg"
           ],
-          "body": "4-minute walk to Shin-Okubo Station, right by Korean Street, direct trains to Shinjuku, Shibuya and Ueno.",
-          "status": "idea"
+          "body": "1 minute from Okubo Station, in the Shin-Okubo Korean Town area. Third floor, no lift, and no cooking facilities beyond a shared microwave in the hallway.",
+          "status": "booked"
         }
       ],
       "spots": [
@@ -926,7 +925,7 @@
             "https://a0.muscache.com/im/pictures/hosting/Hosting-1696068627242547971/original/985c819b-f7de-4f07-b2e6-6a1f2daa3def.png"
           ],
           "body": "Cua Bac neighbourhood near Truc Bach Lake, a few minutes from the Old Quarter. Third floor, stairs only, no lift.",
-          "status": "idea"
+          "status": "booked"
         }
       ],
       "spots": []
@@ -957,21 +956,23 @@
       "stays": [
         {
           "id": "halong-alacarte",
-          "title": "A LaCarte Ha Long sea view-quiet-cozy",
+          "title": "Alacarte Ha Long Bay seaside Apartment",
           "start": "2026-12-18",
           "end": "2026-12-20",
-          "priceAud": 47,
-          "url": "https://www.airbnb.com.au/rooms/1048840081985022898",
-          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-1048840081985022898/original/066a1c6d-c4a4-4f0e-82fc-830764d6ad52.jpeg",
+          "lat": 20.9539,
+          "lng": 107.0022,
+          "priceAud": 58,
+          "url": "https://www.airbnb.com.au/rooms/1222797702110152945",
+          "image": "https://a0.muscache.com/im/pictures/hosting/Hosting-1222797702110152945/original/fca8a40a-afea-4418-b227-1475a829436a.jpeg",
           "images": [
-            "https://a0.muscache.com/im/pictures/miso/Hosting-1048840081985022898/original/066a1c6d-c4a4-4f0e-82fc-830764d6ad52.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-1048840081985022898/original/798bb4bd-8d4f-4d98-9008-d76e98cf3202.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-1048840081985022898/original/068676a5-8bea-4c33-a1b8-a2297259d51b.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-1048840081985022898/original/0514e309-b159-43bc-938a-1b41f290c3c8.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-1048840081985022898/original/8b47fdb7-6ede-4e73-b09c-4b3e49ea4bac.jpeg"
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1222797702110152945/original/fca8a40a-afea-4418-b227-1475a829436a.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1222797702110152945/original/17e605e8-799c-46eb-aa34-e1e8357f2ceb.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1222797702110152945/original/834cb9c5-cf28-4e5c-8f2c-27e8e144ad61.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1222797702110152945/original/f1dd365c-7ad8-4fa5-9548-01b617f82ba4.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1222797702110152945/original/6dfc70bc-1e2e-4a93-b468-3998671fc5df.jpeg"
           ],
-          "body": "Sea-view studio in the 5-star A LaCarte building, with a 40th-floor infinity pool and a 2nd-floor all-season pool. About 10 minutes' drive to the town centre.",
-          "status": "idea"
+          "body": "In the 5-star A La Carte building, with a 40th-floor infinity pool and a 2nd-floor all-season pool. About 10 minutes' drive to the town centre.",
+          "status": "booked"
         }
       ],
       "spots": [
@@ -1051,23 +1052,24 @@
       "body": "",
       "stays": [
         {
-          "id": "sapa-center-king",
-          "title": "Sapa Center King: Balcony & Stunning Fansipan View",
-          "subtitle": "Mega View Homestay",
+          "id": "sapa-hidden-forest-nook",
+          "title": "A Hidden Forest Nook 4",
           "start": "2026-12-21",
           "end": "2026-12-22",
-          "priceAud": 53,
-          "url": "https://www.airbnb.com.au/rooms/24017754",
-          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-24017754/original/85d94e11-85a5-4794-b49e-2bdba170b730.jpeg",
+          "lat": 22.332,
+          "lng": 103.8367,
+          "priceAud": 92,
+          "url": "https://www.airbnb.com.au/rooms/1523932516857789889",
+          "image": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523932516857789889/original/6f86cfc9-2018-46b1-8c5f-5d6d9d1beea5.jpeg",
           "images": [
-            "https://a0.muscache.com/im/pictures/miso/Hosting-24017754/original/85d94e11-85a5-4794-b49e-2bdba170b730.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-24017754/original/01f45b60-950d-4512-8032-ae0dee256f13.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-24017754/original/ab26219d-86d2-46f3-bfd1-a2003080f89f.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-24017754/original/92044282-d3ad-4dcb-aada-bb2805104527.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-24017754/original/bc37631b-cae4-4a0d-b5cf-652a9063ef83.jpeg"
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1523932516857789889/original/6f86cfc9-2018-46b1-8c5f-5d6d9d1beea5.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1523932516857789889/original/27a5aa15-6433-4c97-8de2-106a1f8b412b.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1523932516857789889/original/352a8c26-e45f-43c6-81c1-d3d0fefc14bd.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1523932516857789889/original/d21c9740-fc08-4a9f-8ff6-cdc12ccc9286.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1523932516857789889/original/d55b2c3a-0cce-4d42-aadf-28b7b8a240da.jpeg"
           ],
-          "body": "Private room with king bed and balcony, 3 minutes' walk from Sapa centre. Steps down a staircase with no lift, so a bit of a haul with luggage.",
-          "status": "idea"
+          "body": "A wooden cabin in a pine forest behind Matsu Cafe on Fansipan Street, 2.2km out from the bus station. Check in at the cafe counter with your passport (9am-9pm); self check-in instructions if arriving later.",
+          "status": "booked"
         }
       ],
       "spots": [
@@ -1161,22 +1163,22 @@
       "body": "",
       "stays": [
         {
-          "id": "hoian-relax-garden-villa",
-          "title": "Honeymoon Room with Pool View - Relax Garden Villa",
+          "id": "hoian-aura-zen-hotel",
+          "title": "Aura Zen Hotel Hoian, Deluxe Double",
           "start": "2026-12-23",
           "end": "2026-12-25",
-          "priceAud": 24,
-          "url": "https://www.airbnb.com.au/rooms/38503457",
-          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-38503457/original/20442fdd-2894-45e0-baf7-082a885993f2.jpeg",
+          "priceAud": 45,
+          "url": "https://www.airbnb.com.au/rooms/1700599486011047081",
+          "image": "https://a0.muscache.com/im/pictures/hosting/Hosting-1700599486011047081/original/11fa5b4d-3df8-4e56-8fa2-c460e0e8b20c.jpeg",
           "images": [
-            "https://a0.muscache.com/im/pictures/miso/Hosting-38503457/original/20442fdd-2894-45e0-baf7-082a885993f2.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-38503457/original/0147e231-6345-49c7-a643-d7852f9b7db8.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-38503457/original/c9015ad8-c99d-436c-9a90-12a7f7c64e02.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-38503457/original/c8dfa0cd-dc32-4220-a0af-d67de1c6bba2.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-38503457/original/bad1ad5e-853e-4e64-81ad-673e40af0c2a.jpeg"
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1700599486011047081/original/11fa5b4d-3df8-4e56-8fa2-c460e0e8b20c.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1700599486011047081/original/e71cd7f0-75fe-488b-99b7-2871d9c5c407.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1700599486011047081/original/2cd15809-8a6c-44b7-b615-391aca857abf.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1700599486011047081/original/7d194e58-e7eb-4bca-8605-7cee04040a8b.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1700599486011047081/original/d35a7637-6906-4722-851d-67adf666de6a.jpeg"
           ],
-          "body": "1.5km from the Old Town, not walkable, but the villa has a pool and free bicycles to get in.",
-          "status": "idea"
+          "body": "A hotel room booked via Airbnb, 3 minutes' walk to Hoi An's ancient town.",
+          "status": "booked"
         }
       ],
       "spots": []
@@ -1217,19 +1219,22 @@
       "body": "",
       "stays": [
         {
-          "id": "saigon-cozy-suite-ben-thanh",
-          "title": "Cozy Suite, 5 mins to Ben Thanh Market & MRT",
+          "id": "saigon-central-d1-apartment",
+          "title": "Central D1, Minimalist Apt, Big Balcony",
           "start": "2026-12-25",
           "end": "2026-12-27",
-          "priceAud": 34,
-          "url": "https://www.airbnb.com.au/rooms/675357456344507490",
-          "image": "https://a0.muscache.com/im/pictures/hosting/Hosting-675357456344507490/original/bbfca163-ebee-4e79-8b36-ca5fd936ba0c.jpeg",
+          "priceAud": 78,
+          "url": "https://www.airbnb.com.au/rooms/41134800",
+          "image": "https://a0.muscache.com/im/pictures/3b0d9b68-43da-457f-92ef-cc42018e3459.jpg",
           "images": [
-            "https://a0.muscache.com/im/pictures/hosting/Hosting-675357456344507490/original/bbfca163-ebee-4e79-8b36-ca5fd936ba0c.jpeg",
-            "https://a0.muscache.com/im/pictures/hosting/Hosting-675357456344507490/original/72d440c7-5901-4b26-bb03-131e56ed1914.jpeg"
+            "https://a0.muscache.com/im/pictures/3b0d9b68-43da-457f-92ef-cc42018e3459.jpg",
+            "https://a0.muscache.com/im/pictures/4d049551-4195-4530-8b36-c0b269d3c907.jpg",
+            "https://a0.muscache.com/im/pictures/dccc169c-37cd-457d-943b-b9dfca959095.jpg",
+            "https://a0.muscache.com/im/pictures/0fcc3209-ad79-40ee-b43b-fd714aff6f9c.jpg",
+            "https://a0.muscache.com/im/pictures/3159321a-2e9f-4080-a0c6-a8c7e19acbaf.jpg"
           ],
-          "body": "District 1, tucked in a quiet alley 5-10 minutes' walk from Ben Thanh Market. No view, windows face a neighbour's wall.",
-          "status": "idea"
+          "body": "District 1, a big balcony but a tricky staircase up to the apartment (the host sends a video to prepare you). Passport and entry stamp needed for local guest registration before check-in.",
+          "status": "booked"
         }
       ],
       "spots": []
@@ -1258,29 +1263,31 @@
       "climate": "hot",
       "start": "2026-12-27",
       "end": "2026-12-29",
-      "lat": -8.7085,
-      "lng": 115.1729,
+      "lat": -8.4205,
+      "lng": 115.2771,
       "tz": "Asia/Makassar",
       "image": "https://images.unsplash.com/photo-1552925583-42e7c1e6192f?q=80&w=1600&auto=format&fit=crop",
       "body": "",
       "stays": [
         {
-          "id": "bali-surya-homestay",
-          "title": "Surya Homestay - Near to the beach",
+          "id": "bali-tropical-ubud-stay",
+          "title": "Tropical 1BR Stay, Quiet Area Near Ubud",
           "start": "2026-12-27",
           "end": "2026-12-29",
-          "priceAud": 33,
-          "url": "https://www.airbnb.com.au/rooms/1218493359576304104",
-          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-1218493359576304104/original/6ca06f25-fce0-4850-9c30-25457486dd75.jpeg",
+          "lat": -8.4205,
+          "lng": 115.2771,
+          "priceAud": 64,
+          "url": "https://www.airbnb.com.au/rooms/1585406654059877191",
+          "image": "https://a0.muscache.com/im/pictures/hosting/Hosting-1585406654059877191/original/0f8caa74-8c09-4a31-98f5-0233c24fa29e.jpeg",
           "images": [
-            "https://a0.muscache.com/im/pictures/miso/Hosting-1218493359576304104/original/6ca06f25-fce0-4850-9c30-25457486dd75.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-1218493359576304104/original/f3d163a5-eb75-4e7b-bc28-10376b5b4f17.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-1218493359576304104/original/6695fb7a-c698-453d-8d2d-8f391287863a.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-1218493359576304104/original/e79dfe78-0f5b-48fa-8894-5af8464fe960.jpeg",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-1218493359576304104/original/11b2d9dc-2966-4d1a-af72-19a4cd2ca234.jpeg"
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1585406654059877191/original/0f8caa74-8c09-4a31-98f5-0233c24fa29e.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1585406654059877191/original/b81e7af1-1aeb-4193-a205-e619f6db8857.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1585406654059877191/original/2dcba5fc-253d-45e7-b74e-de86afb2ddb8.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1585406654059877191/original/b70f4050-eca8-4caa-b391-e27f745aaf29.jpeg",
+            "https://a0.muscache.com/im/pictures/hosting/Hosting-1585406654059877191/original/de4d922f-45fe-4417-a2ee-8bb64301f749.jpeg"
           ],
-          "body": "Kuta, a two-minute walk from the beach. Bring your own shampoo and toiletries, there's a mart right next door if not.",
-          "status": "idea"
+          "body": "In Tegallalang near Ubud, among the rice terraces, well inland from the coast - a different area to Kuta. Allow extra time getting to the airport for the last flight home.",
+          "status": "booked"
         }
       ],
       "spots": []
