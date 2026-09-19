@@ -6,10 +6,10 @@
     "travellers": 1,
     "homeTz": "Australia/Brisbane",
     "budget": {
-      "flights": 1674,
+      "flights": 1835,
       "accom": 1480,
-      "food": 1800,
-      "activities": 700
+      "food": 1040,
+      "activities": 520
     }
   },
   "legs": [
