@@ -38,7 +38,7 @@ legs: [ leg | transit ]
 `id, type:"leg", title, climate, start, end, lat, lng, tz, image, images[], body, stays[], spots[]`
 
 **transit** (a movement between legs)
-`id, type:"transit", title, mode, duration, flightNo, from, to, departTime, arriveTime, start, end, priceAud, body, status, group`
+`id, type:"transit", title, mode, duration, flightNo, from, to, departTime, arriveTime, start, end, priceAud, body, status, group, image`
 
 **stay** (inside a leg)
 `id, title, subtitle, start, end, lat, lng, priceAud, url, image, body, status`
@@ -59,7 +59,7 @@ legs: [ leg | transit ]
 - Dates are `YYYY-MM-DD`. Legs render in array order, so keep the array chronological.
 - `lat`/`lng` are optional on a leg, stay, or spot — without them, the Map link falls back to a text search of the title. On a **leg** they also place its marker on the route map, so set them for anything that should appear there.
 - `category` on a spot is a short label like `Eat`, `See`, `Shop`, `Drink`. A spot categorised `Eat` counts toward the Food budget line; anything else counts toward Activities.
-- `image` is optional on a leg, stay, or spot — a direct URL to a photo. Without one, the site shows a colour block instead, so it's safe to leave blank. The site crops it consistently on its own, so any aspect ratio works — an Unsplash link is a good default.
+- `image` is optional on a leg, stay, spot, or transit — a direct URL to a photo. Without one, the site shows a colour block instead (or, on a transit, just the mode icon), so it's safe to leave blank. The site crops it consistently on its own, so any aspect ratio works — an Unsplash link is a good default. On a transit it's only worth setting for something visually distinctive (a scenic train, a ferry) — most transit legs are fine with just the icon.
 - `images` is optional on a **leg** only — an array of photo URLs. The calendar cycles through them one per day of that city's stay (day 1 gets `images[0]`, day 2 gets `images[1]`, wrapping around), so the "at a glance" view shows real variety instead of one photo repeated every night. Falls back to the single `image` if `images` isn't set. Keep `image` as `images[0]` so the hero and the first calendar day match.
 - `trip.budget` is optional: `{ flights, accom, food, activities }`, each a whole-trip AUD target. Omit a category, or the whole object, if no target's been set yet — the budget section still shows what's actually been committed so far, it just won't have a target line to compare against. Set these when the human gives you a number, e.g. "budget $6000 for flights".
 
