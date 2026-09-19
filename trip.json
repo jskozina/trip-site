@@ -1142,14 +1142,14 @@
       "body": "",
       "stays": [
         {
-          "id": "saigon-grand-du-lac",
-          "title": "Grand Hotel du Lac Boutique Saigon",
+          "id": "saigon-cozy-suite-ben-thanh",
+          "title": "Cozy Suite, 5 mins to Ben Thanh Market & MRT",
           "start": "2026-12-25",
           "end": "2026-12-27",
-          "priceAud": 208,
-          "url": "https://www.booking.com/hotel/vn/grand-du-lac-boutique-saigon-quan-11.html",
-          "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/709222466.jpg?k=3288e4bf4569adaab15756b38059c396779e1290d6bc92de50c9c6a49a026d57&o=",
-          "body": "District 1, a two-minute walk from Ben Thanh Market.",
+          "priceAud": 34,
+          "url": "https://www.airbnb.com.au/rooms/675357456344507490",
+          "image": "https://a0.muscache.com/im/pictures/hosting/Hosting-675357456344507490/original/bbfca163-ebee-4e79-8b36-ca5fd936ba0c.jpeg",
+          "body": "District 1, tucked in a quiet alley 5-10 minutes' walk from Ben Thanh Market. No view, windows face a neighbour's wall.",
           "status": "idea"
         }
       ],
