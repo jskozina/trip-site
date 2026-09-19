@@ -909,13 +909,14 @@
       "body": "",
       "stays": [
         {
-          "id": "halong-vinpearl",
-          "title": "Vinpearl Resort & Spa Ha Long (or equivalent 5-star)",
+          "id": "halong-alacarte",
+          "title": "A LaCarte Ha Long sea view-quiet-cozy",
           "start": "2026-12-18",
           "end": "2026-12-20",
-          "url": "https://vinpearl.com/en/vinpearl-resort-spa-ha-long",
-          "image": "https://images.unsplash.com/photo-1763402084622-c7da69907b81?q=80&w=1600&auto=format&fit=crop",
-          "body": "5-star resort on Reu Island, a short boat transfer from Bai Chay. On land, not a cruise boat.",
+          "priceAud": 47,
+          "url": "https://www.airbnb.com.au/rooms/1048840081985022898",
+          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-1048840081985022898/original/066a1c6d-c4a4-4f0e-82fc-830764d6ad52.jpeg",
+          "body": "Sea-view studio in the 5-star A LaCarte building, with a 40th-floor infinity pool and a 2nd-floor all-season pool. About 10 minutes' drive to the town centre.",
           "status": "idea"
         }
       ],
