@@ -980,8 +980,8 @@
       "start": "2026-12-21",
       "end": "2026-12-21",
       "group": "Overnight train then transfer to Sapa",
-      "body": "Not actually booked - the Tonkin Heritage invoice only covers the return shuttle. Still need to arrange a taxi or transfer from Lao Cai station on arrival.",
-      "status": "idea"
+      "body": "Shuttle bus booked with the train, straight up into the mountains to Sapa town centre.",
+      "status": "booked"
     },
     {
       "id": "sapa",
