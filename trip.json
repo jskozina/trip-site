@@ -1173,11 +1173,11 @@
       "departTime": "08:00",
       "arriveTime": "13:05",
       "duration": "4h 5m",
-      "priceAud": 207,
+      "priceAud": 193,
       "start": "2026-12-27",
       "end": "2026-12-27",
-      "body": "Deluxe fare for the 20kg checked bag - the Eco fare shown around town is cheaper but carry-on only.",
-      "status": "idea"
+      "body": "Booked with a 20kg checked bag included.",
+      "status": "booked"
     },
     {
       "id": "bali",
@@ -1219,8 +1219,8 @@
       "arriveTime": "05:20",
       "start": "2026-12-29",
       "end": "2026-12-30",
-      "priceAud": 428,
-      "body": "Overnight flight, arrives the next morning. Starter Plus fare for the 20kg checked bag.",
+      "priceAud": 397,
+      "body": "Overnight flight, arrives the next morning. Starter Plus fare, 20kg checked bag and a meal included.",
       "status": "booked"
     }
   ]
