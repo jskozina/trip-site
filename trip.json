@@ -7,7 +7,7 @@
     "homeTz": "Australia/Brisbane",
     "budget": {
       "flights": 1674,
-      "accom": 3085,
+      "accom": 2721,
       "food": 1800,
       "activities": 700
     }
@@ -228,14 +228,14 @@
       "body": "",
       "stays": [
         {
-          "id": "kyoto-richmond-shijo",
-          "title": "Richmond Hotel Premier Kyoto Shijo",
+          "id": "kyoto-hotel-ninja",
+          "title": "Hotel Ninja Black King Double Room",
           "start": "2026-12-05",
           "end": "2026-12-09",
-          "priceAud": 180,
-          "url": "https://www.booking.com/hotel/jp/ritutimondohoterupuremiajing-du-si-tiao.html",
-          "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/479922419.jpg?k=0fa81451792c52bcbafa3c8d2933cfda7903bab56b37d30fcd3efc639c38b51f&o=",
-          "body": "Central Shijo, 450m walk to Karasuma subway station.",
+          "priceAud": 89,
+          "url": "https://www.airbnb.com.au/rooms/1424305472037543716",
+          "image": "https://a0.muscache.com/im/pictures/miso/Hosting-1424305472037543716/original/1bb89b82-b8e7-4131-b557-1c239405a513.jpeg?im_w=1600",
+          "body": "6-minute walk to Kyoto Imperial Palace, Nijo Castle and Seimei Shrine also within walking distance.",
           "status": "idea"
         }
       ],
