@@ -968,7 +968,7 @@
       "end": "2026-12-21",
       "group": "Overnight train then transfer to Sapa",
       "body": "Tonkin Heritage TK15, Indigo Berth cabin. Sleeping on the train, so this doesn't cost a hotel night.",
-      "status": "idea"
+      "status": "booked"
     },
     {
       "id": "laocai-sapa",
@@ -1049,7 +1049,7 @@
       "end": "2026-12-23",
       "group": "Transfer then overnight train to Hanoi",
       "body": "Tonkin Heritage TK16, Indigo Berth cabin, back into Hanoi in time to fly to Da Nang.",
-      "status": "idea"
+      "status": "booked"
     },
     {
       "id": "hanoi-dad",
