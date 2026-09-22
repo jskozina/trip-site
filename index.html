@@ -110,8 +110,7 @@ svg{display:block;flex:none}
   text-transform:none;font-variant-numeric:tabular-nums;margin-top:2px;
 }
 
-/* ---------- calendar grid ---------- */
-.calendar{margin-top:64px}
+/* ---------- section label (shared) ---------- */
 .section-label{
   font-family:var(--mono);
   font-size:11px;letter-spacing:.2em;text-transform:uppercase;
@@ -119,63 +118,23 @@ svg{display:block;flex:none}
   display:flex;align-items:center;gap:10px;
 }
 .section-label::after{content:'';height:1px;background:var(--line);flex:1}
-.cal-wrap{position:relative}
-.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;width:100%}
-.cal-dow{font-size:9.5px;text-transform:uppercase;color:var(--faint);text-align:center;padding-bottom:6px;font-weight:600;letter-spacing:.04em}
-.cal-cell{
-  aspect-ratio:1;position:relative;overflow:hidden;cursor:pointer;
-  background:var(--line);background-size:cover;background-position:center;
-  transition:transform .15s ease;filter:grayscale(.15);
-}
-.cal-cell.day:hover,.cal-cell.day:focus-visible{filter:grayscale(0)}
-.cal-cell.blank{background:transparent;cursor:default}
-.cal-cell.day:hover,.cal-cell.day:focus-visible{transform:scale(1.06);z-index:2}
-.cal-cell .num{
-  position:absolute;top:4px;left:4px;font-family:var(--mono);font-size:10.5px;font-weight:600;
-  color:#fff;background:rgba(30,33,38,.55);padding:2px 5px;border-radius:5px;line-height:1;
-  font-variant-numeric:tabular-nums;
-}
-.cal-cell.transit .num{color:var(--text);background:rgba(255,255,255,.7)}
-.cal-cell .modeicon{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);
-}
-.cal-cell .label{
-  position:absolute;left:0;right:0;bottom:0;padding:12px 6px 5px;
-  background:linear-gradient(0deg,rgba(30,33,38,.75),rgba(30,33,38,0));
-  color:#fff;font-size:9px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;
-  display:flex;align-items:center;gap:4px;
-}
-.cal-cell .label .dot{width:5px;height:5px;border-radius:50%;flex:none}
-.cal-cell .label span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.cal-cell.transit .label{color:var(--faint);background:none;font-family:var(--mono);text-transform:none;padding:0 4px 4px;justify-content:center}
-.cal-cell.today{box-shadow:0 0 0 2px var(--accent)}
 
-.cal-tooltip{
-  position:absolute;z-index:20;min-width:190px;max-width:250px;
-  background:var(--text);color:#fff;padding:14px 16px;
-  box-shadow:0 16px 36px rgba(21,23,27,.28);font-size:13px;
-  opacity:0;visibility:hidden;transform:translateY(4px);
-  transition:opacity .12s ease,transform .12s ease;
+/* ---------- trip index (at a glance) ---------- */
+.trip-index{margin-top:64px}
+.ti-row{
+  display:flex;align-items:center;gap:14px;padding:13px 0;border-top:1px solid var(--line);
+  text-decoration:none;color:inherit;
 }
-.cal-tooltip.show{opacity:1;visibility:visible}
-.cal-tooltip .day{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;opacity:.6}
-.cal-tooltip .title{
-  display:block;font-family:'Fraunces',Georgia,serif;font-size:17px;font-weight:500;
-  margin-top:2px;line-height:1.15;color:inherit;text-decoration:none;
-}
-.cal-tooltip .title:hover{text-decoration:underline}
-.cal-tooltip .meta{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;opacity:.85;margin-top:7px}
-.cal-tooltip .route{font-family:var(--mono);font-size:15px;font-weight:600;margin-top:5px;display:flex;align-items:center;gap:6px}
-.cal-tooltip .route .arrow{opacity:.6;font-size:12px}
-.cal-tooltip .stay{
-  display:flex;align-items:center;gap:9px;margin-top:9px;padding-top:9px;
-  border-top:1px solid rgba(255,255,255,.18);
-}
-.cal-tooltip .stay img{width:36px;height:36px;border-radius:6px;object-fit:cover;flex:none}
-.cal-tooltip .stay-fallback{width:36px;height:36px;border-radius:6px;flex:none;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center}
-.cal-tooltip .stay-name{display:block;font-size:12.5px;font-weight:600;line-height:1.25;color:inherit;text-decoration:none}
-.cal-tooltip .stay-name:hover{text-decoration:underline}
-.cal-tooltip .status-dot{margin-top:9px;color:inherit;opacity:.85}
+.ti-row:first-child{border-top:none}
+.ti-thumb{width:42px;height:42px;flex:none;border-radius:4px;overflow:hidden;background:var(--line)}
+.ti-thumb img{width:100%;height:100%;object-fit:cover}
+.ti-icon{width:42px;height:42px;flex:none;border-radius:4px;background:var(--line);display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.ti-body{flex:1;min-width:0;display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ti-title{font-family:'Fraunces',Georgia,serif;font-size:16.5px;font-weight:500;color:var(--text);margin:0;display:flex;align-items:center;gap:8px}
+.ti-meta{font-family:var(--mono);font-size:11.5px;color:var(--faint);letter-spacing:.02em;white-space:nowrap}
+.ti-row:hover .ti-title{color:var(--accent)}
+.ti-row.today{background:var(--accent-soft);margin:0 -12px;padding-left:12px;padding-right:12px;border-top-color:transparent}
+.ti-row.today+.ti-row{border-top-color:transparent}
 
 /* ---------- map ---------- */
 .mapSection{margin-top:64px}
@@ -339,7 +298,46 @@ svg{display:block;flex:none}
   font-size:20px;
   color:var(--text);font-weight:500;margin:40px 0 20px;
 }
+.subgrp-label{
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;margin:28px 0 16px;
+}
+.subgrp-label:first-of-type{margin-top:4px}
+.subgrp-label svg{opacity:.55}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:32px 24px}
+
+/* ---------- stay feature (full-width accommodation) ---------- */
+.stay-feature{
+  display:flex;gap:36px;margin:0 0 8px;animation:rise .6s ease both;
+}
+.stay-feature .ic-media{flex:0 0 44%;aspect-ratio:4/3;border-radius:2px}
+.stay-feature .ic-body{flex:1;min-width:0;padding:0;display:flex;flex-direction:column;justify-content:center}
+.stay-feature h3{font-size:26px}
+.stay-feature p{font-size:14.5px;max-width:46ch}
+.stay-feature .ic-eyebrow{margin-bottom:9px}
+.stay-feature .row{margin-top:16px}
+@media (max-width:680px){
+  .stay-feature{flex-direction:column;gap:18px}
+  .stay-feature .ic-media{flex:none;width:100%;aspect-ratio:16/11}
+  .stay-feature h3{font-size:22px}
+}
+
+/* ---------- per-city mini map ---------- */
+.mini-map{
+  height:260px;margin:0 0 36px;overflow:hidden;
+  border:1px solid var(--line);background:var(--surface);
+  filter:grayscale(.4) contrast(1.05);
+}
+.mini-pin{
+  width:22px;height:22px;border-radius:50%;background:var(--text);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid #fff;box-shadow:0 1px 5px rgba(21,23,27,.35);
+}
+.mini-pin.stay{background:var(--accent)}
+.mini-pin svg{width:11px;height:11px}
+.mini-popup strong{font-family:'Fraunces',Georgia,serif;font-size:15px;font-weight:500;display:block}
+.mini-popup span{display:block;font-size:11.5px;color:var(--muted);margin-top:2px;font-family:var(--mono)}
 .item-card{display:flex;flex-direction:column}
 .ic-media{aspect-ratio:4/5;background:var(--line);overflow:hidden;position:relative}
 .ic-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .5s ease;filter:grayscale(.1)}
@@ -403,12 +401,9 @@ footer{
     </div>
     <div class="summary" id="summary"></div>
   </header>
-  <section class="calendar" id="calendarWrap" hidden>
-    <p class="section-label">At a glance</p>
-    <div class="cal-wrap">
-      <div class="cal-grid" id="calendar"></div>
-      <div class="cal-tooltip" id="calTooltip"></div>
-    </div>
+  <section class="trip-index" id="tripIndexWrap" hidden>
+    <p class="section-label">Trip at a glance</p>
+    <div id="tripIndex"></div>
   </section>
   <section class="mapSection" id="mapWrap" hidden>
     <p class="section-label">Route</p>
@@ -599,7 +594,7 @@ function transitInner(l, extraClass, idAttr, styleAttr){
   </div>`;
 }
 
-function itemCard(o, kind, city){
+function itemCard(o, kind, city, feature){
   const eyebrow = o.category || o.subtitle || (kind === 'stay' ? 'Stay' : '');
   const meta = dateRange(o.start,o.end);
   const n = nights(o.start,o.end);
@@ -607,16 +602,17 @@ function itemCard(o, kind, city){
              : (o.priceAud ? `<span class="price">${money(o.priceAud)}</span>` : '');
   const bucket = kind === 'stay' ? 'stay' : iconForCategory(o.category);
   const gallery = kind === 'stay' && Array.isArray(o.images) && o.images.length > 1 ? o.images : null;
+  const imgSize = feature ? [900,675] : [500,625];
   let media;
   if(gallery){
-    const imgs = gallery.map(src => `<img src="${esc(resizeImg(src,500,625))}" alt="" loading="lazy">`).join('');
+    const imgs = gallery.map(src => `<img src="${esc(resizeImg(src,imgSize[0],imgSize[1]))}" alt="" loading="lazy">`).join('');
     const dots = gallery.map((_,i) => `<span class="${i===0?'active':''}"></span>`).join('');
     media = `<div class="ic-gallery">${imgs}</div><div class="ic-dots">${dots}</div>`;
   } else {
     const src = o.image || CATEGORY_IMG[bucket];
-    media = `<img src="${esc(resizeImg(src,500,625))}" alt="" loading="lazy">`;
+    media = `<img src="${esc(resizeImg(src,imgSize[0],imgSize[1]))}" alt="" loading="lazy">`;
   }
-  return `<div class="item-card" id="item-${esc(o.id)}">
+  return `<div class="${feature?'stay-feature':'item-card'}" id="item-${esc(o.id)}">
     <div class="ic-media">${media}</div>
     <div class="ic-body">
       ${eyebrow ? `<p class="ic-eyebrow">${esc(eyebrow)}</p>` : ''}
@@ -633,26 +629,6 @@ function itemCard(o, kind, city){
   </div>`;
 }
 
-function buildDayMap(legs){
-  const map = new Map();
-  legs.forEach(item => {
-    if(!item.start) return;
-    const start = d(item.start);
-    const end = item.end ? d(item.end) : start;
-    if(end.getTime() <= start.getTime()){
-      map.set(dkey(start), item);
-    } else {
-      const cur = new Date(start);
-      while(cur.getTime() < end.getTime()){
-        map.set(dkey(cur), item);
-        cur.setDate(cur.getDate()+1);
-      }
-    }
-  });
-  return map;
-}
-
-const DAY_LOOKUP = new Map();
 let ANCHOR_MAP = {};
 
 function computeAnchorMap(legs){
@@ -668,128 +644,57 @@ function computeAnchorMap(legs){
   return map;
 }
 
-function stayForNight(leg, dt){
-  return (leg.stays||[]).find(s => s.start && s.end && dt >= d(s.start) && dt < d(s.end));
+function inRange(today, start, end){
+  const s = d(start), e = end ? d(end) : s;
+  return today >= s && today <= e;
 }
 
-function dayStatusFor(item, dt){
-  if(!item) return null;
-  if(item.type === 'transit') return item.status || 'idea';
-  const stay = stayForNight(item, dt);
-  return stay ? (stay.status || 'idea') : 'idea';
+function tripIndexRowHtml(entry, today){
+  const isTransit = entry.type === 'transit';
+  const isToday = inRange(today, entry.start, entry.end);
+  const thumb = !isTransit && entry.image
+    ? `<span class="ti-thumb"><img src="${esc(resizeImg(entry.image,90,90))}" alt="" loading="lazy"></span>`
+    : `<span class="ti-icon">${svgIcon(isTransit ? iconForMode(entry.mode) : 'pin', 18)}</span>`;
+  const statusColor = entry.statusKey ? statusInfo(entry.statusKey).c : null;
+  const dot = statusColor ? `<span class="ti-dot" style="background:${statusColor}"></span>` : '';
+  const metaBits = isTransit
+    ? [dateRange(entry.start,entry.end), entry.mode, entry.duration].filter(Boolean)
+    : [dateRange(entry.start,entry.end), `${entry.nights} night${entry.nights===1?'':'s'}`];
+  return `<a class="ti-row${isToday?' today':''}" href="#leg-${esc(entry.anchor)}">
+    ${thumb}
+    <span class="ti-body">
+      <span class="ti-title">${dot}${esc(entry.title)}</span>
+      <span class="ti-meta">${esc(metaBits.join(' · '))}</span>
+    </span>
+  </a>`;
 }
 
-function dayLabelFor(item){
-  if(!item) return '';
-  if(item.type === 'transit') return item.departTime || item.mode || '';
-  return item.title;
-}
-
-function calTooltipHtml(item, dt){
-  const dayLbl = new Intl.DateTimeFormat('en-AU',{weekday:'long', day:'numeric', month:'long'}).format(dt);
-  if(!item) return `<span class="day">${esc(dayLbl)}</span><div class="title">Nothing scheduled</div>`;
-
-  if(item.type === 'transit'){
-    const anchor = ANCHOR_MAP[item.id] || item.id;
-    const hasRoute = item.from && item.to;
-    const hasTimes = item.departTime && item.arriveTime;
-    return `<span class="day">${esc(dayLbl)}</span>
-      <a class="title" href="#leg-${esc(anchor)}">${esc(item.title)}</a>
-      <div class="meta">${svgIcon(iconForMode(item.mode),13)}${esc(item.mode||'Transit')}${item.flightNo ? ' · '+esc(item.flightNo) : ''}${item.duration ? ' · '+esc(item.duration) : ''}</div>
-      ${hasRoute ? `<div class="route">${esc(item.from)}<span class="arrow">→</span>${esc(item.to)}${hasTimes ? ` · ${esc(item.departTime)}–${esc(item.arriveTime)}` : ''}</div>` : ''}
-      ${pill(item.status)}`;
-  }
-
-  const n = Math.round((dt - d(item.start))/86400000) + 1;
-  const total = nights(item.start, item.end);
-  const stay = stayForNight(item, dt);
-  const stayHtml = stay ? `<div class="stay">
-      ${stay.image ? `<img src="${esc(resizeImg(stay.image,80,80))}" alt="">` : `<div class="stay-fallback">${svgIcon('bed',16)}</div>`}
-      <div><a class="stay-name" href="#item-${esc(stay.id)}">${esc(stay.title)}</a>${pill(stay.status)}</div>
-    </div>` : '';
-
-  return `<span class="day">${esc(dayLbl)}</span>
-    <a class="title" href="#leg-${esc(item.id)}">${esc(item.title)}</a>
-    <div class="meta">Night ${n} of ${total}</div>
-    ${stayHtml}`;
-}
-
-function showCalTooltip(cellEl){
-  const entry = DAY_LOOKUP.get(cellEl.dataset.key);
-  const tip = $('calTooltip');
-  if(!entry || !tip) return;
-  tip.innerHTML = calTooltipHtml(entry.item, entry.dt);
-  tip.classList.add('show');
-
-  const wrap = cellEl.closest('.cal-wrap');
-  const wrapRect = wrap.getBoundingClientRect();
-  const cellRect = cellEl.getBoundingClientRect();
-  const top = cellRect.top - wrapRect.top;
-  const left = cellRect.left - wrapRect.left;
-  const tipW = tip.offsetWidth, tipH = tip.offsetHeight;
-  let tipTop = top - tipH - 10;
-  if(tipTop < 0) tipTop = top + cellRect.height + 10;
-  let tipLeft = left + cellRect.width/2 - tipW/2;
-  tipLeft = Math.max(4, Math.min(tipLeft, wrapRect.width - tipW - 4));
-  tip.style.top = tipTop + 'px';
-  tip.style.left = tipLeft + 'px';
-}
-
-function hideCalTooltip(){
-  const tip = $('calTooltip');
-  if(tip) tip.classList.remove('show');
-}
-
-function renderCalendar(trip, legs){
-  DAY_LOOKUP.clear();
+function renderTripIndex(trip, legs){
   if(!trip.depart || !trip.return) return '';
-  const map = buildDayMap(legs);
-  const start = d(trip.depart), end = d(trip.return);
   const today = new Date(); today.setHours(0,0,0,0);
-  const todayKey = dkey(today);
-  const days = [];
-  const cur = new Date(start);
-  while(cur.getTime() <= end.getTime()){
-    days.push(new Date(cur));
-    cur.setDate(cur.getDate()+1);
-  }
-
-  const lead = (days[0].getDay()+6)%7;
-  const cells = [];
-  for(let i=0;i<lead;i++) cells.push('<div class="cal-cell blank"></div>');
-  let lastMonth = null;
-  days.forEach(dt => {
-    const item = map.get(dkey(dt));
-    const key = dkey(dt);
-    DAY_LOOKUP.set(key, { item, dt });
-    const isTransit = item && item.type === 'transit';
-    const isToday = key === todayKey;
-    const showMonth = dt.getMonth() !== lastMonth;
-    lastMonth = dt.getMonth();
-
-    let dayImage = null;
-    if(item){
-      const pool = item.images && item.images.length ? item.images : (item.image ? [item.image] : null);
-      if(pool){
-        const dayIdx = Math.round((dt - d(item.start))/86400000);
-        dayImage = pool[dayIdx % pool.length];
+  const rows = [];
+  for(let i=0;i<legs.length;i++){
+    const l = legs[i];
+    if(l.type === 'transit'){
+      if(l.group && legs[i+1] && legs[i+1].type==='transit' && legs[i+1].group===l.group){
+        let j = i+1;
+        while(j<legs.length && legs[j].type==='transit' && legs[j].group===l.group) j++;
+        const last = legs[j-1];
+        rows.push(tripIndexRowHtml({ type:'transit', anchor:l.id, title:l.group,
+          start:l.start, end:last.end, mode:l.mode, duration:null, statusKey:null }, today));
+        i = j-1;
+        continue;
       }
+      rows.push(tripIndexRowHtml({ type:'transit', anchor:l.id, title:l.title,
+        start:l.start, end:l.end, mode:l.mode, duration:l.duration, statusKey:l.status }, today));
+      continue;
     }
-    const bg = dayImage ? `style="background-image:url('${resizeImg(dayImage,140,140)}')"` : '';
-    const icon = isTransit ? `<span class="modeicon">${svgIcon(iconForMode(item.mode),18)}</span>` : '';
-    const numLbl = showMonth ? `${MONTHS[dt.getMonth()]} ${dt.getDate()}` : dt.getDate();
-    const label = dayLabelFor(item);
-    const statusColor = item ? statusInfo(dayStatusFor(item, dt)).c : null;
-    cells.push(`<div class="cal-cell day ${isTransit?'transit':''} ${isToday?'today':''}" data-key="${key}" tabindex="0" ${bg}>
-      ${icon}
-      <span class="num">${numLbl}</span>
-      ${label ? `<span class="label">${statusColor?`<span class="dot" style="background:${statusColor}"></span>`:''}<span>${esc(label)}</span></span>` : ''}
-    </div>`);
-  });
-
-  return `
-    <div class="cal-dow">M</div><div class="cal-dow">T</div><div class="cal-dow">W</div><div class="cal-dow">T</div><div class="cal-dow">F</div><div class="cal-dow">S</div><div class="cal-dow">S</div>
-    ${cells.join('')}`;
+    const primaryStay = (l.stays||[])[0];
+    rows.push(tripIndexRowHtml({ type:'leg', anchor:l.id, title:l.title,
+      start:l.start, end:l.end, image:l.image, nights:nights(l.start,l.end),
+      statusKey: primaryStay ? (primaryStay.status||'idea') : null }, today));
+  }
+  return rows.join('');
 }
 
 function renderMap(legs){
@@ -815,6 +720,49 @@ function renderMap(legs){
   });
 
   map.fitBounds(latlngs, { padding:[28,28] });
+}
+
+function groupSpotsByCategory(spots){
+  const order = ['Eat','See','Drink','Shop'];
+  const groups = {};
+  spots.forEach(s => {
+    const cat = s.category || 'See';
+    (groups[cat] = groups[cat] || []).push(s);
+  });
+  return Object.keys(groups).sort((a,b) => {
+    const ia = order.indexOf(a), ib = order.indexOf(b);
+    if(ia === -1 && ib === -1) return a.localeCompare(b);
+    if(ia === -1) return 1;
+    if(ib === -1) return -1;
+    return ia - ib;
+  }).map(cat => ({ cat, items: groups[cat] }));
+}
+
+function renderLegMiniMap(el, leg){
+  if(!el || typeof L === 'undefined') return;
+  const stay = (leg.stays||[])[0];
+  const points = [];
+  if(stay){
+    const lat = stay.lat || leg.lat, lng = stay.lng || leg.lng;
+    if(lat && lng) points.push({ lat, lng, title: stay.title, kind:'bed', anchor:`item-${stay.id}` });
+  }
+  (leg.spots||[]).forEach(s => {
+    if(s.lat && s.lng) points.push({ lat:s.lat, lng:s.lng, title:s.title, kind:iconForCategory(s.category), anchor:`item-${s.id}` });
+  });
+  if(points.length < 2){ el.style.display = 'none'; return; }
+
+  const map = L.map(el, { scrollWheelZoom:false });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+    maxZoom: 19
+  }).addTo(map);
+
+  points.forEach(p => {
+    const icon = L.divIcon({ className:'', html:`<div class="mini-pin ${p.kind==='bed'?'stay':''}">${svgIcon(p.kind,11)}</div>`, iconSize:[22,22], iconAnchor:[11,11] });
+    L.marker([p.lat,p.lng], { icon }).addTo(map)
+      .bindPopup(`<div class="mini-popup"><a href="#${esc(p.anchor)}"><strong>${esc(p.title)}</strong></a></div>`);
+  });
+  map.fitBounds(points.map(p => [p.lat,p.lng]), { padding:[26,26], maxZoom:16 });
 }
 
 function budgetItemHtml(title, cost, href, status, city){
@@ -958,11 +906,11 @@ function render(data){
     animateCount($('statusNum'), days);
   }
 
-  // calendar grid
-  const calGrid = renderCalendar(t, legs);
-  if(calGrid){
-    $('calendarWrap').hidden = false;
-    $('calendar').innerHTML = calGrid;
+  // trip index
+  const indexRows = renderTripIndex(t, legs);
+  if(indexRows){
+    $('tripIndexWrap').hidden = false;
+    $('tripIndex').innerHTML = indexRows;
   }
 
   // route map
@@ -986,6 +934,7 @@ function render(data){
   }
 
   const parts = [];
+  const miniMapTargets = [];
   let cityIdx = 0;
   for(let i=0;i<legs.length;i++){
     const l = legs[i];
@@ -1014,12 +963,19 @@ function render(data){
     const n = nights(l.start,l.end);
     const isNow = current && current.id === l.id;
     const lt = l.tz ? localTime(l.tz) : null;
-    const staysHtml = (l.stays||[]).map(s => itemCard(s,'stay',l.title)).join('');
-    const spotsHtml = (l.spots||[]).map(s => itemCard(s,'spot',l.title)).join('');
+    const staysHtml = (l.stays||[]).map(s => itemCard(s,'stay',l.title,true)).join('');
+    const spotGroups = groupSpotsByCategory(l.spots||[]);
+    const spotsHtml = spotGroups.map(g => `
+        <p class="subgrp-label">${svgIcon(iconForCategory(g.cat),13)}${esc(g.cat)}</p>
+        <div class="card-grid">${g.items.map(s => itemCard(s,'spot',l.title)).join('')}</div>
+      `).join('');
+    const mapId = `legmap-${esc(l.id)}`;
     const legAccom = (l.stays||[]).reduce((s,x) => s + ((x.priceAud||0) * (nights(x.start,x.end)||0)), 0);
     const media = l.image
       ? `<img src="${esc(resizeImg(l.image,2200,1600))}" alt="" loading="lazy">`
       : `<div class="mono">${esc(initial(l.title))}</div>`;
+
+    if(spotGroups.length) miniMapTargets.push(l);
 
     parts.push(`<section class="leg-card ${isNow?'now':''}" id="leg-${esc(l.id)}" data-id="${esc(l.id)}" style="animation-delay:${delay}ms">
       <div class="leg-media">
@@ -1038,13 +994,28 @@ function render(data){
           ${legAccom ? `<p class="spend">${svgIcon('bed',13)}${money(legAccom)} accommodation</p>` : ''}
           ${l.body ? `<p class="body-text">${esc(l.body)}</p>` : ''}
         </div>
-        ${staysHtml ? `<p class="grp-label">Sleeping</p><div class="card-grid">${staysHtml}</div>` : ''}
-        ${spotsHtml ? `<p class="grp-label">Eat, see, do</p><div class="card-grid">${spotsHtml}</div>` : ''}
+        ${staysHtml ? `<p class="grp-label">Sleeping</p>${staysHtml}` : ''}
+        ${spotsHtml ? `<p class="grp-label">Eat, see, do</p><div class="mini-map" id="${mapId}"></div>${spotsHtml}` : ''}
         <div class="row"><a class="lnk" href="${mapLink(l)}" target="_blank" rel="noopener">Open in Maps</a></div>
       </div>
     </section>`);
   }
   $('timeline').innerHTML = parts.join('');
+
+  if(miniMapTargets.length && typeof L !== 'undefined'){
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if(!entry.isIntersecting) return;
+        const leg = miniMapTargets.find(l => `legmap-${l.id}` === entry.target.id);
+        if(leg) renderLegMiniMap(entry.target, leg);
+        obs.unobserve(entry.target);
+      });
+    }, { rootMargin: '200px' });
+    miniMapTargets.forEach(l => {
+      const el = document.getElementById(`legmap-${l.id}`);
+      if(el) io.observe(el);
+    });
+  }
 
   $('footer').innerHTML = `${cities.length} cities · ${totalNights} nights · ${t.travellers||2} travelling.
     Prices are estimates, not quotes. Edit <code>trip.json</code> and push to update.`;
@@ -1082,35 +1053,6 @@ async function boot(){
   render(data);
 }
 
-$('calendar').addEventListener('mouseover', e => {
-  const cell = e.target.closest('.cal-cell.day');
-  if(cell) showCalTooltip(cell);
-});
-$('calendar').addEventListener('mouseout', e => {
-  const cell = e.target.closest('.cal-cell.day');
-  const toEl = e.relatedTarget && e.relatedTarget.closest;
-  const staysWithin = toEl && (e.relatedTarget.closest('.cal-cell.day') || e.relatedTarget.closest('.cal-tooltip'));
-  if(cell && !staysWithin) hideCalTooltip();
-});
-$('calTooltip').addEventListener('mouseleave', e => {
-  const toEl = e.relatedTarget && e.relatedTarget.closest;
-  const staysWithin = toEl && e.relatedTarget.closest('.cal-cell.day');
-  if(!staysWithin) hideCalTooltip();
-});
-$('calendar').addEventListener('click', e => {
-  const cell = e.target.closest('.cal-cell.day');
-  if(cell) showCalTooltip(cell);
-});
-$('calendar').addEventListener('keydown', e => {
-  if(e.key !== 'Enter' && e.key !== ' ') return;
-  const cell = e.target.closest('.cal-cell.day');
-  if(!cell) return;
-  e.preventDefault();
-  showCalTooltip(cell);
-});
-document.addEventListener('click', e => {
-  if(!e.target.closest('.cal-wrap')) hideCalTooltip();
-});
 document.addEventListener('scroll', e => {
   const gallery = e.target.closest && e.target.closest('.ic-gallery');
   if(!gallery) return;
