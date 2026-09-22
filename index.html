@@ -325,7 +325,7 @@ svg{display:block;flex:none}
 
 /* ---------- per-city mini map ---------- */
 .mini-map{
-  height:260px;margin:0 0 36px;overflow:hidden;
+  height:300px;margin:0 0 36px;overflow:hidden;
   border:1px solid var(--line);background:var(--surface);
   filter:grayscale(.4) contrast(1.05);
 }
@@ -336,8 +336,16 @@ svg{display:block;flex:none}
 }
 .mini-pin.stay{background:var(--accent)}
 .mini-pin svg{width:11px;height:11px}
+.mini-pin.you{background:#2E5E8C;box-shadow:0 0 0 4px rgba(46,94,140,.28),0 1px 5px rgba(21,23,27,.35);animation:pulse 1.8s ease-in-out infinite}
+.mini-popup img{width:100%;margin-bottom:8px;aspect-ratio:2.4/1;object-fit:cover}
 .mini-popup strong{font-family:'Fraunces',Georgia,serif;font-size:15px;font-weight:500;display:block}
 .mini-popup span{display:block;font-size:11.5px;color:var(--muted);margin-top:2px;font-family:var(--mono)}
+.mini-locate a{
+  width:28px;height:28px;display:flex;align-items:center;justify-content:center;
+  background:#fff;color:var(--text);cursor:pointer;
+}
+.mini-locate a:hover{color:var(--accent)}
+.mini-locate.loading a{color:var(--faint);animation:pulse 1s ease-in-out infinite}
 .item-card{display:flex;flex-direction:column}
 .ic-media{aspect-ratio:4/5;background:var(--line);overflow:hidden;position:relative}
 .ic-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .5s ease;filter:grayscale(.1)}
@@ -441,6 +449,8 @@ const ICONS = {
   see: '<path d="M1 12S5 5 12 5s11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/>',
   shop: '<path d="M6 8h12l-1.2 12.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',
   drink: '<path d="M5 3h14l-1.6 15.2a2 2 0 0 1-2 1.8H8.6a2 2 0 0 1-2-1.8L5 3Z"/><path d="M6.5 8h11"/>',
+  do: '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>',
+  locate: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/>',
   idea: '<path d="M9 18h6"/><path d="M10 21.5h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1v.2h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2Z"/>',
   shortlist: '<path d="M6 3h12v18l-6-4-6 4V3Z"/>',
   held: '<circle cx="12" cy="12" r="9"/><path d="M12 7.5v5l3.5 2"/>',
@@ -722,20 +732,55 @@ function renderMap(legs){
   map.fitBounds(latlngs, { padding:[28,28] });
 }
 
+function spotBucket(category){
+  const c = (category||'').toLowerCase();
+  if(c === 'eat') return 'Eat';
+  if(c === 'see') return 'See';
+  return 'Do';
+}
 function groupSpotsByCategory(spots){
-  const order = ['Eat','See','Drink','Shop'];
+  const order = ['Eat','See','Do'];
   const groups = {};
   spots.forEach(s => {
-    const cat = s.category || 'See';
-    (groups[cat] = groups[cat] || []).push(s);
+    const bucket = spotBucket(s.category);
+    (groups[bucket] = groups[bucket] || []).push(s);
   });
-  return Object.keys(groups).sort((a,b) => {
-    const ia = order.indexOf(a), ib = order.indexOf(b);
-    if(ia === -1 && ib === -1) return a.localeCompare(b);
-    if(ia === -1) return 1;
-    if(ib === -1) return -1;
-    return ia - ib;
-  }).map(cat => ({ cat, items: groups[cat] }));
+  return order.filter(cat => groups[cat]).map(cat => ({ cat, items: groups[cat] }));
+}
+
+function miniPopupHtml(p){
+  const n = p.kind === 'bed' ? nights(p.start,p.end) : 0;
+  const priceTxt = typeof p.priceAud === 'number'
+    ? (n ? `${money(p.priceAud)}/night` : money(p.priceAud))
+    : '';
+  const statusTxt = p.status ? statusInfo(p.status).label : '';
+  const img = p.image ? `<img src="${esc(resizeImg(p.image,260,108))}" alt="">` : '';
+  const meta = [p.label, priceTxt, statusTxt].filter(Boolean).join(' · ');
+  return `<div class="mini-popup">${img}<a href="#${esc(p.anchor)}"><strong>${esc(p.title)}</strong></a>${meta ? `<span>${esc(meta)}</span>` : ''}</div>`;
+}
+
+function addLocateControl(map, pointLatLngs){
+  const control = L.control({ position: 'topright' });
+  control.onAdd = function(){
+    const div = L.DomUtil.create('div', 'leaflet-bar mini-locate');
+    div.innerHTML = `<a href="#" title="Show my location" role="button" aria-label="Show my location">${svgIcon('locate',15)}</a>`;
+    L.DomEvent.disableClickPropagation(div);
+    L.DomEvent.on(div, 'click', e => {
+      e.preventDefault();
+      if(!navigator.geolocation) return;
+      div.classList.add('loading');
+      navigator.geolocation.getCurrentPosition(pos => {
+        div.classList.remove('loading');
+        const { latitude, longitude } = pos.coords;
+        const icon = L.divIcon({ className:'', html:`<div class="mini-pin you"></div>`, iconSize:[18,18], iconAnchor:[9,9] });
+        if(map._youMarker) map._youMarker.setLatLng([latitude, longitude]);
+        else map._youMarker = L.marker([latitude, longitude], { icon }).addTo(map).bindPopup('You are here');
+        map.fitBounds([...pointLatLngs, [latitude, longitude]], { padding:[26,26], maxZoom:16 });
+      }, () => { div.classList.remove('loading'); }, { enableHighAccuracy:true, timeout:8000 });
+    });
+    return div;
+  };
+  control.addTo(map);
 }
 
 function renderLegMiniMap(el, leg){
@@ -744,10 +789,12 @@ function renderLegMiniMap(el, leg){
   const points = [];
   if(stay){
     const lat = stay.lat || leg.lat, lng = stay.lng || leg.lng;
-    if(lat && lng) points.push({ lat, lng, title: stay.title, kind:'bed', anchor:`item-${stay.id}` });
+    if(lat && lng) points.push({ lat, lng, title: stay.title, kind:'bed', anchor:`item-${stay.id}`,
+      label:'Stay', priceAud: stay.priceAud, start: stay.start, end: stay.end, status: stay.status, image: stay.image });
   }
   (leg.spots||[]).forEach(s => {
-    if(s.lat && s.lng) points.push({ lat:s.lat, lng:s.lng, title:s.title, kind:iconForCategory(s.category), anchor:`item-${s.id}` });
+    if(s.lat && s.lng) points.push({ lat:s.lat, lng:s.lng, title:s.title, kind:iconForCategory(s.category), anchor:`item-${s.id}`,
+      label: s.category || 'See', priceAud: s.priceAud, status: s.status, image: s.image });
   });
   if(points.length < 2){ el.style.display = 'none'; return; }
 
@@ -759,10 +806,11 @@ function renderLegMiniMap(el, leg){
 
   points.forEach(p => {
     const icon = L.divIcon({ className:'', html:`<div class="mini-pin ${p.kind==='bed'?'stay':''}">${svgIcon(p.kind,11)}</div>`, iconSize:[22,22], iconAnchor:[11,11] });
-    L.marker([p.lat,p.lng], { icon }).addTo(map)
-      .bindPopup(`<div class="mini-popup"><a href="#${esc(p.anchor)}"><strong>${esc(p.title)}</strong></a></div>`);
+    L.marker([p.lat,p.lng], { icon }).addTo(map).bindPopup(miniPopupHtml(p));
   });
-  map.fitBounds(points.map(p => [p.lat,p.lng]), { padding:[26,26], maxZoom:16 });
+  const latlngs = points.map(p => [p.lat,p.lng]);
+  map.fitBounds(latlngs, { padding:[26,26], maxZoom:16 });
+  addLocateControl(map, latlngs);
 }
 
 function budgetItemHtml(title, cost, href, status, city){
@@ -966,7 +1014,7 @@ function render(data){
     const staysHtml = (l.stays||[]).map(s => itemCard(s,'stay',l.title,true)).join('');
     const spotGroups = groupSpotsByCategory(l.spots||[]);
     const spotsHtml = spotGroups.map(g => `
-        <p class="subgrp-label">${svgIcon(iconForCategory(g.cat),13)}${esc(g.cat)}</p>
+        <p class="subgrp-label">${svgIcon(g.cat.toLowerCase(),13)}${esc(g.cat)}</p>
         <div class="card-grid">${g.items.map(s => itemCard(s,'spot',l.title)).join('')}</div>
       `).join('');
     const mapId = `legmap-${esc(l.id)}`;
