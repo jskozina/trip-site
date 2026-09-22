@@ -88,6 +88,8 @@
           "id": "osaka-wad",
           "title": "Wad Osaka",
           "category": "Drink",
+          "lat": 34.6776883,
+          "lng": 135.4989189,
           "image": "https://images.unsplash.com/photo-1594136604897-29f7e564db27?q=80&w=1600&auto=format&fit=crop",
           "body": "Intimate tea house and ceramics gallery between Hommachi and Shinsaibashi - pick your own cup for the matcha.",
           "status": "idea"
@@ -96,6 +98,8 @@
           "id": "osaka-tap-tap-lab",
           "title": "Tap Tap Lab",
           "category": "See",
+          "lat": 34.6530837,
+          "lng": 135.5054844,
           "image": "https://images.unsplash.com/photo-1720529409192-587a1ef766b2?q=80&w=1600&auto=format&fit=crop",
           "body": "Hammer a genuine vintage coin into a handmade ring while you wait, in Shinsekai.",
           "status": "idea"
@@ -104,6 +108,8 @@
           "id": "osaka-dotonbori",
           "title": "Dotonbori (GiGO)",
           "category": "See",
+          "lat": 34.6686471,
+          "lng": 135.5030983,
           "image": "https://images.unsplash.com/photo-1749498693255-f01404fe0b51?q=80&w=1600&auto=format&fit=crop",
           "body": "Dotonbori's arcade, part of the GiGO chain.",
           "status": "idea"
@@ -112,6 +118,8 @@
           "id": "osaka-shinsaibashi-st",
           "title": "Shinsaibashi",
           "category": "Shop",
+          "lat": 34.6725086,
+          "lng": 135.5013657,
           "image": "https://images.unsplash.com/photo-1522972592771-e273fa3e95b0?q=80&w=1600&auto=format&fit=crop",
           "status": "idea"
         },
@@ -119,6 +127,8 @@
           "id": "osaka-namba",
           "title": "Namba",
           "category": "See",
+          "lat": 34.6657531,
+          "lng": 135.5010362,
           "image": "https://images.unsplash.com/photo-1758964112730-c0288baa8ac0?q=80&w=1600&auto=format&fit=crop",
           "status": "idea"
         },
@@ -126,6 +136,8 @@
           "id": "osaka-object",
           "title": "Object Osaka",
           "category": "See",
+          "lat": 34.6708959,
+          "lng": 135.4992031,
           "image": "https://images.unsplash.com/photo-1759466752889-5774bc433fea?q=80&w=1600&auto=format&fit=crop",
           "body": "DIY patch shop - customise pouches, keychains and passport covers.",
           "status": "idea"
@@ -134,6 +146,8 @@
           "id": "osaka-shinsekai",
           "title": "Shinsekai",
           "category": "See",
+          "lat": 34.6516013,
+          "lng": 135.5059562,
           "image": "https://images.unsplash.com/photo-1741514229718-0a7d92098bdd?q=80&w=1600&auto=format&fit=crop",
           "status": "idea"
         },
@@ -141,6 +155,8 @@
           "id": "osaka-katsuoji",
           "title": "Katsuoji Temple",
           "category": "See",
+          "lat": 34.8657752,
+          "lng": 135.491087,
           "image": "https://images.unsplash.com/photo-1759373286168-e104625bd8fd?q=80&w=1600&auto=format&fit=crop",
           "body": "Known for the thousands of daruma dolls covering the hillside.",
           "status": "idea"
@@ -149,6 +165,8 @@
           "id": "osaka-namba-yasaka",
           "title": "Namba Yasaka Shrine",
           "category": "See",
+          "lat": 34.6615592,
+          "lng": 135.4967039,
           "image": "https://images.unsplash.com/photo-1766119407364-574078322319?q=80&w=1600&auto=format&fit=crop",
           "body": "Famous for its giant lion-head shaped stage.",
           "status": "idea"
@@ -157,6 +175,8 @@
           "id": "osaka-maze-shinsekai",
           "title": "Maze Shinsekai",
           "category": "Eat",
+          "lat": 34.6532837,
+          "lng": 135.5073717,
           "image": "https://images.unsplash.com/photo-1744638628542-12578d73179b?q=80&w=1600&auto=format&fit=crop",
           "body": "Relaxed brunch cafe near Ebisucho Station.",
           "status": "idea"
@@ -165,6 +185,8 @@
           "id": "osaka-yakiniku-wabisabi",
           "title": "Yakiniku Wabisabi",
           "category": "Eat",
+          "lat": 34.6680372,
+          "lng": 135.5027967,
           "image": "https://images.unsplash.com/photo-1566904326734-e17fb7905d35?q=80&w=1600&auto=format&fit=crop",
           "body": "Premium wagyu yakiniku tucked into Hozenji Yokocho, from a chef with 20+ years at a Michelin-starred kitchen.",
           "status": "idea"
@@ -173,6 +195,8 @@
           "id": "osaka-bar-nayuta",
           "title": "Bar Nayuta",
           "category": "Drink",
+          "lat": 34.6720318,
+          "lng": 135.4983297,
           "image": "https://plus.unsplash.com/premium_photo-1674837816247-130ad8119752?q=80&w=1600&auto=format&fit=crop",
           "body": "Tiny Amerika-Mura speakeasy - no cocktail list, just bespoke drinks built around what you like. Ranked among Asia's 50 Best Bars.",
           "status": "idea"
@@ -181,6 +205,8 @@
           "id": "osaka-grenier",
           "title": "Grenier",
           "category": "Eat",
+          "lat": 34.7035422,
+          "lng": 135.4991909,
           "image": "https://images.unsplash.com/photo-1687722157890-9f58d5cd26d4?q=80&w=1600&auto=format&fit=crop",
           "body": "Patisserie near Umeda Station, known for its mille-feuille and the only shop in Osaka pouring Lyon's CHA YUAN tea.",
           "status": "idea"
@@ -189,6 +215,8 @@
           "id": "osaka-chopstick-making",
           "title": "Chopstick Making Workshop",
           "category": "See",
+          "lat": 34.6723118,
+          "lng": 135.5024588,
           "image": "https://plus.unsplash.com/premium_photo-1745324363033-b9753e0a1eb5?q=80&w=1600&auto=format&fit=crop",
           "body": "Shape and finish your own pair of chopsticks from about 30 types of wood, near Dotonbori.",
           "status": "idea"
@@ -197,6 +225,8 @@
           "id": "osaka-chukasoba-mugen",
           "title": "Chukasoba Mugen",
           "category": "Eat",
+          "lat": 34.6966027,
+          "lng": 135.4722006,
           "image": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=1600&auto=format&fit=crop",
           "body": "Seven-time Michelin Bib Gourmand ramen, a fixture of Osaka's ramen scene for 15 years.",
           "status": "idea"
@@ -276,6 +306,8 @@
           "id": "kyoto-rennosuke",
           "title": "Rennosuke",
           "category": "Eat",
+          "lat": 35.0263798,
+          "lng": 135.7360768,
           "image": "https://images.unsplash.com/photo-1591325418441-ff678baf78ef?q=80&w=1600&auto=format&fit=crop",
           "body": "Michelin Bib Gourmand ramen - Kyoto wheat noodles in clear seafood dashi, just 10 seats.",
           "status": "idea"
@@ -284,6 +316,8 @@
           "id": "kyoto-nishiki-market",
           "title": "Nishiki Market",
           "category": "Eat",
+          "lat": 35.0050258,
+          "lng": 135.764723,
           "image": "https://images.unsplash.com/photo-1742238545732-2346872e6049?q=80&w=1600&auto=format&fit=crop",
           "body": "Kyoto's Kitchen - a narrow covered arcade of food stalls running five blocks.",
           "status": "idea"
@@ -292,6 +326,8 @@
           "id": "kyoto-kiyomizudera",
           "title": "Kiyomizu-dera",
           "category": "See",
+          "lat": 34.9946662,
+          "lng": 135.784661,
           "image": "https://images.unsplash.com/photo-1578399337856-c661ba5e5cec?q=80&w=1600&auto=format&fit=crop",
           "body": "Famous wooden stage jutting out over the hillside, built without a single nail.",
           "status": "idea"
@@ -300,6 +336,8 @@
           "id": "kyoto-chaochao-gyoza",
           "title": "Chao Chao Gyoza",
           "category": "Eat",
+          "lat": 35.0084706,
+          "lng": 135.7705683,
           "image": "https://plus.unsplash.com/premium_photo-1661431071835-eaf149720818?q=80&w=1600&auto=format&fit=crop",
           "body": "Cheap, cheerful gyoza and beer chain that started in Osaka.",
           "status": "idea"
@@ -308,6 +346,8 @@
           "id": "kyoto-fushimi-inari",
           "title": "Fushimi Inari",
           "category": "See",
+          "lat": 34.9676945,
+          "lng": 135.7791876,
           "image": "https://images.unsplash.com/photo-1746335825227-a8ad7b6f9a38?q=80&w=1600&auto=format&fit=crop",
           "body": "Thousands of vermilion torii gates climbing the mountain - free entry, open 24 hours.",
           "status": "idea"
@@ -316,6 +356,8 @@
           "id": "kyoto-glanta",
           "title": "Glanta Kyoto",
           "category": "Shop",
+          "lat": 34.9985227,
+          "lng": 135.7808847,
           "image": "https://images.unsplash.com/photo-1514612497953-05d1e5e171fa?q=80&w=1600&auto=format&fit=crop",
           "body": "Handmade rings crafted in minutes from about 200 designs, in a 100-year-old townhouse.",
           "status": "idea"
@@ -324,6 +366,8 @@
           "id": "kyoto-ninenzaka",
           "title": "Ninenzaka",
           "category": "See",
+          "lat": 34.9983989,
+          "lng": 135.7808431,
           "image": "https://images.unsplash.com/photo-1755457511018-038d9877d1cb?q=80&w=1600&auto=format&fit=crop",
           "body": "Preserved sloped lane of traditional shops leading up to Kiyomizu-dera.",
           "status": "idea"
@@ -332,6 +376,8 @@
           "id": "kyoto-sannenzaka",
           "title": "Sannenzaka",
           "category": "See",
+          "lat": 34.9966644,
+          "lng": 135.781008,
           "image": "https://images.unsplash.com/photo-1754394470166-788cd0f2f4b3?q=80&w=1600&auto=format&fit=crop",
           "body": "The steeper, older neighbour to Ninenzaka - legend says a stumble here brings bad luck.",
           "status": "idea"
@@ -340,6 +386,8 @@
           "id": "kyoto-heian-jingu",
           "title": "Heian Jingu",
           "category": "See",
+          "lat": 35.0159823,
+          "lng": 135.7824263,
           "image": "https://images.unsplash.com/photo-1754672519581-6cc77e8a3a00?q=80&w=1600&auto=format&fit=crop",
           "body": "Vermilion shrine with one of Japan's largest torii gates and a strolling garden behind it.",
           "status": "idea"
@@ -348,6 +396,8 @@
           "id": "kyoto-blue-bottle",
           "title": "Blue Bottle Coffee",
           "category": "Drink",
+          "lat": 35.0113797,
+          "lng": 135.7894944,
           "image": "https://images.unsplash.com/photo-1553962311-62f2471b159d?q=80&w=1600&auto=format&fit=crop",
           "status": "idea"
         },
@@ -355,6 +405,8 @@
           "id": "kyoto-nanzenji",
           "title": "Nanzen-ji",
           "category": "See",
+          "lat": 35.0114138,
+          "lng": 135.7944841,
           "image": "https://images.unsplash.com/photo-1753544998359-ebb32c65ae47?q=80&w=1600&auto=format&fit=crop",
           "body": "Zen temple with a brick Meiji-era aqueduct running through the grounds.",
           "status": "idea"
@@ -363,6 +415,8 @@
           "id": "kyoto-philosophers-path",
           "title": "Philosopher's Path",
           "category": "See",
+          "lat": 35.0214532,
+          "lng": 135.7942948,
           "image": "https://images.unsplash.com/photo-1757829316010-029a3476512a?q=80&w=1600&auto=format&fit=crop",
           "body": "Canal-side walking path between Ginkaku-ji and Nanzen-ji, named for a philosophy professor who walked it daily.",
           "status": "idea"
@@ -371,6 +425,8 @@
           "id": "kyoto-flow-nosy-coffee",
           "title": "Flow by Nozy Coffee",
           "category": "Drink",
+          "lat": 35.002121,
+          "lng": 135.7703744,
           "image": "https://images.unsplash.com/photo-1750583834656-cfa910e44b22?q=80&w=1600&auto=format&fit=crop",
           "body": "Kyoto's first outpost of Tokyo roaster Nozy Coffee, in an old townhouse between the Takase and Kamo rivers - coffee by day, cocktails by night.",
           "status": "idea"
@@ -379,6 +435,8 @@
           "id": "kyoto-chidoritei",
           "title": "Chidoritei",
           "category": "Eat",
+          "lat": 35.0019444,
+          "lng": 135.7722222,
           "image": "https://images.unsplash.com/photo-1548907368-35e5ea8cbc8a?q=80&w=1600&auto=format&fit=crop",
           "body": "Family-run sushi restaurant in Gion, over 100 years old, known for its saba-zushi.",
           "status": "idea"
@@ -387,6 +445,8 @@
           "id": "kyoto-kagizen",
           "title": "Kagizen Yoshifusa",
           "category": "Eat",
+          "lat": 35.0039706,
+          "lng": 135.7747447,
           "image": "https://images.unsplash.com/photo-1779829278703-1967d99a7a38?q=80&w=1600&auto=format&fit=crop",
           "body": "Kyoto's oldest wagashi shop, trading since 1701 - try the kuzukiri, a chilled arrowroot noodle dessert.",
           "status": "idea"
@@ -395,6 +455,8 @@
           "id": "kyoto-gion",
           "title": "Gion",
           "category": "See",
+          "lat": 35.0037816,
+          "lng": 135.777245,
           "image": "https://images.unsplash.com/photo-1759200263591-3e5394f4b4ff?q=80&w=1600&auto=format&fit=crop",
           "body": "Kyoto's geisha district - best explored early evening.",
           "status": "idea"
@@ -403,6 +465,8 @@
           "id": "kyoto-gion-duck-rice",
           "title": "Gion Duck Rice",
           "category": "Eat",
+          "lat": 35.0044636,
+          "lng": 135.7765319,
           "url": "https://www.menroku.com/gionduckrice/",
           "image": "https://plus.unsplash.com/premium_photo-1694141250007-fc4711bb9df1?q=80&w=1600&auto=format&fit=crop",
           "body": "Hitsumabushi-style Kishu duck rice bowl - customise it with grape sansho, yuzu or black shichimi at the table.",
@@ -412,6 +476,8 @@
           "id": "kyoto-tendon-makino",
           "title": "Tendon Makino",
           "category": "Eat",
+          "lat": 35.007003,
+          "lng": 135.767002,
           "image": "https://images.unsplash.com/photo-1753505359066-373689a96793?q=80&w=1600&auto=format&fit=crop",
           "body": "Tempura rice bowls fried to order, in the Teramachi arcade.",
           "status": "idea"
@@ -420,6 +486,8 @@
           "id": "kyoto-arashiyama",
           "title": "Arashiyama",
           "category": "See",
+          "lat": 35.009449,
+          "lng": 135.666773,
           "image": "https://images.unsplash.com/photo-1707082233672-bef67a7a2e21?q=80&w=1600&auto=format&fit=crop",
           "body": "Bamboo grove and the Togetsukyo Bridge over the Katsura River.",
           "status": "idea"
@@ -428,6 +496,8 @@
           "id": "nara-todaiji",
           "title": "Todaiji Temple",
           "category": "See",
+          "lat": 34.6889851,
+          "lng": 135.8398158,
           "image": "https://images.unsplash.com/photo-1578639755533-2c52ba911914?q=80&w=1600&auto=format&fit=crop",
           "body": "Houses the Great Buddha, one of the largest bronze statues in the world.",
           "status": "idea"
@@ -436,6 +506,8 @@
           "id": "nara-nakatanidou",
           "title": "Nakatanidou",
           "category": "Eat",
+          "lat": 34.681943,
+          "lng": 135.8288995,
           "image": "https://images.unsplash.com/photo-1756032490356-830d9158a682?q=80&w=1600&auto=format&fit=crop",
           "body": "Famous for its rapid-fire mochi-pounding performance.",
           "status": "idea"
@@ -444,6 +516,8 @@
           "id": "nara-salon-naramachi",
           "title": "Salon Naramachi",
           "category": "Drink",
+          "lat": 34.6809107,
+          "lng": 135.8297161,
           "image": "https://images.unsplash.com/photo-1764445319899-af104ca51b86?q=80&w=1600&auto=format&fit=crop",
           "body": "Tea salon in a 300-year-old restored merchant house, run by Nara homewares brand Nakagawa Masashichi.",
           "status": "idea"
@@ -452,6 +526,8 @@
           "id": "nara-yoshidaen",
           "title": "Yoshidaen",
           "category": "Drink",
+          "lat": 34.6807629,
+          "lng": 135.8299486,
           "image": "https://images.unsplash.com/photo-1758390286435-e559ab6d4596?q=80&w=1600&auto=format&fit=crop",
           "status": "idea"
         },
@@ -459,6 +535,8 @@
           "id": "nara-wakakusayama",
           "title": "Wakakusayama Hill",
           "category": "See",
+          "lat": 34.6900079,
+          "lng": 135.8538942,
           "image": "https://images.unsplash.com/photo-1773504800842-74f64cde9613?q=80&w=1600&auto=format&fit=crop",
           "body": "Grassy hill overlooking Nara, popular with the park's deer.",
           "status": "idea"
@@ -467,6 +545,8 @@
           "id": "nara-maguro-koya",
           "title": "Maguro Koya",
           "category": "Eat",
+          "lat": 34.6854584,
+          "lng": 135.8289869,
           "image": "https://images.unsplash.com/photo-1772329320539-d297125453c1?q=80&w=1600&auto=format&fit=crop",
           "body": "Small family-run tuna specialist near Kintetsu Nara Station, running since 1977.",
           "status": "idea"
@@ -475,6 +555,8 @@
           "id": "nara-sanjo-dori",
           "title": "Sanjo-dori",
           "category": "Shop",
+          "lat": 34.6819748,
+          "lng": 135.8177213,
           "url": "https://www.visitnara.jp/venues/A01558/",
           "image": "https://images.unsplash.com/photo-1763469866790-7eed99ab9e2b?q=80&w=1600&auto=format&fit=crop",
           "body": "Nara's main shopping street, running from JR Nara Station up toward Sarusawa Pond and Nara Park.",
@@ -484,6 +566,8 @@
           "id": "nara-kofukuji",
           "title": "Kofuku-ji",
           "category": "See",
+          "lat": 34.6832311,
+          "lng": 135.8311589,
           "image": "https://images.unsplash.com/photo-1764070611363-079f4cd2ffb3?q=80&w=1600&auto=format&fit=crop",
           "body": "Five-storey pagoda, the second tallest in Japan.",
           "status": "idea"
@@ -492,6 +576,8 @@
           "id": "nara-nigatsudo",
           "title": "Nigatsu-do",
           "category": "See",
+          "lat": 34.6892747,
+          "lng": 135.8442433,
           "image": "https://images.unsplash.com/photo-1756038945556-6fc458ea0eaa?q=80&w=1600&auto=format&fit=crop",
           "body": "Hall within the Todaiji complex, known for its lantern-lit balcony views over Nara.",
           "status": "idea"
@@ -500,6 +586,8 @@
           "id": "nara-himuro-shrine",
           "title": "Himuro Shrine",
           "category": "See",
+          "lat": 34.6845166,
+          "lng": 135.8378778,
           "image": "https://images.unsplash.com/photo-1776101420218-898b335c891d?q=80&w=1600&auto=format&fit=crop",
           "body": "Small shrine known for its cherry blossoms in spring.",
           "status": "idea"
@@ -508,6 +596,8 @@
           "id": "nara-gyukatsu-katsugyu",
           "title": "Gyukatsu Kyoto Katsugyu",
           "category": "Eat",
+          "lat": 34.6848414,
+          "lng": 135.833821,
           "image": "https://images.unsplash.com/photo-1736604522360-608c09900076?q=80&w=1600&auto=format&fit=crop",
           "body": "Beef cutlet fried rare, so you finish cooking it yourself on a hot stone.",
           "status": "idea"
@@ -516,6 +606,8 @@
           "id": "nara-kasuga-taisha",
           "title": "Kasuga Taisha",
           "category": "See",
+          "lat": 34.6815454,
+          "lng": 135.8484719,
           "image": "https://images.unsplash.com/photo-1755414717699-1e469ef12197?q=80&w=1600&auto=format&fit=crop",
           "body": "Famous for its thousands of bronze and stone lanterns.",
           "status": "idea"
@@ -524,6 +616,8 @@
           "id": "nara-isuien-garden",
           "title": "Isuien Garden",
           "category": "See",
+          "lat": 34.6860413,
+          "lng": 135.8371815,
           "image": "https://images.unsplash.com/photo-1745704530579-71e761136b30?q=80&w=1600&auto=format&fit=crop",
           "body": "Two connected strolling gardens that borrow the view of Todaiji's Nandaimon Gate.",
           "status": "idea"
@@ -532,6 +626,8 @@
           "id": "nara-naramachi",
           "title": "Naramachi",
           "category": "See",
+          "lat": 34.6771778,
+          "lng": 135.8304459,
           "image": "https://images.unsplash.com/photo-1777632609446-c13a0d0ce10c?q=80&w=1600&auto=format&fit=crop",
           "body": "Former merchant quarter of narrow lanes and preserved townhouses.",
           "status": "idea"
@@ -540,6 +636,8 @@
           "id": "kyoto-uru-coffee",
           "title": "Uru Coffee",
           "category": "Drink",
+          "lat": 35.0060204,
+          "lng": 135.7669465,
           "image": "https://images.unsplash.com/photo-1749137997054-d556a40051aa?q=80&w=1600&auto=format&fit=crop",
           "body": "Minimalist specialty coffee bar in Teramachi, known for its espresso tonic.",
           "status": "idea"
@@ -548,6 +646,8 @@
           "id": "kyoto-ex-cafe-arashiyama",
           "title": "eX Cafe Arashiyama",
           "category": "Eat",
+          "lat": 35.0146392,
+          "lng": 135.6780793,
           "image": "https://images.unsplash.com/photo-1764684860954-f3d8f1503691?q=80&w=1600&auto=format&fit=crop",
           "body": "Machiya cafe with hand-painted walls near the bamboo grove - grill your own dango over the table fire.",
           "status": "idea"
@@ -556,6 +656,8 @@
           "id": "kyoto-le-labo-cafe",
           "title": "Le Labo Cafe",
           "category": "Drink",
+          "lat": 35.0054242,
+          "lng": 135.7707261,
           "image": "https://images.unsplash.com/photo-1759310707568-c97410615c97?q=80&w=1600&auto=format&fit=crop",
           "body": "One of only three Le Labo cafes in the world, tucked inside the fragrance brand's boutique in a 145-year-old machiya.",
           "status": "idea"
@@ -564,6 +666,8 @@
           "id": "kyoto-hario-cafe",
           "title": "Hario Cafe",
           "category": "Drink",
+          "lat": 35.0006713,
+          "lng": 135.7791394,
           "image": "https://images.unsplash.com/photo-1754887966296-7d2b70f96dae?q=80&w=1600&auto=format&fit=crop",
           "body": "Coffee brewed entirely on HARIO's own glassware, on the picturesque Ishibei-koji lane near Kodaiji.",
           "status": "idea"
@@ -818,6 +922,8 @@
           "id": "tokyo-amamdacotan",
           "title": "Amam Dacotan",
           "category": "Eat",
+          "lat": 35.6645406,
+          "lng": 139.7110558,
           "image": "https://images.unsplash.com/photo-1774669081553-4ef841520c05?q=80&w=1600&auto=format&fit=crop",
           "body": "Fukuoka-born artisan bakery, Omotesando branch - known for its maritozzo-style stuffed breads.",
           "status": "idea"
@@ -826,6 +932,8 @@
           "id": "tokyo-kappabashi",
           "title": "Kappabashi Street",
           "category": "Shop",
+          "lat": 35.7105797,
+          "lng": 139.7879645,
           "image": "https://images.unsplash.com/photo-1659512087057-7c4ce619307e?q=80&w=1600&auto=format&fit=crop",
           "body": "Kitchenware and restaurant-supply street, walkable from Asakusa.",
           "status": "idea"
@@ -834,6 +942,8 @@
           "id": "tokyo-kotaro",
           "title": "Kotaro",
           "category": "Eat",
+          "lat": 35.6555569,
+          "lng": 139.6992802,
           "image": "https://images.unsplash.com/photo-1686063448920-b0b2ce738609?q=80&w=1600&auto=format&fit=crop",
           "body": "Shibuya izakaya built around seasonal small plates - finishes with the chef's own hand-made udon.",
           "status": "idea"
@@ -842,6 +952,8 @@
           "id": "tokyo-onogi-hiroo",
           "title": "Onogi, Hiroo",
           "category": "Eat",
+          "lat": 35.648067,
+          "lng": 139.721772,
           "image": "https://images.unsplash.com/photo-1746274223799-818414e9d94a?q=80&w=1600&auto=format&fit=crop",
           "body": "Relaxed izakaya built around a tree growing through the middle of the restaurant.",
           "status": "idea"
@@ -850,6 +962,8 @@
           "id": "tokyo-tempura-motoyoshi",
           "title": "Tempura Motoyoshi",
           "category": "Eat",
+          "lat": 35.6495351,
+          "lng": 139.7075519,
           "image": "https://images.unsplash.com/photo-1654426939189-9dcf7fed870b?q=80&w=1600&auto=format&fit=crop",
           "body": "Two-Michelin-star tempura, batter made with liquid nitrogen.",
           "status": "idea"
@@ -858,6 +972,8 @@
           "id": "tokyo-florilege",
           "title": "Florilège",
           "category": "Eat",
+          "lat": 35.6616093,
+          "lng": 139.7434466,
           "image": "https://images.unsplash.com/photo-1750943082452-c714763f73b2?q=80&w=1600&auto=format&fit=crop",
           "body": "Modern French tasting menu from chef Hiroyasu Kawate, one of Tokyo's hardest reservations.",
           "status": "idea"
@@ -866,6 +982,8 @@
           "id": "tokyo-teamlab",
           "title": "teamLab",
           "category": "See",
+          "lat": 35.6491207,
+          "lng": 139.7897739,
           "image": "https://images.unsplash.com/photo-1748334455032-1fbc62295ead?q=80&w=1600&auto=format&fit=crop",
           "body": "Immersive digital art museum - check which location (Planets or Borderless) before booking.",
           "status": "idea"
