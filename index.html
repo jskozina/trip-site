@@ -119,22 +119,169 @@ svg{display:block;flex:none}
 }
 .section-label::after{content:'';height:1px;background:var(--line);flex:1}
 
-/* ---------- trip index (at a glance) ---------- */
-.trip-index{margin-top:64px}
-.ti-row{
-  display:flex;align-items:center;gap:14px;padding:13px 0;border-top:1px solid var(--line);
-  text-decoration:none;color:inherit;
+/* ---------- calendar ---------- */
+.calendar{margin-top:64px;--g:3px;max-width:940px}
+.cal-hint{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--faint);margin:-6px 0 20px}
+.cal-bleed{margin:0 -10px}
+.cal-dows,.cal-days,.cal-lane,.cal-moves{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));column-gap:var(--g)}
+.cal-dow{
+  font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);padding:0 1px 8px;
 }
-.ti-row:first-child{border-top:none}
-.ti-thumb{width:42px;height:42px;flex:none;border-radius:4px;overflow:hidden;background:var(--line)}
-.ti-thumb img{width:100%;height:100%;object-fit:cover}
-.ti-icon{width:42px;height:42px;flex:none;border-radius:4px;background:var(--line);display:flex;align-items:center;justify-content:center;color:var(--muted)}
-.ti-body{flex:1;min-width:0;display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.ti-title{font-family:'Fraunces',Georgia,serif;font-size:16.5px;font-weight:500;color:var(--text);margin:0;display:flex;align-items:center;gap:8px}
-.ti-meta{font-family:var(--mono);font-size:11.5px;color:var(--faint);letter-spacing:.02em;white-space:nowrap}
-.ti-row:hover .ti-title{color:var(--accent)}
-.ti-row.today{background:var(--accent-soft);margin:0 -12px;padding-left:12px;padding-right:12px;border-top-color:transparent}
-.ti-row.today+.ti-row{border-top-color:transparent}
+.cal-dow i{font-style:normal}
+.cal-dow .l{display:none}
+.cal-week{position:relative;margin-bottom:24px}
+.cal-week:last-child{margin-bottom:0}
+
+/* day tiles */
+.cal-cell{position:relative;aspect-ratio:5/6}
+.cal-day{
+  position:absolute;inset:0;display:block;padding:0;border:0;border-radius:3px;overflow:hidden;cursor:pointer;
+  background:var(--line) var(--img,none) center/cover no-repeat;
+  filter:saturate(.8);transition:filter .25s ease,box-shadow .2s ease;
+  font:inherit;color:inherit;text-align:left;-webkit-tap-highlight-color:transparent;
+}
+.cal-day::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,23,27,.42) 0%,rgba(21,23,27,0) 42%);pointer-events:none}
+.cal-day:hover{filter:saturate(1.05)}
+.cal-day.jn{right:calc(var(--g) * -1);border-top-right-radius:0;border-bottom-right-radius:0}
+.cal-day.jp{border-top-left-radius:0;border-bottom-left-radius:0}
+.cal-day.jp .jl{position:absolute;left:0;top:0;bottom:0;width:1px;background:rgba(255,255,255,.55);z-index:2}
+.cal-day .n{
+  position:absolute;top:5px;left:6px;z-index:1;
+  font-family:var(--mono);font-size:11px;font-weight:600;line-height:1;color:#fff;
+  font-variant-numeric:tabular-nums;text-shadow:0 1px 5px rgba(0,0,0,.5);
+}
+.cal-day .n small{display:block;font-size:7.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px;opacity:.92}
+.cal-day.noimg{background:linear-gradient(155deg,#F3F3F1,#E3E2DD)}
+.cal-day.noimg::after{display:none}
+.cal-day.noimg .n{color:var(--muted);text-shadow:none}
+.cal-day .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',Georgia,serif;font-size:30px;color:rgba(21,23,27,.13)}
+.cal-day.today{box-shadow:inset 0 0 0 2px var(--accent)}
+.cal-day.sel{filter:none;box-shadow:0 0 0 2px var(--text),inset 0 0 0 2px rgba(255,255,255,.92);z-index:3}
+
+.cal-month{
+  grid-row:1;align-self:end;padding:0 2px 8px;
+  font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:460;
+  font-size:clamp(30px,8vw,46px);line-height:.92;letter-spacing:-.025em;
+  font-variation-settings:'SOFT' 20,'WONK' 1,'opsz' 100;color:var(--text);
+}
+.cal-month small{display:block;margin-top:9px;font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.22em;color:var(--faint)}
+.cal-legend{
+  grid-row:1;align-self:end;display:flex;flex-direction:column;gap:6px;padding:0 2px 6px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);
+}
+.cal-legend span{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.cal-legend i{display:block;width:16px;height:2px;background:var(--c)}
+.cal-legend i.dash{background:repeating-linear-gradient(90deg,var(--c) 0 4px,transparent 4px 7px)}
+
+/* span brackets: one per stay, carrying the city name */
+.cal-lane{margin-top:8px}
+.cal-rib{
+  --c:var(--faint);
+  grid-row:1;position:relative;display:flex;flex-direction:column;justify-content:flex-start;width:100%;min-width:0;padding:9px 0 0;margin:0;border:0;background:none;
+  font:inherit;color:inherit;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+.cal-rib::before{content:'';position:absolute;left:0;right:0;top:0;height:2px;background:var(--c);transition:height .15s ease}
+.cal-rib .cp{position:absolute;top:-2px;width:2px;height:8px;background:var(--c)}
+.cal-rib .cp.l{left:0}
+.cal-rib .cp.r{right:0}
+.cal-rib .cp.more{width:0;height:0;top:-3px;background:none;border-top:4px solid transparent;border-bottom:4px solid transparent}
+.cal-rib .cp.l.more{left:-1px;border-right:5px solid var(--c)}
+.cal-rib .cp.r.more{right:-1px;border-left:5px solid var(--c)}
+.cal-rib .nm{
+  display:block;max-width:100%;font-family:'Fraunces',Georgia,serif;font-weight:520;
+  font-size:clamp(10px,2.85vw,13px);line-height:1.15;letter-spacing:-.012em;color:var(--text);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .15s ease;
+}
+.cal-rib .mt{display:block;margin-top:3px;font-family:var(--mono);font-size:8.5px;letter-spacing:.02em;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-rib.s1:not(.tr) .mt{display:none}
+.cal-rib.tr::before{background:repeating-linear-gradient(90deg,var(--c) 0 5px,transparent 5px 8px)}
+.cal-rib.tr .nm{display:flex;align-items:center;gap:4px;font-style:italic;color:var(--muted)}
+.cal-rib.tr .nm svg{opacity:.7}
+.cal-rib:hover .nm,.cal-rib.on .nm{color:var(--accent)}
+.cal-rib.on::before{height:3px}
+
+/* travel chips: flight codes + time */
+.cal-moves{margin-top:9px}
+.cal-mv{display:flex;flex-direction:column;gap:3px;min-width:0}
+.mv{
+  --c:var(--faint);
+  display:flex;flex-direction:column;align-items:flex-start;gap:1px;width:100%;min-width:0;overflow:hidden;
+  padding:3px 2px 3px 4px;border:0;border-left:2px solid var(--c);border-radius:0 2px 2px 0;
+  background:#F5F5F3;font:inherit;color:var(--text);text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+.mv:hover{background:#ECEBE7}
+.mv.mo{flex-direction:row;align-items:center;gap:4px;color:var(--muted)}
+.mv .rt{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:-.03em;white-space:nowrap}
+.mv .tm{font-family:var(--mono);font-size:9px;letter-spacing:-.02em;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.mv .l{display:none}
+.mv.ar .rt{font-weight:500;font-style:italic}
+
+/* inline day detail */
+.cal-detail{
+  position:relative;margin-top:16px;padding:18px 18px 6px;background:#fff;
+  border:1px solid var(--line-2);box-shadow:0 22px 44px -26px rgba(21,23,27,.4);animation:rise .28s ease both;
+}
+.cal-detail::before{
+  content:'';position:absolute;top:-6px;width:10px;height:10px;background:#fff;
+  border-left:1px solid var(--line-2);border-top:1px solid var(--line-2);
+  transform:translateX(-50%) rotate(45deg);
+  left:calc((100% - 6 * var(--g)) / 7 * (var(--col) + .5) + var(--g) * var(--col));
+}
+.cd-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
+.cd-date{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cd-close{border:0;background:none;padding:0 2px;font:inherit;font-size:22px;line-height:1;color:var(--faint);cursor:pointer}
+.cd-close:hover{color:var(--text)}
+.cd-stay{display:grid;grid-template-columns:84px minmax(0,1fr);gap:14px;align-items:center;padding-bottom:16px;text-decoration:none;color:inherit}
+.cd-stay.none{grid-template-columns:1fr}
+.cd-photo{display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;background:var(--line);overflow:hidden;border-radius:2px;color:var(--faint)}
+.cd-photo img{width:100%;height:100%;object-fit:cover}
+.cd-kicker{display:block;margin-bottom:5px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.cd-name{display:block;font-family:'Fraunces',Georgia,serif;font-size:19px;font-weight:500;line-height:1.15;letter-spacing:-.01em}
+.cd-sub{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:9px}
+.cd-go{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+a.cd-stay:hover .cd-name,a.cd-stay:hover .cd-go{color:var(--accent)}
+.cd-note{margin:0 0 4px;padding-bottom:12px;font-size:13px;color:var(--muted)}
+.cd-moves{border-top:1px solid var(--line)}
+.cd-move{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:3px 12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+.cd-move:last-child{border-bottom:0}
+.cd-ico{color:var(--muted)}
+.cd-main b{display:block;font-family:'Fraunces',Georgia,serif;font-size:16px;font-weight:500;line-height:1.2}
+.cd-main i{display:block;margin-top:2px;font-style:normal;font-size:12px;color:var(--muted)}
+.cd-main .status-dot{margin-top:7px}
+.cd-times{text-align:right;font-family:var(--mono)}
+.cd-times b{display:block;font-size:14px;font-weight:600;letter-spacing:.02em}
+.cd-times i{display:block;margin-top:2px;font-style:normal;font-size:11px;color:var(--muted);white-space:nowrap}
+.cd-tag{margin-right:6px;font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.cd-move:hover .cd-main b{color:var(--accent)}
+
+@media (max-width:560px){
+  .cd-move{grid-template-columns:26px minmax(0,1fr)}
+  .cd-times{grid-column:2;text-align:left}
+}
+@media (min-width:640px){
+  .calendar{--g:6px}
+  .cal-bleed{margin:0}
+  .cal-dow{font-size:10px;padding-bottom:10px}
+  .cal-dow .l{display:inline}
+  .cal-dow .s{display:none}
+  .cal-week{margin-bottom:30px}
+  .cal-cell{aspect-ratio:6/5}
+  .cal-day .n{top:9px;left:10px;font-size:12.5px}
+  .cal-day .n small{font-size:8.5px}
+  .cal-rib{padding-top:12px}
+  .cal-rib .nm{font-size:16px}
+  .cal-rib .mt{font-size:10px}
+  .cal-rib.s1:not(.tr) .mt{display:block}
+  .cal-moves{margin-top:11px}
+  .mv{padding:5px 8px 6px}
+  .mv .rt,.mv .tm{font-size:10.5px;letter-spacing:0}
+  .mv .s{display:none}
+  .mv .l{display:block}
+  .cal-detail{padding:22px 26px 8px}
+  .cd-stay{grid-template-columns:132px minmax(0,1fr);gap:22px}
+  .cd-name{font-size:23px}
+}
 
 /* ---------- map ---------- */
 .mapSection{margin-top:64px}
@@ -409,9 +556,10 @@ footer{
     </div>
     <div class="summary" id="summary"></div>
   </header>
-  <section class="trip-index" id="tripIndexWrap" hidden>
-    <p class="section-label">Trip at a glance</p>
-    <div id="tripIndex"></div>
+  <section class="calendar" id="calendarWrap" hidden>
+    <p class="section-label">Calendar</p>
+    <p class="cal-hint">Tap a day for the stay and travel details.</p>
+    <div class="cal-bleed"><div id="calendar"></div></div>
   </section>
   <section class="mapSection" id="mapWrap" hidden>
     <p class="section-label">Route</p>
@@ -455,6 +603,7 @@ const ICONS = {
   shortlist: '<path d="M6 3h12v18l-6-4-6 4V3Z"/>',
   held: '<circle cx="12" cy="12" r="9"/><path d="M12 7.5v5l3.5 2"/>',
   booked: '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9"/>',
+  home: '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>',
   pin: '<path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/>'
 };
 
@@ -654,57 +803,316 @@ function computeAnchorMap(legs){
   return map;
 }
 
-function inRange(today, start, end){
-  const s = d(start), e = end ? d(end) : s;
-  return today >= s && today <= e;
+/* ---------- calendar ---------- */
+const CAL = { days: new Map(), sel: null, returnKey: null, used: new Set() };
+
+function stayForNight(leg, dt){
+  return (leg.stays||[]).find(s => s.start && s.end && dt >= d(s.start) && dt < d(s.end));
 }
 
-function tripIndexRowHtml(entry, today){
-  const isTransit = entry.type === 'transit';
-  const isToday = inRange(today, entry.start, entry.end);
-  const thumb = !isTransit && entry.image
-    ? `<span class="ti-thumb"><img src="${esc(resizeImg(entry.image,90,90))}" alt="" loading="lazy"></span>`
-    : `<span class="ti-icon">${svgIcon(isTransit ? iconForMode(entry.mode) : 'pin', 18)}</span>`;
-  const statusColor = entry.statusKey ? statusInfo(entry.statusKey).c : null;
-  const dot = statusColor ? `<span class="ti-dot" style="background:${statusColor}"></span>` : '';
-  const metaBits = isTransit
-    ? [dateRange(entry.start,entry.end), entry.mode, entry.duration].filter(Boolean)
-    : [dateRange(entry.start,entry.end), `${entry.nights} night${entry.nights===1?'':'s'}`];
-  return `<a class="ti-row${isToday?' today':''}" href="#leg-${esc(entry.anchor)}">
-    ${thumb}
-    <span class="ti-body">
-      <span class="ti-title">${dot}${esc(entry.title)}</span>
-      <span class="ti-meta">${esc(metaBits.join(' · '))}</span>
-    </span>
+const imgKey = u => String(u || '').split('?')[0];
+
+// Candidate photos for a city, best calendar tiles first. Stay photos come last so
+// the room shots are saved for the tap-through panel.
+function legPhotoPool(leg){
+  const out = [];
+  (leg.images || []).forEach(u => out.push(u));
+  if(leg.image) out.push(leg.image);
+  const rank = s => ({ See:0, Do:1, Eat:2 })[spotBucket(s.category)];
+  (leg.spots || []).map((s,i) => ({ s, i }))
+    .sort((a,b) => rank(a.s) - rank(b.s) || a.i - b.i)
+    .forEach(x => { if(x.s.image) out.push(x.s.image); });
+  (leg.stays || []).forEach(st => { (st.images || []).forEach(u => out.push(u)); if(st.image) out.push(st.image); });
+  return out;
+}
+
+function takeImage(cands, used){
+  for(const u of cands){
+    if(!u) continue;
+    const k = imgKey(u);
+    if(!used.has(k)){ used.add(k); return u; }
+  }
+  return null;
+}
+
+const isFlight = t => (t.mode || '').toLowerCase() === 'flight';
+
+function buildCalendarModel(trip, legs){
+  const cities = legs.filter(l => l.type !== 'transit');
+  const transits = legs.filter(l => l.type === 'transit');
+
+  const days = [];
+  for(let c = d(trip.depart), e = d(trip.return); c <= e; c = new Date(c.getFullYear(), c.getMonth(), c.getDate() + 1)) days.push(c);
+
+  const model = days.map((dt, i) => {
+    const key = dkey(dt);
+    const leg = cities.find(l => dt >= d(l.start) && dt < d(l.end)) || null;
+    let span = null;
+    if(leg) span = { id:'leg:' + leg.id, kind:'leg', item:leg };
+    else {
+      const t = transits.find(x => x.end && x.start !== x.end && dt >= d(x.start) && dt < d(x.end));
+      if(t) span = { id:'tr:' + t.id, kind:'tr', item:t };
+    }
+    return {
+      i, key, dt, leg, span,
+      starts: transits.filter(t => t.start === key),
+      ends: transits.filter(t => t.end === key && t.start !== key),
+      chips: [], img: null
+    };
+  });
+
+  model.forEach(m => {
+    let lastGroup = null;
+    m.starts.forEach(t => {
+      if(isFlight(t)){ m.chips.push({ kind:'flight', t }); lastGroup = null; return; }
+      if(t.group && t.group === lastGroup) return;
+      lastGroup = t.group || null;
+      m.chips.push({ kind:'move', t });
+    });
+    m.ends.filter(t => isFlight(t) && t.arriveTime).forEach(t => m.chips.push({ kind:'arrive', t }));
+  });
+
+  // one distinct photo per day, never repeated across the whole calendar
+  const used = new Set();
+  CAL.used = used;
+  const pools = new Map(cities.map(l => [l.id, legPhotoPool(l)]));
+  let lastLeg = null;
+  model.forEach(m => {
+    let cands = [];
+    if(m.leg){ lastLeg = m.leg; cands = pools.get(m.leg.id); }
+    else if(m.span){
+      const t = m.span.item;
+      cands = [].concat(t.images || [], t.image || [], lastLeg ? pools.get(lastLeg.id) : []);
+    } else {
+      cands = m.starts.map(t => t.image).filter(Boolean);
+    }
+    m.cands = cands;
+    m.img = takeImage(cands, used);
+  });
+
+  const lead = (model[0].dt.getDay() + 6) % 7;
+  const slots = Array(lead).fill(null).concat(model);
+  while(slots.length % 7) slots.push(null);
+  const weeks = [];
+  for(let i = 0; i < slots.length; i += 7) weeks.push(slots.slice(i, i + 7));
+  return { model, weeks, lead, tail: slots.length - lead - model.length };
+}
+
+function calSpanStatus(m){
+  if(!m.span) return null;
+  if(m.span.kind === 'leg'){
+    const st = (m.span.item.stays || [])[0];
+    return st ? (st.status || 'idea') : 'idea';
+  }
+  return m.span.item.status || 'idea';
+}
+
+function calDayHtml(m, col, wk, today){
+  const prev = wk[col - 1], next = wk[col + 1];
+  const jp = !!(m.span && prev && prev.span && prev.span.id === m.span.id);
+  const jn = !!(m.span && next && next.span && next.span.id === m.span.id);
+  const isToday = m.dt.getTime() === today.getTime();
+  const showMonth = m.i === 0 || m.dt.getDate() === 1;
+  const num = (showMonth ? `<small>${MONTHS[m.dt.getMonth()]}</small>` : '') + m.dt.getDate();
+  const long = new Intl.DateTimeFormat('en-AU', { weekday:'long', day:'numeric', month:'long' }).format(m.dt);
+  const label = long + (m.leg ? `, ${m.leg.title}` : '');
+  const ph = m.img ? '' : `<span class="ph">${m.leg ? esc(initial(m.leg.title)) : svgIcon('home', 22)}</span>`;
+  const style = m.img ? ` style="--img:url('${esc(resizeImg(m.img, 260, 310))}')"` : '';
+  const cls = ['cal-day', jp ? 'jp' : '', jn ? 'jn' : '', isToday ? 'today' : '', m.img ? '' : 'noimg'].filter(Boolean).join(' ');
+  return `<div class="cal-cell" style="grid-column:${col + 1}"><button type="button" class="${cls}" data-key="${m.key}" data-col="${col}"${style} aria-label="${esc(label)}">${jp ? '<i class="jl"></i>' : ''}<span class="n">${num}</span>${ph}</button></div>`;
+}
+
+function calRibbonHtml(seg, wk, model){
+  const m0 = wk[seg.start], m1 = wk[seg.end];
+  const len = seg.end - seg.start + 1;
+  const prev = model[m0.i - 1], next = model[m1.i + 1];
+  const contL = !!(prev && prev.span && prev.span.id === seg.id);
+  const contR = !!(next && next.span && next.span.id === seg.id);
+  const c = statusInfo(calSpanStatus(m0)).c;
+  const it = seg.item;
+  let cls = 'cal-rib' + (len === 1 ? ' s1' : '');
+  let inner, aria;
+  if(seg.kind === 'leg'){
+    const n = nights(it.start, it.end);
+    inner = `<span class="nm">${esc(it.title)}</span><span class="mt">${contL ? 'cont.' : `${n} night${n === 1 ? '' : 's'}`}</span>`;
+    aria = `${it.title}, ${n} night${n === 1 ? '' : 's'}`;
+  } else {
+    cls += ' tr';
+    const mode = (it.mode || 'travel');
+    inner = `<span class="nm">${svgIcon(iconForMode(it.mode), 12)}<span>${esc(mode)}</span></span><span class="mt">overnight</span>`;
+    aria = `Overnight ${mode.toLowerCase()}`;
+  }
+  return `<button type="button" class="${cls}" style="grid-column:${seg.start + 1} / span ${len};--c:${c}" data-key="${m0.key}" data-a="${m0.key}" data-b="${m1.key}" aria-label="${esc(aria)}"><i class="cp l${contL ? ' more' : ''}"></i><i class="cp r${contR ? ' more' : ''}"></i>${inner}</button>`;
+}
+
+function calChipHtml(c, m){
+  const t = c.t;
+  const col = statusInfo(t.status).c;
+  const open = `<button type="button" class="mv%CLS%" style="--c:${col}" data-key="${m.key}" aria-label="${esc(t.title)}">`;
+  if(c.kind === 'flight'){
+    const sh = (t.from && t.to) ? `${t.from}→${t.to}` : t.title;
+    const lg = (t.from && t.to) ? `${t.from} → ${t.to}` : t.title;
+    const tl = t.departTime && t.arriveTime ? `${t.departTime} – ${t.arriveTime}` : (t.departTime || '');
+    return open.replace('%CLS%', '') +
+      `<span class="rt s">${esc(sh)}</span><span class="rt l">${esc(lg)}</span>` +
+      (t.departTime ? `<span class="tm s">${esc(t.departTime)}</span><span class="tm l">${esc(tl)}</span>` : '') + '</button>';
+  }
+  if(c.kind === 'arrive'){
+    return open.replace('%CLS%', ' ar') +
+      `<span class="rt s">↘${esc(t.to || '')}</span><span class="rt l">Arrives ${esc(t.to || '')}</span><span class="tm">${esc(t.arriveTime)}</span></button>`;
+  }
+  return open.replace('%CLS%', ' mo') + svgIcon(iconForMode(t.mode), 12) + (t.departTime ? `<span class="tm">${esc(t.departTime)}</span>` : '') + '</button>';
+}
+
+function calWeekHtml(wk, wi, weeks, ctx){
+  const { model, lead, tail, today, statuses } = ctx;
+  const cells = [];
+  wk.forEach((m, col) => {
+    if(m){ cells.push(calDayHtml(m, col, wk, today)); return; }
+    if(wi === 0 && col === 0 && lead >= 3){
+      const dt = model[0].dt;
+      cells.push(`<div class="cal-month" style="grid-column:1 / span ${lead}">${esc(new Intl.DateTimeFormat('en-AU', { month:'long' }).format(dt))}<small>${dt.getFullYear()}</small></div>`);
+    }
+    if(wi === weeks.length - 1 && tail >= 3 && col === 7 - tail){
+      const rows = [...statuses].map(s => `<span style="--c:${statusInfo(s).c}"><i></i>${esc(statusInfo(s).label)}</span>`).join('');
+      cells.push(`<div class="cal-legend" style="grid-column:${col + 1} / -1">${rows}<span style="--c:var(--faint)"><i class="dash"></i>Overnight travel</span></div>`);
+    }
+  });
+
+  // contiguous runs of the same stay become one bracket
+  const segs = [];
+  let cur = null;
+  wk.forEach((m, i) => {
+    const id = m && m.span ? m.span.id : null;
+    if(id && cur && cur.id === id){ cur.end = i; return; }
+    if(cur) segs.push(cur);
+    cur = id ? { id, kind:m.span.kind, item:m.span.item, start:i, end:i } : null;
+  });
+  if(cur) segs.push(cur);
+  const lane = segs.map(s => calRibbonHtml(s, wk, model)).join('');
+
+  const moveCols = wk.map(m => (m && m.chips.length) ? m.chips.map(c => calChipHtml(c, m)).join('') : '');
+  const moves = moveCols.some(Boolean)
+    ? `<div class="cal-moves">${moveCols.map((h, i) => h ? `<div class="cal-mv" style="grid-column:${i + 1}">${h}</div>` : '').join('')}</div>`
+    : '';
+
+  return `<div class="cal-week"><div class="cal-days">${cells.join('')}</div><div class="cal-lane">${lane}</div>${moves}<div class="cal-detail" hidden></div></div>`;
+}
+
+function renderCalendar(trip, legs){
+  CAL.days.clear();
+  if(!trip.depart || !trip.return) return '';
+  const { model, weeks, lead, tail } = buildCalendarModel(trip, legs);
+  model.forEach(m => CAL.days.set(m.key, m));
+  CAL.returnKey = model[model.length - 1].key;
+
+  const today = new Date(); today.setHours(0,0,0,0);
+  const statuses = new Set();
+  model.forEach(m => {
+    const s = calSpanStatus(m); if(s) statuses.add(s);
+    m.chips.forEach(c => statuses.add(c.t.status || 'idea'));
+  });
+
+  const dows = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
+    .map(n => `<span class="cal-dow"><i class="l">${n}</i><i class="s">${n[0]}</i></span>`).join('');
+  const ctx = { model, lead, tail, today, statuses: ['booked','held','shortlist','idea'].filter(s => statuses.has(s)) };
+  return `<div class="cal-dows" aria-hidden="true">${dows}</div>` + weeks.map((wk, wi) => calWeekHtml(wk, wi, weeks, ctx)).join('');
+}
+
+// Remote photos can vanish or be blocked; swap a dead tile for the next unused photo.
+function calVerifyPhotos(){
+  document.querySelectorAll('#calendar .cal-day[style*="--img"]').forEach(tile => {
+    const m = CAL.days.get(tile.dataset.key);
+    const attempt = src => {
+      const im = new Image();
+      im.onerror = () => {
+        const next = takeImage(m.cands || [], CAL.used);
+        if(next){ const u = resizeImg(next, 260, 310); tile.style.setProperty('--img', `url('${u}')`); attempt(u); }
+        else {
+          tile.style.removeProperty('--img');
+          tile.classList.add('noimg');
+          if(!tile.querySelector('.ph')) tile.insertAdjacentHTML('beforeend', `<span class="ph">${m.leg ? esc(initial(m.leg.title)) : svgIcon('home', 22)}</span>`);
+        }
+      };
+      im.src = src;
+    };
+    attempt(tile.style.getPropertyValue('--img').trim().replace(/^url\(["']?|["']?\)$/g, ''));
+  });
+}
+
+// Shrink any city label that would be clipped until it fits its span.
+function fitCalLabels(){
+  document.querySelectorAll('#calendar .cal-rib:not(.tr) .nm').forEach(el => {
+    el.style.fontSize = '';
+    let size = parseFloat(getComputedStyle(el).fontSize);
+    const r = document.createRange();
+    r.selectNodeContents(el);
+    while(r.getBoundingClientRect().width > el.getBoundingClientRect().width - 1 && size > 8.5){
+      size -= 0.25;
+      el.style.fontSize = size + 'px';
+    }
+  });
+}
+
+function calMoveRowHtml(t, arriving){
+  const flight = isFlight(t);
+  const codes = (t.from && t.to) ? `${t.from} → ${t.to}` : '';
+  const times = t.departTime && t.arriveTime ? `${t.departTime} – ${t.arriveTime}` : (t.departTime || '');
+  const when = [times, t.duration].filter(Boolean).join(' · ');
+  const sub = [flight ? t.flightNo : t.mode, flight ? t.group : ''].filter(Boolean).join(' · ');
+  return `<a class="cd-move" href="#leg-${esc(ANCHOR_MAP[t.id] || t.id)}">
+    <span class="cd-ico">${svgIcon(iconForMode(t.mode), 18)}</span>
+    <span class="cd-main"><b>${arriving ? '<em class="cd-tag">Arrives</em>' : ''}${esc(t.title)}</b>${sub ? `<i>${esc(sub)}</i>` : ''}${pill(t.status)}</span>
+    <span class="cd-times">${codes ? `<b>${esc(codes)}</b>` : ''}${when ? `<i>${esc(when)}</i>` : ''}</span>
   </a>`;
 }
 
-function renderTripIndex(trip, legs){
-  if(!trip.depart || !trip.return) return '';
-  const today = new Date(); today.setHours(0,0,0,0);
-  const rows = [];
-  for(let i=0;i<legs.length;i++){
-    const l = legs[i];
-    if(l.type === 'transit'){
-      if(l.group && legs[i+1] && legs[i+1].type==='transit' && legs[i+1].group===l.group){
-        let j = i+1;
-        while(j<legs.length && legs[j].type==='transit' && legs[j].group===l.group) j++;
-        const last = legs[j-1];
-        rows.push(tripIndexRowHtml({ type:'transit', anchor:l.id, title:l.group,
-          start:l.start, end:last.end, mode:l.mode, duration:null, statusKey:null }, today));
-        i = j-1;
-        continue;
-      }
-      rows.push(tripIndexRowHtml({ type:'transit', anchor:l.id, title:l.title,
-        start:l.start, end:l.end, mode:l.mode, duration:l.duration, statusKey:l.status }, today));
-      continue;
+function calDetailHtml(m){
+  const dayLbl = new Intl.DateTimeFormat('en-AU', { weekday:'long', day:'numeric', month:'long' }).format(m.dt);
+  let head = '', note = '';
+  if(m.leg){
+    const n = Math.round((m.dt - d(m.leg.start)) / 86400000) + 1;
+    const total = nights(m.leg.start, m.leg.end);
+    const kicker = `${esc(m.leg.title)} · Night ${n} of ${total}`;
+    const st = stayForNight(m.leg, m.dt);
+    if(st){
+      const sn = nights(st.start, st.end);
+      const cost = st.priceAud ? `<span class="price">${money(st.priceAud)}/night${sn ? ` · ${money(st.priceAud * sn)} total` : ''}</span>` : '';
+      head = `<a class="cd-stay" href="#item-${esc(st.id)}">
+        <span class="cd-photo">${st.image ? `<img src="${esc(resizeImg(st.image, 260, 195))}" alt="" loading="lazy">` : svgIcon('bed', 24)}</span>
+        <span class="cd-info"><span class="cd-kicker">${kicker}</span><span class="cd-name">${esc(st.title)}</span>
+        <span class="cd-sub">${pill(st.status)}${cost}<span class="cd-go">View stay ↓</span></span></span>
+      </a>`;
+    } else {
+      head = `<div class="cd-stay none"><span class="cd-info"><span class="cd-kicker">${kicker}</span><span class="cd-name">No stay locked in yet</span></span></div>`;
     }
-    const primaryStay = (l.stays||[])[0];
-    rows.push(tripIndexRowHtml({ type:'leg', anchor:l.id, title:l.title,
-      start:l.start, end:l.end, image:l.image, nights:nights(l.start,l.end),
-      statusKey: primaryStay ? (primaryStay.status||'idea') : null }, today));
+  } else if(m.span){
+    note = `<p class="cd-note">Overnight ${esc((m.span.item.mode || 'travel').toLowerCase())}, so no hotel tonight.</p>`;
+  } else if(m.key === CAL.returnKey){
+    note = `<p class="cd-note">Back home.</p>`;
   }
-  return rows.join('');
+  const rows = m.starts.map(t => calMoveRowHtml(t, false)).concat(m.ends.map(t => calMoveRowHtml(t, true))).join('');
+  return `<div class="cd-head"><span class="cd-date">${esc(dayLbl)}</span><button type="button" class="cd-close" aria-label="Close">×</button></div>${head}${note}${rows ? `<div class="cd-moves">${rows}</div>` : ''}`;
+}
+
+function calSelect(key){
+  const root = $('calendar');
+  const prev = CAL.sel;
+  root.querySelectorAll('.cal-detail').forEach(x => { x.hidden = true; x.innerHTML = ''; });
+  root.querySelectorAll('.cal-day.sel').forEach(x => x.classList.remove('sel'));
+  root.querySelectorAll('.cal-rib.on').forEach(x => x.classList.remove('on'));
+  if(!key || key === prev){ CAL.sel = null; return; }
+  const m = CAL.days.get(key);
+  const tile = root.querySelector(`.cal-day[data-key="${key}"]`);
+  if(!m || !tile) return;
+  CAL.sel = key;
+  tile.classList.add('sel');
+  root.querySelectorAll('.cal-rib').forEach(r => { if(r.dataset.a <= key && key <= r.dataset.b) r.classList.add('on'); });
+  const det = tile.closest('.cal-week').querySelector('.cal-detail');
+  det.style.setProperty('--col', tile.dataset.col);
+  det.innerHTML = calDetailHtml(m);
+  det.hidden = false;
+  det.scrollIntoView({ block:'nearest', behavior: reduceMotion() ? 'auto' : 'smooth' });
 }
 
 function renderMap(legs){
@@ -954,11 +1362,14 @@ function render(data){
     animateCount($('statusNum'), days);
   }
 
-  // trip index
-  const indexRows = renderTripIndex(t, legs);
-  if(indexRows){
-    $('tripIndexWrap').hidden = false;
-    $('tripIndex').innerHTML = indexRows;
+  // calendar
+  const calHtml = renderCalendar(t, legs);
+  if(calHtml){
+    $('calendarWrap').hidden = false;
+    $('calendar').innerHTML = calHtml;
+    calVerifyPhotos();
+    fitCalLabels();
+    if(document.fonts){ document.fonts.ready.then(fitCalLabels); document.fonts.addEventListener('loadingdone', fitCalLabels); }
   }
 
   // route map
@@ -1101,6 +1512,14 @@ async function boot(){
   render(data);
 }
 
+$('calendar').addEventListener('click', e => {
+  if(e.target.closest('.cd-close')){ calSelect(null); return; }
+  const b = e.target.closest('[data-key]');
+  if(b) calSelect(b.dataset.key);
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape' && CAL.sel) calSelect(null); });
+let calResizeT;
+window.addEventListener('resize', () => { clearTimeout(calResizeT); calResizeT = setTimeout(fitCalLabels, 150); });
 document.addEventListener('scroll', e => {
   const gallery = e.target.closest && e.target.closest('.ic-gallery');
   if(!gallery) return;
