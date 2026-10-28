@@ -995,6 +995,7 @@
           "lat": 35.7138872,
           "lng": 139.7726349,
           "url": "https://www.innsyoutei.jp/en/",
+          "image": "https://www.innsyoutei.jp/en/img/slider/sp/slide-top2.jpg",
           "body": "Seasonal Japanese cooking in a historic wooden building inside Ueno Park, recommended by a Japanese alumni contact.",
           "status": "idea"
         },
@@ -1005,6 +1006,7 @@
           "lat": 35.6784883,
           "lng": 139.7703416,
           "url": "https://www.isehiro.co.jp/honten/",
+          "image": "https://www.isehiro.co.jp/images/honten_img001.jpg",
           "body": "Yakitori restaurant open for over a century, more casual than Innsyoutei. The website is Japanese only.",
           "status": "idea"
         }
