@@ -987,6 +987,26 @@
           "image": "https://images.unsplash.com/photo-1748334455032-1fbc62295ead?q=80&w=1600&auto=format&fit=crop",
           "body": "Immersive digital art museum - check which location (Planets or Borderless) before booking.",
           "status": "idea"
+        },
+        {
+          "id": "tokyo-innsyoutei",
+          "title": "Innsyoutei",
+          "category": "Eat",
+          "lat": 35.7138872,
+          "lng": 139.7726349,
+          "url": "https://www.innsyoutei.jp/en/",
+          "body": "Seasonal Japanese cooking in a historic wooden building inside Ueno Park, recommended by a Japanese alumni contact.",
+          "status": "idea"
+        },
+        {
+          "id": "tokyo-isehiro-kyobashi",
+          "title": "Isehiro Kyobashi Main Restaurant",
+          "category": "Eat",
+          "lat": 35.6784883,
+          "lng": 139.7703416,
+          "url": "https://www.isehiro.co.jp/honten/",
+          "body": "Yakitori restaurant open for over a century, more casual than Innsyoutei. The website is Japanese only.",
+          "status": "idea"
         }
       ]
     },
