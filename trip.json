@@ -1126,13 +1126,15 @@
         },
         {
           "id": "halong-day-cruise",
-          "title": "Ha Long Bay Day Cruise",
+          "title": "Ha Long Bay Day Tour, 6 Star Dolphin Cruise",
           "category": "See",
           "lat": 20.9101,
           "lng": 107.1839,
+          "url": "https://www.klook.com/en-AU/activity/161203-ha-long-bay-day-tour-with-sung-sot-ti-top-by-6-star-dolphin-cruise/",
+          "priceAud": 135,
           "image": "https://images.unsplash.com/photo-1782717101892-9414c70b9b47?q=80&w=1600&auto=format&fit=crop",
-          "body": "A day cruise through the limestone karsts, back on land by evening rather than an overnight boat.",
-          "status": "idea"
+          "body": "Booked through Klook for Sat 19 Dec, a day cruise with stops at Sung Sot cave and Ti Top island. Check the Klook voucher for the pickup time.",
+          "status": "booked"
         }
       ]
     },
