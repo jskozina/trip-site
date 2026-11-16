@@ -899,6 +899,30 @@
       ]
     },
     {
+      "id": "shibu-onsen-yudanaka",
+      "type": "transit",
+      "title": "Shibu Onsen to Yudanaka",
+      "mode": "Bus",
+      "duration": "About 8 min",
+      "start": "2026-12-12",
+      "end": "2026-12-12",
+      "group": "Shibu Onsen to Okubo",
+      "body": "Nagaden local bus. Checkout is 10:00, and the last timetable had buses at 07:54, 09:05 and 10:33, but the winter timetable wasn't out when checked. A taxi is the fallback.",
+      "status": "idea"
+    },
+    {
+      "id": "yudanaka-nagano",
+      "type": "transit",
+      "title": "Yudanaka to Nagano",
+      "mode": "Train",
+      "duration": "About 45 min",
+      "start": "2026-12-12",
+      "end": "2026-12-12",
+      "group": "Shibu Onsen to Okubo",
+      "body": "Nagaden limited express to Nagano Station. You need a base fare ticket plus a limited express ticket.",
+      "status": "idea"
+    },
+    {
       "id": "nagano-tokyo",
       "type": "transit",
       "title": "Nagano to Tokyo",
@@ -907,7 +931,20 @@
       "start": "2026-12-12",
       "end": "2026-12-12",
       "priceAud": 150,
-      "body": "Hokuriku Shinkansen, direct.",
+      "group": "Shibu Onsen to Okubo",
+      "body": "Hokuriku Shinkansen, direct to Tokyo Station. Between 80 and 110 minutes depending on the train, so pick the faster Kagayaki or Hakutaka if you can.",
+      "status": "idea"
+    },
+    {
+      "id": "tokyo-okubo",
+      "type": "transit",
+      "title": "Tokyo Station to Okubo",
+      "mode": "Train",
+      "duration": "About 30 min",
+      "start": "2026-12-12",
+      "end": "2026-12-12",
+      "group": "Shibu Onsen to Okubo",
+      "body": "JR Chuo Line to Shinjuku, then one stop on the Chuo-Sobu line to Okubo. Check-in is from 3pm, so you may be early.",
       "status": "idea"
     },
     {
