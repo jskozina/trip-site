@@ -823,7 +823,32 @@
       "start": "2026-12-11",
       "end": "2026-12-11",
       "priceAud": 150,
-      "body": "Hokuriku Shinkansen, direct.",
+      "group": "Kanazawa to Shibu Onsen",
+      "body": "Hokuriku Shinkansen, direct. Kagayaki is the 1h05 service and all its seats are reserved. Hakutaka takes 80 to 90 minutes.",
+      "status": "idea"
+    },
+    {
+      "id": "nagano-yudanaka",
+      "type": "transit",
+      "title": "Nagano to Yudanaka",
+      "mode": "Train",
+      "duration": "About 45 min",
+      "start": "2026-12-11",
+      "end": "2026-12-11",
+      "group": "Kanazawa to Shibu Onsen",
+      "body": "Nagaden limited express from Nagano Station. You need a base fare ticket plus a limited express ticket.",
+      "status": "idea"
+    },
+    {
+      "id": "yudanaka-shibu-onsen",
+      "type": "transit",
+      "title": "Yudanaka to Shibu Onsen",
+      "mode": "Bus",
+      "duration": "About 5 min",
+      "start": "2026-12-11",
+      "end": "2026-12-11",
+      "group": "Kanazawa to Shibu Onsen",
+      "body": "Nagaden local bus, roughly hourly in the afternoon. The winter timetable wasn't out when checked, so confirm it or take a taxi, about 2 to 3 km uphill.",
       "status": "idea"
     },
     {
