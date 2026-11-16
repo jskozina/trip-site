@@ -9,7 +9,8 @@
       "flights": 2146,
       "accom": 1601,
       "food": 1040,
-      "activities": 520
+      "transport": 708,
+    "activities": 520
     }
   },
   "legs": [
@@ -763,12 +764,15 @@
       "type": "transit",
       "title": "Shirakawa-go to Kanazawa",
       "mode": "Bus",
-      "duration": "1h15",
+      "duration": "1h25",
+      "departTime": "15:10",
+      "arriveTime": "16:35",
+      "priceAud": 27,
       "start": "2026-12-10",
       "end": "2026-12-10",
       "group": "Via Shirakawa-go",
-      "body": "Not booked yet, needs its own ticket (no stopovers). Plan is the 15:10 from Shirakawa-go, arriving Kanazawa 16:35, after the 4pm check-in.",
-      "status": "idea"
+      "body": "Car 1, seat 09D, from Shirakawa-go (Ogimachi) to Kanazawa Station West Exit, bus stop 4. Print the e-ticket email, as you have to rebuy the ticket if you can't show it.",
+      "status": "booked"
     },
     {
       "id": "kanazawa",

@@ -1246,8 +1246,8 @@ function budgetGroupHtml(icon, label, actual, target, items, note){
   </div>`;
 }
 
-// Flight prices are entered per person; accommodation, food and activity
-// prices are entered as the shared/total cost for the whole group.
+// Flight prices are entered per person; accommodation, food, activity and
+// ground transport prices are entered as the shared/total cost for the whole group.
 function renderBudget(trip, legs, view){
   const b = trip.budget || {};
   const travellers = trip.travellers || 1;
@@ -1255,21 +1255,25 @@ function renderBudget(trip, legs, view){
   const stays = legs.flatMap(l => (l.stays || []).map(s => ({...s, city: l.title})));
   const spots = legs.flatMap(l => l.spots || []);
   const flightLegs = legs.filter(l => l.type === 'transit' && (l.mode||'').toLowerCase()==='flight');
+  const groundLegs = legs.filter(l => l.type === 'transit' && (l.mode||'').toLowerCase()!=='flight');
 
   const flightsPerPerson = flightLegs.reduce((s,x) => s + (x.priceAud||0), 0);
   const accomShared = stays.reduce((s,x) => s + ((x.priceAud||0) * (nights(x.start,x.end)||0)), 0);
   const foodShared = spots.filter(s => (s.category||'').toLowerCase()==='eat').reduce((s,x) => s + (x.priceAud||0), 0);
   const activitiesShared = spots.filter(s => (s.category||'').toLowerCase()!=='eat').reduce((s,x) => s + (x.priceAud||0), 0);
 
+  const transportShared = groundLegs.reduce((s,x) => s + (x.priceAud||0), 0);
+
   const flights = perPerson ? flightsPerPerson : flightsPerPerson * travellers;
   const accom = perPerson ? accomShared / travellers : accomShared;
+  const transport = perPerson ? transportShared / travellers : transportShared;
   const food = perPerson ? foodShared / travellers : foodShared;
   const activities = perPerson ? activitiesShared / travellers : activitiesShared;
 
   const targetOf = k => perPerson ? (b[k]||0) / travellers : (b[k]||0);
 
-  const totalActual = flights + accom + food + activities;
-  const totalTarget = ['flights','accom','food','activities'].reduce((s,k) => s + targetOf(k), 0);
+  const totalActual = flights + transport + accom + food + activities;
+  const totalTarget = ['flights','transport','accom','food','activities'].reduce((s,k) => s + targetOf(k), 0);
 
   const groupLastLeg = {};
   flightLegs.forEach(f => { groupLastLeg[ANCHOR_MAP[f.id] || f.id] = f; });
@@ -1287,6 +1291,14 @@ function renderBudget(trip, legs, view){
       return budgetItemHtml(flightLabel(f), cost, `leg-${ANCHOR_MAP[f.id]||f.id}`, f.status);
     }).join('');
 
+  const pricedGround = groundLegs.filter(g => typeof g.priceAud === 'number');
+  const groundItems = pricedGround.map(g => {
+    const cost = perPerson ? g.priceAud / travellers : g.priceAud;
+    return budgetItemHtml(g.title, cost, `leg-${ANCHOR_MAP[g.id]||g.id}`, g.status);
+  }).join('');
+  const unpricedGround = groundLegs.length - pricedGround.length;
+  const transportNote = unpricedGround > 0 ? `${unpricedGround} other transfer${unpricedGround===1?'':'s'} not priced yet` : '';
+
   const accomItems = stays.map(s => {
     const shared = (s.priceAud||0) * (nights(s.start,s.end)||0);
     const cost = typeof s.priceAud === 'number' ? (perPerson ? shared/travellers : shared) : undefined;
@@ -1300,6 +1312,7 @@ function renderBudget(trip, legs, view){
     : '';
 
   const rows = budgetGroupHtml('plane', 'Flights', flights, targetOf('flights'), flightItems)
+    + budgetGroupHtml('train', 'Trains, buses and transfers', transport, targetOf('transport'), groundItems, transportNote)
     + budgetGroupHtml('bed', 'Accommodation', accom, targetOf('accom'), accomItems, accomNote)
     + budgetGroupHtml('eat', 'Food', food, targetOf('food'))
     + budgetGroupHtml('see', 'Activities', activities, targetOf('activities'));
