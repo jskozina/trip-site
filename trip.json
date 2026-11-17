@@ -244,7 +244,7 @@
       "duration": "28 min direct",
       "start": "2026-12-05",
       "end": "2026-12-05",
-      "priceAud": 50,
+      "priceAud": 5,
       "body": "JR Special Rapid Service, direct between Osaka and Kyoto stations.",
       "payOnDay": true,
       "status": "idea"
@@ -294,8 +294,9 @@
           "category": "Day trip",
           "lat": 34.6901,
           "lng": 135.1955,
+          "priceAud": 20,
           "image": "https://images.unsplash.com/photo-1756007847716-77ea57f142ea?q=80&w=1600&auto=format&fit=crop",
-          "body": "About 70 minutes from Kyoto by train.",
+          "body": "About 70 minutes from Kyoto by train. Price is the estimated return JR fare, paid with an IC card on the day.",
           "status": "idea"
         },
         {
@@ -304,8 +305,9 @@
           "category": "Day trip",
           "lat": 34.6851,
           "lng": 135.8048,
+          "priceAud": 13,
           "image": "https://images.unsplash.com/photo-1776608721705-3a529722aea5?q=80&w=1600&auto=format&fit=crop",
-          "body": "About 45 minutes from Kyoto by train. Deer roam Nara Park and will nudge for food.",
+          "body": "About 45 minutes from Kyoto by train. Deer roam Nara Park and will nudge for food. Price is the return JR fare, paid with an IC card on the day.",
           "status": "idea"
         },
         {
@@ -1001,8 +1003,11 @@
           "category": "Day trip",
           "lat": 35.517,
           "lng": 138.7677,
+          "priceAud": 41,
+          "buyAhead": true,
+          "bookVia": "highway-buses.jp, once you pick the day",
           "image": "https://images.unsplash.com/photo-1752395480128-8c15c9364a03?q=80&w=1600&auto=format&fit=crop",
-          "body": "About 2 hours from Tokyo to Kawaguchiko by direct bus. Often cloud-covered, mornings give the best chance of a clear view.",
+          "body": "About 2 hours from Tokyo to Kawaguchiko by direct bus. Price is the return bus fare. Often cloud-covered, mornings give the best chance of a clear view.",
           "status": "idea"
         },
         {

@@ -463,6 +463,7 @@ a.cd-stay:hover .cd-name,a.cd-stay:hover .cd-go{color:var(--accent)}
   color:#fff;background:var(--buy);padding:3px 8px 3px 7px;border-radius:3px;white-space:nowrap;
 }
 .transit-row.to-buy{box-shadow:inset 3px 0 0 var(--buy);padding-left:16px}
+.item-card .via{font-family:var(--mono);font-size:11px;color:var(--buy);margin:8px 0 0;letter-spacing:.02em}
 .transit-row .via{font-family:var(--mono);font-size:11px;color:var(--buy);margin:7px 0 0;letter-spacing:.02em}
 .buy{margin-top:56px;max-width:940px}
 .buy-list{border:1px solid var(--line);border-left:3px solid var(--buy);background:var(--buy-bg)}
@@ -489,8 +490,8 @@ a.cd-stay:hover .cd-name,a.cd-stay:hover .cd-go{color:var(--accent)}
 @media (max-width:680px){
   .subgrp-label{margin:22px 0 12px}
   .subgrp-label .swipe{display:inline}
-  .card-grid{
-    display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+  .leg-content .card-grid{
+    display:flex;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
     margin:0 calc(var(--gutter) * -1);padding:0 var(--gutter) 6px;scroll-padding-left:var(--gutter);
     scrollbar-width:none;-webkit-overflow-scrolling:touch;
   }
@@ -839,7 +840,9 @@ function itemCard(o, kind, city, feature){
       <h3>${esc(o.title)}</h3>
       ${meta ? `<p class="meta">${esc(meta)}</p>` : ''}
       ${o.body ? `<p>${esc(o.body)}</p>` : ''}
+      ${o.buyAhead && o.status !== 'booked' && o.bookVia ? `<p class="via">Buy via ${esc(o.bookVia)}</p>` : ''}
       <div class="row">
+        ${o.buyAhead && o.status !== 'booked' ? '<span class="buy-flag">To buy</span>' : ''}
         ${pill(o.status)}
         ${cost}
         <a class="lnk" href="${mapLink(o, city)}" target="_blank" rel="noopener">Map ↗</a>
@@ -1415,7 +1418,8 @@ function render(data){
       <span class="lbl">${esc(c.title)}</span>
     </a>`).join('');
 
-  const toBuy = legs.filter(needsPurchase);
+  const spotBuys = cities.flatMap(c => (c.spots||[]).filter(s => s.buyAhead && s.status !== 'booked').map(s => ({...s, mode:'Day trip', _city:c.title, _spot:true})));
+  const toBuy = legs.filter(needsPurchase).concat(spotBuys);
   $('summary').innerHTML = `
     <div>Cities<b>${cities.length}</b></div>
     <div>Nights<b>${totalNights}</b></div>
@@ -1426,8 +1430,8 @@ function render(data){
     $('buyList').innerHTML = toBuy.map(l => {
       const price = l.priceAud ? money(l.priceAud) + ((l.mode||'').toLowerCase()==='flight' ? ' pp' : '') : '';
       const sub = [l.mode, l.bookVia ? 'via ' + l.bookVia : ''].filter(Boolean).join(' · ');
-      return `<a class="buy-item" href="#leg-${esc(ANCHOR_MAP[l.id] || l.id)}">
-        <span class="bi-d">${esc(dayDate(l.start))}</span>
+      return `<a class="buy-item" href="#${l._spot ? 'item-' + esc(l.id) : 'leg-' + esc(ANCHOR_MAP[l.id] || l.id)}">
+        <span class="bi-d">${l._spot ? 'Pick a day' : esc(dayDate(l.start))}</span>
         <p class="bi-t">${esc(l.title)}</p>
         ${price ? `<span class="bi-p">est. ${price}</span>` : ''}
         <p class="bi-s">${esc(sub)}</p>
