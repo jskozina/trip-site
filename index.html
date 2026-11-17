@@ -462,6 +462,10 @@ a.cd-stay:hover .cd-name,a.cd-stay:hover .cd-go{color:var(--accent)}
   font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
   color:#fff;background:var(--buy);padding:3px 8px 3px 7px;border-radius:3px;white-space:nowrap;
 }
+.pay-flag{
+  display:inline-flex;align-items:center;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--line-2);padding:2px 7px;border-radius:3px;white-space:nowrap;
+}
 .transit-row.to-buy{box-shadow:inset 3px 0 0 var(--buy);padding-left:16px}
 .item-card .via{font-family:var(--mono);font-size:11px;color:var(--buy);margin:8px 0 0;letter-spacing:.02em}
 .transit-row .via{font-family:var(--mono);font-size:11px;color:var(--buy);margin:7px 0 0;letter-spacing:.02em}
@@ -800,6 +804,7 @@ function transitInner(l, extraClass, idAttr, styleAttr){
       <div class="top">
         <p class="t">${esc(l.title)}</p>
         ${buy ? '<span class="buy-flag">To buy</span>' : ''}
+        ${l.payOnDay && l.status !== 'booked' ? '<span class="pay-flag">Pay on the day</span>' : ''}
         ${pill(l.status)}
       </div>
       ${buy && l.bookVia ? `<p class="via">Buy via ${esc(l.bookVia)}</p>` : ''}
