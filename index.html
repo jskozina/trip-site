@@ -452,6 +452,56 @@ a.cd-stay:hover .cd-name,a.cd-stay:hover .cd-go{color:var(--accent)}
 }
 .subgrp-label:first-of-type{margin-top:4px}
 .subgrp-label svg{opacity:.55}
+.subgrp-label .cnt{font-weight:500;color:var(--faint);letter-spacing:.06em}
+.subgrp-label .swipe{display:none;margin-left:auto;font-weight:500;color:var(--faint);letter-spacing:.06em}
+
+/* ---------- needs buying ---------- */
+:root{--buy:#B4441F;--buy-bg:#FBEDE6}
+.buy-flag{
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:#fff;background:var(--buy);padding:3px 8px 3px 7px;border-radius:3px;white-space:nowrap;
+}
+.transit-row.to-buy{box-shadow:inset 3px 0 0 var(--buy);padding-left:16px}
+.transit-row .via{font-family:var(--mono);font-size:11px;color:var(--buy);margin:7px 0 0;letter-spacing:.02em}
+.buy{margin-top:56px;max-width:940px}
+.buy-list{border:1px solid var(--line);border-left:3px solid var(--buy);background:var(--buy-bg)}
+.buy-item{
+  display:grid;grid-template-columns:84px minmax(0,1fr) auto;gap:4px 16px;align-items:baseline;
+  padding:13px 16px;border-bottom:1px solid var(--line);color:var(--text);text-decoration:none;
+}
+.buy-item:last-child{border-bottom:0}
+.buy-item:hover .bi-t{color:var(--buy)}
+.bi-d{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--buy);font-weight:600}
+.bi-t{font-family:'Fraunces',Georgia,serif;font-size:17px;font-weight:500;margin:0;min-width:0}
+.bi-s{grid-column:2;font-family:var(--mono);font-size:11px;color:var(--muted);margin:0}
+.bi-p{font-family:var(--mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;grid-row:1;grid-column:3}
+@media (max-width:560px){
+  .buy-item{grid-template-columns:minmax(0,1fr) auto}
+  .bi-d{grid-column:1/-1}
+  .bi-s{grid-column:1/-1}
+  .bi-p{grid-row:2;grid-column:2}
+  .bi-t{grid-column:1}
+}
+@media (prefers-color-scheme:dark){:root{--buy-bg:#2A1812}}
+
+/* ---------- eat / see / do: swipe rows on mobile ---------- */
+@media (max-width:680px){
+  .subgrp-label{margin:22px 0 12px}
+  .subgrp-label .swipe{display:inline}
+  .card-grid{
+    display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+    margin:0 calc(var(--gutter) * -1);padding:0 var(--gutter) 6px;scroll-padding-left:var(--gutter);
+    scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  }
+  .card-grid::-webkit-scrollbar{display:none}
+  .card-grid .item-card{flex:0 0 68%;max-width:250px;scroll-snap-align:start}
+  .card-grid .ic-media{aspect-ratio:1/1}
+  .card-grid .item-card h3{font-size:17px}
+  .card-grid .item-card .ic-body>p:not(.ic-eyebrow):not(.meta){
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+  }
+}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:32px 24px}
 
 /* ---------- stay feature (full-width accommodation) ---------- */
@@ -556,6 +606,10 @@ footer{
     </div>
     <div class="summary" id="summary"></div>
   </header>
+  <section class="buy" id="buyWrap" hidden>
+    <p class="section-label">Still to buy</p>
+    <div class="buy-list" id="buyList"></div>
+  </section>
   <section class="calendar" id="calendarWrap" hidden>
     <p class="section-label">Calendar</p>
     <p class="cal-hint">Tap a day for the stay and travel details.</p>
@@ -731,16 +785,24 @@ function connectorHtml(a, b){
   return `<div class="connector">Then by ${esc((b.mode||'transfer').toLowerCase())}</div>`;
 }
 
+// A transit leg needs buying ahead if it isn't booked and isn't marked pay-on-the-day
+function needsPurchase(l){
+  return l.type === 'transit' && l.status !== 'booked' && !l.payOnDay;
+}
+
 function transitInner(l, extraClass, idAttr, styleAttr){
   const hasTimes = l.departTime && l.arriveTime;
   const hasRoute = l.from && l.to;
-  return `<div class="transit-row ${extraClass||''}" ${idAttr?`id="${idAttr}"`:''} style="${styleAttr||''}">
+  const buy = needsPurchase(l);
+  return `<div class="transit-row ${buy?'to-buy':''} ${extraClass||''}" ${idAttr?`id="${idAttr}"`:''} style="${styleAttr||''}">
     <div class="t-icon">${svgIcon(iconForMode(l.mode),20)}</div>
     <div class="body">
       <div class="top">
         <p class="t">${esc(l.title)}</p>
+        ${buy ? '<span class="buy-flag">To buy</span>' : ''}
         ${pill(l.status)}
       </div>
+      ${buy && l.bookVia ? `<p class="via">Buy via ${esc(l.bookVia)}</p>` : ''}
       <p class="sub">${esc(l.mode||'Transit')}${l.flightNo ? ' · '+esc(l.flightNo) : ''}${l.priceAud ? ' · '+money(l.priceAud)+((l.mode||'').toLowerCase()==='flight' ? ' pp' : '') : ''}</p>
       ${l.body ? `<p class="d">${esc(l.body)}</p>` : ''}
     </div>
@@ -1354,9 +1416,25 @@ function render(data){
       <span class="lbl">${esc(c.title)}</span>
     </a>`).join('');
 
+  const toBuy = legs.filter(needsPurchase);
   $('summary').innerHTML = `
     <div>Cities<b>${cities.length}</b></div>
-    <div>Nights<b>${totalNights}</b></div>`;
+    <div>Nights<b>${totalNights}</b></div>
+    ${toBuy.length ? `<div>To buy<b style="color:var(--buy)">${toBuy.length}</b></div>` : ''}`;
+
+  if(toBuy.length){
+    $('buyWrap').hidden = false;
+    $('buyList').innerHTML = toBuy.map(l => {
+      const price = l.priceAud ? money(l.priceAud) + ((l.mode||'').toLowerCase()==='flight' ? ' pp' : '') : '';
+      const sub = [l.mode, l.bookVia ? 'via ' + l.bookVia : ''].filter(Boolean).join(' · ');
+      return `<a class="buy-item" href="#leg-${esc(ANCHOR_MAP[l.id] || l.id)}">
+        <span class="bi-d">${esc(dayDate(l.start))}</span>
+        <p class="bi-t">${esc(l.title)}</p>
+        ${price ? `<span class="bi-p">est. ${price}</span>` : ''}
+        <p class="bi-s">${esc(sub)}</p>
+      </a>`;
+    }).join('');
+  }
 
   // now-mode
   const today = new Date(); today.setHours(0,0,0,0);
@@ -1438,7 +1516,7 @@ function render(data){
     const staysHtml = (l.stays||[]).map(s => itemCard(s,'stay',l.title,true)).join('');
     const spotGroups = groupSpotsByCategory(l.spots||[]);
     const spotsHtml = spotGroups.map(g => `
-        <p class="subgrp-label">${svgIcon(g.cat.toLowerCase(),13)}${esc(g.cat)}</p>
+        <p class="subgrp-label">${svgIcon(g.cat.toLowerCase(),13)}${esc(g.cat)}<span class="cnt">${g.items.length}</span>${g.items.length>1?'<span class="swipe">Swipe →</span>':''}</p>
         <div class="card-grid">${g.items.map(s => itemCard(s,'spot',l.title)).join('')}</div>
       `).join('');
     const mapId = `legmap-${esc(l.id)}`;

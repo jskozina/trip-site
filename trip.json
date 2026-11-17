@@ -246,6 +246,7 @@
       "end": "2026-12-05",
       "priceAud": 50,
       "body": "JR Special Rapid Service, direct between Osaka and Kyoto stations.",
+      "payOnDay": true,
       "status": "idea"
     },
     {
@@ -825,6 +826,7 @@
       "priceAud": 150,
       "group": "Kanazawa to Shibu Onsen",
       "body": "Hokuriku Shinkansen, direct. Kagayaki is the 1h05 service and all its seats are reserved. Hakutaka takes 80 to 90 minutes.",
+      "bookVia": "JR-East Train Reservation, paper ticket collected at the station",
       "status": "idea"
     },
     {
@@ -837,6 +839,7 @@
       "end": "2026-12-11",
       "group": "Kanazawa to Shibu Onsen",
       "body": "Nagaden limited express from Nagano Station. You need a base fare ticket plus a limited express ticket.",
+      "payOnDay": true,
       "status": "idea"
     },
     {
@@ -849,6 +852,7 @@
       "end": "2026-12-11",
       "group": "Kanazawa to Shibu Onsen",
       "body": "Nagaden local bus, roughly hourly in the afternoon. The winter timetable wasn't out when checked, so confirm it or take a taxi, about 2 to 3 km uphill.",
+      "payOnDay": true,
       "status": "idea"
     },
     {
@@ -908,6 +912,7 @@
       "end": "2026-12-12",
       "group": "Shibu Onsen to Okubo",
       "body": "Nagaden local bus. Checkout is 10:00, and the last timetable had buses at 07:54, 09:05 and 10:33, but the winter timetable wasn't out when checked. A taxi is the fallback.",
+      "payOnDay": true,
       "status": "idea"
     },
     {
@@ -920,6 +925,7 @@
       "end": "2026-12-12",
       "group": "Shibu Onsen to Okubo",
       "body": "Nagaden limited express to Nagano Station. You need a base fare ticket plus a limited express ticket.",
+      "payOnDay": true,
       "status": "idea"
     },
     {
@@ -933,6 +939,7 @@
       "priceAud": 150,
       "group": "Shibu Onsen to Okubo",
       "body": "Hokuriku Shinkansen, direct to Tokyo Station. Between 80 and 110 minutes depending on the train, so pick the faster Kagayaki or Hakutaka if you can.",
+      "bookVia": "JR-East Train Reservation, paper ticket collected at the station",
       "status": "idea"
     },
     {
@@ -945,6 +952,7 @@
       "end": "2026-12-12",
       "group": "Shibu Onsen to Okubo",
       "body": "JR Chuo Line to Shinjuku, then one stop on the Chuo-Sobu line to Okubo. Check-in is from 3pm, so you may be early.",
+      "payOnDay": true,
       "status": "idea"
     },
     {
