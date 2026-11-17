@@ -596,7 +596,6 @@ footer{
 <body>
 <div class="wrap">
   <header class="masthead">
-    <p class="eyebrow">Itinerary</p>
     <div class="photostrip" id="photoStrip"></div>
     <h1 id="title">Loading</h1>
     <p class="datestrip" id="dateStrip"></p>
@@ -1403,7 +1402,7 @@ function render(data){
   const t = data.trip || {};
   document.title = t.title || 'Itinerary';
   $('title').textContent = t.title || '';
-  $('dateStrip').textContent = t.depart ? `${dateLong(t.depart)} – ${dateLong(t.return)}` : '';
+  $('dateStrip').textContent = t.depart ? `Itinerary · ${dateLong(t.depart)} – ${dateLong(t.return)}` : '';
 
   const legs = (data.legs || []);
   const cities = legs.filter(l => l.type !== 'transit');
