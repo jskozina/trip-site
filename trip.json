@@ -1420,6 +1420,18 @@
       "spots": []
     },
     {
+      "id": "hoian-dad",
+      "type": "transit",
+      "title": "Hoi An to Da Nang airport",
+      "mode": "Car",
+      "duration": "45 min",
+      "start": "2026-12-25",
+      "end": "2026-12-25",
+      "group": "Transfer then flight to Saigon",
+      "body": "Airport transfer by car. The flight leaves at 10:50, so book it for around 7:30 to 8:00.",
+      "status": "idea"
+    },
+    {
       "id": "danang-sgn",
       "type": "transit",
       "title": "Da Nang to Saigon",
@@ -1432,6 +1444,7 @@
       "start": "2026-12-25",
       "end": "2026-12-25",
       "priceAud": 99,
+      "group": "Transfer then flight to Saigon",
       "body": "The airline brought this forward from 11:00 to 10:50, so leave Hoi An a little earlier. Checked bag capped at 15kg, not 20kg, worth weighing before this one.",
       "status": "booked"
     },
