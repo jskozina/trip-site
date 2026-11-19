@@ -1428,12 +1428,11 @@
       "from": "DAD",
       "to": "SGN",
       "flightNo": "Vietravel Airlines 253",
-      "departTime": "11:00",
-      "arriveTime": "12:35",
+      "departTime": "10:50",
       "start": "2026-12-25",
       "end": "2026-12-25",
       "priceAud": 99,
-      "body": "A late-morning flight, leaves the rest of the day free in the city. Checked bag capped at 15kg, not 20kg - worth weighing before this one.",
+      "body": "The airline brought this forward from 11:00 to 10:50, so leave Hoi An a little earlier. Checked bag capped at 15kg, not 20kg, worth weighing before this one.",
       "status": "booked"
     },
     {
