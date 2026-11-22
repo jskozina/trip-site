@@ -233,6 +233,38 @@
           "image": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=1600&auto=format&fit=crop",
           "body": "Seven-time Michelin Bib Gourmand ramen, a fixture of Osaka's ramen scene for 15 years.",
           "status": "idea"
+        },
+        {
+          "id": "osaka-castle",
+          "title": "Osaka Castle",
+          "category": "See",
+          "lat": 34.6872571,
+          "lng": 135.5258546,
+          "status": "idea"
+        },
+        {
+          "id": "osaka-shitennoji",
+          "title": "Shitennoji Temple",
+          "category": "See",
+          "lat": 34.6544581,
+          "lng": 135.5165239,
+          "status": "idea"
+        },
+        {
+          "id": "osaka-tennoji-zoo",
+          "title": "Tennoji Zoo",
+          "category": "See",
+          "lat": 34.6510957,
+          "lng": 135.5084344,
+          "status": "idea"
+        },
+        {
+          "id": "osaka-usj",
+          "title": "Universal Studios Japan",
+          "category": "Do",
+          "lat": 34.6656768,
+          "lng": 135.4323185,
+          "status": "idea"
         }
       ]
     },
