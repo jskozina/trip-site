@@ -961,6 +961,80 @@
           "body": "Early in the season, so check which lifts are open the week before. The winter bus timetable from Shibu Onsen isn't published yet.",
           "status": "shortlist",
           "date": "2026-12-12"
+        },
+        {
+          "id": "shibu-bath-1-hatsuyu",
+          "title": "Bath 1: Hatsu-yu",
+          "category": "Do",
+          "lat": 36.7346455,
+          "lng": 138.4323358,
+          "body": "The nine baths need the key from your ryokan and are open 6:00 to 22:00, though they close briefly for cleaning. The water can be very hot, and bathing is nude.",
+          "status": "shortlist"
+        },
+        {
+          "id": "shibu-bath-2-sasanoyu",
+          "title": "Bath 2: Sasa-no-yu",
+          "category": "Do",
+          "lat": 36.7345988,
+          "lng": 138.4316383,
+          "status": "shortlist"
+        },
+        {
+          "id": "shibu-bath-3-watanoyu",
+          "title": "Bath 3: Wata-no-yu",
+          "category": "Do",
+          "lat": 36.7348429,
+          "lng": 138.4308127,
+          "status": "shortlist"
+        },
+        {
+          "id": "shibu-bath-4-takenoyu",
+          "title": "Bath 4: Take-no-yu",
+          "category": "Do",
+          "lat": 36.733659,
+          "lng": 138.433939,
+          "status": "shortlist"
+        },
+        {
+          "id": "shibu-bath-5-matsunoyu",
+          "title": "Bath 5: Matsu-no-yu",
+          "category": "Do",
+          "lat": 36.733398,
+          "lng": 138.4343708,
+          "status": "shortlist"
+        },
+        {
+          "id": "shibu-bath-6-mearainoyu",
+          "title": "Bath 6: Mearai-no-yu",
+          "category": "Do",
+          "lat": 36.7340293,
+          "lng": 138.4344708,
+          "status": "shortlist"
+        },
+        {
+          "id": "shibu-bath-7-nanakurinoyu",
+          "title": "Bath 7: Nanakuri-no-yu",
+          "category": "Do",
+          "lat": 36.734205,
+          "lng": 138.434054,
+          "status": "shortlist"
+        },
+        {
+          "id": "shibu-bath-8-shinmeidakinoyu",
+          "title": "Bath 8: Shinmeidaki-no-yu",
+          "category": "Do",
+          "lat": 36.7344984,
+          "lng": 138.4334962,
+          "status": "shortlist"
+        },
+        {
+          "id": "shibu-bath-9-oyu",
+          "title": "Bath 9: O-yu",
+          "category": "Do",
+          "lat": 36.734588,
+          "lng": 138.4329886,
+          "body": "Traditionally the last of the nine.",
+          "status": "shortlist"
         }
       ]
     },
