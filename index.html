@@ -1436,7 +1436,7 @@ function render(data){
       const price = l.priceAud ? money(l.priceAud) + ((l.mode||'').toLowerCase()==='flight' ? ' pp' : '') : '';
       const sub = [l.mode, l.bookVia ? 'via ' + l.bookVia : ''].filter(Boolean).join(' · ');
       return `<a class="buy-item" href="#${l._spot ? 'item-' + esc(l.id) : 'leg-' + esc(ANCHOR_MAP[l.id] || l.id)}">
-        <span class="bi-d">${l._spot ? 'Pick a day' : esc(dayDate(l.start))}</span>
+        <span class="bi-d">${l._spot ? (l.date ? esc(dayDate(l.date)) : 'Pick a day') : esc(dayDate(l.start))}</span>
         <p class="bi-t">${esc(l.title)}</p>
         ${price ? `<span class="bi-p">est. ${price}</span>` : ''}
         <p class="bi-s">${esc(sub)}</p>

@@ -855,11 +855,13 @@
       "title": "Kanazawa to Nagano",
       "mode": "Train",
       "duration": "1h05 direct",
+      "departTime": "09:07",
+      "arriveTime": "10:12",
       "start": "2026-12-11",
       "end": "2026-12-11",
-      "priceAud": 150,
+      "priceAud": 85,
       "group": "Kanazawa to Shibu Onsen",
-      "body": "Hokuriku Shinkansen, direct. Kagayaki is the 1h05 service and all its seats are reserved. Hakutaka takes 80 to 90 minutes.",
+      "body": "Kagayaki 506, early enough to reach the monkey park with time to spare. All Kagayaki seats are reserved.",
       "bookVia": "JR-East Train Reservation, paper ticket collected at the station",
       "status": "idea"
     },
@@ -877,6 +879,19 @@
       "status": "idea"
     },
     {
+      "id": "yudanaka-snow-monkey-park",
+      "type": "transit",
+      "title": "Yudanaka to Snow Monkey Park",
+      "mode": "Bus",
+      "duration": "About 15 min plus a 30 min walk",
+      "start": "2026-12-11",
+      "end": "2026-12-11",
+      "group": "Kanazawa to Shibu Onsen",
+      "body": "Bus to Kanbayashi Onsen, then a 1.6 km forest walk. The park closes at 16:00, so be there by 15:30 at the latest, then come back through Yudanaka.",
+      "payOnDay": true,
+      "status": "idea"
+    },
+    {
       "id": "yudanaka-shibu-onsen",
       "type": "transit",
       "title": "Yudanaka to Shibu Onsen",
@@ -885,7 +900,7 @@
       "start": "2026-12-11",
       "end": "2026-12-11",
       "group": "Kanazawa to Shibu Onsen",
-      "body": "Nagaden local bus, roughly hourly in the afternoon. The host says get off at Shibuwagobashi stop. A taxi takes about 5 minutes and walking about 30. The winter timetable wasn't out when checked.",
+      "body": "After the monkeys, Nagaden local bus back through Yudanaka to Shibu Onsen. The host says get off at Shibuwagobashi stop. A taxi takes about 5 minutes and walking about 30. The winter timetable wasn't out when checked.",
       "payOnDay": true,
       "status": "idea"
     },
@@ -931,10 +946,49 @@
           "lat": 36.7378,
           "lng": 138.4614,
           "image": "https://images.unsplash.com/photo-1677283848061-e2d6175c2fc6?q=80&w=1600&auto=format&fit=crop",
-          "body": "About 40 minutes by bus from Nagano Station, then a 30 minute walk through the forest to reach the monkeys.",
-          "status": "idea"
+          "body": "Winter hours 9:00 to 16:00, entry by a timed Webket ticket booked in advance (account needed). Bus to Kanbayashi Onsen, then a 1.6 km forest walk of about 30 minutes.",
+          "status": "shortlist",
+          "date": "2026-12-11",
+          "buyAhead": true,
+          "bookVia": "Webket, timed-entry ticket for 11 Dec (account needed)"
+        },
+        {
+          "id": "shiga-kogen-ski-day",
+          "title": "Shiga Kogen ski day",
+          "category": "Do",
+          "lat": 36.7051773,
+          "lng": 138.4890337,
+          "body": "Early in the season, so check which lifts are open the week before. The winter bus timetable from Shibu Onsen isn't published yet.",
+          "status": "shortlist",
+          "date": "2026-12-12"
         }
       ]
+    },
+    {
+      "id": "shibu-onsen-shiga-kogen",
+      "type": "transit",
+      "title": "Shibu Onsen to Shiga Kogen",
+      "mode": "Bus",
+      "duration": "About 45 min",
+      "start": "2026-12-12",
+      "end": "2026-12-12",
+      "group": "Ski day at Shiga Kogen",
+      "body": "Nagaden bus on the Shiga Kogen line, which stops at Shibu Onsen. The winter timetable isn't published yet, so confirm the first bus out and the last one back.",
+      "payOnDay": true,
+      "status": "idea"
+    },
+    {
+      "id": "shiga-kogen-shibu-onsen",
+      "type": "transit",
+      "title": "Shiga Kogen to Shibu Onsen",
+      "mode": "Bus",
+      "duration": "About 45 min",
+      "start": "2026-12-12",
+      "end": "2026-12-12",
+      "group": "Ski day at Shiga Kogen",
+      "body": "Back to the ryokan to collect your bags. Ask the host to hold them after the 10:00 checkout.",
+      "payOnDay": true,
+      "status": "idea"
     },
     {
       "id": "shibu-onsen-yudanaka",
@@ -945,7 +999,7 @@
       "start": "2026-12-12",
       "end": "2026-12-12",
       "group": "Shibu Onsen to Okubo",
-      "body": "Nagaden local bus. Checkout is 10:00, and the last timetable had buses at 07:54, 09:05 and 10:33, but the winter timetable wasn't out when checked. A taxi is the fallback.",
+      "body": "Nagaden local bus after collecting your bags. The winter timetable wasn't out when checked, so confirm the last buses, with a taxi as the fallback.",
       "payOnDay": true,
       "status": "idea"
     },
@@ -967,12 +1021,12 @@
       "type": "transit",
       "title": "Nagano to Tokyo",
       "mode": "Train",
-      "duration": "1h30 direct",
+      "duration": "1h25 direct",
       "start": "2026-12-12",
       "end": "2026-12-12",
-      "priceAud": 150,
+      "priceAud": 78,
       "group": "Shibu Onsen to Okubo",
-      "body": "Hokuriku Shinkansen, direct to Tokyo Station. Between 80 and 110 minutes depending on the train, so pick the faster Kagayaki or Hakutaka if you can.",
+      "body": "An evening train after skiing. Kagayaki 536 leaves 16:11 and arrives 17:36, and Hakutaka 568 leaves 16:20.",
       "bookVia": "JR-East Train Reservation, paper ticket collected at the station",
       "status": "idea"
     },
@@ -985,7 +1039,7 @@
       "start": "2026-12-12",
       "end": "2026-12-12",
       "group": "Shibu Onsen to Okubo",
-      "body": "JR Chuo Line to Shinjuku, then one stop on the Chuo-Sobu line to Okubo. Check-in is from 3pm, so you may be early.",
+      "body": "JR Chuo Line to Shinjuku, then one stop on the Chuo-Sobu line to Okubo. You'll arrive in the evening, so tell the host you're checking in late.",
       "payOnDay": true,
       "status": "idea"
     },
