@@ -958,13 +958,13 @@
           "bookVia": "Webket, timed-entry ticket for 11 Dec (account needed)"
         },
         {
-          "id": "shiga-kogen-ski-day",
-          "title": "Shiga Kogen ski day",
+          "id": "shiga-kogen-gondola",
+          "title": "Shiga Kogen gondola and lunch",
           "category": "Do",
-          "lat": 36.7051773,
-          "lng": 138.4890337,
+          "lat": 36.7297857,
+          "lng": 138.5209038,
           "image": "https://images.unsplash.com/photo-1642753128615-c0ce4954f91e?q=80&w=1600&auto=format&fit=crop",
-          "body": "Early in the season, so check which lifts are open the week before. The winter bus timetable from Shibu Onsen isn't published yet.",
+          "body": "The Higashitateyama gondola is open to people without skis, with a rooftop restaurant at the summit. Tickets are ¥2,000 return, bought at the station, and chairlifts aren't confirmed for walkers.",
           "status": "shortlist",
           "date": "2026-12-12"
         },
@@ -978,6 +978,23 @@
           "body": "Use the key from your ryokan, and the baths are open 6:00 to 22:00. All nine are within 400 m of each other, so allow 2.5 to 3 hours and do bath 9 (O-yu) last.",
           "status": "shortlist",
           "date": "2026-12-11"
+        },
+        {
+          "id": "shibu-izakaya-chokkun",
+          "title": "Izakaya Chokkun",
+          "category": "Eat",
+          "lat": 36.7340832,
+          "lng": 138.4324256,
+          "body": "A chef-led dinner with no menu, seated at the bar, which makes it easy to meet people. Many village places close early, so confirm hours.",
+          "status": "idea"
+        },
+        {
+          "id": "shibu-kozushi",
+          "title": "Kozushi",
+          "category": "Eat",
+          "lat": 36.7342397,
+          "lng": 138.4315595,
+          "status": "idea"
         }
       ]
     },
@@ -986,11 +1003,11 @@
       "type": "transit",
       "title": "Shibu Onsen to Shiga Kogen",
       "mode": "Bus",
-      "duration": "About 45 min",
+      "duration": "30 to 45 min",
       "start": "2026-12-12",
       "end": "2026-12-12",
-      "group": "Ski day at Shiga Kogen",
-      "body": "Nagaden bus on the Shiga Kogen line, which stops at Shibu Onsen. The winter timetable isn't published yet, so confirm the first bus out and the last one back.",
+      "group": "Shiga Kogen gondola day",
+      "body": "Nagaden bus on the Shiga Kogen line, which stops at Shibu Onsen. Get off at Happo Onsen stop for the gondola. The winter timetable isn't published yet, so confirm the first bus out and the last one back.",
       "payOnDay": true,
       "status": "idea"
     },
@@ -999,10 +1016,10 @@
       "type": "transit",
       "title": "Shiga Kogen to Shibu Onsen",
       "mode": "Bus",
-      "duration": "About 45 min",
+      "duration": "30 to 45 min",
       "start": "2026-12-12",
       "end": "2026-12-12",
-      "group": "Ski day at Shiga Kogen",
+      "group": "Shiga Kogen gondola day",
       "body": "Back to the ryokan to collect your bags. Ask the host to hold them after the 10:00 checkout.",
       "payOnDay": true,
       "status": "idea"
