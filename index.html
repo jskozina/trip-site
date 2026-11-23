@@ -216,6 +216,9 @@ svg{display:block;flex:none}
 .mv .tm{font-family:var(--mono);font-size:9px;letter-spacing:-.02em;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
 .mv .l{display:none}
 .mv.ar .rt{font-weight:500;font-style:italic}
+.mv.act{flex-direction:row;align-items:center;gap:4px;color:var(--text)}
+.mv.act svg{flex:none;opacity:.7}
+.mv.act .rt{min-width:0;overflow:hidden;text-overflow:ellipsis;font-weight:500;letter-spacing:0}
 
 /* inline day detail */
 .cal-detail{
@@ -939,6 +942,8 @@ function buildCalendarModel(trip, legs){
       m.chips.push({ kind:'move', t });
     });
     m.ends.filter(t => isFlight(t) && t.arriveTime).forEach(t => m.chips.push({ kind:'arrive', t }));
+    m.acts = cities.flatMap(c => (c.spots || []).filter(s => s.date === m.key));
+    m.acts.forEach(s => m.chips.push({ kind:'act', t:s }));
   });
 
   // one distinct photo per day, never repeated across the whole calendar
@@ -1025,6 +1030,9 @@ function calChipHtml(c, m){
     return open.replace('%CLS%', '') +
       `<span class="rt s">${esc(sh)}</span><span class="rt l">${esc(lg)}</span>` +
       (t.departTime ? `<span class="tm s">${esc(t.departTime)}</span><span class="tm l">${esc(tl)}</span>` : '') + '</button>';
+  }
+  if(c.kind === 'act'){
+    return open.replace('%CLS%', ' act') + svgIcon(spotBucket(t.category).toLowerCase(), 12) + `<span class="rt">${esc(t.title)}</span></button>`;
   }
   if(c.kind === 'arrive'){
     return open.replace('%CLS%', ' ar') +
@@ -1160,7 +1168,8 @@ function calDetailHtml(m){
   } else if(m.key === CAL.returnKey){
     note = `<p class="cd-note">Back home.</p>`;
   }
-  const rows = m.starts.map(t => calMoveRowHtml(t, false)).concat(m.ends.map(t => calMoveRowHtml(t, true))).join('');
+  const actRows = (m.acts || []).map(s => `<a class="cd-move" href="#item-${esc(s.id)}"><span class="cd-ico">${svgIcon(spotBucket(s.category).toLowerCase(), 18)}</span><span class="cd-main"><b>${esc(s.title)}</b><i><em class="cd-tag">On the day</em>${esc(s.category || '')}</i>${pill(s.status)}</span></a>`).join('');
+  const rows = actRows + m.starts.map(t => calMoveRowHtml(t, false)).concat(m.ends.map(t => calMoveRowHtml(t, true))).join('');
   return `<div class="cd-head"><span class="cd-date">${esc(dayLbl)}</span><button type="button" class="cd-close" aria-label="Close">×</button></div>${head}${note}${rows ? `<div class="cd-moves">${rows}</div>` : ''}`;
 }
 
