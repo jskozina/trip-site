@@ -1061,14 +1061,15 @@
       "type": "transit",
       "title": "Nagano to Tokyo",
       "mode": "Train",
-      "duration": "1h25 direct",
+      "duration": "1h24 direct",
+      "departTime": "17:56",
+      "arriveTime": "19:20",
       "start": "2026-12-12",
       "end": "2026-12-12",
       "priceAud": 78,
       "group": "Shibu Onsen to Okubo",
-      "body": "An evening train after skiing. Kagayaki 536 leaves 16:11 and arrives 17:36, and Hakutaka 568 leaves 16:20.",
-      "bookVia": "JR-East Train Reservation, paper ticket collected at the station",
-      "status": "idea"
+      "body": "Kagayaki 512, car 9 seat 11A. Collect the paper ticket at Nagano Station before boarding. It covers the Tokyo Ward Area, which normally includes Okubo, so keep it for the last leg.",
+      "status": "booked"
     },
     {
       "id": "tokyo-okubo",
