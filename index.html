@@ -472,6 +472,10 @@ a.cd-stay:hover .cd-name,a.cd-stay:hover .cd-go{color:var(--accent)}
 .transit-row.to-buy{box-shadow:inset 3px 0 0 var(--buy);padding-left:16px}
 .item-card .via{font-family:var(--mono);font-size:11px;color:var(--buy);margin:8px 0 0;letter-spacing:.02em}
 .transit-row .via{font-family:var(--mono);font-size:11px;color:var(--buy);margin:7px 0 0;letter-spacing:.02em}
+.transit-row .tix{margin:9px 0 0;padding:8px 10px;border:1px dashed var(--line, rgba(128,128,128,.45));border-radius:6px;font-family:var(--mono);font-size:11px;line-height:1.5;overflow-wrap:anywhere}
+.transit-row .tix p{margin:2px 0}
+.transit-row .tix b{font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:10px;opacity:.7;margin-right:6px}
+.transit-row .tix .code{font-size:13px;letter-spacing:.04em;user-select:all}
 .buy{margin-top:56px;max-width:940px}
 .buy-list{border:1px solid var(--line);border-left:3px solid var(--buy);background:var(--buy-bg)}
 .buy-item{
@@ -813,6 +817,11 @@ function transitInner(l, extraClass, idAttr, styleAttr){
       ${buy && l.bookVia ? `<p class="via">Buy via ${esc(l.bookVia)}</p>` : ''}
       <p class="sub">${esc(l.mode||'Transit')}${l.flightNo ? ' · '+esc(l.flightNo) : ''}${l.priceAud ? ' · '+money(l.priceAud)+((l.mode||'').toLowerCase()==='flight' ? ' pp' : '') : ''}</p>
       ${l.body ? `<p class="d">${esc(l.body)}</p>` : ''}
+      ${l.ticket ? `<div class="tix">
+        ${l.ticket.ref ? `<p><b>Ref</b> ${esc(l.ticket.ref)}</p>` : ''}
+        ${l.ticket.code ? `<p><b>Pick-up code</b> <span class="code">${esc(l.ticket.code)}</span></p>` : ''}
+        ${l.ticket.collect ? `<p><b>Collect</b> ${esc(l.ticket.collect)}</p>` : ''}
+      </div>` : ''}
     </div>
     <div class="board">
       <div class="date">${esc(dayDate(l.start))}</div>

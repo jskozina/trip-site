@@ -59,6 +59,7 @@ legs: [ leg | transit ]
 - `date` on a **spot** is optional (`YYYY-MM-DD`), set when a day trip or activity is planned for a specific day. The calendar shows a dated spot as a chip on that day and in the day detail, and the "Still to buy" list shows it instead of "Pick a day". Only set it on major planned activities, not every restaurant.
 - `buyAhead` on a **spot** is optional, `true` for a day trip or activity whose transport or ticket should be bought in advance (e.g. a reserved highway bus). It gets a "To buy" flag and a place in the "Still to buy" list until it is `booked`. A day trip's `priceAud` is its return fare.
 - `bookVia` on a **transit or spot** is optional, a short plain-English note on where to buy it (e.g. `"JR-East Train Reservation, paper ticket collected at the station"`). Shown on the "To buy" flag.
+- `ticket` on a **transit** is optional: `{ ref, code, collect }`, all short plain strings. `ref` is the booking reference or PNR, `code` is a pick-up code (JR East style), `collect` says where and how to collect it (station, machine or office, what to bring, deadline) or that it's an e-ticket. Shown as a dashed box under the transit. Never put the 4-digit ID, card digits, DOB or ticket numbers in it.
 - `id` is a short kebab-case slug, unique across the whole file.
 - Dates are `YYYY-MM-DD`. Legs render in array order, so keep the array chronological.
 - `lat`/`lng` are optional on a leg, stay, or spot — without them, the Map link falls back to a text search of the title. On a **leg** they also place its marker on the route map, so set them for anything that should appear there.
@@ -89,7 +90,7 @@ The human drops confirmation emails (`.eml`, screenshots, forwarded text) at the
 1. Move each file into `confirmations/` (create it if needed) with a descriptive name, e.g. `2026-12-04-bne-cns-kix-booking-confirmed.eml`. This folder is gitignored — it holds PNRs, ticket numbers, passenger DOB, booking-management links with access tokens, and other things that must never reach the public site.
 2. Extract anything trip-relevant into `trip.json` on the matching leg/stay: `status: "booked"`, the real `priceAud`, exact times/flight numbers, and any genuinely useful body-worthy fact (confirmed baggage allowance, a transfer gotcha) per the usual body-writing rules.
 3. Record the booking reference, PNR(s), ticket number, and any other identifying detail in `confirmations/index.md` (create it if needed) — one entry per booking, plain markdown. This is the only place those details should live.
-4. Never put a PNR, ticket number, booking-management URL, or access token into `trip.json` or `index.html`. Both are public.
+4. The human has chosen to show booking references, PNRs and pick-up codes on the site (the `ticket` field on a transit). Still never put a ticket number, passenger DOB or passport detail, PIN, card digits, booking-management URL or access token into `trip.json` or `index.html`. Both are public. Those stay in `confirmations/index.md`.
 5. Commit the `trip.json` change with a message naming what got confirmed. `confirmations/` itself is never committed (it's gitignored) — don't fight that.
 
 ## Writing style for `body` fields
