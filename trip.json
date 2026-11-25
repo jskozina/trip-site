@@ -1553,8 +1553,9 @@
       "start": "2026-12-23",
       "end": "2026-12-23",
       "group": "Flight then transfer to Hoi An",
-      "body": "Airport transfer by car. Lands mid-afternoon now, so check-in should be daylight rather than midnight.",
-      "status": "idea"
+      "body": "Grab from the airport pick-up point, no booking needed. Lands mid-afternoon, so check-in should be in daylight.",
+      "status": "idea",
+      "payOnDay": true
     },
     {
       "id": "hoian",
@@ -1606,8 +1607,9 @@
       "start": "2026-12-25",
       "end": "2026-12-25",
       "group": "Transfer then flight to Saigon",
-      "body": "Airport transfer by car. The flight leaves at 10:50, so book it for around 7:30 to 8:00.",
-      "status": "idea"
+      "body": "Grab at around 7:15 to 7:30 for the 10:50 flight. Early on Christmas Day, so ask the Hoi An hotel to arrange a car the night before as a backup.",
+      "status": "idea",
+      "payOnDay": true
     },
     {
       "id": "danang-sgn",
