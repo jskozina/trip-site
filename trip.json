@@ -1322,12 +1322,18 @@
       "id": "hanoi-halong",
       "type": "transit",
       "title": "Hanoi to Ha Long",
-      "mode": "Car",
+      "mode": "Bus",
       "duration": "approx 2h30",
       "start": "2026-12-18",
       "end": "2026-12-18",
-      "body": "Direct transfer to Bai Chay.",
-      "status": "idea"
+      "body": "Shared limousine van, VIP seat, picked up at your Hanoi apartment and dropped at the Ha Long apartment. The Klook voucher with the confirmed pick-up details is still to come.",
+      "status": "booked",
+      "departTime": "09:00",
+      "priceAud": 21,
+      "ticket": {
+        "ref": "Klook VJJ216034",
+        "collect": "E-voucher by email, no ticket to collect. Pick-up at 09:00."
+      }
     },
     {
       "id": "halong",
@@ -1393,12 +1399,18 @@
       "id": "halong-hanoi",
       "type": "transit",
       "title": "Ha Long to Hanoi",
-      "mode": "Car",
+      "mode": "Bus",
       "duration": "approx 2h30",
       "start": "2026-12-20",
       "end": "2026-12-20",
-      "body": "Return transfer, timed to make the overnight train.",
-      "status": "idea"
+      "body": "Shared limousine van, VIP seat, picked up at the Ha Long apartment at 14:00. Ask for a drop-off in the Old Quarter near the station. The Klook voucher is still to come.",
+      "status": "booked",
+      "departTime": "14:00",
+      "priceAud": 21,
+      "ticket": {
+        "ref": "Klook HTJ434861",
+        "collect": "E-voucher by email, no ticket to collect. Pick-up at 14:00."
+      }
     },
     {
       "id": "hanoi-laocai",
