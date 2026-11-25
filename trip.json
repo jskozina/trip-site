@@ -978,9 +978,7 @@
           "image": "https://images.unsplash.com/photo-1767951443692-295a709d3253?q=80&w=1600&auto=format&fit=crop",
           "body": "Winter hours 9:00 to 16:00, entry by a timed Webket ticket booked in advance (account needed). Bus to Kanbayashi Onsen, then a 1.6 km forest walk of about 30 minutes.",
           "status": "shortlist",
-          "date": "2026-12-11",
-          "buyAhead": true,
-          "bookVia": "Webket, timed-entry ticket for 11 Dec (account needed)"
+          "date": "2026-12-11"
         },
         {
           "id": "shiga-kogen-gondola",
@@ -1157,8 +1155,6 @@
           "lat": 35.517,
           "lng": 138.7677,
           "priceAud": 41,
-          "buyAhead": true,
-          "bookVia": "highway-buses.jp, once you pick the day",
           "image": "https://images.unsplash.com/photo-1752395480128-8c15c9364a03?q=80&w=1600&auto=format&fit=crop",
           "body": "About 2 hours from Tokyo to Kawaguchiko by direct bus. Price is the return bus fare. Often cloud-covered, mornings give the best chance of a clear view.",
           "status": "idea"
