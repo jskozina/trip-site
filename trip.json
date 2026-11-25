@@ -56,6 +56,18 @@
       }
     },
     {
+      "id": "kix-shin-imamiya",
+      "type": "transit",
+      "title": "Kansai Airport to Shin-Imamiya",
+      "mode": "Train",
+      "duration": "About 40 min",
+      "start": "2026-12-04",
+      "end": "2026-12-04",
+      "body": "Nankai line from Kansai Airport to Shin-Imamiya. The Rapi:t limited express stops there but costs extra, so check the board before boarding if you take a regular express. From Nankai Shin-Imamiya it's about 7 minutes on foot, or use JR Shin-Imamiya's Tsutenkaku (East) exit, turn right, cross at the intersection on the left and go straight, about 1 minute.",
+      "payOnDay": true,
+      "status": "idea"
+    },
+    {
       "id": "osaka",
       "type": "leg",
       "title": "Osaka",
@@ -88,7 +100,7 @@
             "https://a0.muscache.com/im/pictures/miso/Hosting-54393130/original/74e348d1-54d5-4a99-8363-1d5b5d2d6388.jpeg",
             "https://a0.muscache.com/im/pictures/miso/Hosting-54393130/original/9de5a4ca-46b3-4f58-8277-6bffc48076d6.jpeg"
           ],
-          "body": "Nishinari Ward, 1 minute from JR Shin-Imamiya and 30 seconds from Dobutsuen-mae stations, and close to Namba and Shinsaibashi. Right by the JR tracks, so expect train noise.",
+          "body": "Self check-in from 3pm at the tablets by the front desk: enter the check-in code the hotel emails before you arrive, fill in your details and pay, then put a blank card key on the white reader to program it. Two tablets, and only one takes cash. Right by the JR tracks, so expect train noise.",
           "status": "booked"
         }
       ],
