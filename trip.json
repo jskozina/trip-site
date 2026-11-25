@@ -240,6 +240,7 @@
           "category": "See",
           "lat": 34.6872571,
           "lng": 135.5258546,
+          "image": "https://images.unsplash.com/photo-1772169702269-b21b09282573?q=80&w=1600&auto=format&fit=crop",
           "status": "idea"
         },
         {
@@ -248,6 +249,7 @@
           "category": "See",
           "lat": 34.6544581,
           "lng": 135.5165239,
+          "image": "https://images.unsplash.com/photo-1695155142574-88acf8347413?q=80&w=1600&auto=format&fit=crop",
           "status": "idea"
         },
         {
@@ -256,6 +258,7 @@
           "category": "See",
           "lat": 34.6510957,
           "lng": 135.5084344,
+          "image": "https://images.unsplash.com/photo-1781697520298-07daf5c274f1?q=80&w=1600&auto=format&fit=crop",
           "status": "idea"
         },
         {
@@ -264,6 +267,7 @@
           "category": "Do",
           "lat": 34.6656768,
           "lng": 135.4323185,
+          "image": "https://images.unsplash.com/photo-1718965909148-564c62389f54?q=80&w=1600&auto=format&fit=crop",
           "status": "idea"
         }
       ]
@@ -985,6 +989,7 @@
           "category": "Eat",
           "lat": 36.7340832,
           "lng": 138.4324256,
+          "image": "https://images.unsplash.com/photo-1787931597082-50d92f5287dc?q=80&w=1600&auto=format&fit=crop",
           "body": "A chef-led dinner with no menu, seated at the bar, which makes it easy to meet people. Many village places close early, so confirm hours.",
           "status": "idea"
         },
@@ -994,6 +999,7 @@
           "category": "Eat",
           "lat": 36.7342397,
           "lng": 138.4315595,
+          "image": "https://images.unsplash.com/photo-1752135534175-44aa59a1bb50?q=80&w=1600&auto=format&fit=crop",
           "status": "idea"
         }
       ]
