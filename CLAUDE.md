@@ -23,9 +23,10 @@ There are slash commands in `.claude/commands` for the common jobs: `/add`, `/ni
 ## Files
 
 - `trip.json` — the only source of truth. Never duplicate data into the HTML.
-- `index.html` — self-contained frontend. No build step. Dependencies are Google Fonts and Leaflet (the route map), both loaded from a CDN — no package.json, no bundler.
+- `index.html` — self-contained frontend (public view and the `/james` private view). No build step. Dependencies are Google Fonts and Leaflet (the route map), both loaded from a CDN — no package.json, no bundler.
 - `inbox.md` — raw captured URLs waiting to be processed.
 - `README.md` — setup notes for the human.
+- `private/` — encrypted-private-data tooling. `private.enc.json` — the encrypted private data, committed. `_redirects` — Netlify routing for `/james`.
 
 ## Schema
 
@@ -59,7 +60,7 @@ legs: [ leg | transit ]
 - `date` on a **spot** is optional (`YYYY-MM-DD`), set when a day trip or activity is planned for a specific day. The calendar shows a dated spot as a chip on that day and in the day detail, and the "Still to buy" list shows it instead of "Pick a day". Only set it on major planned activities, not every restaurant.
 - `buyAhead` on a **spot** is optional, `true` for a day trip or activity whose transport or ticket should be bought in advance (e.g. a reserved highway bus). It gets a "To buy" flag and a place in the "Still to buy" list until it is `booked`. A day trip's `priceAud` is its return fare.
 - `bookVia` on a **transit or spot** is optional, a short plain-English note on where to buy it (e.g. `"JR-East Train Reservation, paper ticket collected at the station"`). Shown on the "To buy" flag.
-- `ticket` on a **transit** is optional: `{ ref, code, collect }`, all short plain strings. `ref` is the booking reference or PNR, `code` is a pick-up code (JR East style), `collect` says where and how to collect it (station, machine or office, what to bring, deadline) or that it's an e-ticket. Shown as a dashed box under the transit. Never put the 4-digit ID, card digits, DOB or ticket numbers in it.
+- There is no `ticket` field any more. Booking references, pick-up codes and collection instructions are private, see "Public and private versions" below.
 - `id` is a short kebab-case slug, unique across the whole file.
 - Dates are `YYYY-MM-DD`. Legs render in array order, so keep the array chronological.
 - `lat`/`lng` are optional on a leg, stay, or spot — without them, the Map link falls back to a text search of the title. On a **leg** they also place its marker on the route map, so set them for anything that should appear there.
@@ -90,8 +91,20 @@ The human drops confirmation emails (`.eml`, screenshots, forwarded text) at the
 1. Move each file into `confirmations/` (create it if needed) with a descriptive name, e.g. `2026-12-04-bne-cns-kix-booking-confirmed.eml`. This folder is gitignored — it holds PNRs, ticket numbers, passenger DOB, booking-management links with access tokens, and other things that must never reach the public site.
 2. Extract anything trip-relevant into `trip.json` on the matching leg/stay: `status: "booked"`, the real `priceAud`, exact times/flight numbers, and any genuinely useful body-worthy fact (confirmed baggage allowance, a transfer gotcha) per the usual body-writing rules.
 3. Record the booking reference, PNR(s), ticket number, and any other identifying detail in `confirmations/index.md` (create it if needed) — one entry per booking, plain markdown. This is the only place those details should live.
-4. The human has chosen to show booking references, PNRs and pick-up codes on the site (the `ticket` field on a transit). Still never put a ticket number, passenger DOB or passport detail, PIN, card digits, booking-management URL or access token into `trip.json` or `index.html`. Both are public. Those stay in `confirmations/index.md`.
+4. Never put a PNR, booking reference, pick-up code, ticket number, PIN, booking-management URL or access token into `trip.json` or `index.html`. The repo and the root site are public. Put them in `private/source.json` (see below) and in `confirmations/index.md`.
 5. Commit the `trip.json` change with a message naming what got confirmed. `confirmations/` itself is never committed (it's gitignored) — don't fight that.
+
+## Public and private versions
+
+The same `index.html` serves two views. The root URL (`/`) is public, built only from `trip.json`, for people following along. `/james` is the private view: it asks for a passphrase, decrypts `private.enc.json` in the browser, and shows a "Private" box on each stay and transit card (booking refs, PNRs, pick-up codes, collection instructions, host phones, addresses, QR codes).
+
+- `private/source.json` is the private data, gitignored. Shape: `{ "items": { "<leg, stay or spot id>": { "rows": [["Label","Value"], ...], "qr": ["data:image/png;base64,..."] } } }`. `qr` is optional, a list of image data URIs.
+- `private/.passphrase` is the passphrase, gitignored. Never print it in chat unless the human asks, and never commit it.
+- After any change to `private/source.json`, run `node private/encrypt.mjs`. It writes `private.enc.json` at the repo root, which IS committed (it is encrypted, so safe even though the repo is public). Commit it with the change. No dependencies, no package.json.
+- `_redirects` serves `/james` from `index.html`. Don't remove it.
+- When a booking is confirmed or a QR code arrives: add or update the item's rows in `private/source.json`, re-encrypt, commit. Keep `trip.json` to the public facts (status, price, times, seat, general advice).
+- Never put in `private/source.json`: card numbers, passport numbers, date of birth. They have no use on the day.
+- Whatever has already been committed in plain text stays in git history. Don't commit private details to `trip.json`, `index.html` or any non-encrypted file.
 
 ## Writing style for `body` fields
 

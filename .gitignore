@@ -1,2 +1,4 @@
 .DS_Store
 confirmations/
+private/source.json
+private/.passphrase

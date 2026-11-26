@@ -30,10 +30,7 @@
       "group": "Connecting via Cairns",
       "priceAud": 883,
       "body": "Booked as one self-transfer itinerary through Trip.com - separate tickets on Virgin and Jetstar, so bags need collecting and rechecking in Cairns, plus a change of terminal (T2 to T1). 4 hour buffer. Checked bag included, up to 23kg.",
-      "status": "booked",
-      "ticket": {
-        "ref": "Virgin Australia WNHWJN"
-      }
+      "status": "booked"
     },
     {
       "id": "cns-kix",
@@ -50,10 +47,7 @@
       "end": "2026-12-04",
       "group": "Connecting via Cairns",
       "body": "Checked bag included, up to 20kg. Carry-on is tighter on this sector though - personal item and carry-on together can't exceed 7kg total.",
-      "status": "booked",
-      "ticket": {
-        "ref": "Jetstar RWSMSZ"
-      }
+      "status": "booked"
     },
     {
       "id": "kix-shin-imamiya",
@@ -748,11 +742,7 @@
       "end": "2026-12-09",
       "priceAud": 70,
       "body": "Hida 25, car 2 seat 14-D, the only direct working of the day. Collect the paper ticket at a JR station before boarding (outside the gates), with the card used to book and the 4-digit ID.",
-      "status": "booked",
-      "ticket": {
-        "ref": "JR West reservation 46449",
-        "collect": "Kyoto Station, JR West ticket machine or ticket office, outside the gates. Needs the Mastercard you paid with and your 4-digit ID. Collect by the morning of 9 Dec."
-      }
+      "status": "booked"
     },
     {
       "id": "takayama",
@@ -825,11 +815,7 @@
       "end": "2026-12-10",
       "group": "Via Shirakawa-go",
       "body": "Car 1, seat 07A, from Takayama Nohi Bus Center. Print the e-ticket email and be at the stop 10 minutes early, as you have to rebuy the ticket if you can't show it. No toilet on board.",
-      "status": "booked",
-      "ticket": {
-        "ref": "Nohi Bus reservation 11162011281",
-        "collect": "E-ticket, not a paper ticket. Print the email and show it to the driver."
-      }
+      "status": "booked"
     },
     {
       "id": "shirakawago-kanazawa",
@@ -844,11 +830,7 @@
       "end": "2026-12-10",
       "group": "Via Shirakawa-go",
       "body": "Car 1, seat 09D, from Shirakawa-go (Ogimachi) to Kanazawa Station West Exit, bus stop 4. Print the e-ticket email, as you have to rebuy the ticket if you can't show it.",
-      "status": "booked",
-      "ticket": {
-        "ref": "Nohi Bus reservation 11162011821",
-        "collect": "E-ticket, not a paper ticket. Print the email and show it to the driver."
-      }
+      "status": "booked"
     },
     {
       "id": "kanazawa",
@@ -897,11 +879,7 @@
       "priceAud": 85,
       "group": "Kanazawa to Shibu Onsen",
       "body": "Kagayaki 506, car 5 seat 11E. Collect the paper ticket at Kyoto Station (JR West ticket machine or office, outside the gates) before you leave Kyoto, with the card you paid with and your 4-digit ID.",
-      "status": "booked",
-      "ticket": {
-        "ref": "JR West reservation 41367",
-        "collect": "Kyoto Station on 5 Dec, JR West ticket machine or ticket office, outside the gates. Needs the Mastercard you paid with and your 4-digit ID. Fallback: Kanazawa Station on the morning of 11 Dec."
-      }
+      "status": "booked"
     },
     {
       "id": "nagano-yudanaka",
@@ -1100,12 +1078,7 @@
       "priceAud": 78,
       "group": "Shibu Onsen to Okubo",
       "body": "Kagayaki 512, car 9 seat 11A. Collect the paper ticket at Nagano Station before boarding. It covers the Tokyo Ward Area, which normally includes Okubo, so keep it for the last leg.",
-      "status": "booked",
-      "ticket": {
-        "ref": "JR East reservation E32365",
-        "code": "32432487869521248",
-        "collect": "Nagano Station, JR East reserved seat ticket machine or ticket office. Use the pick-up code, or the QR code in the email. Collect it when you arrive at Nagano on 11 Dec, or before 17:56 on 12 Dec."
-      }
+      "status": "booked"
     },
     {
       "id": "tokyo-okubo",
@@ -1280,10 +1253,7 @@
       "end": "2026-12-15",
       "priceAud": 511,
       "body": "Narita, not Haneda - about an hour further out from Asakusa, so allow extra time for the airport run. Booked with a 20kg checked bag included.",
-      "status": "booked",
-      "ticket": {
-        "ref": "VietJet 2N3NXG"
-      }
+      "status": "booked"
     },
     {
       "id": "hanoi",
@@ -1337,11 +1307,7 @@
       "body": "Shared limousine van, VIP seat, picked up at your Hanoi apartment and dropped at the Ha Long apartment. The Klook voucher with the confirmed pick-up details is still to come.",
       "status": "booked",
       "departTime": "09:00",
-      "priceAud": 21,
-      "ticket": {
-        "ref": "Klook VJJ216034",
-        "collect": "E-voucher by email, no ticket to collect. Pick-up at 09:00."
-      }
+      "priceAud": 21
     },
     {
       "id": "halong",
@@ -1414,11 +1380,7 @@
       "body": "Shared limousine van, VIP seat, picked up at the Ha Long apartment at 14:00. Ask for a drop-off in the Old Quarter near the station. The Klook voucher is still to come.",
       "status": "booked",
       "departTime": "14:00",
-      "priceAud": 21,
-      "ticket": {
-        "ref": "Klook HTJ434861",
-        "collect": "E-voucher by email, no ticket to collect. Pick-up at 14:00."
-      }
+      "priceAud": 21
     },
     {
       "id": "hanoi-laocai",
@@ -1434,10 +1396,7 @@
       "end": "2026-12-21",
       "group": "Overnight train then transfer to Sapa",
       "body": "Tonkin Heritage TK15, Indigo Berth cabin. Sleeping on the train, so this doesn't cost a hotel night.",
-      "status": "booked",
-      "ticket": {
-        "ref": "Tonkin Heritage booking 3260919005"
-      }
+      "status": "booked"
     },
     {
       "id": "laocai-sapa",
@@ -1526,10 +1485,7 @@
       "end": "2026-12-23",
       "group": "Transfer then overnight train to Hanoi",
       "body": "Tonkin Heritage TK16, Indigo Berth cabin, back into Hanoi in time to fly to Da Nang.",
-      "status": "booked",
-      "ticket": {
-        "ref": "Tonkin Heritage booking 3260919005"
-      }
+      "status": "booked"
     },
     {
       "id": "hanoi-dad",
@@ -1547,10 +1503,7 @@
       "group": "Flight then transfer to Hoi An",
       "priceAud": 63,
       "body": "Booked with a 23kg checked bag included.",
-      "status": "booked",
-      "ticket": {
-        "ref": "Sun PhuQuoc Airways FKI7QN"
-      }
+      "status": "booked"
     },
     {
       "id": "dad-hoian",
@@ -1634,10 +1587,7 @@
       "priceAud": 99,
       "group": "Transfer then flight to Saigon",
       "body": "The airline brought this forward from 11:00 to 10:50, so leave Hoi An a little earlier. Checked bag capped at 15kg, not 20kg, worth weighing before this one.",
-      "status": "booked",
-      "ticket": {
-        "ref": "Vietravel IM83QR"
-      }
+      "status": "booked"
     },
     {
       "id": "saigon",
@@ -1693,10 +1643,7 @@
       "start": "2026-12-27",
       "end": "2026-12-27",
       "body": "Booked with a 20kg checked bag included.",
-      "status": "booked",
-      "ticket": {
-        "ref": "VietJet 8KTBR8"
-      }
+      "status": "booked"
     },
     {
       "id": "bali",
@@ -1749,10 +1696,7 @@
       "end": "2026-12-30",
       "priceAud": 397,
       "body": "Overnight flight, arrives the next morning. Starter Plus fare, 20kg checked bag and a meal included.",
-      "status": "booked",
-      "ticket": {
-        "ref": "Jetstar WS81RQ"
-      }
+      "status": "booked"
     }
   ]
 }

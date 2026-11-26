@@ -472,10 +472,18 @@ a.cd-stay:hover .cd-name,a.cd-stay:hover .cd-go{color:var(--accent)}
 .transit-row.to-buy{box-shadow:inset 3px 0 0 var(--buy);padding-left:16px}
 .item-card .via{font-family:var(--mono);font-size:11px;color:var(--buy);margin:8px 0 0;letter-spacing:.02em}
 .transit-row .via{font-family:var(--mono);font-size:11px;color:var(--buy);margin:7px 0 0;letter-spacing:.02em}
-.transit-row .tix{margin:9px 0 0;padding:8px 10px;border:1px dashed var(--line, rgba(128,128,128,.45));border-radius:6px;font-family:var(--mono);font-size:11px;line-height:1.5;overflow-wrap:anywhere}
-.transit-row .tix p{margin:2px 0}
-.transit-row .tix b{font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:10px;opacity:.7;margin-right:6px}
-.transit-row .tix .code{font-size:13px;letter-spacing:.04em;user-select:all}
+.tix{margin:10px 0 0;padding:8px 10px;border:1px dashed var(--line-2);border-radius:6px;font-family:var(--mono);font-size:11px;line-height:1.5;overflow-wrap:anywhere;text-align:left}
+.tix p{margin:3px 0;font-size:11px}
+.tix b{font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:10px;opacity:.7;margin-right:6px}
+.tix .privhead{font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:10px;opacity:.6;margin:0 0 4px}
+.tix .qr{display:block;width:100%;max-width:220px;margin:8px 0 2px;background:#fff;padding:6px;border-radius:6px}
+.unlock{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
+.unlock form{width:100%;max-width:340px}
+.unlock h2{font-family:var(--serif, inherit);font-weight:400;font-size:26px;margin:0 0 6px}
+.unlock p{margin:0 0 14px;font-size:14px;opacity:.75}
+.unlock input{width:100%;box-sizing:border-box;padding:12px;font-size:16px;border:1px solid var(--line-2);border-radius:8px;background:transparent;color:inherit;margin-bottom:10px}
+.unlock button{width:100%;padding:12px;font-size:15px;border:0;border-radius:8px;background:var(--text);color:var(--bg);cursor:pointer}
+.unlock .bad{color:#b3261e;opacity:1}
 .buy{margin-top:56px;max-width:940px}
 .buy-list{border:1px solid var(--line);border-left:3px solid var(--buy);background:var(--buy-bg)}
 .buy-item{
@@ -797,6 +805,15 @@ function connectorHtml(a, b){
 }
 
 // A transit leg needs buying ahead if it isn't booked and isn't marked pay-on-the-day
+let PRIVATE = {};
+function privateBox(id){
+  const p = PRIVATE.items && PRIVATE.items[id];
+  if(!p) return '';
+  const rows = (p.rows||[]).map(r => `<p><b>${esc(r[0])}</b> ${esc(r[1])}</p>`).join('');
+  const qr = (p.qr||[]).map(src => `<img class="qr" src="${esc(src)}" alt="QR code">`).join('');
+  return `<div class="tix"><p class="privhead">Private</p>${rows}${qr}</div>`;
+}
+
 function needsPurchase(l){
   return l.type === 'transit' && l.status !== 'booked' && !l.payOnDay;
 }
@@ -817,11 +834,7 @@ function transitInner(l, extraClass, idAttr, styleAttr){
       ${buy && l.bookVia ? `<p class="via">Buy via ${esc(l.bookVia)}</p>` : ''}
       <p class="sub">${esc(l.mode||'Transit')}${l.flightNo ? ' · '+esc(l.flightNo) : ''}${l.priceAud ? ' · '+money(l.priceAud)+((l.mode||'').toLowerCase()==='flight' ? ' pp' : '') : ''}</p>
       ${l.body ? `<p class="d">${esc(l.body)}</p>` : ''}
-      ${l.ticket ? `<div class="tix">
-        ${l.ticket.ref ? `<p><b>Ref</b> ${esc(l.ticket.ref)}</p>` : ''}
-        ${l.ticket.code ? `<p><b>Pick-up code</b> <span class="code">${esc(l.ticket.code)}</span></p>` : ''}
-        ${l.ticket.collect ? `<p><b>Collect</b> ${esc(l.ticket.collect)}</p>` : ''}
-      </div>` : ''}
+      ${privateBox(l.id)}
     </div>
     <div class="board">
       <div class="date">${esc(dayDate(l.start))}</div>
@@ -857,6 +870,7 @@ function itemCard(o, kind, city, feature){
       <h3>${esc(o.title)}</h3>
       ${meta ? `<p class="meta">${esc(meta)}</p>` : ''}
       ${o.body ? `<p>${esc(o.body)}</p>` : ''}
+      ${privateBox(o.id)}
       ${o.buyAhead && o.status !== 'booked' && o.bookVia ? `<p class="via">Buy via ${esc(o.bookVia)}</p>` : ''}
       <div class="row">
         ${o.buyAhead && o.status !== 'booked' ? '<span class="buy-flag">To buy</span>' : ''}
@@ -1602,10 +1616,47 @@ function render(data){
   }
 }
 
+const PRIVATE_MODE = /^\/james\/?$/.test(location.pathname);
+
+function b64(s){ return Uint8Array.from(atob(s), c => c.charCodeAt(0)); }
+async function decryptPrivate(pass){
+  const j = await (await fetch('/private.enc.json?_=' + Date.now())).json();
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey({name:'PBKDF2', salt:b64(j.salt), iterations:j.iter, hash:'SHA-256'}, base, {name:'AES-GCM', length:256}, false, ['decrypt']);
+  const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64(j.iv)}, key, b64(j.data));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+function askPass(bad){
+  return new Promise(resolve => {
+    const o = document.createElement('div');
+    o.className = 'unlock';
+    o.innerHTML = `<form><h2>Private view</h2><p class="${bad?'bad':''}">${bad ? 'That passphrase did not work. Try again.' : 'Enter the passphrase to show booking references and tickets.'}</p><input type="password" autocomplete="current-password" autocapitalize="none" autocorrect="off" spellcheck="false" aria-label="Passphrase"><button type="submit">Unlock</button></form>`;
+    o.querySelector('form').addEventListener('submit', e => { e.preventDefault(); const v = o.querySelector('input').value.trim(); o.remove(); resolve(v); });
+    document.body.appendChild(o);
+    o.querySelector('input').focus();
+  });
+}
+async function unlock(){
+  let pass = null, bad = false;
+  try{ pass = localStorage.getItem('trip-pass-v1'); }catch(e){}
+  for(;;){
+    if(!pass) pass = await askPass(bad);
+    try{
+      const d = await decryptPrivate(pass);
+      try{ localStorage.setItem('trip-pass-v1', pass); }catch(e){}
+      return d;
+    }catch(e){
+      if(e instanceof TypeError || e instanceof SyntaxError) return {};   // couldn't fetch the private file
+      pass = null; bad = true;
+      try{ localStorage.removeItem('trip-pass-v1'); }catch(_){}
+    }
+  }
+}
+
 async function boot(){
   let data = null;
   try{
-    const res = await fetch('trip.json?_=' + Date.now());
+    const res = await fetch('/trip.json?_=' + Date.now());
     if(!res.ok) throw new Error(res.status);
     data = await res.json();
     try{ localStorage.setItem(CACHE_KEY, JSON.stringify(data)); }catch(e){}
@@ -1625,6 +1676,11 @@ async function boot(){
       then open <code>localhost:8000</code>. On Netlify it just works.
     </div>`;
     return;
+  }
+  if(PRIVATE_MODE){
+    PRIVATE = await unlock();
+    const m = document.createElement('meta'); m.name = 'robots'; m.content = 'noindex'; document.head.appendChild(m);
+    document.title = document.title + ' (private)';
   }
   render(data);
 }
